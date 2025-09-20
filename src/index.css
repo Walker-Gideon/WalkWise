@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+  /* default */
+  --font-sans: "Quicksand", sans-serif;
+}
