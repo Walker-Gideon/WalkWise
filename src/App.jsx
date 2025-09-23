@@ -4,6 +4,8 @@ import SignIn from "./authentication/sign-in/SignIn";
 import SignUp from "./authentication/sign-up/SignUp";
 import ForgetAccount from "./authentication/forget/ForgetAccount";
 import Accounts from "./authentication/Accounts";
+import AppLayout from "./features/AppLayout";
+import Dashboard from "./features/dashboard/Dashboard";
 
 export default function App() {
   return (
@@ -15,6 +17,10 @@ export default function App() {
           <Route path="signin" element={<SignIn />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="forgotten" element={<ForgetAccount />} />
+        </Route>
+
+        <Route path="dashboard" element={<AppLayout />}>
+          <Route index element={<Dashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>
