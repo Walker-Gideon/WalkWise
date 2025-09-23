@@ -11,6 +11,7 @@ import Flashcard from "./features/flashcard/Flashcard";
 import Schedules from "./features/schedule/Schedules";
 import Inspire from "./features/inspire/Inspire";
 import Settings from "./features/settings/Settings";
+import Verify from "./authentication/verify/Verify";
 
 export default function App() {
   return (
@@ -23,6 +24,8 @@ export default function App() {
           <Route path="signup" element={<SignUp />} />
           <Route path="forgotten" element={<ForgetAccount />} />
         </Route>
+
+        <Route path="verify" element={<Verify />} />
 
         <Route path="dashboard" element={<AppLayout />}>
           <Route index element={<Dashboard />} />
