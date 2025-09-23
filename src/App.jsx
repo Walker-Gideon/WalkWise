@@ -6,6 +6,7 @@ import ForgetAccount from "./authentication/forget/ForgetAccount";
 import Accounts from "./authentication/Accounts";
 import AppLayout from "./features/AppLayout";
 import Dashboard from "./features/dashboard/Dashboard";
+import Note from "./features/note/Note";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
 
         <Route path="dashboard" element={<AppLayout />}>
           <Route index element={<Dashboard />} />
+          <Route path="notes" element={<Note />} />
         </Route>
       </Routes>
     </BrowserRouter>
