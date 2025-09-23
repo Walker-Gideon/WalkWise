@@ -9,6 +9,7 @@ import Dashboard from "./features/dashboard/Dashboard";
 import Note from "./features/note/Note";
 import Flashcard from "./features/flashcard/Flashcard";
 import Schedules from "./features/schedule/Schedules";
+import Inspire from "./features/inspire/Inspire";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="notes" element={<Note />} />
           <Route path="flashcards" element={<Flashcard />} />
           <Route path="schedule" element={<Schedules />} />
+          <Route path="inspire" element={<Inspire />} />
         </Route>
       </Routes>
     </BrowserRouter>
