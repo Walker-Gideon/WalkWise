@@ -7,6 +7,7 @@ import Accounts from "./authentication/Accounts";
 import AppLayout from "./features/AppLayout";
 import Dashboard from "./features/dashboard/Dashboard";
 import Note from "./features/note/Note";
+import Flashcard from "./features/flashcard/Flashcard";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="dashboard" element={<AppLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="notes" element={<Note />} />
+          <Route path="flashcards" element={<Flashcard />} />
         </Route>
       </Routes>
     </BrowserRouter>
