@@ -10,6 +10,7 @@ import Note from "./features/note/Note";
 import Flashcard from "./features/flashcard/Flashcard";
 import Schedules from "./features/schedule/Schedules";
 import Inspire from "./features/inspire/Inspire";
+import Settings from "./features/settings/Settings";
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="flashcards" element={<Flashcard />} />
           <Route path="schedule" element={<Schedules />} />
           <Route path="inspire" element={<Inspire />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
     </BrowserRouter>
