@@ -3,7 +3,7 @@ import Slider from "./Slider";
 
 export default function AppLayout() {
   return (
-    <div className="grid h-screen grid-cols-[14rem_1fr]">
+    <div className="defaultColor grid h-screen grid-cols-[14rem_1fr]">
       <Slider />
 
       <main className="h-screen">
