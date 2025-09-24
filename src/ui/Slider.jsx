@@ -1,3 +1,3 @@
 export default function Slider() {
-  return <aside>ASIDE</aside>;
+  return <aside className="">ASIDE</aside>;
 }

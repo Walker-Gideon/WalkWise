@@ -3,9 +3,12 @@ import Slider from "./Slider";
 
 export default function AppLayout() {
   return (
-    <div className="">
+    <div className="grid h-screen grid-cols-[14rem_1fr]">
       <Slider />
-      <Outlet />
+
+      <main className="h-screen">
+        <Outlet />
+      </main>
     </div>
   );
 }
