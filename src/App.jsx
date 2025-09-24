@@ -4,7 +4,7 @@ import SignIn from "./authentication/sign-in/SignIn";
 import SignUp from "./authentication/sign-up/SignUp";
 import ForgetAccount from "./authentication/forget/ForgetAccount";
 import Accounts from "./authentication/Accounts";
-import AppLayout from "./features/AppLayout";
+import AppLayout from "./ui/AppLayout";
 import Dashboard from "./features/dashboard/Dashboard";
 import Note from "./features/note/Note";
 import Flashcard from "./features/flashcard/Flashcard";
