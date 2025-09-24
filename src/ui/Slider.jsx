@@ -1,3 +1,3 @@
 export default function Slider() {
-  return <aside className="">ASIDE</aside>;
+  return <aside className="borderStyling border-r">ASIDE</aside>;
 }

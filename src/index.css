@@ -3,4 +3,19 @@
 @theme {
   /* default */
   --font-sans: "Quicksand", sans-serif;
+
+  --breakpoint-smallest: 300px;
+  --breakpoint-sm: 325px;
+  --breakpoint-medium: 650px;
+  --breakpoint-md: 768px;
+  --breakpoint-middle: 850px;
+  --breakpoint-maxmid: 900px;
+  --breakpoint-lg: 1024px;
+}
+
+@layer components {
+  .borderStyling {
+    /* dark:border-slate-700 */
+    @apply border-stone-300;
+  }
 }
