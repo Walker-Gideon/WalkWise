@@ -12,6 +12,7 @@ import Schedules from "./features/schedule/Schedules";
 import Inspire from "./features/inspire/Inspire";
 import Settings from "./features/settings/Settings";
 import Verify from "./authentication/verify/Verify";
+import PageNotFound from "./ui/PageNotFound";
 
 export default function App() {
   return (
@@ -19,13 +20,13 @@ export default function App() {
       <Routes>
         <Route index element={<LandingPage />} />
 
-        <Route path="/account" element={<Accounts />}>
-          <Route path="signin" element={<SignIn />} />
-          <Route path="signup" element={<SignUp />} />
+        <Route element={<Accounts />}>
+          <Route index element={<Navigate replace to="sign-in" />} />
+          <Route path="sign-in" element={<SignIn />} />
+          <Route path="sign-up" element={<SignUp />} />
           <Route path="forgotten" element={<ForgetAccount />} />
+          <Route path="verify" element={<Verify />} />
         </Route>
-
-        <Route path="verify" element={<Verify />} />
 
         <Route element={<AppLayout />}>
           <Route index element={<Navigate replace to="dashboard" />} />
@@ -36,6 +37,8 @@ export default function App() {
           <Route path="inspire" element={<Inspire />} />
           <Route path="settings" element={<Settings />} />
         </Route>
+
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );
