@@ -2,12 +2,12 @@ import AdditionalInformation from "./additionalInfo/AdditionalInformation";
 import Footer from "./footer/Footer";
 import Hero from "./hero/Hero";
 import MoreInformation from "./infoOn/MoreInformation";
-import LPHeader from "./landing-page-header/LPHeader";
+import LandindPageHeader from "./landing-page-header/LandindPageHeader";
 
 export default function LandingPage() {
   return (
     <div>
-      <LPHeader />
+      <LandindPageHeader />
       <main>
         <Hero />
         <AdditionalInformation />
