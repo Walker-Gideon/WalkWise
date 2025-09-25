@@ -1,4 +1,5 @@
-import MainHeader from "../../ui/MainHeader";
+import DisplayAndHidden from "/src/ui/DisplayAndHidden";
+import MainHeader from "/src/ui/MainHeader";
 import Button from "/src/ui/Button";
 import Logo from "/src/ui/Logo";
 
@@ -10,10 +11,17 @@ export default function LandindPageHeader() {
       }
     >
       <Logo to="home" cursor={true} />
-      <div className="">
-        <Button>Log In</Button>
-        <Button>Sign Up</Button>
-      </div>
+      <>
+        <DisplayAndHidden>
+          <div className="flex items-center gap-2 whitespace-nowrap">
+            <Button to="/sign-in">Log In</Button>
+            <Button to="/sign-up">Sign Up</Button>
+          </div>
+        </DisplayAndHidden>
+        <DisplayAndHidden variant="hidden">
+          <Button to="/sign-in">Get started</Button>
+        </DisplayAndHidden>
+      </>
     </MainHeader>
   );
 }
