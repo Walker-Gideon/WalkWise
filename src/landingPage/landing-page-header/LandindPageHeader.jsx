@@ -1,4 +1,4 @@
-import Logo from "../../ui/Logo";
+import Logo from "/src/ui/Logo";
 
 export default function LandindPageHeader() {
   return (
