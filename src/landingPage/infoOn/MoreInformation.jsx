@@ -1,3 +1,3 @@
 export default function MoreInformation() {
-  return <>MoreInformation</>;
+  return <div>MoreInformation</div>;
 }
