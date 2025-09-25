@@ -1,3 +1,10 @@
+import Logo from "./Logo";
+
 export default function Heading() {
-  return <div>Heading</div>;
+  return (
+    <div>
+      Heading
+      <Logo />
+    </div>
+  );
 }
