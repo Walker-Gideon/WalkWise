@@ -15,12 +15,18 @@ export default function LandindPageHeader() {
       <>
         <DisplayAndHidden>
           <Flex classname={"items-center gap-2 whitespace-nowrap"}>
-            <Button to="/sign-in">Log In</Button>
-            <Button to="/sign-up">Sign Up</Button>
+            <Button to="/sign-in" classname={"px-5 border-stone-300"}>
+              Log In
+            </Button>
+            <Button to="/sign-up" colors={true}>
+              Sign Up
+            </Button>
           </Flex>
         </DisplayAndHidden>
         <DisplayAndHidden variant="hidden">
-          <Button to="/sign-in">Get started</Button>
+          <Button to="/sign-in" colors={true}>
+            Get started
+          </Button>
         </DisplayAndHidden>
       </>
     </MainHeader>
