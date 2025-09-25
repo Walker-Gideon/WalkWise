@@ -1,3 +1,3 @@
 export default function MainNav() {
-  return <div>MainNav</div>;
+  return <nav>MainNav</nav>;
 }
