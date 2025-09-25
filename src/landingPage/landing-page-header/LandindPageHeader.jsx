@@ -2,6 +2,7 @@ import DisplayAndHidden from "/src/ui/DisplayAndHidden";
 import MainHeader from "/src/ui/MainHeader";
 import Button from "/src/ui/Button";
 import Logo from "/src/ui/Logo";
+import Flex from "/src/ui/Flex";
 
 export default function LandindPageHeader() {
   return (
@@ -13,10 +14,10 @@ export default function LandindPageHeader() {
       <Logo to="home" cursor={true} />
       <>
         <DisplayAndHidden>
-          <div className="flex items-center gap-2 whitespace-nowrap">
+          <Flex classname={"items-center gap-2 whitespace-nowrap"}>
             <Button to="/sign-in">Log In</Button>
             <Button to="/sign-up">Sign Up</Button>
-          </div>
+          </Flex>
         </DisplayAndHidden>
         <DisplayAndHidden variant="hidden">
           <Button to="/sign-in">Get started</Button>
