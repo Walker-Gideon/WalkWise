@@ -3,6 +3,7 @@ import Box from "/src/ui/Box";
 import Flex from "/src/ui/Flex";
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
+import SpanText from "/src/ui/SpanText";
 
 export default function Hero() {
   return (
@@ -26,7 +27,7 @@ export default function Hero() {
             Unlock a world of knowledge with expertly crafted study tools —
             flashcards, notes, AI help, and motivation — all in one place to
             power your learning with{" "}
-            <span className="font-semibold">WalkWise</span>.
+            <SpanText classname="font-semibold">WalkWise</SpanText>.
           </Paragraph>
         </Box>
       </Flex>
