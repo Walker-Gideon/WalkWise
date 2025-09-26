@@ -1,6 +1,7 @@
 import { LuChevronRight } from "react-icons/lu";
 import { LuArrowDown } from "react-icons/lu";
 import HeroInformation from "./components/HeroInformation";
+import HeroImages from "./components/HeroImages";
 import Container from "/src/ui/Container";
 import Box from "/src/ui/Box";
 import Flex from "/src/ui/Flex";
@@ -11,7 +12,7 @@ export default function Hero() {
     <Container
       id="home"
       adjust={true}
-      classname="h-[80vh] w-full px-4 medium:px-6"
+      classname="h-full w-full px-4 medium:px-6"
     >
       <Flex variant="center" classname={"h-full"}>
         <Box
@@ -45,6 +46,7 @@ export default function Hero() {
           </Flex>
         </Box>
       </Flex>
+      <HeroImages />
     </Container>
   );
 }
