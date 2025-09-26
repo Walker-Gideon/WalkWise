@@ -8,8 +8,9 @@ export default function LandingPage() {
   return (
     <div>
       <LandindPageHeader />
-      <main>
-        <Hero />
+      <Hero />
+      {/* lg:px-30 */}
+      <main className="h-full px-4 md:px-8">
         <AdditionalInformation />
         <MoreInformation />
       </main>
