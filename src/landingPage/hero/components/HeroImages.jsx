@@ -1,5 +1,7 @@
 import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
+import Image from "/src/ui/Image";
+import Box from "/src/ui/Box";
 import hero1 from "/src/assets/hero1.png";
 import hero2 from "/src/assets/hero2.png";
 import hero3 from "/src/assets/hero3.png";
@@ -30,9 +32,10 @@ export default function HeroImages() {
         classname="grid auto-cols-max grid-flow-col justify-center gap-6"
       >
         {images.map((image, index) => (
-          <div
+          <Box
             key={index}
-            className={`transform transition-transform ${image.style}`}
+            adjustWidth={true}
+            classname={`transform transition-transform ${image.style}`}
           >
             <Paragraph
               type="sm"
@@ -40,17 +43,17 @@ export default function HeroImages() {
             >
               {image.text}
             </Paragraph>
-            <Container
-              adjust={true}
+            <Box
+              adjustWidth={true}
               classname="medium:w-40 h-auto w-30 rounded-xl border border-slate-600 shadow-md shadow-slate-600 lg:w-50"
             >
-              <img
+              <Image
                 src={image.url}
                 alt={image.text}
-                className="overflow-hidden rounded-xl object-cover"
+                classname="overflow-hidden rounded-xl object-cover"
               />
-            </Container>
-          </div>
+            </Box>
+          </Box>
         ))}
       </Container>
     </Container>
