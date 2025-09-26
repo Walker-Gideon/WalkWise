@@ -1,21 +1,17 @@
-export default function Flex({ classname, children, variant, id }) {
+export default function Flex({ classname, children, variant }) {
   if (variant === "center")
     return (
-      <div id={id} className={`flex items-center justify-center ${classname}`}>
+      <div className={`flex items-center justify-center ${classname}`}>
         {children}
       </div>
     );
 
   if (variant === "between")
     return (
-      <div id={id} className={`flex items-center justify-between ${classname}`}>
+      <div className={`flex items-center justify-between ${classname}`}>
         {children}
       </div>
     );
 
-  return (
-    <div id={id} className={`flex ${classname}`}>
-      {children}
-    </div>
-  );
+  return <div className={`flex ${classname}`}>{children}</div>;
 }
