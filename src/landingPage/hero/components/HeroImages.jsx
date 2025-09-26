@@ -1,3 +1,4 @@
+import Container from "../../../ui/Container";
 import hero1 from "/src/assets/hero1.png";
 import hero2 from "/src/assets/hero2.png";
 import hero3 from "/src/assets/hero3.png";
@@ -6,7 +7,7 @@ const images = [
   {
     text: "Create Notes",
     url: hero1,
-    style: "medium:-rotate-12 -rotate-12",
+    style: "-rotate-12",
   },
   {
     text: "Create Flashcards",
@@ -23,7 +24,7 @@ const images = [
 export default function HeroImages() {
   return (
     // medium:min-w-2xs medium:px-12 mx-auto mt-8 h-auto w-full min-w-md px-6 lg:max-w-12
-    <div className="">
+    <Container adjust={true} classname="mt-10">
       <div className="grid auto-cols-max grid-flow-col justify-center gap-6">
         {images.map((image, index) => (
           <div
@@ -43,6 +44,6 @@ export default function HeroImages() {
           </div>
         ))}
       </div>
-    </div>
+    </Container>
   );
 }
