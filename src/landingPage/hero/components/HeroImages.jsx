@@ -6,7 +6,7 @@ const images = [
   {
     text: "Create Notes",
     url: hero1,
-    style: "-rotate-12",
+    style: "medium:-rotate-12 -rotate-12",
   },
   {
     text: "Create Flashcards",
@@ -22,7 +22,8 @@ const images = [
 
 export default function HeroImages() {
   return (
-    <div className="medium:min-w-2xs medium:px-12 mx-auto mt-8 h-100 w-full min-w-md px-6 lg:max-w-12">
+    // medium:min-w-2xs medium:px-12 mx-auto mt-8 h-auto w-full min-w-md px-6 lg:max-w-12
+    <div className="">
       <div className="grid auto-cols-max grid-flow-col justify-center gap-6">
         {images.map((image, index) => (
           <div

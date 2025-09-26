@@ -6,7 +6,7 @@ import LandindPageHeader from "./landing-page-header/LandindPageHeader";
 
 export default function LandingPage() {
   return (
-    <div>
+    <div className="overflow-hidden">
       <LandindPageHeader />
       <Hero />
       {/* lg:px-30 */}
