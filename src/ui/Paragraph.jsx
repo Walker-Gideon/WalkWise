@@ -1,6 +1,8 @@
-export default function Paragraph({ children, classname, variant }) {
-  if (variant === "primary")
-    return <p className={`${classname}`}>{children}</p>;
+export default function Paragraph({ children, classname, type }) {
+  const styling = {
+    xs: "text-xs medium:text-sm",
+    sm: "text-sm medium:text-base",
+  };
 
-  return <p className={`${classname}`}>{children}</p>;
+  return <p className={`${classname} ${styling[type]}`}>{children}</p>;
 }

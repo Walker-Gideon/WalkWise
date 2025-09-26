@@ -7,9 +7,8 @@ export default function HeroInformation() {
     <>
       <HeaderText variant="huge">Build Habits That Power Your Mind.</HeaderText>
       <Paragraph
-        classname={
-          "medium:pt-5 medium:text-base max-w-2xl pt-3 text-sm text-slate-500"
-        }
+        type="sm"
+        classname={"medium:pt-5 max-w-2xl pt-3 text-slate-500"}
       >
         Unlock a world of knowledge with expertly crafted study tools —
         flashcards, notes, AI help, and motivation — all in one place to power
