@@ -8,20 +8,26 @@ export default function InformationContent({
   title,
   subtitle,
   points,
-  images,
+  url,
 }) {
-  // px-2 py-4 md:px-6 md:py-0 lg:px-15
+  // 
   return (
     <Container
       adjust={true}
-      classname={`${index === 1 ? `md:order-2` : ``} ${index === 3 ? `md:order-2` : ``}`}
+      classname={`px-2 py-4 md:px-6 md:py-0 lg:px-15`}
     >
-      {/* flex flex-col-reverse gap-8 md:grid md:h-100 md:grid-cols-2 md:items-center lg:gap-20 */}
-      <div>
-      {icon}
-      {title}
-      {subtitle}
-      <>
+      <div className="flex flex-col-reverse gap-8 md:grid md:h-100 md:grid-cols-2 md:items-center lg:gap-20">
+      <div className={`${index === 1 ? `md:order-2` : ``} ${index === 3 ? `md:order-2` : ``}`}>
+        <div className="flex itemc-center space-x-4 text-sm font-semibold">
+          <span className="rounded-full p-3 bg-gradient-to-r from-slate-200 to-slate-300">{icon}</span>
+          <p>{title}</p>
+        </div>
+
+        <p className="px-2 py-3 text-xl font-bold md:text-2xl">
+          {subtitle}
+        </p>
+
+      <div className="px-2">
         {points.map((data, index) => (
           <ul
             key={index}
@@ -38,11 +44,12 @@ export default function InformationContent({
             <li className="font-medium text-slate-500">{data}</li>
           </ul>
         ))}
-      </>
+      </div>
       </div>
 
       <div>
-        <img src={images} alt="" />
+        <img src={url} alt="" />
+      </div>
       </div>
     </Container>
   );
