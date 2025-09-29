@@ -4,6 +4,10 @@ import {
   LuMessageSquare,
   LuMessageSquareText,
 } from "react-icons/lu";
+import cardImage from "/src/assets/card.png";
+import dashboardImage from "/src/assets/dashboard.png";
+import inspireImage from "/src/assets/inspire.png";
+import chatImage from "/src/assets/chat&note.png";
 
 const additionaInformationData = [
   {
