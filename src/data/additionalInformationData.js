@@ -20,7 +20,6 @@ const additionaInformationData = [
       "Save time with focused, personalized card reviews.",
     ],
     url: cardImage,
-    color: "bg-yellow-500",
   },
   {
     icon: LuChartLine,
@@ -32,7 +31,6 @@ const additionaInformationData = [
       "Progress tracking builds a sense of achievement and momentum.",
     ],
     url: dashboardImage,
-    color: "bg-green-500",
   },
   {
     icon: LuMessageSquare,
@@ -44,7 +42,6 @@ const additionaInformationData = [
       "Gentle reminders keep you on track without pressure.",
     ],
     url: inspireImage,
-    color: "bg-orange-500",
   },
   {
     icon: LuMessageSquareText,
@@ -57,7 +54,6 @@ const additionaInformationData = [
       "Get study suggestions based on your weak spots.",
     ],
     url: chatImage,
-    color: "bg-pink-500",
   },
 ];
 
