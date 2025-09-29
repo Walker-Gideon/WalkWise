@@ -2,7 +2,7 @@ import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
 import Image from "/src/ui/Image";
 import Box from "/src/ui/Box";
-import heroImages from "/src/data/heroData.js";
+import heroData from "/src/data/heroData.js";
 
 export default function HeroImages() {
   return (
@@ -11,7 +11,7 @@ export default function HeroImages() {
         adjust={true}
         classname="grid auto-cols-max grid-flow-col justify-center gap-6"
       >
-        {heroImages.map((image, index) => (
+        {heroData.map((image, index) => (
           <Box
             key={index}
             adjustWidth={true}

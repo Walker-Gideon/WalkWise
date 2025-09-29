@@ -1,5 +1,4 @@
-import { LuChevronRight } from "react-icons/lu";
-import { LuArrowDown } from "react-icons/lu";
+import { LuArrowDown, LuChevronRight } from "react-icons/lu";
 import HeroInformation from "./components/HeroInformation";
 import HeroImages from "./components/HeroImages";
 import Container from "/src/ui/Container";
