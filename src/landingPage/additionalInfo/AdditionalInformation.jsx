@@ -1,3 +1,25 @@
+import Container from "/src/ui/Container";
+import additionaInformationData from "/src/data/additionalInformationData.js";
+
 export default function AdditionalInformation() {
-  return <div>AdditionalInformation</div>;
+  return (
+    // mx-3 md:mx-6 lg:mx-20
+    <Container adjust={true} id="features" classname={""}>
+      {additionaInformationData.map((data, index) => (
+        // className={`mb-20 ${index === 0 || index === 2 ? `w-full rounded-4xl bg-slate-50` : ``} `}
+        <Container key={index} classname={`my-20 ${data.color}`}>
+          {data.title}
+        </Container>
+      ))}
+    </Container>
+  );
 }
+
+/*
+index={index}
+            icon={<data.icon className={`h-5 w-5 text-slate-600`} />}
+            title={data.title}
+            subtitle={data.subtitle}
+            points={data.points}
+            image={data.image}
+*/

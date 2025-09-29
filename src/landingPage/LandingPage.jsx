@@ -10,7 +10,7 @@ export default function LandingPage() {
       <LandindPageHeader />
       <Hero />
       {/* lg:px-30 */}
-      <main className="h-full px-4 md:px-8">
+      <main className="my-8 h-full px-4">
         <AdditionalInformation />
         <MoreInformation />
       </main>
