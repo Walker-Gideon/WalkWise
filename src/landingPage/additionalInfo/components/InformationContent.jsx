@@ -1,5 +1,6 @@
 import { LuCheck } from "react-icons/lu";
 import Container from "/src/ui/Container";
+import SpanText from "/src/ui/SpanText";
 import Box from "/src/ui/Box";
 
 export default function InformationContent({
@@ -15,12 +16,12 @@ export default function InformationContent({
       adjust={true}
       classname={`px-2 py-4 md:px-6 md:py-0 lg:px-15`}
     >
-      <div className="flex flex-col-reverse gap-8 md:grid md:h-100 md:grid-cols-2 md:items-center lg:gap-20">
-        <div className={`${index === 1 ? `md:order-2` : ``} ${index === 3 ? `md:order-2` : ``}`}>
-          <div className="flex itemc-center space-x-4 text-sm font-semibold">
-            <span className="rounded-full p-3 bg-gradient-to-r from-slate-200 to-slate-300">{icon}</span>
+      <Container adjust={true} classname="flex flex-col-reverse gap-8 md:grid md:h-100 md:grid-cols-2 md:items-center lg:gap-20">
+        <Container adjust={true} classname={`${index === 1 ? `md:order-2` : ``} ${index === 3 ? `md:order-2` : ``}`}>
+          <Box adjustWidth={true} classname="flex items-center space-x-4 text-sm font-semibold">
+            <SpanText type="prime" classname={`rounded-full`}>{icon}</SpanText>
             <p>{title}</p>
-          </div>
+          </Box>
 
           <p className="px-2 py-3 text-xl font-bold md:text-2xl">
             {subtitle}
@@ -44,13 +45,13 @@ export default function InformationContent({
               </ul>
             ))}
           </div>
-        </div>
+        </Container>
 
         <div  className={`object-cover ${index === 1 ? `md:order-1` : ``} ${index === 3 ? `md:order-1` : ``}`}>
           <img src={url} alt="image"
           className="w-full rounded-2xl object-scale-down shadow-md shadow-slate-600" />
         </div>
-      </div>
+      </Container>
     </Container>
   );
 }
