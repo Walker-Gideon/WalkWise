@@ -1,18 +1,5 @@
 import { LuCheck } from "react-icons/lu";
-const info = [
-  {
-    header: "Built for Long-Term Memory",
-    text: "Uses proven techniques like active recall and spaced repetition to make information stick.",
-  },
-  {
-    header: "Supports Consistency, Not Pressure",
-    text: "Encourages small daily habits that build strong study routines — no burnout.",
-  },
-  {
-    header: "Personal Help, Always On",
-    text: "From AI support to motivational content, you’re never studying alone.",
-  },
-];
+import informationData from "/src/data/moreInformationData"
 
 export default function MoreInformation() {
   return (
@@ -31,7 +18,7 @@ export default function MoreInformation() {
     </header>
 
     <div className="text-left">
-      {info.map((data, index) => (
+      {informationData.map((data, index) => (
         <div key={index} className="mb-2 flex gap-2">
           <ul className="flex gap-2 py-0.5 text-sm md:text-[0.9rem]">
             <li>
