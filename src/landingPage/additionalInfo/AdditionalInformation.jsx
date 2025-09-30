@@ -5,9 +5,9 @@ import InformationContent from "./components/InformationContent";
 export default function AdditionalInformation() {
   return (
     // mx-3 md:mx-6 lg:mx-20
-    <Container adjust={true} id="features" classname={"md:px-4 lg:px-16 bg-red-500"}>
+    <Container adjust={true} id="features" classname={"md:px-2 lg:px-16"}>
       {additionaInformationData.map((data, index) => (
-        <Container key={index} adjust={true} classname={`my-35 ${index === 0 || index === 2 ? `w-full rounded-4xl bg-slate-50` : ``}`}>
+        <Container key={index} adjust={true} classname={`my-25 medium:my-30 ${index === 0 || index === 2 ? `w-full rounded-4xl bg-slate-50` : ``}`}>
           <InformationContent
             index={index}
             icon={<data.icon className={`h-5 w-5 text-slate-600`} />}
