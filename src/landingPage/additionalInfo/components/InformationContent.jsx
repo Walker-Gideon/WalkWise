@@ -1,4 +1,5 @@
 import { LuCheck } from "react-icons/lu";
+import UnorderedList from "/src/ui/UnorderedList";
 import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
 import SpanText from "/src/ui/SpanText";
@@ -30,9 +31,9 @@ export default function InformationContent({
 
           <Box adjustWidth={true} classname="px-2">
             {points.map((data, index) => (
-              <ul
+              <UnorderedList
                 key={index}
-                className="flex gap-2 py-0.5 text-sm md:text-[0.9rem]"
+                classname="flex gap-2 py-0.5 text-sm md:text-[0.9rem]"
               >
                 <li>
                   <Box
@@ -43,7 +44,7 @@ export default function InformationContent({
                   </Box>
                 </li>
                 <li className="font-medium text-slate-500">{data}</li>
-              </ul>
+              </UnorderedList>
             ))}
           </Box>
         </Container>
