@@ -1,18 +1,18 @@
-import React from 'react'
+import HeaderText from "/src/ui/HeaderText"
+import Paragraph from "/src/ui/Paragraph"
+import Header from "/src/ui/Header"
 
 export default function InformationOnHeader() {
   return (
-    <header className="middle:col-span-2 mb-8 text-left font-medium">
-      <h1 className="middle:text-6xl text-4xl font-bold">Why WalkWise?</h1>
-
-      <p className="py-1 text-sm text-slate-500 md:text-base">
+    <Header classname="middle:col-span-2 mb-8 text-left font-medium">
+      <HeaderText classname="middle:text-6xl text-4xl font-bold">Why WalkWise?</HeaderText>
+      <Paragraph type="sm" classname="py-1 text-slate-500">
         Forget last-minute cramming — learn the smarter way.
-      </p>
-
-      <p className="text-xl font-semibold md:text-2xl">
+      </Paragraph>
+      <Paragraph type="xl" classname="font-semibold">
         WalkWise isn’t just another study app. It’s your all-in-one learning
         assistant, built for real students facing real challenges.
-      </p>
-    </header>
+      </Paragraph>
+    </Header>
   )
 }
