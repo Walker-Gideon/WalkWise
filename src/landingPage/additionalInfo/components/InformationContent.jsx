@@ -3,6 +3,8 @@ import UnorderedList from "/src/ui/UnorderedList";
 import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
 import SpanText from "/src/ui/SpanText";
+import Image from "/src/ui/Image";
+import List from "/src/ui/List";
 import Box from "/src/ui/Box";
 
 export default function InformationContent({
@@ -35,24 +37,24 @@ export default function InformationContent({
                 key={index}
                 classname="flex gap-2 py-0.5 text-sm md:text-[0.9rem]"
               >
-                <li>
+                <List>
                   <Box
                     adjustWidth={true}
                     classname="rounded-full p-1 bg-gradient-to-r from-slate-200 to-slate-300"
                   >
                     <LuCheck className="h-3 w-3 text-slate-600" />
                   </Box>
-                </li>
-                <li className="font-medium text-slate-500">{data}</li>
+                </List>
+                <List classname="font-medium text-slate-500">{data}</List>
               </UnorderedList>
             ))}
           </Box>
         </Container>
 
-        <div  className={`object-cover ${index === 1 ? `md:order-1` : ``} ${index === 3 ? `md:order-1` : ``}`}>
-          <img src={url} alt="image"
-          className="w-full rounded-2xl object-scale-down shadow-md shadow-slate-600" />
-        </div>
+        <Box adjustWidth={true} classname={`object-cover ${index === 1 ? `md:order-1` : ``} ${index === 3 ? `md:order-1` : ``}`}>
+          <Image src={url} alt="image"
+          classname="w-full rounded-2xl object-scale-down shadow-md shadow-slate-600" />
+        </Box>
       </Container>
     </Container>
   );
