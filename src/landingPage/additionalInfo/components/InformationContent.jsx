@@ -1,5 +1,6 @@
 import { LuCheck } from "react-icons/lu";
 import Container from "/src/ui/Container";
+import Paragraph from "/src/ui/Paragraph";
 import SpanText from "/src/ui/SpanText";
 import Box from "/src/ui/Box";
 
@@ -20,12 +21,12 @@ export default function InformationContent({
         <Container adjust={true} classname={`${index === 1 ? `md:order-2` : ``} ${index === 3 ? `md:order-2` : ``}`}>
           <Box adjustWidth={true} classname="flex items-center space-x-4 text-sm font-semibold">
             <SpanText type="prime" classname={`rounded-full`}>{icon}</SpanText>
-            <p>{title}</p>
+            <Paragraph>{title}</Paragraph>
           </Box>
 
-          <p className="px-2 py-3 text-xl font-bold md:text-2xl">
+          <Paragraph type="xl" classname="px-2 py-3 font-bold">
             {subtitle}
-          </p>
+          </Paragraph>
 
           <div className="px-2">
             {points.map((data, index) => (
