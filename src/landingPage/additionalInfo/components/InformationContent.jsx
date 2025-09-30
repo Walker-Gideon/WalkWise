@@ -28,7 +28,7 @@ export default function InformationContent({
             {subtitle}
           </Paragraph>
 
-          <div className="px-2">
+          <Box adjustWidth={true} classname="px-2">
             {points.map((data, index) => (
               <ul
                 key={index}
@@ -45,7 +45,7 @@ export default function InformationContent({
                 <li className="font-medium text-slate-500">{data}</li>
               </ul>
             ))}
-          </div>
+          </Box>
         </Container>
 
         <div  className={`object-cover ${index === 1 ? `md:order-1` : ``} ${index === 3 ? `md:order-1` : ``}`}>
