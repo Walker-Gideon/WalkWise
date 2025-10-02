@@ -1,6 +1,6 @@
 import { Link } from "react-scroll";
 
-export default function Logo({ to, cursor }) {
+export default function Logo({ to, cursor, show }) {
   return (
     <Link
       to={to}
@@ -13,7 +13,7 @@ export default function Logo({ to, cursor }) {
       <span className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-500 text-white dark:text-slate-50">
         w
       </span>
-      <span className={`hidden font-bold md:block`}>walkwise</span>
+      <span className={`${show ? `hidden` : `hidden font-bold md:block`}`}>walkwise</span>
     </Link>
   );
 }
