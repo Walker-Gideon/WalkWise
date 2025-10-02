@@ -9,9 +9,9 @@ export default function FooterRight() {
 
   return (
     <Container adjust={true}>
-      <Paragraph type="xs" classname="medium:justify-end flex gap-1 font-medium text-stone-500">
+      <Paragraph type="xs" classname="medium:justify-end items-center flex gap-1 font-medium text-stone-500">
         <SpanText>
-          <LuCopyright className="mt-0.5" />
+          <LuCopyright />
         </SpanText>
         {year} <SpanText classname="font-bold">WalkWise</SpanText>. All rights reserved.
       </Paragraph>
