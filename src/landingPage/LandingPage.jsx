@@ -9,7 +9,7 @@ export default function LandingPage() {
     <div>
       <LandindPageHeader />
       <Hero />
-      <main className="my-8 h-full">
+      <main className="mt-8 h-full">
         <AdditionalInformation />
         <MoreInformation />
       </main>
