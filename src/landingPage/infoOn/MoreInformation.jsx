@@ -14,12 +14,12 @@ export default function MoreInformation() {
 
     <Box adjustWidth={true} classname="text-left">
       {informationData.map((data, index) => (
-        <Box adjustWidth={true} key={index} classname="mb-2 flex gap-2">
+        <Box adjustWidth={true} key={index} classname="mb-2 flex items-center gap-2">
           <UnorderedList classname="flex gap-2 py-0.5 text-sm md:text-[0.9rem]">
             <List>
-              <SpanText classname="rounded-full p-1 bg-gradient-to-r from-slate-200 to-slate-300">
+              <Box adjustWidth={true} classname="rounded-full p-1 bg-gradient-to-r from-slate-200 to-slate-300">
                 <LuCheck className="h-3 w-3 text-slate-600" />
-              </SpanText>
+              </Box>
             </List>
             <List>
               <div className="middle:text-[0.8rem] text-xs text-slate-800">
