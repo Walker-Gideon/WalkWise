@@ -3,7 +3,7 @@ import InformationOnHeader from "./components/InformationOnHeader"
 import informationData from "/src/data/moreInformationData"
 import UnorderedList from "/src/ui/UnorderedList"
 import Container from "/src/ui/Container"
-import SpanText from "/src/ui/SpanText"
+import Paragraph from "/src/ui/Paragraph"
 import List from "/src/ui/List"
 import Box from "/src/ui/Box"
 
@@ -22,12 +22,12 @@ export default function MoreInformation() {
               </Box>
             </List>
             <List>
-              <div className="middle:text-[0.8rem] text-xs text-slate-800">
-                <p className="middle:text-[0.9rem] text-sm font-medium text-slate-900">
+              <Box adjustWidth={true} classname="middle:text-[0.8rem] text-xs text-slate-800">
+                <Paragraph classname="middle:text-[0.9rem] text-sm font-medium text-slate-900">
                   {data.header}
-                </p>
-                <p className="text-slate-500">{data.text}</p>
-              </div>
+                </Paragraph>
+                <Paragraph classname="text-slate-500">{data.text}</Paragraph>
+              </Box>
             </List>
           </UnorderedList>
         </Box>
