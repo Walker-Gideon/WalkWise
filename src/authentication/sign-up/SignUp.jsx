@@ -1,13 +1,15 @@
+import Container from "/src/ui/Container";
 import AuthCloseButton from "../components/AuthCloseButton";
+import AuthHeader from "../components/AuthHeader";
 
 export default function SignUp() {
   return (
-    <div>
+    <Container>
       <AuthCloseButton />
-
-      <div className="">
+      <Container adjust={true}>
+        <AuthHeader />
         <h1>Sign up to your account</h1>
-      </div>
-    </div>
+      </Container>
+    </Container>
   );
 }
