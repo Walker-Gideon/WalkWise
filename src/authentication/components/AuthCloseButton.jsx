@@ -1,12 +1,13 @@
 import { LuX } from "react-icons/lu";
-import { useNavigate } from "react-router-dom";
+import Flex from "/src/ui/Flex";
+import Button from "/src/ui/Button";
 
 export default function AuthCloseButton() {
-  const navigate = useNavigate();
-
   return (
-    <button onClick={() => navigate("/")}>
-      <LuX className="text-2xl font-bold" />
-    </button>
+    <Flex classname="w-full items-end justify-end">
+      <Button to="/">
+        <LuX className="text-2xl font-bold" />
+      </Button>
+    </Flex>
   );
 }
