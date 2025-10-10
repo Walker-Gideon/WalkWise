@@ -42,9 +42,7 @@ export default function SignUpForm() {
             ) : (
               <FiEyeOff className={stylings.icon} />
             )} */}
-          <Button
-            classname={"absolute top-2.5 right-2 disabled:cursor-not-allowed"}
-          >
+          <Button classname={"absolute top-1 -right-2"}>
             <FiEye className="text-sm" />
           </Button>
         </Box>
@@ -57,14 +55,15 @@ export default function SignUpForm() {
             required={true}
             classname={"w-full"}
           />
-          <Button
-            classname={"absolute top-2.5 right-2 disabled:cursor-not-allowed"}
-          >
-            <FiEye className="text-sm" />
+          <Button classname={"absolute top-1 -right-2"}>
+            <FiEyeOff className="text-sm" />
           </Button>
         </Box>
 
-        <Button classname="w-full py-2 disabled:bg-slate-600 disabled:cursor-not-allowed flex items-center justify-center gap-3">
+        <Button
+          type="colors"
+          classname="w-full flex items-center justify-center"
+        >
           <LuLoader className="for spinning h-5 w-5 animate-spin" />
           Sign up
         </Button>

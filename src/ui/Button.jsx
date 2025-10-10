@@ -22,6 +22,14 @@ export default function Button({
     .primaryButton {
         @apply bg-slate-500 px-4 hover:bg-slate-600 focus:ring-slate-300;
     }
+
+    .button {
+    @apply medium:text-[0.74rem] cursor-pointer rounded-sm border text-[0.7rem] whitespace-nowrap transition-colors duration-300;
+  }
+
+  .primaryButton {
+    @apply cursor-pointer rounded-sm bg-slate-500 px-4 py-2 text-[0.8rem] whitespace-nowrap text-white transition-colors duration-300 hover:bg-slate-600 focus:ring-slate-300;
+  }
     */
   if (links)
     return (
