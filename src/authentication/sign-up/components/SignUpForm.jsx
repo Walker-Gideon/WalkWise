@@ -5,11 +5,12 @@ import Button from "/src/ui/Button";
 import Input from "/src/ui/Input";
 import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
+import Form from "/src/ui/Form";
 
 export default function SignUpForm() {
   return (
     <Container adjust={true} classname={"medium:w-80 mt-4 w-70"}>
-      <form action="#">
+      <Form>
         {/* disabled={} value={} onChange={} */}
         <Flex classname={"flex-col"}>
           <Input
@@ -48,7 +49,7 @@ export default function SignUpForm() {
           <Button></Button>
         </Box>
         <Button>Sign up</Button>
-      </form>
+      </Form>
     </Container>
   );
 }
