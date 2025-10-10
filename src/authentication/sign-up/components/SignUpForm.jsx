@@ -59,7 +59,6 @@ export default function SignUpForm() {
             <FiEyeOff className="text-sm" />
           </Button>
         </Box>
-
         <Button
           type="colors"
           classname="w-full flex items-center justify-center"

@@ -18,11 +18,14 @@ export default function SignUp() {
         >
           <AuthHeader />
           <SignUpForm />
-          <Flex variant="center" classname={"mt-4 gap-2"}>
+          <Flex variant="center" classname={"mt-4"}>
             <Paragraph classname={"text-sm whitespace-nowrap text-slate-400"}>
               Already have an account?
             </Paragraph>
-            <Button to="/sign-in" classname={"text-[0.8rem] font-semibold"}>
+            <Button
+              to="/sign-in"
+              classname={"text-[0.8rem] font-semibold mt-1"}
+            >
               Log in
             </Button>
           </Flex>
