@@ -5,6 +5,7 @@ import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
 import Paragraph from "/src/ui/Paragraph";
 import Button from "/src/ui/Button";
+import SignUpForm from "./components/SignUpForm";
 
 export default function SignUp() {
   return (
@@ -16,8 +17,7 @@ export default function SignUp() {
           classname={"rounded-xl border border-stone-300 p-6 shadow-lg"}
         >
           <AuthHeader />
-          {/* form */}
-
+          <SignUpForm />
           <Flex variant="center" classname={"mt-4 gap-2"}>
             <Paragraph classname={"text-sm whitespace-nowrap text-slate-400"}>
               Already have an account?
