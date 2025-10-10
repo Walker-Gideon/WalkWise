@@ -14,41 +14,60 @@ export default function SignUpForm() {
         {/* disabled={} value={} onChange={} */}
         <Flex classname={"flex-col"}>
           <Input
-            type=""
-            name=""
-            placeholder=""
+            type="email"
+            name="email"
+            placeholder="Email"
             required={true}
-            classname={""}
+            classname={"w-full"}
           />
           <Input
-            type=""
-            name=""
-            placeholder=""
+            type="text"
+            name="username"
+            placeholder="Username"
             required={true}
-            classname={""}
+            classname={"w-full mt-2"}
           />
         </Flex>
-        <Box adjustWidth={true} classname={""}>
+        <Box adjustWidth={true} classname={"relative my-2"}>
+          {/* !hidePassword ? "text" : "password" */}
           <Input
-            type=""
-            name=""
-            placeholder=""
+            type="text"
+            name="password"
+            placeholder="Password"
             required={true}
-            classname={""}
+            classname={"w-full"}
           />
-          <Button></Button>
+          {/* {hidePassword ? (
+              <FiEye className={stylings.icon} />
+            ) : (
+              <FiEyeOff className={stylings.icon} />
+            )} */}
+          <Button
+            classname={"absolute top-2.5 right-2 disabled:cursor-not-allowed"}
+          >
+            <FiEye className="text-sm" />
+          </Button>
         </Box>
-        <Box adjustWidth={true} classname={""}>
+        <Box adjustWidth={true} classname={"relative pb-2"}>
+          {/* {!hideConfirmPassword ? "text" : "password"} */}
           <Input
-            type=""
-            name=""
-            placeholder=""
+            type="text"
+            name="confirm-password"
+            placeholder="Confirm password"
             required={true}
-            classname={""}
+            classname={"w-full"}
           />
-          <Button></Button>
+          <Button
+            classname={"absolute top-2.5 right-2 disabled:cursor-not-allowed"}
+          >
+            <FiEye className="text-sm" />
+          </Button>
         </Box>
-        <Button>Sign up</Button>
+
+        <Button classname="w-full py-2 disabled:bg-slate-600 disabled:cursor-not-allowed flex items-center justify-center gap-3">
+          <LuLoader className="for spinning h-5 w-5 animate-spin" />
+          Sign up
+        </Button>
       </Form>
     </Container>
   );
