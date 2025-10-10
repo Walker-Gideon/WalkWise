@@ -1,11 +1,11 @@
 import AuthCloseButton from "../components/AuthCloseButton";
 import AuthHeader from "../components/AuthHeader";
+import SignUpForm from "./components/SignUpForm";
 import Container from "/src/ui/Container";
 import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
 import Paragraph from "/src/ui/Paragraph";
 import Button from "/src/ui/Button";
-import SignUpForm from "./components/SignUpForm";
 
 export default function SignUp() {
   return (
