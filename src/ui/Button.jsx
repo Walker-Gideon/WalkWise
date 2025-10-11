@@ -8,6 +8,7 @@ export default function Button({
   classname,
   type,
   links,
+  onclick,
 }) {
   const navigateTo = useNavigateToAction();
   const base =
@@ -43,7 +44,7 @@ export default function Button({
   return (
     <button
       disabled={disabled}
-      onClick={() => navigateTo(to)}
+      onClick={to ? () => navigateTo(to) : onclick}
       className={`${styling[type]} ${base} ${classname}`}
     >
       {children}
