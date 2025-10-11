@@ -1,5 +1,6 @@
 import AuthCloseButton from "../components/AuthCloseButton";
 import AuthHeader from "../components/AuthHeader";
+import SignInForm from "./components/SignInForm";
 import Container from "/src/ui/Container";
 import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
@@ -15,7 +16,7 @@ export default function SignIn() {
           classname={"rounded-xl border border-stone-300 p-6 shadow-lg"}
         >
           <AuthHeader />
-          {/* Sign-in form */}
+          <SignInForm />
           <Flex variant="between" classname={"mt-4"}>
             <Button to="/forgotten">Forget Password?</Button>
             <Button to="/sign-up">Sign Up</Button>
