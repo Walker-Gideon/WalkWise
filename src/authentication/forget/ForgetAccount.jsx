@@ -18,6 +18,33 @@ export default function ForgetAccount() {
               email, we’ll send them a link.
             </p>
           </Box>
+          <form action="">
+            <div className="mb-3 flex flex-col">
+              <label className="medium:text-sm mb-1 text-xs">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="user@email.com"
+                required={true}
+                ref={emailRef}
+                disabled={isLoading}
+                className="input w-full disabled:opacity-50"
+              />
+            </div>
+
+            <div className="medium:flex medium:items-end medium:justify-end">
+              <Button
+                type="submit"
+                variant="primary"
+                classname="w-full py-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                disabled={isLoading}
+              >
+                {isLoading ? "Sending..." : "Send Link"}
+              </Button>
+            </div>
+          </form>
         </Box>
       </Flex>
     </>
