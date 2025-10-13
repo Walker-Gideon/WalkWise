@@ -3,7 +3,6 @@ import { LuLoader } from "react-icons/lu";
 import Container from "/src/ui/Container";
 import Button from "/src/ui/Button";
 import Input from "/src/ui/Input";
-import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
 import Form from "/src/ui/Form";
 
