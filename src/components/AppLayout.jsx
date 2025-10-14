@@ -1,15 +1,16 @@
 import { Outlet } from "react-router-dom";
-import Container from "./Container";
-import Slider from "./Slider";
+import Container from "../ui/Container";
+import Slider from "../ui/Slider";
+import Main from "../ui/Main";
 
 export default function AppLayout() {
   return (
     <Container classname="defaultColor grid grid-cols-[14rem_1fr]">
       <Slider />
 
-      <main className="h-screen">
+      <Main classname="h-screen">
         <Outlet />
-      </main>
+      </Main>
     </Container>
   );
 }
