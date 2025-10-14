@@ -1,12 +1,12 @@
+import HeaderText from "/src/ui/HeaderText";
 import Container from "/src/ui/Container";
+import Paragraph from "/src/ui/Paragraph";
 import Button from "/src/ui/Button";
-import Flex from "/src/ui/Flex";
-import Box from "/src/ui/Box";
-import Form from "/src/ui/Form";
 import Input from "/src/ui/Input";
 import Label from "/src/ui/Label";
-import HeaderText from "/src/ui/HeaderText";
-import Paragraph from "/src/ui/Paragraph";
+import Flex from "/src/ui/Flex";
+import Form from "/src/ui/Form";
+import Box from "/src/ui/Box";
 
 export default function ForgetAccount() {
   return (
@@ -38,13 +38,10 @@ export default function ForgetAccount() {
                 classname="w-full disabled:opacity-50"
               />
             </Flex>
-
-            <div className="medium:flex medium:items-end medium:justify-end">
-              <Button classname="w-full">
-                {/* {isLoading ? "Sending..." : "Send Link"} */}
-                Send Link
-              </Button>
-            </div>
+            <Button type="colors" classname="w-full">
+              {/* {isLoading ? "Sending..." : "Send Link"} */}
+              Send Link
+            </Button>
           </Form>
         </Box>
       </Flex>
