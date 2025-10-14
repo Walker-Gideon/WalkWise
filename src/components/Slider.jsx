@@ -1,11 +1,12 @@
-import Heading from "../ui/Heading";
-import MainNav from "../navigation/MainNav";
+import Heading from "/src/ui/Heading";
+import MainNav from "/src/navigation/MainNav";
+import Aside from "/src/ui/Aside";
 
 export default function Slider() {
   return (
-    <aside className="borderStyling border-r">
+    <Aside classname="borderStyling border-r">
       <Heading />
       <MainNav />
-    </aside>
+    </Aside>
   );
 }
