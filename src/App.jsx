@@ -12,7 +12,7 @@ import Schedules from "./features/schedule/Schedules";
 import Inspire from "./features/inspire/Inspire";
 import Settings from "./features/settings/Settings";
 import Verify from "./authentication/verify/Verify";
-import PageNotFound from "./ui/PageNotFound";
+import PageNotFound from "./components/PageNotFound";
 
 export default function App() {
   return (
