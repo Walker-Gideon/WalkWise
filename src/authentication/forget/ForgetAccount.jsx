@@ -6,6 +6,7 @@ import Form from "/src/ui/Form";
 import Input from "/src/ui/Input";
 import Label from "/src/ui/Label";
 import HeaderText from "/src/ui/HeaderText";
+import Paragraph from "/src/ui/Paragraph";
 
 export default function ForgetAccount() {
   return (
@@ -20,12 +21,11 @@ export default function ForgetAccount() {
             >
               Reset your password
             </HeaderText>
-
-            <p>
+            <Paragraph>
               Enter the email you signed up with. We'll send you a link to log
               in and reset your password. If you signed up with your parent’s
               email, we’ll send them a link.
-            </p>
+            </Paragraph>
           </Box>
           <Form>
             <Flex classname="mb-3 flex-col">
