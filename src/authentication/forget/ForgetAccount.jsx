@@ -3,6 +3,7 @@ import Button from "/src/ui/Button";
 import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
 import Form from "../../ui/Form";
+import Input from "../../ui/Input";
 
 export default function ForgetAccount() {
   return (
@@ -21,20 +22,16 @@ export default function ForgetAccount() {
             </p>
           </Box>
           <Form>
-            <div className="mb-3 flex flex-col">
+            <Flex classname="mb-3 flex-col">
               <label className="medium:text-sm mb-1 text-xs">Email</label>
-              <input
+              <Input
                 type="email"
                 name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
                 placeholder="user@email.com"
                 required={true}
-                ref={emailRef}
-                disabled={isLoading}
-                className="input w-full disabled:opacity-50"
+                classname="w-full disabled:opacity-50"
               />
-            </div>
+            </Flex>
 
             <div className="medium:flex medium:items-end medium:justify-end">
               <Button classname="w-full">
