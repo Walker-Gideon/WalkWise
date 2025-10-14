@@ -1,7 +1,7 @@
-import DisplayAndHidden from "/src/ui/DisplayAndHidden";
+import DisplayAndHidden from "/src/components/DisplayAndHidden";
 import MainHeader from "/src/ui/MainHeader";
+import Logo from "/src/components/Logo";
 import Button from "/src/ui/Button";
-import Logo from "/src/ui/Logo";
 import Flex from "/src/ui/Flex";
 
 export default function LandindPageHeader() {

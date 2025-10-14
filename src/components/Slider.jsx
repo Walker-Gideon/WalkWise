@@ -1,5 +1,5 @@
-import Heading from "./Heading";
-import MainNav from "../components/MainNav";
+import Heading from "../ui/Heading";
+import MainNav from "../navigation/MainNav";
 
 export default function Slider() {
   return (

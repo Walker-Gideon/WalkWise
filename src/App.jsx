@@ -4,7 +4,7 @@ import SignIn from "./authentication/sign-in/SignIn";
 import SignUp from "./authentication/sign-up/SignUp";
 import ForgetAccount from "./authentication/forget/ForgetAccount";
 import Accounts from "./authentication/Accounts";
-import AppLayout from "./components/AppLayout";
+import AppLayout from "./ui/AppLayout";
 import Dashboard from "./features/dashboard/Dashboard";
 import Note from "./features/note/Note";
 import Flashcard from "./features/flashcard/Flashcard";
@@ -12,7 +12,7 @@ import Schedules from "./features/schedule/Schedules";
 import Inspire from "./features/inspire/Inspire";
 import Settings from "./features/settings/Settings";
 import Verify from "./authentication/verify/Verify";
-import PageNotFound from "./components/PageNotFound";
+import PageNotFound from "./ui/PageNotFound";
 
 export default function App() {
   return (

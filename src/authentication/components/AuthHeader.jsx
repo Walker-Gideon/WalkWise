@@ -1,6 +1,6 @@
-import Header from "/src/ui/Header";
-import Logo from "/src/ui/Logo";
 import Paragraph from "/src/ui/Paragraph";
+import Logo from "/src/components/Logo";
+import Header from "/src/ui/Header";
 
 export default function AuthHeader() {
   return (
