@@ -1,6 +1,7 @@
 import Container from "../../ui/Container";
-import Flex from "../../ui/Flex";
-import Box from "../../ui/Box";
+import Button from "/src/ui/Button";
+import Flex from "/src/ui/Flex";
+import Box from "/src/ui/Box";
 
 export default function ForgetAccount() {
   return (
@@ -35,13 +36,9 @@ export default function ForgetAccount() {
             </div>
 
             <div className="medium:flex medium:items-end medium:justify-end">
-              <Button
-                type="submit"
-                variant="primary"
-                classname="w-full py-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
-                disabled={isLoading}
-              >
-                {isLoading ? "Sending..." : "Send Link"}
+              <Button classname="w-full">
+                {/* {isLoading ? "Sending..." : "Send Link"} */}
+                Send Link
               </Button>
             </div>
           </form>
