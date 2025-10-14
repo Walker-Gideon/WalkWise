@@ -8,8 +8,9 @@ import {
 } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
 import UnorderedList from "/src/ui/UnorderedList";
-import List from "/src/ui/List";
 import SpanText from "/src/ui/SpanText";
+import List from "/src/ui/List";
+import Nav from "/src/ui/Nav";
 
 const buttonsData = [
   {
@@ -46,7 +47,7 @@ const buttonsData = [
 
 export default function MainNav() {
   return (
-    <nav>
+    <Nav>
       {buttonsData.map((data, index) => (
         <UnorderedList key={index} classname="flex flex-col gap-2 bg-red-500">
           <NavLink to={data.to}>
@@ -57,6 +58,6 @@ export default function MainNav() {
           </NavLink>
         </UnorderedList>
       ))}
-    </nav>
+    </Nav>
   );
 }
