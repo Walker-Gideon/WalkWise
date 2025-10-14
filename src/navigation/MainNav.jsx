@@ -48,7 +48,7 @@ export default function MainNav() {
         <ul key={index} className="flex flex-col gap-2 bg-red-500">
           <NavLink to={data.to}>
             <li>
-              <span>{data.icon}</span>
+              <span>{<data.icon />}</span>
               <span>{data.text}</span>
             </li>
           </NavLink>
