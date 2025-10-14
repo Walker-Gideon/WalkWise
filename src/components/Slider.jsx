@@ -4,7 +4,7 @@ import Aside from "/src/ui/Aside";
 
 export default function Slider() {
   return (
-    <Aside classname="borderStyling border-r">
+    <Aside classname="borderStyling border-r bg-amber-400">
       <Heading />
       <MainNav />
     </Aside>
