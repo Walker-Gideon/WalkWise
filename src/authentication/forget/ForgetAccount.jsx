@@ -5,6 +5,7 @@ import Box from "/src/ui/Box";
 import Form from "/src/ui/Form";
 import Input from "/src/ui/Input";
 import Label from "/src/ui/Label";
+import HeaderText from "/src/ui/HeaderText";
 
 export default function ForgetAccount() {
   return (
@@ -12,9 +13,13 @@ export default function ForgetAccount() {
       <Flex variant="center" classname={"min-h-[95vh] flex-col"}>
         <Box adjustWidth={true} classname={"medium:max-w-3xl px-14"}>
           <Box adjustWidth={true} classname={"medium:text-base mb-6 text-sm"}>
-            <h1 className="medium:text-2xl middle:text-3xl mt-2 mb-2 text-xl font-bold">
+            <HeaderText
+              classname={
+                "medium:text-2xl middle:text-3xl mt-2 mb-2 text-xl font-bold"
+              }
+            >
               Reset your password
-            </h1>
+            </HeaderText>
 
             <p>
               Enter the email you signed up with. We'll send you a link to log
