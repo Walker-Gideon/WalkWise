@@ -1,13 +1,14 @@
-import Container from "../../ui/Container";
+import Container from "/src/ui/Container";
 import Button from "/src/ui/Button";
 import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
-import Form from "../../ui/Form";
-import Input from "../../ui/Input";
+import Form from "/src/ui/Form";
+import Input from "/src/ui/Input";
+import Label from "/src/ui/Label";
 
 export default function ForgetAccount() {
   return (
-    <>
+    <Container adjust={true}>
       <Flex variant="center" classname={"min-h-[95vh] flex-col"}>
         <Box adjustWidth={true} classname={"medium:max-w-3xl px-14"}>
           <Box adjustWidth={true} classname={"medium:text-base mb-6 text-sm"}>
@@ -23,7 +24,7 @@ export default function ForgetAccount() {
           </Box>
           <Form>
             <Flex classname="mb-3 flex-col">
-              <label className="medium:text-sm mb-1 text-xs">Email</label>
+              <Label classname={"medium:text-sm mb-1 text-xs"}>Email</Label>
               <Input
                 type="email"
                 name="email"
@@ -42,6 +43,6 @@ export default function ForgetAccount() {
           </Form>
         </Box>
       </Flex>
-    </>
+    </Container>
   );
 }
