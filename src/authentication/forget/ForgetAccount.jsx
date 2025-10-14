@@ -2,6 +2,7 @@ import Container from "../../ui/Container";
 import Button from "/src/ui/Button";
 import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
+import Form from "../../ui/Form";
 
 export default function ForgetAccount() {
   return (
@@ -19,7 +20,7 @@ export default function ForgetAccount() {
               email, we’ll send them a link.
             </p>
           </Box>
-          <form action="">
+          <Form>
             <div className="mb-3 flex flex-col">
               <label className="medium:text-sm mb-1 text-xs">Email</label>
               <input
@@ -41,7 +42,7 @@ export default function ForgetAccount() {
                 Send Link
               </Button>
             </div>
-          </form>
+          </Form>
         </Box>
       </Flex>
     </>
