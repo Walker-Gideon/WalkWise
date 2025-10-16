@@ -47,11 +47,11 @@ const buttonsData = [
 
 export default function MainNav() {
   return (
-    <Nav classname={"bg-red-500"}>
+    <Nav classname={"p-4"}>
       {buttonsData.map((data, index) => (
         <UnorderedList
           key={index}
-          classname={`flex flex-col gap-2 ${index === 0 || index === 5 ? `` : `py-2`}`}
+          classname={`flex flex-col gap-1 ${index === 0 ? `pb-1` : `py-1`}`}
         >
           <NavLink
             to={data.to}
