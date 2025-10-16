@@ -5,10 +5,11 @@ import Slider from "/src/components/Slider";
 
 export default function AppLayout() {
   return (
-    <Container classname="defaultColor grid grid-cols-[14rem_1fr]">
+    // grid grid-cols-[14rem_1fr]
+    <Container classname="defaultColor flex">
       <Slider />
 
-      <Main classname="h-screen">
+      <Main classname="h-screen w-full">
         <Outlet />
       </Main>
     </Container>

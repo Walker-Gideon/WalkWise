@@ -49,9 +49,12 @@ export default function MainNav() {
   return (
     <Nav>
       {buttonsData.map((data, index) => (
-        <UnorderedList key={index} classname="flex flex-col gap-2 bg-red-500">
+        <UnorderedList
+          key={index}
+          classname={`flex flex-col gap-2 ${index === 0 || index === 5 ? `` : `py-2`}`}
+        >
           <NavLink to={data.to}>
-            <List classname={"flex items-center"}>
+            <List classname={"flex items-center py-2"}>
               <SpanText>{<data.icon />}</SpanText>
               <SpanText>{data.text}</SpanText>
             </List>
