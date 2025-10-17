@@ -1,9 +1,10 @@
+import { LuSun, LuMoon } from "react-icons/lu";
 import MainNav from "/src/navigation/MainNav";
 import Logo from "/src/components/Logo";
 import Header from "/src/ui/Header";
+import Button from "/src/ui/Button";
 import Aside from "/src/ui/Aside";
 import Box from "/src/ui/Box";
-import { LuSun, LuMoon } from "react-icons/lu";
 
 export default function Slider() {
   return (
@@ -21,7 +22,11 @@ export default function Slider() {
       </Header>
       <MainNav />
       {/* bottom navigation */}
-      <div className=""></div>
+      <Box classname={"bg-amber-400 p-4"}>
+        <Button>
+          <LuMoon />
+        </Button>
+      </Box>
     </Aside>
   );
 }
