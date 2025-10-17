@@ -3,6 +3,7 @@ import Logo from "/src/components/Logo";
 import Header from "/src/ui/Header";
 import Aside from "/src/ui/Aside";
 import Box from "/src/ui/Box";
+import { LuSun, LuMoon } from "react-icons/lu";
 
 export default function Slider() {
   return (
@@ -19,6 +20,8 @@ export default function Slider() {
         </Box>
       </Header>
       <MainNav />
+      {/* bottom navigation */}
+      <div className=""></div>
     </Aside>
   );
 }
