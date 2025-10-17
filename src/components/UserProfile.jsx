@@ -5,7 +5,7 @@ import Box from "/src/ui/Box";
 
 export default function UserProfile() {
   return (
-    <Container adjust={true} classname={"py-2"}>
+    <Container adjust={true} classname={"pt-2"}>
       <Box classname={"flex items-center p-2 gap-2 bg-slate-50 "}>
         <Box
           adjustWidth={true}
