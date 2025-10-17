@@ -14,17 +14,18 @@ export default function Slider() {
           "borderStyling border-b p-4 flex items-center justify-center"
         }
       >
-        <Box // dark:bg-slate-700
-          classname={"rounded-sm bg-slate-50 p-2"}
-        >
+        <Box classname={"rounded-sm bg-slate-50 p-2"}>
           <Logo />
         </Box>
       </Header>
       <MainNav />
-      {/* bottom navigation */}
-      <Box classname={"bg-amber-400 p-4"}>
-        <Button>
-          <LuMoon />
+      <Box classname={"borderStyling border-t p-4"}>
+        <Button
+          onclick={() => {}}
+          type="colors"
+          classname={"w-full flex items-center gap-2 text-sm"}
+        >
+          <LuMoon /> Dark mode
         </Button>
       </Box>
     </Aside>
