@@ -1,26 +1,26 @@
 import { LuUser } from "react-icons/lu";
+import Paragraph from "/src/ui/Paragraph";
+import Container from "/src/ui/Container";
 import Box from "/src/ui/Box";
-import Paragraph from "../ui/Paragraph";
 
 export default function UserProfile() {
   return (
-    <div>
-      <Box>
+    <Container adjust={true} classname={"py-2"}>
+      <Box classname={"flex items-center p-2 gap-2 bg-slate-50 "}>
         <Box
+          adjustWidth={true}
           classname={
-            "rounded-full flex items-center justify-center bg-gradient-to-r from-slate-200 to-slate-300 transition-colors duration-300 dark:from-slate-600 dark:to-slate-700 medium:h-15 medium:w-15 w-12 h-12"
+            "rounded-full flex items-center justify-center bg-gradient-to-r from-slate-200 to-slate-300 transition-colors duration-300 dark:from-slate-600 dark:to-slate-700 w-9 h-9"
           }
         >
-          <LuUser className={`h-8 w-8 text-white`} />
+          <LuUser className={`h-5 w-5 text-white`} />
         </Box>
         <Paragraph
-          classname={
-            "text-sm medium:text-lg font-bold whitespace-nowrap text-slate-900 truncate w-30"
-          }
+          classname={"font-bold whitespace-nowrap text-slate-900 truncate w-30"}
         >
           username
         </Paragraph>
       </Box>
-    </div>
+    </Container>
   );
 }
