@@ -5,6 +5,7 @@ import Header from "/src/ui/Header";
 import Button from "/src/ui/Button";
 import Aside from "/src/ui/Aside";
 import Box from "/src/ui/Box";
+import UserInformation from "./UserInformation";
 
 export default function Slider() {
   return (
@@ -27,6 +28,7 @@ export default function Slider() {
         >
           <LuMoon /> Dark mode
         </Button>
+        <UserInformation />
       </Box>
     </Aside>
   );
