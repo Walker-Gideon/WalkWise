@@ -4,7 +4,15 @@ import Header from "/src/ui/Header";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
-export default function Heading({ children, classname }) {
+export default function Heading({
+  children,
+  headerText,
+  paragraphText,
+  headerStyling,
+  paragraphStyling,
+  groupStyling,
+  classname,
+}) {
   return (
     <Header
       // dark:border-slate-700 dark:bg-slate-800/80 medium:block hidden
@@ -13,15 +21,17 @@ export default function Heading({ children, classname }) {
       <Flex variant="between" classname={"px-6 py-4"}>
         <Group>
           <HeaderText //dark:text-white
-            classname={"text-xl font-bold text-slate-900"}
+            classname={`text-xl font-bold text-slate-900 ${headerStyling}`}
           >
+            {headerText}
             Welcome,&nbsp; username
           </HeaderText>
-          <Paragraph classname={"text-sm text-slate-500"}>
+          <Paragraph classname={`text-sm text-slate-500 ${paragraphStyling}`}>
+            {paragraphText}
             Glad to have you on board.
           </Paragraph>
         </Group>
-        <Group>{children}</Group>
+        <Group classname={groupStyling}>{children}</Group>
       </Flex>
     </Header>
   );
