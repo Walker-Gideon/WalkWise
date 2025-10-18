@@ -38,23 +38,24 @@ export default function DashboardStatus() {
       }
     >
       {status.map((stats, index) => (
-        <Card key={index} classname={"hover:shadow-lg"}>
-          <div className="mb-2 flex items-center justify-between">
-            <div className="rounded-xl bg-gradient-to-r from-slate-200 to-slate-300 p-3 dark:from-slate-600 dark:to-slate-700">
-              <stats.icon
-                className={`h-5 w-5 text-slate-600 dark:text-slate-300`}
-              />
-            </div>
-            <div className="text-right">
-              <p //dark:text-white
-                className="medium:text-xl text-lg font-bold text-slate-900"
-              >
-                {stats.data}
-              </p>
-              <p className="medium:text-sm text-xs text-nowrap text-slate-500 dark:text-slate-400">
-                {stats.text}
-              </p>
-            </div>
+        <Card
+          key={index}
+          classname={"hover:shadow-lg flex items-center justify-between"}
+        >
+          <div className="rounded-xl bg-gradient-to-r from-slate-200 to-slate-300 p-3 dark:from-slate-600 dark:to-slate-700">
+            <stats.icon
+              className={`h-5 w-5 text-slate-600 dark:text-slate-300`}
+            />
+          </div>
+          <div className="text-right">
+            <p //dark:text-white
+              className="medium:text-xl text-lg font-bold text-slate-900"
+            >
+              {stats.data}
+            </p>
+            <p className="medium:text-sm text-xs text-nowrap text-slate-500 dark:text-slate-400">
+              {stats.text}
+            </p>
           </div>
         </Card>
       ))}
