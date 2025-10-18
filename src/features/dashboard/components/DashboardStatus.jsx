@@ -5,6 +5,7 @@ import {
   LuFlame,
 } from "react-icons/lu";
 import Badge from "/src/components/Badge";
+import Paragraph from "/src/ui/Paragraph";
 import Card from "/src/components/Card";
 import Group from "/src/ui/Group";
 
@@ -49,16 +50,19 @@ export default function DashboardStatus() {
               className={`h-5 w-5 text-slate-600`}
             />
           </Badge>
-          <div className="text-right">
-            <p //dark:text-white
-              className="medium:text-xl text-lg font-bold text-slate-900"
+          <Group classname="text-right">
+            <Paragraph //dark:text-white
+              classname="medium:text-xl text-lg font-bold text-slate-900"
             >
               {stats.data}
-            </p>
-            <p className="medium:text-sm text-xs text-nowrap text-slate-500 dark:text-slate-400">
+            </Paragraph>
+            <Paragraph
+              variant="small"
+              classname="text-nowrap dark:text-slate-400"
+            >
               {stats.text}
-            </p>
-          </div>
+            </Paragraph>
+          </Group>
         </Card>
       ))}
     </Group>
