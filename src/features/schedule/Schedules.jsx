@@ -1,7 +1,11 @@
+import ScheduleHeader from "./components/ScheduleHeader";
+import Container from "/src/ui/Container";
+
 export default function Schedules() {
   return (
-    <div>
+    <Container>
+      <ScheduleHeader />
       <h1>Schedules</h1>
-    </div>
+    </Container>
   );
 }
