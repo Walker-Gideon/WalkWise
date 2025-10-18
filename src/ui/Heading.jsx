@@ -1,10 +1,5 @@
 import Header from "./Header";
-import Box from "./Box";
 
-export default function Heading() {
-  return (
-    <Header>
-      <Box></Box>
-    </Header>
-  );
+export default function Heading({ children, classname }) {
+  return <Header classname={classname}>{children}</Header>;
 }
