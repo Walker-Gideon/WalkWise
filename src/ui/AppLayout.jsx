@@ -5,7 +5,9 @@ import Main from "/src/ui/Main";
 
 export default function AppLayout() {
   return (
-    <Container classname={"defaultColor grid grid-cols-[14rem_1fr]"}>
+    <Container
+      classname={"defaultColor grid grid-rows-[auto_1fr] grid-cols-[14rem_1fr]"}
+    >
       <Slider />
 
       <Main classname={"h-screen w-full"}>

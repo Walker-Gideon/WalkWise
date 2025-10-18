@@ -9,7 +9,7 @@ import Box from "/src/ui/Box";
 
 export default function Slider() {
   return (
-    <Aside classname="borderStyling border-r h-full flex flex-col justify-between">
+    <Aside classname="borderStyling border-r h-screen flex flex-col justify-between">
       <Box adjustWidth={true}>
         <Header
           classname={
