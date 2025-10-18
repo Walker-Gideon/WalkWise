@@ -1,10 +1,10 @@
 import Container from "/src/ui/Container";
-import Heading from "/src/components/Heading";
+import DashboardHeader from "./components/DashboardHeader";
 
 export default function Dashboard() {
   return (
     <Container classname={""}>
-      <Heading></Heading>
+      <DashboardHeader />
       <h1>Dashboard</h1>
     </Container>
   );
