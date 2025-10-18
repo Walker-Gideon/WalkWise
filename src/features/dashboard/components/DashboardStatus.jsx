@@ -4,6 +4,7 @@ import {
   LuClock,
   LuFlame,
 } from "react-icons/lu";
+import Badge from "/src/components/Badge";
 import Card from "/src/components/Card";
 import Group from "/src/ui/Group";
 
@@ -42,11 +43,12 @@ export default function DashboardStatus() {
           key={index}
           classname={"hover:shadow-lg flex items-center justify-between"}
         >
-          <div className="rounded-xl bg-gradient-to-r from-slate-200 to-slate-300 p-3 dark:from-slate-600 dark:to-slate-700">
+          <Badge type="primary">
             <stats.icon
-              className={`h-5 w-5 text-slate-600 dark:text-slate-300`}
+              // dark:text-slate-300
+              className={`h-5 w-5 text-slate-600`}
             />
-          </div>
+          </Badge>
           <div className="text-right">
             <p //dark:text-white
               className="medium:text-xl text-lg font-bold text-slate-900"
