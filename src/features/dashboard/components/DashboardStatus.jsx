@@ -4,6 +4,7 @@ import {
   LuClock,
   LuFlame,
 } from "react-icons/lu";
+import Card from "/src/components/Card";
 import Group from "/src/ui/Group";
 
 const status = [
@@ -31,13 +32,13 @@ const status = [
 
 export default function DashboardStatus() {
   return (
-    <Group classname="medium:grid-cols-2 grid grid-cols-1 gap-4 medium:gap-6 lg:grid-cols-4">
+    <Group
+      classname={
+        "medium:grid-cols-2 grid grid-cols-1 gap-4 medium:gap-6 lg:grid-cols-4"
+      }
+    >
       {status.map((stats, index) => (
-        /* dark:border-slate-700 dark:bg-slate-800/70 */
-        <div
-          key={index}
-          className="rounded-2xl border border-stone-300 bg-white/70 p-6 backdrop-blur-xl transition-all duration-300 hover:shadow-lg"
-        >
+        <Card key={index} classname={"hover:shadow-lg"}>
           <div className="mb-2 flex items-center justify-between">
             <div className="rounded-xl bg-gradient-to-r from-slate-200 to-slate-300 p-3 dark:from-slate-600 dark:to-slate-700">
               <stats.icon
@@ -55,7 +56,7 @@ export default function DashboardStatus() {
               </p>
             </div>
           </div>
-        </div>
+        </Card>
       ))}
     </Group>
   );
