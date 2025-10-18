@@ -24,11 +24,9 @@ export default function Heading({
             classname={`text-xl font-bold text-slate-900 ${headerStyling}`}
           >
             {headerText}
-            Welcome,&nbsp; username
           </HeaderText>
-          <Paragraph classname={`text-sm text-slate-500 ${paragraphStyling}`}>
+          <Paragraph variant="small" classname={paragraphStyling}>
             {paragraphText}
-            Glad to have you on board.
           </Paragraph>
         </Group>
         <Group classname={groupStyling}>{children}</Group>
