@@ -1,9 +1,9 @@
-import Heading from "../../ui/Heading";
 import Container from "/src/ui/Container";
+import Heading from "/src/ui/Heading";
 
 export default function Dashboard() {
   return (
-    <Container adjust={true} classname={""}>
+    <Container classname={"bg-red-700"}>
       <Heading></Heading>
       <h1>Dashboard</h1>
     </Container>
