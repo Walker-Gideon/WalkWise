@@ -9,7 +9,7 @@ export default function Schedules() {
       <ScheduleHeader />
       <Main
         // medium:mt-0 mt-7
-        classname={"h-screen space-y-6 overflow-scroll p-6"}
+        classname={"h-[510px] space-y-6 overflow-scroll p-6"}
       >
         <ScheduleStatus />
       </Main>
