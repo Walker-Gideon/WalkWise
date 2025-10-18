@@ -20,9 +20,7 @@ export default function Heading({
     >
       <Flex variant="between" classname={"px-6 py-4"}>
         <Group>
-          <HeaderText //dark:text-white
-            classname={`text-xl font-bold text-slate-900 ${headerStyling}`}
-          >
+          <HeaderText type="primary" classname={headerStyling}>
             {headerText}
           </HeaderText>
           <Paragraph variant="small" classname={paragraphStyling}>

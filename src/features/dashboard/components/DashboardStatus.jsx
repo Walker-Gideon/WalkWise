@@ -4,6 +4,7 @@ import {
   LuClock,
   LuFlame,
 } from "react-icons/lu";
+import HeaderText from "/src/ui/HeaderText";
 import Badge from "/src/components/Badge";
 import Paragraph from "/src/ui/Paragraph";
 import Card from "/src/components/Card";
@@ -51,11 +52,7 @@ export default function DashboardStatus() {
             />
           </Badge>
           <Group classname="text-right">
-            <Paragraph //dark:text-white
-              classname="medium:text-xl text-lg font-bold text-slate-900"
-            >
-              {stats.data}
-            </Paragraph>
+            <HeaderText type="primary">{stats.data}</HeaderText>
             <Paragraph
               variant="small"
               classname="text-nowrap dark:text-slate-400"
