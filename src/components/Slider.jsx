@@ -8,6 +8,29 @@ import Aside from "/src/ui/Aside";
 import Box from "/src/ui/Box";
 
 export default function Slider() {
+  /*
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("darkMode");
+      if (saved !== null) return JSON.parse(saved);
+      return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDarkMode);
+  }, [isDarkMode]);
+
+  const toggleDarkMode = (id) => {
+    if (id) {
+      const newMode = !isDarkMode;
+      setIsDarkMode(newMode);
+      localStorage.setItem("darkMode", JSON.stringify(newMode));
+    }
+  };
+  */
+
   return (
     <Aside classname="borderStyling border-r h-screen flex flex-col justify-between">
       <Box adjustWidth={true}>
