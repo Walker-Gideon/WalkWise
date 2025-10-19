@@ -9,6 +9,7 @@ export default function Button({
   type,
   links,
   onclick,
+  group, // used in the dashboard action
 }) {
   const navigateTo = useNavigateToAction();
   const base =
@@ -39,6 +40,17 @@ export default function Button({
           {children}
         </button>
       </Link>
+    );
+
+  if (group)
+    return (
+      <button
+        disabled={disabled}
+        onClick={to ? () => navigateTo(to) : onclick}
+        className="group flex cursor-pointer flex-col items-center space-y-3 rounded-xl bg-slate-50 p-6 transition-all duration-300 hover:scale-105 hover:bg-slate-100 hover:shadow-md" //dark:bg-slate-700/50 dark:hover:bg-slate-700
+      >
+        {children}
+      </button>
     );
 
   return (

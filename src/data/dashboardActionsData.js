@@ -4,25 +4,25 @@ const actions = [
   {
     icon: LuPlus,
     text: "Add Note",
-    to: "notes",
+    to: "/notes",
     title: "Notes",
   },
   {
     icon: LuPlay,
     text: "Study Now",
-    to: "flashcards",
+    to: "/flashcards",
     title: "Flashcards",
   },
   {
     icon: LuCalendar,
     text: "Schedule",
-    to: "schedules",
+    to: "/schedule",
     title: "Schedules",
   },
   {
     icon: LuLightbulb,
     text: "Inspire",
-    to: "inspire",
+    to: "/inspire",
     title: "Inspire",
   },
 ];

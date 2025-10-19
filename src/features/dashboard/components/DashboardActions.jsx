@@ -1,34 +1,33 @@
 import actions from "/src/data/dashboardActionsData";
+import HeaderText from "/src/ui/HeaderText";
+import Badge from "/src/components/Badge";
+import Card from "/src/components/Card";
+import SpanText from "/src/ui/SpanText";
+import Button from "/src/ui/Button";
+import Group from "/src/ui/Group";
 
 export default function DashboardActions() {
-  // const navigate = useLoaderAction(1000);
   return (
-    <div>
-      <h3 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">
+    <Card>
+      <HeaderText type="secondary" classname="mb-4">
         Quick Actions
-      </h3>
-
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      </HeaderText>
+      <Group classname="grid grid-cols-2 gap-4 lg:grid-cols-4">
         {actions.map((action, index) => (
-          <button
-            key={index}
-            /*   onClick={() => {
-              navigate(data.to);
-              setTimeout(() => {
-                setNavigateTitle(data.title);
-              }, 1000);
-            }} */
-            className="group flex cursor-pointer flex-col items-center space-y-3 rounded-xl bg-slate-50 p-6 transition-all duration-300 hover:scale-105 hover:bg-slate-100 hover:shadow-md dark:bg-slate-700/50 dark:hover:bg-slate-700"
-          >
-            <div className="rounded-xl bg-slate-300 p-3 transition-colors group-hover:bg-slate-200 dark:bg-slate-500">
-              <action.icon className="h-5 w-5 text-slate-600 dark:text-slate-400" />
-            </div>
-            <span className="medium:text-sm text-xs font-medium text-slate-700 dark:text-slate-300">
+          <Button key={index} group={true} to={action.to}>
+            <Badge type="secondary" classname="transition-colors">
+              {/* dark:text-slate-400 */}
+              <action.icon className="h-5 w-5 text-slate-600" />
+            </Badge>
+            <SpanText
+              // dark:text-slate-300
+              classname="text-sm font-medium text-slate-700"
+            >
               {action.text}
-            </span>
-          </button>
+            </SpanText>
+          </Button>
         ))}
-      </div>
-    </div>
+      </Group>
+    </Card>
   );
 }

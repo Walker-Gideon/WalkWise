@@ -2,6 +2,7 @@ export default function HeaderText({ children, classname, variant, type }) {
   const base = "text-xl text-slate-900"; //dark:text-white
   const styling = {
     primary: base + " font-bold",
+    secondary: base + " font-semibold",
   };
 
   if (variant === "huge")

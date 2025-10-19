@@ -1,3 +1,4 @@
+import DashboardActions from "./components/DashboardActions";
 import DashboardHeader from "./components/DashboardHeader";
 import DashboardStatus from "./components/DashboardStatus";
 import Container from "/src/ui/Container";
