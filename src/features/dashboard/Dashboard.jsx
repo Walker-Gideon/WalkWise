@@ -12,6 +12,7 @@ export default function Dashboard() {
         classname={"space-y-6 overflow-scroll h-[510px] p-6"}
       >
         <DashboardStatus />
+        <DashboardActions />
       </Main>
     </Container>
   );
