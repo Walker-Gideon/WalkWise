@@ -1,6 +1,6 @@
 import { LuLightbulb, LuFlame } from "react-icons/lu";
-import SpanText from "/src/ui/SpanText";
 import HeaderText from "/src/ui/HeaderText";
+import SpanText from "/src/ui/SpanText";
 import Card from "/src/components/Card";
 
 export default function DashboardMotivation() {
