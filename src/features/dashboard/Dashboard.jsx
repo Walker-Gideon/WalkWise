@@ -7,6 +7,7 @@ import DashboardStatus from "./components/DashboardStatus";
 import Container from "/src/ui/Container";
 import Group from "/src/ui/Group";
 import Main from "/src/ui/Main";
+import DashboardRecentActivity from "./components/DashboardRecentActivity";
 
 export default function Dashboard() {
   return (
@@ -25,6 +26,7 @@ export default function Dashboard() {
             <DashboardMotivation />
           </Group>
         </Group>
+        <DashboardRecentActivity />
       </Main>
     </Container>
   );
