@@ -1,13 +1,15 @@
 import { isSameMonth, isToday } from "date-fns";
 import { LuCalendar } from "react-icons/lu";
+import useCalendar from "/src/hook/useCalendar";
+import HeaderText from "/src/ui/HeaderText";
 import Card from "/src/components/Card";
 import SpanText from "/src/ui/SpanText";
-import HeaderText from "/src/ui/HeaderText";
 import Group from "/src/ui/Group";
-import { currentMonth, monthLabel, calendarDays } from "/src/hook/useCalendar";
 import Box from "/src/ui/Box";
 
 export default function DashboardCalendar() {
+  const { currentMonth, monthLabel, calendarDays } = useCalendar();
+
   return (
     <Card>
       <HeaderText
@@ -56,6 +58,13 @@ export default function DashboardCalendar() {
             </Box>
           );
         })}
+      </Group>
+      <Group classname={"flex mt-4 items-center justify-end space-x-2 text-xs"}>
+        <Box
+          adjustWidth={true}
+          classname={"h-3 w-3 rounded-full bg-emerald-500"}
+        ></Box>
+        <SpanText>Today</SpanText>
       </Group>
     </Card>
   );
