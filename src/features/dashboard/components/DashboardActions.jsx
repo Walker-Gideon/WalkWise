@@ -1,3 +1,7 @@
+import actions from "/src/data/dashboardActionsData";
+
 export default function DashboardActions() {
-  return <div>DashboardActions</div>;
+  return <div>
+    {actions.map((action, index) => ())}
+  </div>;
 }
