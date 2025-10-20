@@ -1,3 +1,5 @@
+import Header from "/src/ui/Header";
+
 export default function FlashcardHeader() {
-  return <div>FlashcardHeader</div>;
+  return <Header>FlashcardHeader</Header>;
 }
