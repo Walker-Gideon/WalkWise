@@ -5,6 +5,16 @@ export default function HeaderText({ children, classname, variant, type }) {
     secondary: base + " text-base font-semibold",
   };
 
+  if (variant === "header")
+    return (
+      <h1
+        // hidden dark:text-white
+        className={`medium:mb-2 medium:block text-xl font-bold text-slate-900 ${classname}`}
+      >
+        {children}
+      </h1>
+    );
+
   if (variant === "huge")
     return (
       <h1 className={`medium:text-5xl text-3xl font-bold ${classname}`}>
