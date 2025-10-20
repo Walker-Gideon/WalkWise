@@ -1,6 +1,7 @@
 import HeaderText from "/src/ui/HeaderText";
 import Container from "/src/ui/Container";
 import Header from "/src/ui/Header";
+import Button from "/src/ui/Button";
 import Main from "/src/ui/Main";
 
 export default function Flashcard() {
@@ -9,7 +10,9 @@ export default function Flashcard() {
       <Header>
         <HeaderText variant="header">My Flashcards</HeaderText>
       </Header>
-      <Main></Main>
+      <Main>
+        <Button>Create Flashcard</Button>
+      </Main>
     </Container>
   );
 }
