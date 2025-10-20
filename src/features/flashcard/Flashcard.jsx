@@ -1,7 +1,11 @@
+import FlashcardHeader from "./components/FlashcardHeader";
+import Container from "/src/ui/Container";
+
 export default function Flashcard() {
   return (
-    <div>
+    <Container>
+      <FlashcardHeader />
       <h1>Flashcard</h1>
-    </div>
+    </Container>
   );
 }
