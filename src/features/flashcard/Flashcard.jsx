@@ -7,7 +7,9 @@ export default function Flashcard() {
   return (
     <Container>
       <FlashcardHeader />
-      <Main classname={"h-[500px]"}>
+
+      {/* will adjust the height base on the state that display the component */}
+      <Main classname={"h-[400px]"}>
         <FlashcardPrompt />
       </Main>
     </Container>
