@@ -24,8 +24,16 @@ export default function Flashcard() {
             <LuRectangleVertical className="icons" />
           </Badge>
           <Group>
-            <SpanText>You haven't created any flashcards yet.</SpanText>
-            <SpanText>Get started by tapping "Create Flashcard"</SpanText>
+            <HeaderText variant="secondary">
+              You haven't created any flashcards yet.
+            </HeaderText>
+            <SpanText
+              classname={
+                "min-w-sm text-sm font-medium text-slate-500 dark:text-slate-400"
+              }
+            >
+              Get started by tapping "Create Flashcard"
+            </SpanText>
           </Group>
           <Button>Create Flashcard</Button>
         </Group>
