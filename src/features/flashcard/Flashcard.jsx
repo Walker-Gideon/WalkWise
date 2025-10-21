@@ -1,5 +1,6 @@
 import { LuRectangleVertical } from "react-icons/lu";
 import FlashcardHeader from "./components/FlashcardHeader";
+import FlashcardPrompt from "./components/FlashcardPrompt";
 import HeaderText from "/src/ui/HeaderText";
 import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
@@ -13,6 +14,7 @@ export default function Flashcard() {
     <Container>
       <FlashcardHeader />
       <Main classname={"h-[500px]"}>
+        <FlashcardPrompt />
         <Group
           classname={"h-full w-full flex items-center justify-center flex-col"}
         >
