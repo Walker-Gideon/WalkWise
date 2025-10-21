@@ -1,11 +1,16 @@
-import { LuRectangleVertical } from "react-icons/lu";
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
 import Badge from "/src/components/Badge";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 
-export default function InformationPrompt() {
+export default function InformationPrompt({
+  icon,
+  promptText,
+  actionText,
+  onclick,
+  buttonText,
+}) {
   return (
     <Group
       classname={"h-full w-full flex items-center justify-center flex-col"}
@@ -13,22 +18,19 @@ export default function InformationPrompt() {
       {/* text-slate-500 dark:text-slate-400 */}
       <Badge type="icons">
         {/* dark:text-slate-300 */}
-        <LuRectangleVertical className="icons" />
+        {/* <icon className="icons" /> */}
+        {icon}
       </Badge>
       <Group classname={"text-center py-2"}>
-        <HeaderText variant="secondary">
-          You haven't created any flashcards yet.
-        </HeaderText>
-        <Paragraph type="information">
-          Get started by tapping "Create Flashcard"
-        </Paragraph>
+        <HeaderText variant="secondary">{promptText}</HeaderText>
+        <Paragraph type="information">{actionText}</Paragraph>
       </Group>
       <Button
         type="colors"
-        onclick={() => {}}
+        onclick={onclick}
         classname={"focus:ring-slate-300"}
       >
-        Create Flashcard
+        {buttonText}
       </Button>
     </Group>
   );
