@@ -48,7 +48,7 @@ export default function DashboardStatus() {
           <Badge type="primary">
             <stats.icon
               // dark:text-slate-300
-              className={`h-5 w-5 text-slate-600`}
+              className={"icons"}
             />
           </Badge>
           <Group classname="text-right">

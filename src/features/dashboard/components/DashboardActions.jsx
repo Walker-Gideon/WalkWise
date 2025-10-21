@@ -17,7 +17,7 @@ export default function DashboardActions() {
           <Button key={index} group={true} to={action.to}>
             <Badge type="secondary" classname="transition-colors">
               {/* dark:text-slate-400 */}
-              <action.icon className="h-5 w-5 text-slate-600" />
+              <action.icon className={"icons"} />
             </Badge>
             <SpanText
               // dark:text-slate-300

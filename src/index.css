@@ -25,6 +25,11 @@
     @apply border-stone-300;
   }
 
+  .icons {
+    /* dark:text-slate-300 it's for icons that need it not all */
+    @apply h-5 w-5 text-slate-600;
+  }
+
   /* in use in the input component */
   .input {
     @apply rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs hover:border-slate-400 focus:ring-2 focus:ring-slate-400 focus:outline-hidden;

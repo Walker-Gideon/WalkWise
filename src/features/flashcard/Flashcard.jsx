@@ -20,7 +20,8 @@ export default function Flashcard() {
         >
           {/* text-slate-500 dark:text-slate-400 */}
           <Badge type="icons">
-            <LuRectangleVertical className="h-6 w-6 text-slate-600 dark:text-slate-300" />
+            {/* dark:text-slate-300 */}
+            <LuRectangleVertical className="icons" />
           </Badge>
           <Button>Create Flashcard</Button>
         </Box>
