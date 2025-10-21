@@ -1,11 +1,12 @@
 import { LuRectangleVertical } from "react-icons/lu";
 import HeaderText from "/src/ui/HeaderText";
 import Container from "/src/ui/Container";
+import Badge from "/src/components/Badge";
+import SpanText from "/src/ui/SpanText";
 import Header from "/src/ui/Header";
 import Button from "/src/ui/Button";
-import Badge from "/src/components/Badge";
+import Group from "/src/ui/Group";
 import Main from "/src/ui/Main";
-import Box from "/src/ui/Box";
 
 export default function Flashcard() {
   return (
@@ -14,8 +15,7 @@ export default function Flashcard() {
         <HeaderText variant="header">My Flashcards</HeaderText>
       </Header>
       <Main classname={"h-[560px]"}>
-        <Box
-          adjustWidth={true}
+        <Group
           classname={"h-full w-full flex items-center justify-center flex-col"}
         >
           {/* text-slate-500 dark:text-slate-400 */}
@@ -23,8 +23,12 @@ export default function Flashcard() {
             {/* dark:text-slate-300 */}
             <LuRectangleVertical className="icons" />
           </Badge>
+          <Group>
+            <SpanText>You haven't created any flashcards yet.</SpanText>
+            <SpanText>Get started by tapping "Create Flashcard"</SpanText>
+          </Group>
           <Button>Create Flashcard</Button>
-        </Box>
+        </Group>
       </Main>
     </Container>
   );
