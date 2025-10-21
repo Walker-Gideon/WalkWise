@@ -18,7 +18,8 @@ export default function Flashcard() {
           adjustWidth={true}
           classname={"h-full w-full flex items-center justify-center flex-col"}
         >
-          <Badge classname={"bg-amber-300 rounded-full"}>
+          {/* text-slate-500 dark:text-slate-400 */}
+          <Badge type="icons">
             <LuRectangleVertical className="h-6 w-6 text-slate-600 dark:text-slate-300" />
           </Badge>
           <Button>Create Flashcard</Button>
