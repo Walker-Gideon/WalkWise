@@ -1,11 +1,11 @@
 import { LuRectangleVertical } from "react-icons/lu";
+import CreateFlashcardLayout from "./components/create-cards/CreateFlashcardLayout";
 import InformationPrompt from "../../components/InformationPrompt";
 import FlashcardHeader from "./components/FlashcardHeader";
 import Conditional from "/src/components/Conditional";
 import Container from "/src/ui/Container";
 import Main from "/src/ui/Main";
 import { useState } from "react";
-import CreateFlashcardLayout from "./components/create-cards/CreateFlashcardLayout";
 
 export default function Flashcard() {
   const [isDisplayCreateCard, setIsDisplayCreateCard] = useState(false);
