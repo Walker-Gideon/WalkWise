@@ -1,9 +1,9 @@
 import { LuRectangleVertical } from "react-icons/lu";
+import FlashcardHeader from "./components/FlashcardHeader";
 import HeaderText from "/src/ui/HeaderText";
 import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
 import Badge from "/src/components/Badge";
-import Header from "/src/ui/Header";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 import Main from "/src/ui/Main";
@@ -11,9 +11,7 @@ import Main from "/src/ui/Main";
 export default function Flashcard() {
   return (
     <Container>
-      <Header type="padding">
-        <HeaderText variant="header">My Flashcards</HeaderText>
-      </Header>
+      <FlashcardHeader />
       <Main classname={"h-[500px]"}>
         <Group
           classname={"h-full w-full flex items-center justify-center flex-col"}
@@ -31,7 +29,13 @@ export default function Flashcard() {
               Get started by tapping "Create Flashcard"
             </Paragraph>
           </Group>
-          <Button>Create Flashcard</Button>
+          <Button
+            type="colors"
+            onclick={() => {}}
+            classname={"focus:ring-slate-300"}
+          >
+            Create Flashcard
+          </Button>
         </Group>
       </Main>
     </Container>
