@@ -3,6 +3,7 @@ export default function Paragraph({ children, classname, type, variant }) {
     xs: "text-xs medium:text-sm",
     sm: "text-sm medium:text-base",
     xl: "text-xl md:text-2xl",
+    information: "min-w-sm text-sm font-medium text-slate-500", //dark:text-slate-400
   };
 
   if (variant === "small")
