@@ -1,7 +1,9 @@
-export default function Header({children, classname}) {
+export default function Header({ children, classname, type }) {
+  const styling = {
+    padding: "px-6 py-4",
+  };
+
   return (
-    <header className={classname}>
-      {children}
-    </header>
-  )
+    <header className={`${classname} ${styling[type]}`}>{children}</header>
+  );
 }

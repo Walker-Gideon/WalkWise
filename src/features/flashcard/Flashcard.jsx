@@ -11,10 +11,10 @@ import Main from "/src/ui/Main";
 export default function Flashcard() {
   return (
     <Container>
-      <Header>
+      <Header type="padding">
         <HeaderText variant="header">My Flashcards</HeaderText>
       </Header>
-      <Main classname={"h-[550px]"}>
+      <Main classname={"h-[500px]"}>
         <Group
           classname={"h-full w-full flex items-center justify-center flex-col"}
         >
