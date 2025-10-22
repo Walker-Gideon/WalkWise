@@ -20,7 +20,7 @@ export default function Flashcard() {
     <Container>
       <FlashcardHeader isDisplayCreateCard={isDisplayCreateCard} />
       <Main
-        classname={`${isDisplayCreateCard ? "h-screen w-full" : "h-[400px]"}`}
+        classname={`${isDisplayCreateCard ? "h-screen w-full" : "h-[500px]"}`}
       >
         <Conditional condition={!isDisplayCreateCard}>
           <InformationPrompt
