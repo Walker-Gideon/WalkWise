@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { LuPlus } from "react-icons/lu";
 
 import Heading from "/src/components/Heading";
 import Container from "/src/ui/Container";
@@ -20,6 +21,13 @@ export default function CreateFlashcardLayout() {
   const [index, setIndex] = useState(0);
 
   const MAX_PAIRS = 100;
+
+  // Handler to update term or definition in a specific pair
+  const handlePairChange = (index, field, value) => {
+    const updatedPairs = [...pairs];
+    updatedPairs[index][field] = value;
+    setPairs(updatedPairs);
+  };
 
   const styling = {
     label:
@@ -91,31 +99,58 @@ export default function CreateFlashcardLayout() {
                           ? "#1"
                           : "#2"}
                     </Label>
-                    <Button variant="secondary" onclick={() => {}}>
+                    <Button
+                      variant="secondary"
+                      onclick={(e) => {
+                        e.preventDefault();
+
+                        if (pairs.length > 2) {
+                          const updatePairs = pairs.filter(
+                            (_, i) => i !== index,
+                          );
+
+                          setPairs(updatePairs);
+                          setIndex((prev) =>
+                            prev >= updatePairs.length
+                              ? updatePairs.length - 1
+                              : prev,
+                          );
+                        }
+                      }}
+                    >
                       <RiDeleteBin5Line className="icons text-slate-500 dark:text-slate-200" />
                     </Button>
                   </Flex>
                   <Input
-                    id={``}
-                    name={``}
+                    id={`term-${idx}`}
+                    name={`term-${idx}`}
                     type="text"
-                    // value={}
-                    // onChange={}
+                    value={pair.term}
+                    onChange={(e) =>
+                      handlePairChange(idx, "term", e.target.value)
+                    }
                     placeholder="Enter term..."
                     classname={styling.inputArea}
                     // disabled={}
                   />
                 </Group>
                 <Group>
-                  <Label htmlfor={``} classname={styling.label}>
-                    Definition
+                  <Label
+                    htmlfor={`definition-${idx}`}
+                    classname={styling.label}
+                  >
+                    Definition{" "}
+                    {pairs.length > 2 ? `#${idx + 1}` : idx === 0 ? "#1" : "#2"}
                   </Label>
                   <TextArea
-                    id={``}
-                    name={``}
+                    id={`definition-${idx}`}
+                    name={`definition-${idx}`}
                     rows={2}
-                    // value={}
-                    // onChange={}
+                    value={pair.definition}
+                    onChange={(e) =>
+                      handlePairChange(idx, "term", e.target.value)
+                    }
+                    resize={true}
                     classname={styling.inputArea}
                     placeholder="Enter definition..."
                     // disabled={}
@@ -129,19 +164,19 @@ export default function CreateFlashcardLayout() {
           <Flex classname={"items-center justify-end"}>
             <Button
               type="colors"
-              classname={"px-8"}
-              onclick={() => {
-                /*
-              const currentPairs = editMode ? editPairs : pairs;
-    const newPair = { term: "", definition: "" };
+              classname={"px-6 flex items-center gap-1"}
+              onclick={(e) => {
+                e.preventDefault();
 
-    if (currentPairs.length < MAX_PAIRS) {
-      const updated = [...currentPairs, newPair];
-      editMode ? setEditPairs(updated) : setPairs(updated);
-    }
-              */
+                const newPair = { term: "", definition: "" };
+
+                if (pairs.length < MAX_PAIRS) {
+                  const updated = [...pairs, newPair];
+                  setPairs(updated);
+                }
               }}
             >
+              <LuPlus className={"h-4 w-4 text-white"} />
               Add Card
             </Button>
           </Flex>
