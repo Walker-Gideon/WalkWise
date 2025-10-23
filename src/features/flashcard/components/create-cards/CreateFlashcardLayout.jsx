@@ -40,12 +40,28 @@ export default function CreateFlashcardLayout() {
         }
       >
         <Form className={"space-y-2"} onsubmit={() => {}}>
+          {/* optional tag for set name */}
+          <Group>
+            <Label htmlfor="tags" classname={styling.label}>
+              Tags (optional)
+            </Label>
+            <Input
+              id="tags"
+              name="tags"
+              type="text"
+              // value={}
+              // onChange={}
+              placeholder="e.g. Biology, Chapter 2"
+              classname={styling.inputArea}
+              // disabled={}
+            />
+          </Group>
+
           {/* input tag */}
           <Container
             adjust={true}
-            classname={
-              "medium:h-[41vh] medium:px-4 h-[36vh] space-y-6 overflow-y-scroll"
-            }
+            // medium:h-[41vh] h-[36vh] overflow-y-scroll
+            classname={"space-y-6"}
           >
             {/* Will map here to add more input tag */}
             <Group
@@ -92,8 +108,11 @@ export default function CreateFlashcardLayout() {
           </Container>
 
           {/* add flashcard button */}
-
-          {/* optional tag for set name */}
+          <Flex classname={"items-center justify-end px-8"}>
+            <Button type="colors" classname={"px-8"}>
+              Add Card
+            </Button>
+          </Flex>
 
           {/* action button */}
 
