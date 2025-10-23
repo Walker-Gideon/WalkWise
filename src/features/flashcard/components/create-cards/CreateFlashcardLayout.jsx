@@ -21,7 +21,7 @@ export default function CreateFlashcardLayout() {
   ]);
   const [index, setIndex] = useState(0);
 
-  const MAX_PAIRS = 5;
+  const MAX_PAIRS = 50;
 
   // Handler to update term or definition in a specific pair
   const handlePairChange = (index, field, value) => {
