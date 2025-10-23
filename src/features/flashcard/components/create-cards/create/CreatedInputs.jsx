@@ -42,12 +42,16 @@ export default function CreatedInputs({ pairs, index, onPairs, onIndex }) {
           }
         >
           <Group>
-            <Flex variant="between" classname={"w-full mb-4"}>
+            <Flex variant="between" classname={"w-full "}>
               <Label htmlfor={`term-${idx}`} classname={"label"}>
                 Term{" "}
                 {pairs.length > 2 ? `#${idx + 1}` : idx === 0 ? "#1" : "#2"}
               </Label>
-              <Button variant="secondary" onclick={handleDelete}>
+              <Button
+                variant="secondary"
+                classname={"mb-4"}
+                onclick={handleDelete}
+              >
                 <RiDeleteBin5Line className="icons text-slate-500 dark:text-slate-200" />
               </Button>
             </Flex>
@@ -58,7 +62,7 @@ export default function CreatedInputs({ pairs, index, onPairs, onIndex }) {
               value={pair.term}
               onChange={(e) => handlePairChange(idx, "term", e.target.value)}
               placeholder="Enter term..."
-              classname={"inputArea"}
+              classname={"w-full text-slate-900 dark:text-white input"}
               // disabled={}
             />
           </Group>
@@ -74,7 +78,7 @@ export default function CreatedInputs({ pairs, index, onPairs, onIndex }) {
               value={pair.definition}
               onChange={(e) => handlePairChange(idx, "term", e.target.value)}
               resize={true}
-              classname={"inputArea"}
+              classname={"w-full text-slate-900 dark:text-white input"}
               placeholder="Enter definition..."
               // disabled={}
             />

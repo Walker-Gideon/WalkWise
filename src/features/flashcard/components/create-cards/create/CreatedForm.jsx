@@ -6,6 +6,7 @@ import CreatedTag from "./CreatedTag";
 import Form from "/src/ui/Form";
 import Box from "/src/ui/Box";
 import CreatedAddButton from "./CreatedAddButton";
+import CreatedNotification from "./CreatedNotification";
 
 export default function CreatedForm() {
   const [pairs, setPairs] = useState([
@@ -38,6 +39,7 @@ export default function CreatedForm() {
             onPairs={setPairs}
             MAX_PAIRS={MAX_PAIRS}
           />
+          <CreatedNotification pairs={pairs} MAX_PAIRS={MAX_PAIRS} />
         </Form>
       </Box>
     </>

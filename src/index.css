@@ -31,11 +31,7 @@
   }
 
   .label {
-    @apply medium:text-xs mb-1 block text-sm font-medium text-slate-500 dark:text-slate-400;
-  }
-
-  .inputArea {
-    @apply w-full text-slate-900 dark:text-white;
+    @apply medium:text-xs mb-2 block text-sm font-medium text-slate-500 dark:text-slate-400;
   }
 
   /* in use in the input component */

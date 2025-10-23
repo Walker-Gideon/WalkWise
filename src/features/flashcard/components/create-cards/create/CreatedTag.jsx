@@ -4,7 +4,7 @@ import Label from "/src/ui/Label";
 
 export default function CreatedTag() {
   return (
-    <Group>
+    <Group classname={"px-0.5"}>
       <Label htmlfor="tags" classname={"label"}>
         Tags (optional)
       </Label>
@@ -15,7 +15,7 @@ export default function CreatedTag() {
         // value={}
         // onChange={}
         placeholder="e.g. Biology, Chapter 2"
-        classname={"inputArea input"}
+        classname={"w-full text-slate-900 input"} //dark:text-white
         // disabled={}
       />
     </Group>
