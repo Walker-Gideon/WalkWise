@@ -1,10 +1,11 @@
-import HeaderText from "/src/ui/HeaderText";
-import Header from "/src/ui/Header";
+import Heading from "/src/components/Heading";
 
 export default function FlashcardHeader({ isDisplayCreateCard }) {
   return (
-    <Header type="padding" classname={`${isDisplayCreateCard ? "hidden" : ""}`}>
-      <HeaderText variant="header">My Flashcards</HeaderText>
-    </Header>
+    <Heading
+      headerText="My Flashcards"
+      paragraphText="Learn smarter with personalized flashcards." //When create a flashacard use this "Reinforce your memory, one card at a time."
+      classname={`${isDisplayCreateCard ? "hidden" : ""}`}
+    ></Heading>
   );
 }

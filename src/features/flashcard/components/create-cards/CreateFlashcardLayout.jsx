@@ -18,6 +18,7 @@ export default function CreateFlashcardLayout() {
       "mb-1 block medium:text-xs text-sm font-medium text-slate-500 dark:text-slate-400",
     inputArea: "w-full input text-slate-900 dark:text-white",
   };
+  // Create, review, and master key concepts effortlessly.
 
   return (
     <Container adjust={true}>
