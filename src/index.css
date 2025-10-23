@@ -30,6 +30,14 @@
     @apply h-5 w-5 text-slate-600;
   }
 
+  .label {
+    @apply medium:text-xs mb-1 block text-sm font-medium text-slate-500 dark:text-slate-400;
+  }
+
+  .inputArea {
+    @apply w-full text-slate-900 dark:text-white;
+  }
+
   /* in use in the input component */
   .input {
     @apply rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs hover:border-slate-400 focus:ring-2 focus:ring-slate-400 focus:outline-hidden;

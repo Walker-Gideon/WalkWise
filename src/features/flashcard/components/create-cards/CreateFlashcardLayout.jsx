@@ -47,21 +47,6 @@ export default function CreateFlashcardLayout() {
       >
         <Form onsubmit={() => {}}>
           {/* optional tag for set name */}
-          <Group>
-            <Label htmlfor="tags" classname={styling.label}>
-              Tags (optional)
-            </Label>
-            <Input
-              id="tags"
-              name="tags"
-              type="text"
-              // value={}
-              // onChange={}
-              placeholder="e.g. Biology, Chapter 2"
-              classname={styling.inputArea}
-              // disabled={}
-            />
-          </Group>
 
           {/* input tag */}
           <Container

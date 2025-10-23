@@ -1,6 +1,7 @@
 import CreatedHeader from "./CreatedHeader";
 import Form from "/src/ui/Form";
 import Box from "/src/ui/Box";
+import CreatedTag from "./CreatedTag";
 
 export default function CreatedForm() {
   return (
@@ -12,7 +13,9 @@ export default function CreatedForm() {
           "mx-auto medium:mt-8 mt-14 max-w-3xl maxmid:max-w-4xl medium:h-[78vh] overflow-y-scroll"
         }
       >
-        <Form onsubmit={() => {}}></Form>
+        <Form onsubmit={() => {}}>
+          <CreatedTag />
+        </Form>
       </Box>
     </>
   );
