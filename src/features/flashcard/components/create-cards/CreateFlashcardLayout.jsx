@@ -37,10 +37,10 @@ export default function CreateFlashcardLayout() {
       <Box
         adjustWidth={true}
         classname={
-          "mx-auto medium:mt-8 mt-14 max-w-3xl maxmid:max-w-4xl medium:h-[70vh] bg-blue-500"
+          "mx-auto medium:mt-8 mt-14 max-w-3xl maxmid:max-w-4xl medium:h-[70vh]"
         }
       >
-        <Form className={"space-y-2"} onsubmit={() => {}}>
+        <Form onsubmit={() => {}}>
           {/* optional tag for set name */}
           <Group>
             <Label htmlfor="tags" classname={styling.label}>
@@ -62,7 +62,7 @@ export default function CreateFlashcardLayout() {
           <Container
             adjust={true}
             // medium:h-[41vh] h-[36vh] overflow-y-scroll
-            classname={"space-y-6"}
+            classname={"space-y-6 py-4"}
           >
             {/* Will map here to add more input tag */}
             <Group
@@ -109,13 +109,11 @@ export default function CreateFlashcardLayout() {
           </Container>
 
           {/* add flashcard button */}
-          <Flex classname={"items-center justify-end px-8"}>
-            <Button type="colors" classname={"px-8"}>
+          <Flex classname={"items-center justify-end"}>
+            <Button type="colors" classname={"px-8"} onclick={() => {}}>
               Add Card
             </Button>
           </Flex>
-
-          {/* action button */}
 
           {/* notify information */}
         </Form>
