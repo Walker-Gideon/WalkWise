@@ -2,10 +2,14 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 
 import HeaderText from "/src/ui/HeaderText";
 import Container from "/src/ui/Container";
+import Button from "/src/ui/Button";
 import Header from "/src/ui/Header";
 import Group from "/src/ui/Group";
-import Button from "../../../../ui/Button";
-import Input from "../../../../ui/Input";
+import Input from "/src/ui/Input";
+import Label from "/src/ui/Label";
+import Form from "/src/ui/Form";
+import Flex from "/src/ui/Flex";
+import Box from "/src/ui/Box";
 
 export default function CreateFlashcardLayout() {
   const styling = {
@@ -20,21 +24,44 @@ export default function CreateFlashcardLayout() {
         <HeaderText variant="header">Create A New flashcard Set</HeaderText>
       </Header>
 
-      <Group classname="mx-auto medium:mt-8 mt-14 max-w-3xl maxmid:max-w-4xl medium:h-[70vh] bg-red-500">
-        <form className="space-y-2">
+      <Box
+        adjustWidth={true}
+        classname={
+          "mx-auto medium:mt-8 mt-14 max-w-3xl maxmid:max-w-4xl medium:h-[70vh] bg-blue-500"
+        }
+      >
+        <Form className={"space-y-2"} onsubmit={() => {}}>
           {/* input tag */}
-          <div className="medium:h-[41vh] medium:px-4 h-[36vh] space-y-6 overflow-y-scroll">
-            <div className="flex flex-col gap-4 rounded-lg bg-slate-50 p-4 dark:bg-slate-600">
-              <div>
-                <div className="flex w-full items-center justify-between">
-                  <label className={styling.label}>Term</label>
-
+          <Container
+            adjust={true}
+            classname={
+              "medium:h-[41vh] medium:px-4 h-[36vh] space-y-6 overflow-y-scroll"
+            }
+          >
+            {/* Will map here to add more input tag */}
+            <Group
+              classname={
+                "flex flex-col gap-4 rounded-lg bg-slate-50 p-4 dark:bg-slate-600"
+              }
+            >
+              <Group>
+                <Flex variant="between" classname={"w-full"}>
+                  <Label classname={styling.label}>Term</Label>
                   <Button>
-                    <RiDeleteBin5Line className="h-4 w-4" />
+                    <RiDeleteBin5Line className="icons" />
                   </Button>
-                </div>
-                <Input type="text" placeholder="Enter term..." />
-              </div>
+                </Flex>
+                <Input
+                  id={``}
+                  name={``}
+                  type="text"
+                  // value={}
+                  // onChange={}
+                  placeholder="Enter term..."
+                  classname={styling.inputArea}
+                  // disabled={}
+                />
+              </Group>
 
               <div>
                 <label className={styling.label}>Definition</label>
@@ -44,8 +71,8 @@ export default function CreateFlashcardLayout() {
                   placeholder="Enter definition..."
                 />
               </div>
-            </div>
-          </div>
+            </Group>
+          </Container>
 
           {/* add flashcard button */}
 
@@ -54,8 +81,8 @@ export default function CreateFlashcardLayout() {
           {/* action button */}
 
           {/* notify information */}
-        </form>
-      </Group>
+        </Form>
+      </Box>
     </Container>
   );
 }
