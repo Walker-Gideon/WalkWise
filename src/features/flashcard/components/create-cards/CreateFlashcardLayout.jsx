@@ -2,7 +2,6 @@ import { useState } from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { LuPlus } from "react-icons/lu";
 
-import Heading from "/src/components/Heading";
 import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
 import TextArea from "/src/ui/TextArea";
@@ -38,19 +37,7 @@ export default function CreateFlashcardLayout() {
 
   return (
     <Container adjust={true}>
-      <Heading
-        headerText="Create A New flashcard Set"
-        paragraphText="Create, review, and master key concepts effortlessly."
-      >
-        <Group classname={"space-x-2"}>
-          <Button type="danger" classname={"px-8"}>
-            Cancel
-          </Button>
-          <Button type="colors" classname={"px-8"}>
-            Create
-          </Button>
-        </Group>
-      </Heading>
+      {/* header */}
 
       <Box
         adjustWidth={true}
