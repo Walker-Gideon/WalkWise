@@ -10,6 +10,7 @@ export default function Button({
   links,
   onclick,
   group, // used in the dashboard action
+  variant,
 }) {
   const navigateTo = useNavigateToAction();
   const base =
@@ -41,6 +42,17 @@ export default function Button({
           {children}
         </button>
       </Link>
+    );
+
+  if (variant === "secondary")
+    return (
+      <button
+        disabled={disabled}
+        onClick={to ? () => navigateTo(to) : onclick}
+        className={`cursor-pointer ${classname}`}
+      >
+        {children}
+      </button>
     );
 
   if (group)

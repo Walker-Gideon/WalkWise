@@ -82,7 +82,7 @@ export default function CreateFlashcardLayout() {
                 }
               >
                 <Group>
-                  <Flex variant="between" classname={"w-full mb-2"}>
+                  <Flex variant="between" classname={"w-full mb-4"}>
                     <Label htmlfor={`term-${idx}`} classname={styling.label}>
                       Term{" "}
                       {pairs.length > 2
@@ -91,7 +91,7 @@ export default function CreateFlashcardLayout() {
                           ? "#1"
                           : "#2"}
                     </Label>
-                    <Button classname={"bg-red-500"} onclick={() => {}}>
+                    <Button variant="secondary" onclick={() => {}}>
                       <RiDeleteBin5Line className="icons text-slate-500 dark:text-slate-200" />
                     </Button>
                   </Flex>
