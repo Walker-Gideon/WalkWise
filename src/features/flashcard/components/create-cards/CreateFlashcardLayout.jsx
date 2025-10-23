@@ -14,8 +14,6 @@ import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
 
 export default function CreateFlashcardLayout() {
-  const MAX_PAIRS = 50;
-
   const styling = {
     label:
       "mb-1 block medium:text-xs text-sm font-medium text-slate-500 dark:text-slate-400",
@@ -36,33 +34,8 @@ export default function CreateFlashcardLayout() {
           {/* optional tag for set name */}
 
           {/* input tag */}
-          <Container
-            adjust={true}
-            // medium:h-[41vh] h-[36vh] overflow-y-scroll
-            classname={"space-y-6 py-4"}
-          ></Container>
 
           {/* add flashcard button */}
-          <Flex classname={"items-center justify-end"}>
-            <Button
-              type="colors"
-              classname={"px-6 flex items-center gap-1"}
-              onclick={(e) => {
-                e.preventDefault();
-
-                const newPair = { term: "", definition: "" };
-
-                if (pairs.length < MAX_PAIRS) {
-                  const updated = [...pairs, newPair];
-                  setPairs(updated);
-                }
-              }}
-              disabled={pairs.length === MAX_PAIRS}
-            >
-              <LuPlus className={"h-4 w-4 text-white"} />
-              Add Card
-            </Button>
-          </Flex>
 
           {/* notify information */}
           <Group classname="pt-2 text-right">

@@ -5,6 +5,7 @@ import CreatedInputs from "./CreatedInputs";
 import CreatedTag from "./CreatedTag";
 import Form from "/src/ui/Form";
 import Box from "/src/ui/Box";
+import CreatedAddButton from "./CreatedAddButton";
 
 export default function CreatedForm() {
   const [pairs, setPairs] = useState([
@@ -12,6 +13,8 @@ export default function CreatedForm() {
     { term: "", definition: "" },
   ]);
   const [index, setIndex] = useState(0);
+
+  const MAX_PAIRS = 50;
 
   return (
     <>
@@ -29,6 +32,11 @@ export default function CreatedForm() {
             index={index}
             onPairs={setPairs}
             onIndex={setIndex}
+          />
+          <CreatedAddButton
+            pairs={pairs}
+            onPairs={setPairs}
+            MAX_PAIRS={MAX_PAIRS}
           />
         </Form>
       </Box>
