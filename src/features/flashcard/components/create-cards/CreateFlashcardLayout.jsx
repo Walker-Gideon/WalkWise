@@ -62,15 +62,14 @@ export default function CreateFlashcardLayout() {
                   // disabled={}
                 />
               </Group>
-
-              <div>
+              <Group>
                 <label className={styling.label}>Definition</label>
                 <textarea
                   rows={2}
                   className={`resize-none ${styling.inputArea}`}
                   placeholder="Enter definition..."
                 />
-              </div>
+              </Group>
             </Group>
           </Container>
 

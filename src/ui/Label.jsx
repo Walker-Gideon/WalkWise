@@ -1,3 +1,7 @@
-export default function Label({ children, classname }) {
-  return <label className={classname}>{children}</label>;
+export default function Label({ children, classname, htmlfor }) {
+  return (
+    <label htmlFor={htmlfor} className={classname}>
+      {children}
+    </label>
+  );
 }
