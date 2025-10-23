@@ -14,20 +14,7 @@ import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
 
 export default function CreateFlashcardLayout() {
-  const [pairs, setPairs] = useState([
-    { term: "", definition: "" },
-    { term: "", definition: "" },
-  ]);
-  const [index, setIndex] = useState(0);
-
   const MAX_PAIRS = 50;
-
-  // Handler to update term or definition in a specific pair
-  const handlePairChange = (index, field, value) => {
-    const updatedPairs = [...pairs];
-    updatedPairs[index][field] = value;
-    setPairs(updatedPairs);
-  };
 
   const styling = {
     label:
@@ -53,85 +40,7 @@ export default function CreateFlashcardLayout() {
             adjust={true}
             // medium:h-[41vh] h-[36vh] overflow-y-scroll
             classname={"space-y-6 py-4"}
-          >
-            {/* Will map here to add more input tag */}
-            {pairs.map((pair, idx) => (
-              <Group
-                key={idx}
-                classname={
-                  "flex flex-col gap-4 rounded-lg bg-slate-50 p-4 dark:bg-slate-600"
-                }
-              >
-                <Group>
-                  <Flex variant="between" classname={"w-full mb-4"}>
-                    <Label htmlfor={`term-${idx}`} classname={styling.label}>
-                      Term{" "}
-                      {pairs.length > 2
-                        ? `#${idx + 1}`
-                        : idx === 0
-                          ? "#1"
-                          : "#2"}
-                    </Label>
-                    <Button
-                      variant="secondary"
-                      onclick={(e) => {
-                        e.preventDefault();
-
-                        if (pairs.length > 2) {
-                          const updatePairs = pairs.filter(
-                            (_, i) => i !== index,
-                          );
-
-                          setPairs(updatePairs);
-                          setIndex((prev) =>
-                            prev >= updatePairs.length
-                              ? updatePairs.length - 1
-                              : prev,
-                          );
-                        }
-                      }}
-                    >
-                      <RiDeleteBin5Line className="icons text-slate-500 dark:text-slate-200" />
-                    </Button>
-                  </Flex>
-                  <Input
-                    id={`term-${idx}`}
-                    name={`term-${idx}`}
-                    type="text"
-                    value={pair.term}
-                    onChange={(e) =>
-                      handlePairChange(idx, "term", e.target.value)
-                    }
-                    placeholder="Enter term..."
-                    classname={styling.inputArea}
-                    // disabled={}
-                  />
-                </Group>
-                <Group>
-                  <Label
-                    htmlfor={`definition-${idx}`}
-                    classname={styling.label}
-                  >
-                    Definition{" "}
-                    {pairs.length > 2 ? `#${idx + 1}` : idx === 0 ? "#1" : "#2"}
-                  </Label>
-                  <TextArea
-                    id={`definition-${idx}`}
-                    name={`definition-${idx}`}
-                    rows={2}
-                    value={pair.definition}
-                    onChange={(e) =>
-                      handlePairChange(idx, "term", e.target.value)
-                    }
-                    resize={true}
-                    classname={styling.inputArea}
-                    placeholder="Enter definition..."
-                    // disabled={}
-                  />
-                </Group>
-              </Group>
-            ))}
-          </Container>
+          ></Container>
 
           {/* add flashcard button */}
           <Flex classname={"items-center justify-end"}>

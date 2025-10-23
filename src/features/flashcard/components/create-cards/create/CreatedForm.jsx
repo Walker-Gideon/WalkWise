@@ -1,9 +1,18 @@
+import { useState } from "react";
+
 import CreatedHeader from "./CreatedHeader";
+import CreatedInputs from "./CreatedInputs";
+import CreatedTag from "./CreatedTag";
 import Form from "/src/ui/Form";
 import Box from "/src/ui/Box";
-import CreatedTag from "./CreatedTag";
 
 export default function CreatedForm() {
+  const [pairs, setPairs] = useState([
+    { term: "", definition: "" },
+    { term: "", definition: "" },
+  ]);
+  const [index, setIndex] = useState(0);
+
   return (
     <>
       <CreatedHeader />
@@ -15,6 +24,12 @@ export default function CreatedForm() {
       >
         <Form onsubmit={() => {}}>
           <CreatedTag />
+          <CreatedInputs
+            pairs={pairs}
+            index={index}
+            onPairs={setPairs}
+            onIndex={setIndex}
+          />
         </Form>
       </Box>
     </>
