@@ -4,6 +4,7 @@ import { LuPlus } from "react-icons/lu";
 
 import Heading from "/src/components/Heading";
 import Container from "/src/ui/Container";
+import Paragraph from "/src/ui/Paragraph";
 import TextArea from "/src/ui/TextArea";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
@@ -20,7 +21,7 @@ export default function CreateFlashcardLayout() {
   ]);
   const [index, setIndex] = useState(0);
 
-  const MAX_PAIRS = 100;
+  const MAX_PAIRS = 5;
 
   // Handler to update term or definition in a specific pair
   const handlePairChange = (index, field, value) => {
@@ -175,6 +176,7 @@ export default function CreateFlashcardLayout() {
                   setPairs(updated);
                 }
               }}
+              disabled={pairs.length === MAX_PAIRS}
             >
               <LuPlus className={"h-4 w-4 text-white"} />
               Add Card
@@ -182,6 +184,13 @@ export default function CreateFlashcardLayout() {
           </Flex>
 
           {/* notify information */}
+          <Group classname="pt-2 text-right">
+            {pairs.length >= MAX_PAIRS && (
+              <Paragraph type="information">
+                Maximum of {MAX_PAIRS} terms & definitions per card reached.
+              </Paragraph>
+            )}
+          </Group>
         </Form>
       </Box>
     </Container>
