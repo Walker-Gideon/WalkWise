@@ -18,6 +18,7 @@ export default function Button({
     // hover:border-slate-400 border-stone-300
     border: `border text-slate-800`,
     colors: `bg-slate-500 text-white hover:bg-slate-600`,
+    danger: `bg-red-500 text-white hover:bg-red-400`,
   };
 
   /* I will be changing the primary button

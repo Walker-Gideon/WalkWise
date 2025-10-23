@@ -21,8 +21,16 @@ export default function CreateFlashcardLayout() {
 
   return (
     <Container adjust={true}>
-      <Header type="padding" classname={""}>
+      <Header type="padding" classname={"flex items-center justify-between"}>
         <HeaderText variant="header">Create A New flashcard Set</HeaderText>
+        <Group classname={"space-x-2"}>
+          <Button type="danger" classname={"px-8"}>
+            Cancel
+          </Button>
+          <Button type="colors" classname={"px-8"}>
+            Create
+          </Button>
+        </Group>
       </Header>
 
       <Box
