@@ -1,10 +1,9 @@
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-import HeaderText from "/src/ui/HeaderText";
+import Heading from "/src/components/Heading";
 import Container from "/src/ui/Container";
 import TextArea from "/src/ui/TextArea";
 import Button from "/src/ui/Button";
-import Header from "/src/ui/Header";
 import Group from "/src/ui/Group";
 import Input from "/src/ui/Input";
 import Label from "/src/ui/Label";
@@ -18,12 +17,13 @@ export default function CreateFlashcardLayout() {
       "mb-1 block medium:text-xs text-sm font-medium text-slate-500 dark:text-slate-400",
     inputArea: "w-full input text-slate-900 dark:text-white",
   };
-  // Create, review, and master key concepts effortlessly.
 
   return (
     <Container adjust={true}>
-      <Header type="padding" classname={"flex items-center justify-between"}>
-        <HeaderText variant="header">Create A New flashcard Set</HeaderText>
+      <Heading
+        headerText="Create A New flashcard Set"
+        paragraphText="Create, review, and master key concepts effortlessly."
+      >
         <Group classname={"space-x-2"}>
           <Button type="danger" classname={"px-8"}>
             Cancel
@@ -32,7 +32,7 @@ export default function CreateFlashcardLayout() {
             Create
           </Button>
         </Group>
-      </Header>
+      </Heading>
 
       <Box
         adjustWidth={true}
