@@ -1,12 +1,12 @@
 import { useState } from "react";
 
+import CreatedNotification from "./CreatedNotification";
+import CreatedAddButton from "./CreatedAddButton";
 import CreatedHeader from "./CreatedHeader";
 import CreatedInputs from "./CreatedInputs";
 import CreatedTag from "./CreatedTag";
 import Form from "/src/ui/Form";
 import Box from "/src/ui/Box";
-import CreatedAddButton from "./CreatedAddButton";
-import CreatedNotification from "./CreatedNotification";
 
 export default function CreatedForm() {
   const [pairs, setPairs] = useState([
