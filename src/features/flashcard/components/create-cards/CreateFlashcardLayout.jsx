@@ -2,6 +2,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 
 import HeaderText from "/src/ui/HeaderText";
 import Container from "/src/ui/Container";
+import TextArea from "/src/ui/TextArea";
 import Button from "/src/ui/Button";
 import Header from "/src/ui/Header";
 import Group from "/src/ui/Group";
@@ -46,7 +47,9 @@ export default function CreateFlashcardLayout() {
             >
               <Group>
                 <Flex variant="between" classname={"w-full"}>
-                  <Label classname={styling.label}>Term</Label>
+                  <Label htmlfor={``} classname={styling.label}>
+                    Term
+                  </Label>
                   <Button>
                     <RiDeleteBin5Line className="icons" />
                   </Button>
@@ -63,11 +66,18 @@ export default function CreateFlashcardLayout() {
                 />
               </Group>
               <Group>
-                <label className={styling.label}>Definition</label>
-                <textarea
+                <Label htmlfor={``} classname={styling.label}>
+                  Definition
+                </Label>
+                <TextArea
+                  id={``}
+                  name={``}
                   rows={2}
-                  className={`resize-none ${styling.inputArea}`}
+                  // value={}
+                  // onChange={}
+                  classname={styling.inputArea}
                   placeholder="Enter definition..."
+                  // disabled={}
                 />
               </Group>
             </Group>
