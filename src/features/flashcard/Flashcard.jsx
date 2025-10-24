@@ -1,21 +1,16 @@
+import { useFlashcard } from "./context/FlashcardContext";
+
 import { LuRectangleVertical } from "react-icons/lu";
 import CreateFlashcardLayout from "./components/create-cards/CreateFlashcardLayout";
-import InformationPrompt from "../../components/InformationPrompt";
+import InformationPrompt from "/src/components/InformationPrompt";
 import FlashcardHeader from "./components/FlashcardHeader";
 import Conditional from "/src/components/Conditional";
 import Container from "/src/ui/Container";
 import Main from "/src/ui/Main";
-import { useFlashcard } from "./context/FlashcardContext";
 
 export default function Flashcard() {
-  const { isDisplayFlashcardLayout, setIsDisplayFlashcardLayout } =
+  const { isDisplayFlashcardLayout, handleIsDisplayFlashcardLayout } =
     useFlashcard();
-
-  function handleDisplayCreateCard() {
-    setTimeout(() => {
-      setIsDisplayFlashcardLayout((show) => !show);
-    }, 200);
-  }
 
   return (
     <Container>
@@ -29,7 +24,7 @@ export default function Flashcard() {
             icon={<LuRectangleVertical className="icons" />}
             promptText="You haven't created any flashcards yet."
             actionText='Get started by tapping "Create Flashcard"'
-            onclick={handleDisplayCreateCard}
+            onclick={handleIsDisplayFlashcardLayout}
             buttonText="Create Flashcard"
           />
         </Conditional>

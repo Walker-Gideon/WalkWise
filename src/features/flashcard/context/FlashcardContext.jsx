@@ -6,7 +6,17 @@ function FlashcardProvider({ children }) {
   const [isDisplayFlashcardLayout, setIsDisplayFlashcardLayout] =
     useState(false);
 
-  const value = { isDisplayFlashcardLayout, setIsDisplayFlashcardLayout };
+  function handleIsDisplayFlashcardLayout() {
+    setTimeout(() => {
+      setIsDisplayFlashcardLayout((show) => !show);
+    }, 200);
+  }
+
+  const value = {
+    isDisplayFlashcardLayout,
+    setIsDisplayFlashcardLayout,
+    handleIsDisplayFlashcardLayout,
+  };
 
   return (
     <FlashcardContext.Provider value={value}>
