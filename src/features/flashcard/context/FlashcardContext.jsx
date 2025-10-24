@@ -1,9 +1,13 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 const FlashcardContext = createContext();
-const value = {};
 
 function FlashcardProvider({ children }) {
+  const [isDisplayFlashcardLayout, setIsDisplayFlashcardLayout] =
+    useState(false);
+
+  const value = { isDisplayFlashcardLayout, setIsDisplayFlashcardLayout };
+
   return (
     <FlashcardContext.Provider value={value}>
       {children}

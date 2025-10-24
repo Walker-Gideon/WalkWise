@@ -5,24 +5,26 @@ import FlashcardHeader from "./components/FlashcardHeader";
 import Conditional from "/src/components/Conditional";
 import Container from "/src/ui/Container";
 import Main from "/src/ui/Main";
-import { useState } from "react";
+import { useFlashcard } from "./context/FlashcardContext";
 
 export default function Flashcard() {
-  const [isDisplayCreateCard, setIsDisplayCreateCard] = useState(false);
+  // const [isDisplayFlashcardLayout, setIsDisplayFlashcardLayout] = useState(false);
+  const { isDisplayFlashcardLayout, setIsDisplayFlashcardLayout } =
+    useFlashcard();
 
   function handleDisplayCreateCard() {
     setTimeout(() => {
-      setIsDisplayCreateCard((show) => !show);
+      setIsDisplayFlashcardLayout((show) => !show);
     }, 200);
   }
 
   return (
     <Container>
-      <FlashcardHeader isDisplayCreateCard={isDisplayCreateCard} />
+      <FlashcardHeader isDisplayFlashcardLayout={isDisplayFlashcardLayout} />
       <Main
-        classname={`${isDisplayCreateCard ? "h-screen w-full" : "h-[500px]"}`}
+        classname={`${isDisplayFlashcardLayout ? "h-screen w-full" : "h-[500px]"}`}
       >
-        <Conditional condition={!isDisplayCreateCard}>
+        <Conditional condition={!isDisplayFlashcardLayout}>
           <InformationPrompt
             /* dark:text-slate-300 */
             icon={<LuRectangleVertical className="icons" />}
@@ -32,7 +34,7 @@ export default function Flashcard() {
             buttonText="Create Flashcard"
           />
         </Conditional>
-        <Conditional condition={isDisplayCreateCard}>
+        <Conditional condition={isDisplayFlashcardLayout}>
           <CreateFlashcardLayout />
         </Conditional>
       </Main>
