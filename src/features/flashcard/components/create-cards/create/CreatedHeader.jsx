@@ -1,11 +1,12 @@
 import { useFlashcard } from "/src/features/flashcard/context/FlashcardContext";
+import { toggleFlashcardDisplays } from "/src/features/flashcard/helper/flashcardHelpers";
 
 import Heading from "/src/components/Heading";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 
 export default function CreatedHeader() {
-  const { handleIsDisplayFlashcardLayout } = useFlashcard();
+  const { setIsDisplayFlashcardLayout } = useFlashcard();
 
   return (
     <Heading
@@ -16,7 +17,7 @@ export default function CreatedHeader() {
         <Button
           type="danger"
           classname={"px-8"}
-          onclick={handleIsDisplayFlashcardLayout}
+          onclick={() => toggleFlashcardDisplays(setIsDisplayFlashcardLayout)}
         >
           Cancel
         </Button>

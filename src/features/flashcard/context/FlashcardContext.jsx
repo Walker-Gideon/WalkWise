@@ -5,17 +5,24 @@ const FlashcardContext = createContext();
 function FlashcardProvider({ children }) {
   const [isDisplayFlashcardLayout, setIsDisplayFlashcardLayout] =
     useState(false);
+  const [isCardsInitDisplay, setIsCardsInitDisplay] = useState(false);
 
-  function handleIsDisplayFlashcardLayout() {
+  function handleIsCardsInitDisplay() {
     setTimeout(() => {
-      setIsDisplayFlashcardLayout((show) => !show);
+      setIsCardsInitDisplay((show) => !show);
     }, 200);
   }
 
   const value = {
+    // States
     isDisplayFlashcardLayout,
+    isCardsInitDisplay,
+
+    // Setters
     setIsDisplayFlashcardLayout,
-    handleIsDisplayFlashcardLayout,
+
+    // Functions
+    handleIsCardsInitDisplay,
   };
 
   return (
