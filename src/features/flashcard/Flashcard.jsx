@@ -8,7 +8,6 @@ import Main from "/src/ui/Main";
 import { useFlashcard } from "./context/FlashcardContext";
 
 export default function Flashcard() {
-  // const [isDisplayFlashcardLayout, setIsDisplayFlashcardLayout] = useState(false);
   const { isDisplayFlashcardLayout, setIsDisplayFlashcardLayout } =
     useFlashcard();
 
@@ -20,7 +19,7 @@ export default function Flashcard() {
 
   return (
     <Container>
-      <FlashcardHeader isDisplayFlashcardLayout={isDisplayFlashcardLayout} />
+      <FlashcardHeader />
       <Main
         classname={`${isDisplayFlashcardLayout ? "h-screen w-full" : "h-[500px]"}`}
       >
