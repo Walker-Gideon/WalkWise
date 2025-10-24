@@ -76,7 +76,9 @@ export default function CreatedInputs({ pairs, index, onPairs, onIndex }) {
               name={`definition-${idx}`}
               rows={2}
               value={pair.definition}
-              onChange={(e) => handlePairChange(idx, "term", e.target.value)}
+              onChange={(e) =>
+                handlePairChange(idx, "definition", e.target.value)
+              }
               resize={true}
               classname={"w-full text-slate-900 dark:text-white input"}
               placeholder="Enter definition..."
