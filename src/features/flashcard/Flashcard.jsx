@@ -1,5 +1,5 @@
 import { useFlashcard } from "./context/FlashcardContext";
-import { toggleFlashcardDisplays } from "./helper/flashcardHelpers";
+import useToggleDisplay from "/src/hook/useToggleDisplay";
 
 import { LuRectangleVertical } from "react-icons/lu";
 import CreateFlashcardLayout from "./components/create-cards/CreateFlashcardLayout";
@@ -13,6 +13,8 @@ export default function Flashcard() {
   const { isDisplayFlashcardLayout, setIsDisplayFlashcardLayout } =
     useFlashcard();
 
+  const toggleDisplay = useToggleDisplay(setIsDisplayFlashcardLayout);
+
   return (
     <Container>
       <FlashcardHeader />
@@ -25,7 +27,7 @@ export default function Flashcard() {
             icon={<LuRectangleVertical className="icons" />}
             promptText="You haven't created any flashcards yet."
             actionText='Get started by tapping "Create Flashcard"'
-            onclick={() => toggleFlashcardDisplays(setIsDisplayFlashcardLayout)}
+            onclick={toggleDisplay}
             buttonText="Create Flashcard"
           />
         </Conditional>
