@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { Link } from "react-scroll";
 import useNavigateToAction from "/src/hook/useNavigateToAction";
 
@@ -64,6 +65,17 @@ export default function Button({
       >
         {children}
       </button>
+    );
+
+  if (variant === "motion")
+    return (
+      <motion.button
+        disabled={disabled}
+        onClick={to ? () => navigateTo(to) : onclick}
+        className={`${styling[type]} ${base} ${classname}`}
+      >
+        {children}
+      </motion.button>
     );
 
   return (
