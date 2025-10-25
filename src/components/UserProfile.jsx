@@ -10,11 +10,13 @@ export default function UserProfile() {
       <Box classname={"flex items-center p-2 gap-2 bg-slate-50 "}>
         <Box
           adjustWidth={true}
+          // bg-gradient-to-r from-slate-200 to-slate-300 transition-colors duration-300 dark:from-slate-600 dark:to-slate-700
           classname={
-            "rounded-full flex items-center justify-center bg-gradient-to-r from-slate-200 to-slate-300 transition-colors duration-300 dark:from-slate-600 dark:to-slate-700 w-9 h-9"
+            "rounded-full flex items-center justify-center w-9 h-9 border-2 border-slate-500"
           }
         >
-          <LuUser className={`h-5 w-5 text-white`} />
+          {/* text-white */}
+          <LuUser className={`h-5 w-5 text-slate-500`} />
         </Box>
         <Group>
           <Paragraph
