@@ -7,12 +7,6 @@ function FlashcardProvider({ children }) {
     useState(false);
   const [isCardsInitDisplay, setIsCardsInitDisplay] = useState(false);
 
-  function handleIsCardsInitDisplay() {
-    setTimeout(() => {
-      setIsCardsInitDisplay((show) => !show);
-    }, 200);
-  }
-
   const value = {
     // States
     isDisplayFlashcardLayout,
@@ -20,9 +14,9 @@ function FlashcardProvider({ children }) {
 
     // Setters
     setIsDisplayFlashcardLayout,
+    setIsCardsInitDisplay,
 
     // Functions
-    handleIsCardsInitDisplay,
   };
 
   return (

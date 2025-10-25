@@ -6,9 +6,10 @@ import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 
 export default function CreatedHeader() {
-  const { setIsDisplayFlashcardLayout } = useFlashcard();
+  const { setIsDisplayFlashcardLayout, setIsCardsInitDisplay } = useFlashcard();
 
-  const toggleDisplay = useToggleDisplay(setIsDisplayFlashcardLayout);
+  const toggleDisplayFlashcard = useToggleDisplay(setIsDisplayFlashcardLayout);
+  const toggleDisplayCardsInit = useToggleDisplay(setIsCardsInitDisplay);
 
   return (
     <Heading
@@ -16,10 +17,18 @@ export default function CreatedHeader() {
       paragraphText="Create, review, and master key concepts effortlessly."
     >
       <Group classname={"space-x-2"}>
-        <Button type="danger" classname={"px-8"} onclick={toggleDisplay}>
+        <Button
+          type="danger"
+          classname={"px-8"}
+          onclick={toggleDisplayFlashcard}
+        >
           Cancel
         </Button>
-        <Button type="colors" classname={"px-8"}>
+        <Button
+          type="colors"
+          classname={"px-8"}
+          onclick={toggleDisplayCardsInit}
+        >
           Create
         </Button>
       </Group>
