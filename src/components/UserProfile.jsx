@@ -1,6 +1,7 @@
 import { LuUser } from "react-icons/lu";
 import Paragraph from "/src/ui/Paragraph";
 import Container from "/src/ui/Container";
+import Group from "/src/ui/Group";
 import Box from "/src/ui/Box";
 
 export default function UserProfile() {
@@ -15,11 +16,21 @@ export default function UserProfile() {
         >
           <LuUser className={`h-5 w-5 text-white`} />
         </Box>
-        <Paragraph
-          classname={"font-bold whitespace-nowrap text-slate-900 truncate w-30"}
-        >
-          username
-        </Paragraph>
+        <Group>
+          <Paragraph
+            classname={
+              "font-bold whitespace-nowrap text-slate-900 truncate w-30"
+            }
+          >
+            username
+          </Paragraph>
+          <Paragraph
+            type=""
+            classname={"text-xs font-medium text-slate-500 truncate w-30"}
+          >
+            example123@gmail.com
+          </Paragraph>
+        </Group>
       </Box>
     </Container>
   );
