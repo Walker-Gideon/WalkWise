@@ -48,7 +48,7 @@ export default function Slider() {
       <Box classname={"borderStyling border-t p-4"}>
         <Button
           onclick={() => {}}
-          type="colors"
+          // type="colors"
           classname={"w-full flex items-center gap-2 text-sm"}
         >
           <LuMoon /> Dark mode
