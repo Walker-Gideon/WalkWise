@@ -1,21 +1,19 @@
 import { Outlet } from "react-router-dom";
+
+import { useNav } from "/src/contexts/NavigationContext";
 import Slider from "/src/navigation/Slider";
 import Container from "/src/ui/Container";
 import Main from "/src/ui/Main";
-import { useState } from "react";
 
 export default function AppLayout() {
-  const [adjustNavigationWidth, setAdjustNavigationWidth] = useState(false);
+  const { isExpanded } = useNav();
 
   return (
     <Container
       // grid grid-rows-[auto_1fr]  ${adjustNavigationWidth ? "grid-cols-[auto_1fr]" : "grid-cols-[14rem_1fr]"}
-      classname={`defaultColor flex ${adjustNavigationWidth ? "" : ""}`}
+      classname={`defaultColor flex ${isExpanded ? "" : ""}`}
     >
-      <Slider
-        adjustNavigationWidth={adjustNavigationWidth}
-        setAdjustNavigationWidth={setAdjustNavigationWidth}
-      />
+      <Slider />
 
       <Main classname={"h-screen w-full"}>
         <Outlet />

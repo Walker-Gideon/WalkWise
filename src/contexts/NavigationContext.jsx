@@ -1,9 +1,11 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 const NavigationContext = createContext();
 
 function NavigationProvider({ children }) {
-  const value = {};
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const value = { isExpanded, setIsExpanded };
 
   return (
     <NavigationContext.Provider value={value}>
