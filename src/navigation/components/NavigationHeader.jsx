@@ -1,7 +1,6 @@
-import { LuCircleChevronLeft } from "react-icons/lu";
-import { LuCircleChevronRight } from "react-icons/lu";
-
 import { useNav } from "/src/contexts/NavigationContext";
+import { LuCircleChevronLeft, LuCircleChevronRight } from "react-icons/lu";
+
 import Logo from "/src/components/Logo";
 import Button from "/src/ui/Button";
 import Header from "/src/ui/Header";
@@ -16,13 +15,16 @@ export default function NavigationHeader() {
 
   return (
     <Header
-      classname={"borderStyling border-b p-4 flex items-center justify-center"}
+      classname={`borderStyling border-b py-4 flex items-center justify-center transition-all duration-500 ${isExpanded ? "px-2" : "px-4"}`}
     >
       <Box classname={"rounded-sm py-2 flex items-center justify-between"}>
         <Logo />
         <Button variant="secondary" classname={""} onclick={handleIsExpanded}>
-          <LuCircleChevronLeft className="icons" />
-          {/* <LuCircleChevronRight /> */}
+          {isExpanded ? (
+            <LuCircleChevronRight className="icons" />
+          ) : (
+            <LuCircleChevronLeft className="icons" />
+          )}
         </Button>
       </Box>
     </Header>

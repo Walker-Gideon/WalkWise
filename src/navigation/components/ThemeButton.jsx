@@ -1,11 +1,13 @@
 import { useState } from "react";
 import * as motion from "motion/react-client";
+import { useNav } from "/src/contexts/NavigationContext";
 import { LuSun, LuMoon } from "react-icons/lu";
 
 import Paragraph from "/src/ui/Paragraph";
 import Group from "/src/ui/Group";
 
 export default function ThemeButton() {
+  const { isExpanded } = useNav();
   const [isOn, setIsOn] = useState(false);
 
   const toggleSwitch = () => setIsOn(!isOn);
@@ -36,10 +38,10 @@ export default function ThemeButton() {
   return (
     <div
       role="button"
-      className={"flex cursor-pointer items-center justify-between"}
+      className={`flex cursor-pointer items-center justify-between`}
       onClick={toggleSwitch}
     >
-      <Group classname={"wrap-nowrap w-30"}>
+      <Group classname={`text-nowrap w-30 ${isExpanded ? "hidden" : "block"}`}>
         {isOn ? (
           <Paragraph type="xs" classname={"flex items-center gap-2"}>
             <LuSun /> Light mode

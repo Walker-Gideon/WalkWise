@@ -1,6 +1,9 @@
 import { Link } from "react-scroll";
+import { useNav } from "/src/contexts/NavigationContext";
 
 export default function Logo({ to, cursor, show }) {
+  const { isExpanded } = useNav();
+
   return (
     <Link
       to={to}
@@ -13,7 +16,11 @@ export default function Logo({ to, cursor, show }) {
       <span className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-500 text-white dark:text-slate-50">
         w
       </span>
-      <span className={`${show ? `hidden` : `hidden font-bold md:block`}`}>walkwise</span>
+      <span
+        className={`${show || isExpanded ? `hidden` : `hidden font-bold md:block`}`}
+      >
+        walkwise
+      </span>
     </Link>
   );
 }

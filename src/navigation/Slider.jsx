@@ -1,5 +1,6 @@
-import NavigationHeader from "./components/NavigationHeader";
 import { useNav } from "/src/contexts/NavigationContext";
+
+import NavigationHeader from "./components/NavigationHeader";
 import ThemeButton from "./components/ThemeButton";
 import UserProfile from "/src/user/UserProfile";
 import MainNav from "./components/MainNav";

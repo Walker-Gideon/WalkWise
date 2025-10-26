@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+import { useNav } from "/src/contexts/NavigationContext";
 import {
   LuLayoutDashboard,
   LuBookOpen,
@@ -6,7 +8,7 @@ import {
   LuLightbulb,
   LuSettings2,
 } from "react-icons/lu";
-import { NavLink } from "react-router-dom";
+
 import UnorderedList from "/src/ui/UnorderedList";
 import SpanText from "/src/ui/SpanText";
 import List from "/src/ui/List";
@@ -46,6 +48,8 @@ const buttonsData = [
 ];
 
 export default function MainNav() {
+  const { isExpanded } = useNav();
+
   return (
     <Nav classname={"p-4"}>
       {buttonsData.map((data, index) => (
@@ -56,12 +60,14 @@ export default function MainNav() {
           <NavLink
             to={data.to}
             className={({ isActive }) =>
-              `cursor-pointer rounded-sm px-4 py-2 text-sm font-semibold text-slate-800 transition-all duration-300 hover:bg-slate-600 hover:text-white ${isActive ? "bg-slate-500 text-white" : ""}`
+              `cursor-pointer rounded-sm px-4 py-2 text-sm font-semibold text-slate-800 transition-all duration-300 hover:bg-slate-600 hover:text-white ${isExpanded ? "" : ""} ${isActive ? "bg-slate-500 text-white" : ""}`
             }
           >
             <List classname={"flex items-center gap-2.5"}>
-              <SpanText>{<data.icon />}</SpanText>
-              <SpanText>{data.text}</SpanText>
+              <SpanText>{<data.icon className="text-sm" />}</SpanText>
+              <SpanText classname={`${isExpanded ? "hidden" : ""}`}>
+                {data.text}
+              </SpanText>
             </List>
           </NavLink>
         </UnorderedList>
