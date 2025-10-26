@@ -21,7 +21,7 @@ export default function Slider() {
         </Header>
         <MainNav />
       </Box>
-      <Box classname={"borderStyling border-t p-4"}>
+      <Box adjustWidth={true} classname={"borderStyling border-t p-4"}>
         <ThemeButton />
         <UserProfile />
       </Box>

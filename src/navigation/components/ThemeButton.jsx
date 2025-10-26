@@ -36,7 +36,7 @@ export default function ThemeButton() {
   return (
     <div
       role="button"
-      className={"mb-2 flex cursor-pointer items-center justify-between"}
+      className={"flex cursor-pointer items-center justify-between"}
       onClick={toggleSwitch}
     >
       <Group classname={"wrap-nowrap w-30"}>

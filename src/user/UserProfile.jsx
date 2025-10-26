@@ -6,8 +6,8 @@ import Box from "/src/ui/Box";
 
 export default function UserProfile() {
   return (
-    <Container adjust={true} classname={"pt-2"}>
-      <Box classname={"flex items-center p-2 gap-2 bg-slate-50 "}>
+    <Container adjust={true} classname={"mt-4"}>
+      <Box classname={"flex items-center gap-2"}>
         <Box
           adjustWidth={true}
           // bg-gradient-to-r from-slate-200 to-slate-300 transition-colors duration-300 dark:from-slate-600 dark:to-slate-700
