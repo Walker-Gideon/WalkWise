@@ -1,15 +1,15 @@
+import { useState } from "react";
 import * as motion from "motion/react-client";
 import { LuSun, LuMoon } from "react-icons/lu";
 
-import MainNav from "/src/navigation/MainNav";
+import UserProfile from "/src/user/UserProfile";
+import MainNav from "./components/MainNav";
 import Paragraph from "/src/ui/Paragraph";
 import Logo from "/src/components/Logo";
-import UserProfile from "./UserProfile";
 import Header from "/src/ui/Header";
 import Group from "/src/ui/Group";
 import Aside from "/src/ui/Aside";
 import Box from "/src/ui/Box";
-import { useState } from "react";
 
 export default function Slider() {
   /*
