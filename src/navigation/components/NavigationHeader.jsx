@@ -19,7 +19,7 @@ export default function NavigationHeader() {
     >
       <Box classname={"rounded-sm py-2 flex items-center justify-between"}>
         <Logo />
-        <Button variant="secondary" classname={""} onclick={handleIsExpanded}>
+        <Button variant="secondary" onclick={handleIsExpanded}>
           {isExpanded ? (
             <LuCircleChevronRight className="icons" />
           ) : (
