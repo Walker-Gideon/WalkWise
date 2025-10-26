@@ -2,6 +2,7 @@ import * as motion from "motion/react-client";
 import { LuSun, LuMoon } from "react-icons/lu";
 
 import MainNav from "/src/navigation/MainNav";
+import Paragraph from "/src/ui/Paragraph";
 import Logo from "/src/components/Logo";
 import UserProfile from "./UserProfile";
 import Header from "/src/ui/Header";
@@ -52,28 +53,39 @@ export default function Slider() {
         <MainNav />
       </Box>
       <Box classname={"borderStyling border-t p-4"}>
-        {/* <LuMoon /> Dark mode */}
-        <Group>
+        <div
+          role="button"
+          className={"mb-2 flex cursor-pointer items-center justify-between"}
+          onClick={toggleSwitch}
+        >
+          <Group classname={"wrap-nowrap w-30"}>
+            {isOn ? (
+              <Paragraph type="xs" classname={"flex items-center gap-2"}>
+                <LuSun /> Light mode
+              </Paragraph>
+            ) : (
+              <Paragraph type="xs" classname={"flex items-center gap-2"}>
+                <LuMoon /> Dark mode
+              </Paragraph>
+            )}
+          </Group>
           <button
-            // className="toggle-container"
+            className="bg-slate-200"
             style={{
-              width: 100,
-              height: 50,
-              backgroundColor: "rgba(66, 153, 225, 0.2)",
+              width: 60,
+              height: 28,
               borderRadius: 50,
               cursor: "pointer",
               display: "flex",
-              padding: 10,
+              padding: 4,
               justifyContent: "flex-" + (isOn ? "start" : "end"),
             }}
             onClick={toggleSwitch}
           >
             <motion.div
-              // className="toggle-handle"
               style={{
-                width: 50,
-                height: 50,
-                backgroundColor: "rgb(66, 153, 225)",
+                width: 20,
+                height: 20,
                 borderRadius: "50%",
               }}
               layout
@@ -82,11 +94,16 @@ export default function Slider() {
                 visualDuration: 0.2,
                 bounce: 0.2,
               }}
+              className="flex items-center justify-center bg-slate-500"
             >
-              {isOn ? <LuSun /> : <LuMoon />}
+              {isOn ? (
+                <LuSun className="h-3 w-3 text-white" />
+              ) : (
+                <LuMoon className="h-3 w-3 text-white" />
+              )}
             </motion.div>
           </button>
-        </Group>
+        </div>
         <UserProfile />
       </Box>
     </Aside>
