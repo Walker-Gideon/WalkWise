@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Slider from "/src/components/Slider";
+import Slider from "/src/navigation/Slider";
 import Container from "/src/ui/Container";
 import Main from "/src/ui/Main";
 
