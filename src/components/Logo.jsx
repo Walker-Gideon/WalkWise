@@ -1,11 +1,8 @@
 import { Link } from "react-scroll";
-import { useNav } from "/src/contexts/NavigationContext";
 
 import SpanText from "/src/ui/SpanText";
 
 export default function Logo({ to, cursor, show }) {
-  const { isExpanded } = useNav();
-
   return (
     <Link
       to={to}
@@ -22,9 +19,7 @@ export default function Logo({ to, cursor, show }) {
       >
         w
       </SpanText>
-      <SpanText
-        classname={`${show || isExpanded ? `hidden` : `hidden font-bold md:block`}`}
-      >
+      <SpanText classname={`${show ? `hidden` : `hidden font-bold md:block`}`}>
         walkwise
       </SpanText>
     </Link>
