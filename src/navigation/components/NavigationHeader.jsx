@@ -26,7 +26,11 @@ export default function NavigationHeader() {
           }
         >
           <Logo show={true} />
-          <SpanText classname={"font-bold text-slate-500"}>walkwise</SpanText>
+          <SpanText
+            classname={`font-bold text-slate-500 ${isExpanded ? "hidden" : "block"}`}
+          >
+            walkwise
+          </SpanText>
         </Box>
         <Button variant="secondary" onclick={handleIsExpanded}>
           {isExpanded ? (
