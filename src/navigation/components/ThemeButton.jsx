@@ -53,7 +53,7 @@ export default function ThemeButton() {
       <button
         className="bg-slate-200"
         style={{
-          width: 50,
+          width: 55,
           height: 28,
           borderRadius: 50,
           cursor: "pointer",
