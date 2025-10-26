@@ -1,3 +1,7 @@
+import { useState } from "react";
+
 export default function useNavigationAWidth() {
-  return <div></div>;
+  const [adjustNavigationWidth, setAdjustNavigationWidth] = useState(false);
+
+  return { adjustNavigationWidth, setAdjustNavigationWidth };
 }

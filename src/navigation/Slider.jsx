@@ -4,12 +4,20 @@ import UserProfile from "/src/user/UserProfile";
 import MainNav from "./components/MainNav";
 import Aside from "/src/ui/Aside";
 import Box from "/src/ui/Box";
+// import useNavigationAWidth from "../hook/useNavigationAWidth";
 
-export default function Slider() {
+export default function Slider({
+  setAdjustNavigationWidth,
+  adjustNavigationWidth,
+}) {
+  // const { adjustNavigationWidth } = useNavigationAWidth();
+
   return (
-    <Aside classname="borderStyling border-r h-screen flex flex-col justify-between">
+    <Aside
+      classname={`borderStyling border-r h-screen flex flex-col justify-between transitiona-all duration-500 ${adjustNavigationWidth ? "w-20" : "w-65"}`}
+    >
       <Box adjustWidth={true}>
-        <NavigationHeader />
+        <NavigationHeader setAdjustNavigationWidth={setAdjustNavigationWidth} />
         <MainNav />
       </Box>
       <Box adjustWidth={true} classname={"borderStyling border-t p-4"}>
