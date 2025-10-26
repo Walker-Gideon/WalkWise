@@ -7,10 +7,16 @@ import Box from "/src/ui/Box";
 export default function Footer() {
   return (
     <footer className="border-t border-stone-300 px-4 py-4 md:px-8 lg:px-30">
-      <Flex classname="flex-col gap-4 medium:flex-row medium:items-center justify-between">
+      <Flex
+        classname={
+          "flex-col gap-4 medium:flex-row medium:items-center justify-between"
+        }
+      >
         <Box
           adjustWidth={true}
-          classname="flex items-center gap-1 font-bold text-slate-950 uppercase"
+          classname={
+            "flex items-center gap-1 font-bold text-slate-950 uppercase"
+          }
         >
           <Logo show={true} />
           <SpanText
