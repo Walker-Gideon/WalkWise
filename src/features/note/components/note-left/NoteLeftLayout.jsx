@@ -1,3 +1,4 @@
+import LeftNoteContent from "./LeftNoteContent";
 import LeftNoteHeader from "./LeftNoteHeader";
 import Container from "/src/ui/Container";
 
@@ -8,6 +9,7 @@ export default function NoteLeftLayout() {
       className={`medium:border-r borderStyling border-r-0`}
     >
       <LeftNoteHeader />
+      <LeftNoteContent />
     </Container>
   );
 }
