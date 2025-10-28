@@ -1,13 +1,15 @@
 import { LuPlus } from "react-icons/lu";
 import { LuSearch } from "react-icons/lu";
 
-import Heading from "/src/components/Heading";
+import HeaderText from "/src/ui/HeaderText";
 import Button from "/src/ui/Button";
 import Input from "/src/ui/Input";
+import Header from "/src/ui/Header";
 
 export default function LeftNoteHeader() {
   return (
-    <Heading headerText="My Note">
+    <Header classname={"px-6 py-4 border-b borderStyling"}>
+      <HeaderText type="primary">My Note</HeaderText>
       <Input
         type="text"
         name="queryNote"
@@ -15,12 +17,12 @@ export default function LeftNoteHeader() {
         // onChange={}
         placeholder="Search note"
         // onKeyDown={}
-        classname={""}
+        classname={"w-full my-2"}
         // disabled={}
       />
       <Button type="colors" classname={"w-full"} onclick={() => {}}>
         New note
       </Button>
-    </Heading>
+    </Header>
   );
 }
