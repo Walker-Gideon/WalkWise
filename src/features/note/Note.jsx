@@ -4,7 +4,11 @@ import Container from "/src/ui/Container";
 
 export default function Note() {
   return (
-    <Container>
+    <Container
+      adjust={true}
+      // medium:grid medium:grid-cols-[17.5rem_auto] w-full overflow-hidden
+      classname={``}
+    >
       <NoteLeftLayout />
       <NoteRightLayout />
     </Container>

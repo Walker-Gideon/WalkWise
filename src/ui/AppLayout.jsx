@@ -11,7 +11,7 @@ export default function AppLayout() {
   return (
     <Container
       // grid grid-rows-[auto_1fr]  ${adjustNavigationWidth ? "grid-cols-[auto_1fr]" : "grid-cols-[14rem_1fr]"}
-      classname={`defaultColor flex ${isExpanded ? "" : ""}`}
+      classname={`defaultColor flex overflow-hidden ${isExpanded ? "" : ""}`}
     >
       <Slider />
 
