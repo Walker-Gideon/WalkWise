@@ -16,10 +16,11 @@ export default function NoteRightLayout() {
           icon={<LuNotebookText className="icons" />}
           promptText="Select a note to view"
           actionText='Choose a note from the sidebar or tap "Create Note" to make one.'
-          onclick={() => {}}
+          onclick={() => setIsDisplayNote((show) => !show)}
           buttonText="Create Note"
         />
       </Conditional>
+      <Conditional condition={isDisplayNote}>note</Conditional>
     </Container>
   );
 }
