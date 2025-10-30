@@ -1,11 +1,10 @@
-import { LuPlus } from "react-icons/lu";
-import { LuSearch } from "react-icons/lu";
+import { LuPlus, LuSearch } from "react-icons/lu";
 
 import HeaderText from "/src/ui/HeaderText";
 import Button from "/src/ui/Button";
-import Input from "/src/ui/Input";
 import Header from "/src/ui/Header";
-import Group from "../../../../ui/Group";
+import Input from "/src/ui/Input";
+import Group from "/src/ui/Group";
 
 export default function LeftNoteHeader() {
   return (
@@ -19,10 +18,10 @@ export default function LeftNoteHeader() {
           // onChange={}
           placeholder="Search note"
           // onKeyDown={}
-          classname={"w-full pl-5"}
+          classname={"w-full pl-6"}
           // disabled={}
         />
-        <LuSearch className="absolute top-2.5 left-1 text-sm text-slate-600 dark:text-slate-300" />
+        <LuSearch className="absolute top-2.5 left-2 text-sm text-slate-600 dark:text-slate-300" />
       </Group>
       <Button
         type="colors"
