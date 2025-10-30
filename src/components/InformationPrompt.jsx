@@ -10,6 +10,7 @@ export default function InformationPrompt({
   actionText,
   onclick,
   buttonText,
+  btn,
 }) {
   return (
     <Group
@@ -28,7 +29,7 @@ export default function InformationPrompt({
       <Button
         type="colors"
         onclick={onclick}
-        classname={"focus:ring-slate-300"}
+        classname={`focus:ring-slate-300 ${btn ? "hidden" : ""}`}
       >
         {buttonText}
       </Button>
