@@ -11,7 +11,7 @@ export default function LeftNoteContent() {
 
   return (
     <Container adjust={true} classname={`h-110`}>
-      <Conditional condition={isDisplayCreatedNote}>
+      <Conditional condition={!isDisplayCreatedNote}>
         <InformationPrompt
           /* dark:text-slate-300 */
           icon={<LuNotebookText className="icons" />}
@@ -19,7 +19,7 @@ export default function LeftNoteContent() {
           btn={true}
         />
       </Conditional>
-      <Conditional condition={!isDisplayCreatedNote}>
+      <Conditional condition={isDisplayCreatedNote}>
         <NoteDisplay />
       </Conditional>
     </Container>
