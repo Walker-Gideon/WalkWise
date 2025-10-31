@@ -4,6 +4,7 @@ import { LuNotebookText } from "react-icons/lu";
 import InformationPrompt from "/src/components/InformationPrompt";
 import Conditional from "/src/components/Conditional";
 import Container from "/src/ui/Container";
+import CreateNoteLayout from "./CreateNoteLayout";
 
 export default function NoteRightLayout() {
   const [isDisplayNote, setIsDisplayNote] = useState(false);
@@ -20,7 +21,9 @@ export default function NoteRightLayout() {
           buttonText="Create Note"
         />
       </Conditional>
-      <Conditional condition={isDisplayNote}>note</Conditional>
+      <Conditional condition={isDisplayNote}>
+        <CreateNoteLayout />
+      </Conditional>
     </Container>
   );
 }
