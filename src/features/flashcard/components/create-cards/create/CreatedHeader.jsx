@@ -18,8 +18,8 @@ export default function CreatedHeader() {
     >
       <Group classname={"space-x-2"}>
         <Button
-          type="danger"
-          classname={"px-8"}
+          type="border"
+          classname={"px-8 border-stone-300"}
           onclick={toggleDisplayFlashcard}
         >
           Cancel
