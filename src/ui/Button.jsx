@@ -18,8 +18,9 @@ export default function Button({
   const styling = {
     // hover:border-slate-400 border-stone-300
     border: `border text-slate-800`,
-    colors: `bg-slate-500 text-white hover:bg-slate-600`,
     danger: `bg-red-500 text-white hover:bg-red-400`,
+    colors: `bg-slate-500 text-white hover:bg-slate-600`,
+    customize: `font-medium text-sm border p-2 rounded-sm`, //transition-all duration-200
   };
 
   /* I will be changing the primary button
@@ -49,7 +50,7 @@ export default function Button({
       <button
         disabled={disabled}
         onClick={to ? () => navigateTo(to) : onclick}
-        className={`cursor-pointer ${classname}`}
+        className={`cursor-pointer ${styling[type]} ${classname}`}
       >
         {children}
       </button>

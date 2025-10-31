@@ -63,24 +63,23 @@ const alignments = [
 
 export default function CreateNoteEditor() {
   // export default function CreateNoteEditor({ editor }) {
+  /*
   const styling = {
-    base: "font-medium text-sm border p-2 rounded-sm cursor-pointer border-stone-300 dark:border-slate-700 transition-all duration-200",
     isActive: "bg-slate-500 text-white hover:bg-slate-600",
     notActive:
       "text-slate-900 hover:text-white dark:text-white hover:bg-slate-600",
-  };
+  };*/
 
   return (
     <Group
-      classname={
-        "mx-4 flex h-16 items-center gap-2 border-b border-stone-300 dark:border-slate-700"
-      }
+      classname={"mx-4 flex h-16 items-center gap-2 border-b borderStyling"}
     >
       {editingTools.map((data, index) => (
         <Button
           key={index}
+          type="customize"
           variant="secondary"
-          classname={`${data.style} ${styling.base}`}
+          classname={`borderStyling ${data.style}`}
           //   classname={`${data.style} ${styling.base} ${data.activeCheck(editor) ? `${styling.isActive}` : `${styling.notActive}`}`}
           onclick={(e) => {
             e.preventDefault();
@@ -94,8 +93,9 @@ export default function CreateNoteEditor() {
       {alignments.map((btn, index) => (
         <Button
           key={index}
+          type="customize"
           variant="secondary"
-          classname={`px-[9.5px] py-[11px] ${styling.base}`}
+          classname={`borderStyling px-[9.5px] py-[11px]`}
           //   classname={`px-[9.5px] py-[11px] ${styling.base} ${
           //     editor.isActive({ textAlign: btn.align })
           //       ? `${styling.isActive}`
