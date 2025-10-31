@@ -5,6 +5,9 @@ import {
   LuAlignCenter,
 } from "react-icons/lu";
 
+import Button from "/src/ui/Button";
+import Group from "/src/ui/Group";
+
 const editingTools = [
   {
     text: "H1",
@@ -58,7 +61,8 @@ const alignments = [
   { align: "justify", icon: LuAlignJustify },
 ];
 
-export default function CreateNoteEditor({ editor }) {
+export default function CreateNoteEditor() {
+  // export default function CreateNoteEditor({ editor }) {
   const styling = {
     base: "font-medium text-sm border p-2 rounded-sm cursor-pointer border-stone-300 dark:border-slate-700 transition-all duration-200",
     isActive: "bg-slate-500 text-white hover:bg-slate-600",
@@ -67,17 +71,20 @@ export default function CreateNoteEditor({ editor }) {
   };
 
   return (
-    <div
-      className={`mx-4 flex h-16 items-center gap-2 border-b border-stone-300 dark:border-slate-700`}
+    <Group
+      classname={
+        "mx-4 flex h-16 items-center gap-2 border-b border-stone-300 dark:border-slate-700"
+      }
     >
       {editingTools.map((data, index) => (
         <Button
           key={index}
-          variant="outline"
-          classname={`${data.style} ${styling.base} ${data.activeCheck(editor) ? `${styling.isActive}` : `${styling.notActive}`}`}
-          onClick={(e) => {
+          variant="secondary"
+          classname={`${data.style} ${styling.base}`}
+          //   classname={`${data.style} ${styling.base} ${data.activeCheck(editor) ? `${styling.isActive}` : `${styling.notActive}`}`}
+          onclick={(e) => {
             e.preventDefault();
-            data.command(editor);
+            // data.command(editor);
           }}
         >
           {data.text}
@@ -87,20 +94,21 @@ export default function CreateNoteEditor({ editor }) {
       {alignments.map((btn, index) => (
         <Button
           key={index}
-          variant="outline"
-          classname={`px-[9.5px] py-[11px] ${styling.base} ${
-            editor.isActive({ textAlign: btn.align })
-              ? `${styling.isActive}`
-              : `${styling.notActive}`
-          }`}
-          onClick={(e) => {
+          variant="secondary"
+          classname={`px-[9.5px] py-[11px] ${styling.base}`}
+          //   classname={`px-[9.5px] py-[11px] ${styling.base} ${
+          //     editor.isActive({ textAlign: btn.align })
+          //       ? `${styling.isActive}`
+          //       : `${styling.notActive}`
+          //   }`}
+          onclick={(e) => {
             e.preventDefault();
-            editor.chain().focus().setTextAlign(btn.align).run();
+            // editor.chain().focus().setTextAlign(btn.align).run();
           }}
         >
           <btn.icon />
         </Button>
       ))}
-    </div>
+    </Group>
   );
 }
