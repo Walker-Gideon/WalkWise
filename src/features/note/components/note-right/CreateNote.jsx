@@ -1,3 +1,11 @@
+import CreateNoteEditor from "./CreateNoteEditor";
+import Container from "/src/ui/Container";
+
 export default function CreateNote() {
-  return <div>CreateNote</div>;
+  return (
+    <Container adjust={true} classname={""}>
+      <CreateNoteEditor />
+      CreateNote
+    </Container>
+  );
 }
