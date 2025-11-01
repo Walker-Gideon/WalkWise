@@ -1,6 +1,7 @@
 import ScheduleHeader from "./components/ScheduleHeader";
 import ScheduleStatus from "./components/ScheduleStatus";
 import Container from "/src/ui/Container";
+import Group from "/src/ui/Group";
 import Main from "/src/ui/Main";
 
 export default function Schedules() {
@@ -12,6 +13,14 @@ export default function Schedules() {
         classname={"h-[510px] space-y-6 overflow-scroll p-6"}
       >
         <ScheduleStatus />
+        {/* Grid container to hold the schedule and (actions, and remainder) */}
+        <Group>
+          {/* schedule */}
+          <Group>
+            {/* Schedule action */}
+            {/* Schedule remainder */}
+          </Group>
+        </Group>
       </Main>
     </Container>
   );
