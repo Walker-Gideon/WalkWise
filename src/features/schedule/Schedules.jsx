@@ -1,3 +1,4 @@
+import ScheduleContentLayout from "./components/ScheduleContentLayout";
 import ScheduleHeader from "./components/ScheduleHeader";
 import ScheduleStatus from "./components/ScheduleStatus";
 import Container from "/src/ui/Container";
@@ -15,7 +16,7 @@ export default function Schedules() {
         <ScheduleStatus />
         {/* Grid container to hold the schedule and (actions, and remainder) */}
         <Group>
-          {/* schedule */}
+          <ScheduleContentLayout />
           <Group>
             {/* Schedule action */}
             {/* Schedule remainder */}
