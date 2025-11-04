@@ -10,3 +10,8 @@ export default function ScheduleContentLayout() {
     </div>
   );
 }
+{
+  /* <HeaderText type="secondary" classname="mb-4">
+        Quick Actions
+      </HeaderText> */
+}
