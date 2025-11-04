@@ -22,7 +22,7 @@ export default function ScheduleActions() {
   const styling = "h-5 w-5 text-white";
 
   return (
-    <Card classname={""}>
+    <Card>
       <HeaderText type="secondary" classname="mb-4">
         Quick Actions
       </HeaderText>
