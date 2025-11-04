@@ -1,6 +1,6 @@
 export default function ScheduleContentLayout() {
   return (
-    <div>
+    <div className="relative space-y-6 lg:col-span-2">
       ScheduleContentLayout
       {/* Display
     1. Schedule Today

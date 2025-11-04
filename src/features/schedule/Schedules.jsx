@@ -16,8 +16,11 @@ export default function Schedules() {
         classname={"h-[510px] space-y-6 overflow-scroll p-6"}
       >
         <ScheduleStatus />
-        {/* Grid container to hold the schedule and (actions, and remainder) */}
-        <Group>
+        <Group
+          classname={
+            "grid grid-cols-1 gap-x-6 gap-y-3 lg:grid-cols-3 bg-amber-400"
+          }
+        >
           <ScheduleContentLayout />
           <Group>
             <ScheduleActions />
