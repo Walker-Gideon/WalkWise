@@ -1,5 +1,7 @@
+import ScheduleActions from "./components/ScheduleActions";
 import ScheduleContentLayout from "./components/ScheduleContentLayout";
 import ScheduleHeader from "./components/ScheduleHeader";
+import ScheduleRemainder from "./components/ScheduleRemainder";
 import ScheduleStatus from "./components/ScheduleStatus";
 import Container from "/src/ui/Container";
 import Group from "/src/ui/Group";
@@ -18,8 +20,8 @@ export default function Schedules() {
         <Group>
           <ScheduleContentLayout />
           <Group>
-            {/* Schedule action */}
-            {/* Schedule remainder */}
+            <ScheduleActions />
+            <ScheduleRemainder />
           </Group>
         </Group>
       </Main>
