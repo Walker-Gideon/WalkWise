@@ -26,7 +26,6 @@ export default function ScheduleActions() {
       <HeaderText type="secondary" classname="mb-4">
         Quick Actions
       </HeaderText>
-
       <Group>
         {buttons.map((data, index) => (
           <Button

@@ -18,7 +18,7 @@ export default function Schedules() {
         <ScheduleStatus />
         <Group classname={"grid grid-cols-1 gap-x-6 gap-y-3 lg:grid-cols-3"}>
           <ScheduleContentLayout />
-          <Group>
+          <Group classname={"space-y-6"}>
             <ScheduleActions />
             <ScheduleRemainder />
           </Group>
