@@ -1,9 +1,11 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 const ScheduleContext = createContext();
 
 function ScheduleProvider({ children }) {
-  const value = {};
+  const [activeView, setActiveView] = useState("today");
+
+  const value = { activeView, setActiveView };
 
   return (
     <ScheduleContext.Provider value={value}>
