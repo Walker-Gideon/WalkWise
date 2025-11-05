@@ -1,4 +1,5 @@
 import { useSchedule } from "../context/ScheduleContext";
+
 import ScheduleMonth from "./ScheduleMonth";
 import ScheduleToday from "./ScheduleToday";
 import ScheduleWeek from "./ScheduleWeek";
@@ -14,9 +15,4 @@ export default function ScheduleContentLayout() {
       {activeView === "month" && <ScheduleMonth />}
     </Card>
   );
-}
-{
-  /* <HeaderText type="secondary" classname="mb-4">
-        Quick Actions
-      </HeaderText> */
 }
