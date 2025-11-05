@@ -1,14 +1,14 @@
+import ScheduleMonth from "./ScheduleMonth";
+import ScheduleToday from "./ScheduleToday";
+import ScheduleWeek from "./ScheduleWeek";
 import Card from "/src/components/Card";
 
 export default function ScheduleContentLayout() {
   return (
     <Card classname={"relative space-y-6 lg:col-span-2"}>
-      ScheduleContentLayout
-      {/* Display
-    1. Schedule Today
-    2. Schedule for the week
-    3. Schedule for the month
-     */}
+      <ScheduleToday />
+      <ScheduleWeek />
+      <ScheduleMonth />
     </Card>
   );
 }
