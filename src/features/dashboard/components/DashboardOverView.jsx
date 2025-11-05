@@ -8,7 +8,7 @@ export default function DashboardOverView() {
   return (
     <Card classname={"lg:col-span-2"}>
       <HeaderText type="secondary">Cards Created Today</HeaderText>
-      <Group classname="scroll-container h-190 space-y-3 overflow-y-scroll">
+      <Group classname="h-190 space-y-3 overflow-y-scroll">
         <Flex variant="center" classname="h-full w-full">
           <Paragraph
             variant="small"
