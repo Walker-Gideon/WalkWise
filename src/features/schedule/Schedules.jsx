@@ -4,6 +4,7 @@ import ScheduleActions from "./components/ScheduleActions";
 import ScheduleHeader from "./components/ScheduleHeader";
 import ScheduleStatus from "./components/ScheduleStatus";
 import Container from "/src/ui/Container";
+import Model from "/src/components/Model";
 import Group from "/src/ui/Group";
 import Main from "/src/ui/Main";
 
@@ -24,6 +25,8 @@ export default function Schedules() {
           </Group>
         </Group>
       </Main>
+
+      <Model />
     </Container>
   );
 }
