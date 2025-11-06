@@ -50,7 +50,7 @@ export default function ScheduleWeek() {
                 : "border-slate-200 bg-slate-50 dark:border-slate-600 dark:bg-slate-700/50"
             }`}
           >
-            <Flex variant="between">
+            <Flex classname={"items-center gap-4"}>
               <Flex variant="center" classname={"flex-col space-x-3"}>
                 <Paragraph
                   classname={
@@ -65,6 +65,35 @@ export default function ScheduleWeek() {
                   {day.dayNumber}
                 </Paragraph>
               </Flex>
+
+              {(() => {
+                /*
+                const sessionsForDay = sessionsByDay[day.date] || [];
+
+                const totalSessions = sessionsForDay.length;
+                const totalCards = sessionsForDay.reduce(
+                  (sum, session) => sum + Number(session.count || 0),
+                  0,
+                );
+                */
+
+                return (
+                  <>
+                    {/* {sessionsByDay[day.date]?.length ? (
+                      <CardDiscription
+                        classnameFirst="font-medium text-slate-900 dark:text-white"
+                        classnameSecond="text-sm text-slate-500 dark:text-slate-400"
+                        textOne={`${totalCards} cards scheduled`}
+                        textTwo={`${totalSessions} session${totalSessions > 1 ? "s" : ""}`}
+                      />
+                    ) : ( */}
+                    <Paragraph variant="small" classname={"dark:text-slate-50"}>
+                      No sessions for this day
+                    </Paragraph>
+                    {/* )} */}
+                  </>
+                );
+              })()}
             </Flex>
           </Card>
         ))}
