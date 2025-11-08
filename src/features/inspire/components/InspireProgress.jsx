@@ -14,8 +14,12 @@ export default function InspireProgress() {
         Study Progress
       </HeaderText>
 
-      <div className="mb-8">
-        <h4 className={styling.subHeader}>Weekly Study Heatmap</h4>
+      <Group classname={"mb-8"}>
+        <h4
+          className={"mb-3 text-lg font-medium text-slate-800 dark:text-white"}
+        >
+          Weekly Study Heatmap
+        </h4>
 
         <div className="medium:gap-2 grid grid-cols-7 gap-1">
           {weeklyData.map((data, index) => (
@@ -41,24 +45,28 @@ export default function InspireProgress() {
         <p className="mt-3 text-center text-sm text-slate-500 dark:text-slate-400">
           Darker shades mean more study time.
         </p>
-      </div>
+      </Group>
 
       {/* Consistency Bar Chart */}
       <div>
-        <h4 className={styling.subHeader}>Consistency Score</h4>
+        <h4
+          className={"mb-3 text-lg font-medium text-slate-800 dark:text-white"}
+        >
+          Consistency Score
+        </h4>
 
         <div className="flex items-center space-x-4">
           <div className="h-4 w-full rounded-full bg-slate-200 dark:bg-slate-700">
             <div
               className="h-4 rounded-full bg-emerald-600 transition-all duration-500"
-              style={{
-                width: `${consistencyScore}%`,
-              }}
+              //   style={{
+              //     width: `${consistencyScore}%`,
+              //   }}
             ></div>
           </div>
-          <span className="text-lg font-bold text-slate-900 dark:text-white">
+          {/* <span className="text-lg font-bold text-slate-900 dark:text-white">
             {consistencyScore}%
-          </span>
+          </span> */}
         </div>
         <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
           Your overall study consistency.
