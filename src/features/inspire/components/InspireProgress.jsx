@@ -1,5 +1,69 @@
 import React from "react";
 
+import HeaderText from "/src/ui/HeaderText";
+import Paragraph from "/src/ui/Paragraph";
+import Badge from "/src/components/Badge";
+import Card from "/src/components/Card";
+import Group from "/src/ui/Group";
+import Box from "/src/ui/Box";
+
 export default function InspireProgress() {
-  return <div>InspireProgress</div>;
+  return (
+    <Card>
+      <HeaderText variant="secondary" classname={"mb-4"}>
+        Study Progress
+      </HeaderText>
+
+      <div className="mb-8">
+        <h4 className={styling.subHeader}>Weekly Study Heatmap</h4>
+
+        <div className="medium:gap-2 grid grid-cols-7 gap-1">
+          {weeklyData.map((data, index) => (
+            <div key={index} className="flex flex-col items-center">
+              <span className="mb-1 text-xs text-slate-500 dark:text-slate-400">
+                {data.day}
+              </span>
+              <div
+                className={`h-12 w-full rounded-md transition-colors duration-200 ${
+                  data.minutes > 60
+                    ? "bg-emerald-600"
+                    : data.minutes > 30
+                      ? "bg-emerald-500"
+                      : data.minutes > 0
+                        ? "bg-emerald-300"
+                        : "bg-slate-200 dark:bg-slate-700"
+                }`}
+                title={`${data.minutes} minutes`}
+              ></div>
+            </div>
+          ))}
+        </div>
+        <p className="mt-3 text-center text-sm text-slate-500 dark:text-slate-400">
+          Darker shades mean more study time.
+        </p>
+      </div>
+
+      {/* Consistency Bar Chart */}
+      <div>
+        <h4 className={styling.subHeader}>Consistency Score</h4>
+
+        <div className="flex items-center space-x-4">
+          <div className="h-4 w-full rounded-full bg-slate-200 dark:bg-slate-700">
+            <div
+              className="h-4 rounded-full bg-emerald-600 transition-all duration-500"
+              style={{
+                width: `${consistencyScore}%`,
+              }}
+            ></div>
+          </div>
+          <span className="text-lg font-bold text-slate-900 dark:text-white">
+            {consistencyScore}%
+          </span>
+        </div>
+        <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+          Your overall study consistency.
+        </p>
+      </div>
+    </Card>
+  );
 }
