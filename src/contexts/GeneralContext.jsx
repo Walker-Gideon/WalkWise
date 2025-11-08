@@ -1,9 +1,12 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 const GeneralContext = createContext();
 
 function GeneralProvider({ children }) {
-  const value = {};
+  // Inspire
+  const [weeklyData, setWeeklyData] = useState([]);
+
+  const value = { weeklyData };
 
   return (
     <GeneralContext.Provider value={value}>{children}</GeneralContext.Provider>

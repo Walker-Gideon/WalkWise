@@ -1,13 +1,17 @@
-import React from "react";
-
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
+import SpanText from "/src/ui/SpanText";
 import Badge from "/src/components/Badge";
 import Card from "/src/components/Card";
 import Group from "/src/ui/Group";
 import Box from "/src/ui/Box";
+import { useGeneral } from "../../../contexts/GeneralContext";
 
 export default function InspireProgress() {
+  const { weeklyData } = useGeneral();
+
+  const styling = "mb-2 text-sm font-medium text-slate-800"; //dark:text-white
+
   return (
     <Card>
       <HeaderText variant="secondary" classname={"mb-4"}>
@@ -15,18 +19,14 @@ export default function InspireProgress() {
       </HeaderText>
 
       <Group classname={"mb-8"}>
-        <h4
-          className={"mb-3 text-lg font-medium text-slate-800 dark:text-white"}
-        >
-          Weekly Study Heatmap
-        </h4>
+        <HeaderText classname={styling}>Weekly Study Heatmap</HeaderText>
 
-        <div className="medium:gap-2 grid grid-cols-7 gap-1">
+        <Group classname={"medium:gap-2 grid grid-cols-7 gap-1"}>
           {weeklyData.map((data, index) => (
             <div key={index} className="flex flex-col items-center">
-              <span className="mb-1 text-xs text-slate-500 dark:text-slate-400">
+              <SpanText className="mb-1 text-xs text-slate-500 dark:text-slate-400">
                 {data.day}
-              </span>
+              </SpanText>
               <div
                 className={`h-12 w-full rounded-md transition-colors duration-200 ${
                   data.minutes > 60
@@ -41,7 +41,7 @@ export default function InspireProgress() {
               ></div>
             </div>
           ))}
-        </div>
+        </Group>
         <p className="mt-3 text-center text-sm text-slate-500 dark:text-slate-400">
           Darker shades mean more study time.
         </p>
@@ -49,11 +49,7 @@ export default function InspireProgress() {
 
       {/* Consistency Bar Chart */}
       <div>
-        <h4
-          className={"mb-3 text-lg font-medium text-slate-800 dark:text-white"}
-        >
-          Consistency Score
-        </h4>
+        <HeaderText classname={styling}>Consistency Score</HeaderText>
 
         <div className="flex items-center space-x-4">
           <div className="h-4 w-full rounded-full bg-slate-200 dark:bg-slate-700">
