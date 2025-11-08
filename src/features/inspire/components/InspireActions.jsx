@@ -21,5 +21,25 @@ const buttons = [
 ];
 
 export default function InspireActions() {
-  return <div>InspireActions</div>;
+  return (
+    <Card>
+      <HeaderText variant="secondary" classname={"mb-4"}>
+        Quick Actions
+      </HeaderText>
+      <>
+        {buttons.map((data, index) => (
+          <Group key={index} classname={`${index === 1 ? "mt-2" : ""}`}>
+            <Button
+              type="colors"
+              to={data.to}
+              classname={"w-full flex items-center gap-3 py-3"}
+            >
+              <data.icon />
+              {data.text}
+            </Button>
+          </Group>
+        ))}
+      </>
+    </Card>
+  );
 }
