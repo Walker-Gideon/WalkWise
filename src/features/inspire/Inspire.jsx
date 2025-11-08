@@ -1,4 +1,7 @@
 import InspireStreakCounter from "./components/InspireStreakCounter";
+import InspireAchievement from "./components/InspireAchievement";
+import InspireMotivation from "./components/InspireMotivation";
+import InspireProgress from "./components/InspireProgress";
 import InspireActions from "./components/InspireActions";
 import InspirePraises from "./components/InspirePraises";
 import InspireHeader from "./components/InspireHeader";
@@ -16,9 +19,9 @@ export default function Inspire() {
         }
       >
         <Group classname={"space-y-6 lg:col-span-2"}>
-          {/* Motivation
-          Achievement
-          Progress */}
+          <InspireMotivation />
+          <InspireAchievement />
+          <InspireProgress />
         </Group>
         <Group classname={"space-y-6"}>
           <InspireStreakCounter />
