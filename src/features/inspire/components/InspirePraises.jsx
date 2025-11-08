@@ -11,7 +11,7 @@ export default function InspirePraises() {
     <Card>
       <SpanText classname={"mb-4 flex items-center space-x-3"}>
         <LuAward className="h-6 w-6 text-slate-600 dark:text-slate-300" />
-        <HeaderText>Your Encouragement</HeaderText>
+        <HeaderText variant="secondary">Your Encouragement</HeaderText>
       </SpanText>
       <Group>
         <Paragraph
