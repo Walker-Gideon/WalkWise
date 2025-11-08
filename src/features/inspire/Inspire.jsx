@@ -1,3 +1,6 @@
+import InspireStreakCounter from "./components/InspireStreakCounter";
+import InspireActions from "./components/InspireActions";
+import InspirePraises from "./components/InspirePraises";
 import InspireHeader from "./components/InspireHeader";
 import Container from "/src/ui/Container";
 import Group from "/src/ui/Group";
@@ -14,9 +17,9 @@ export default function Inspire() {
           Progress */}
         </Group>
         <Group classname={"space-y-6"}>
-          {/* StreakCounter
-          praise
-          ActionInspire */}
+          <InspireStreakCounter />
+          <InspirePraises />
+          <InspireActions />
         </Group>
       </Main>
     </Container>
