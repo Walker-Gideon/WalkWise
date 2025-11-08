@@ -7,6 +7,7 @@ import { FlashcardProvider } from "./features/flashcard/context/FlashcardContext
 import { NavigationProvider } from "./contexts/NavigationContext.jsx";
 import { ScheduleProvider } from "./features/schedule/context/ScheduleContext.jsx";
 import { InspireProvider } from "./features/inspire/context/InspireContext.jsx";
+import { GeneralProvider } from "./contexts/GeneralContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -14,7 +15,9 @@ createRoot(document.getElementById("root")).render(
       <ScheduleProvider>
         <InspireProvider>
           <NavigationProvider>
-            <App />
+            <GeneralProvider>
+              <App />
+            </GeneralProvider>
           </NavigationProvider>
         </InspireProvider>
       </ScheduleProvider>
