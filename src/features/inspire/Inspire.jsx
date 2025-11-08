@@ -10,7 +10,11 @@ export default function Inspire() {
   return (
     <Container>
       <InspireHeader />
-      <Main classname={"grid grid-cols-1 gap-x-6 gap-y-3 lg:grid-cols-3"}>
+      <Main
+        classname={
+          "grid grid-cols-1 gap-x-6 gap-y-3 lg:grid-cols-3 h-[510px] overflow-y-scroll p-6"
+        }
+      >
         <Group classname={"space-y-6 lg:col-span-2"}>
           {/* Motivation
           Achievement

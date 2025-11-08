@@ -14,7 +14,7 @@ export default function Schedules() {
       <ScheduleHeader />
       <Main
         // medium:mt-0 mt-7
-        classname={"h-[510px] space-y-6 overflow-scroll p-6"}
+        classname={"h-[510px] space-y-6 overflow-y-scroll p-6"}
       >
         <ScheduleStatus />
         <Group classname={"grid grid-cols-1 gap-x-6 gap-y-3 lg:grid-cols-3"}>

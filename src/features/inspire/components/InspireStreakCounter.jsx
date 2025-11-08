@@ -1,5 +1,5 @@
-import React from "react";
+import Card from "/src/components/Card";
 
 export default function InspireStreakCounter() {
-  return <div>InspireStreakCounter</div>;
+  return <Card>InspireStreakCounter</Card>;
 }
