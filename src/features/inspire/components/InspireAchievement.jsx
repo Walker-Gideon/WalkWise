@@ -3,9 +3,9 @@ import { LuFlame, LuBookOpen, LuSun, LuMoon, LuTarget } from "react-icons/lu";
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
 import Badge from "/src/components/Badge";
-import SpanText from "/src/ui/SpanText";
 import Card from "/src/components/Card";
 import Group from "/src/ui/Group";
+import Box from "/src/ui/Box";
 
 const achievements = [
   {
@@ -51,30 +51,36 @@ export default function InspireAchievement() {
       <HeaderText variant="secondary" classname={"mb-4"}>
         Your Achievements
       </HeaderText>
+
       <Group
         classname={"medium:grid-cols-3 grid grid-cols-2 gap-4 md:grid-cols-4"}
       >
         {achievements.map((badge) => (
-          <Badge
+          <Box
             key={badge.id}
+            adjustWidth={true}
             classname={`flex flex-col items-center rounded-xl p-4 transition-all duration-200 ${
               badge.unlocked
                 ? "bg-slate-200 text-slate-700 shadow-md hover:scale-105 dark:bg-slate-900 dark:text-slate-300"
                 : "bg-slate-50 text-slate-400 opacity-60 dark:bg-slate-700/50 dark:text-slate-600"
             }`}
           >
-            <div
-              className={`mb-2 rounded-full p-3 ${
+            <Badge
+              classname={`mb-2 rounded-full ${
                 badge.unlocked
                   ? "bg-slate-500 text-white"
                   : "bg-slate-200 text-slate-500 dark:bg-slate-600 dark:text-slate-400"
               }`}
             >
               <badge.icon className="h-5 w-5" />
-            </div>
-            <p className="mb-1 text-center text-sm font-medium">{badge.name}</p>
-            <p className="text-center text-xs">{badge.description}</p>
-          </Badge>
+            </Badge>
+            <Paragraph classname={"mb-1 text-center text-sm font-medium"}>
+              {badge.name}
+            </Paragraph>
+            <Paragraph classname={"text-center text-xs"}>
+              {badge.description}
+            </Paragraph>
+          </Box>
         ))}
       </Group>
     </Card>
