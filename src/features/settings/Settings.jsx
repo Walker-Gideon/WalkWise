@@ -1,10 +1,17 @@
+import SettingsHeader from "./components/SettingsHeader";
+import SettingsLeft from "./components/SettingsLeft";
+import SettingsRight from "./components/SettingsRight";
+import Container from "/src/ui/Container";
+import Main from "/src/ui/Main";
+
 export default function Settings() {
   return (
-    <div>
-      <h1>Settings</h1>
-      {/* Header */}
-
-      {/* Main (with grid for left and right side) */}
-    </div>
+    <Container>
+      <SettingsHeader />
+      <Main classname={""}>
+        <SettingsRight />
+        <SettingsLeft />
+      </Main>
+    </Container>
   );
 }
