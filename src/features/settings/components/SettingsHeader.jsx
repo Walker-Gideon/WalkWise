@@ -1,3 +1,10 @@
+import Heading from "/src/components/Heading";
+
 export default function SettingsHeader() {
-  return <div>SettingsHeader</div>;
+  return (
+    <Heading
+      headerText="Settings"
+      paragraphText="Adjust your settings to suit your workflow."
+    ></Heading>
+  );
 }
