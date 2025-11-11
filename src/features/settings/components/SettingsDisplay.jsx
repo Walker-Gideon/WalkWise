@@ -9,11 +9,6 @@ import Button from "/src/ui/Button";
 import Input from "/src/ui/Input";
 
 export default function SettingsRight() {
-  const styling = {
-    label: `flex flex-col gap-1 text-xs font-medium text-slate-900 dark:text-white`,
-    input: "w-full text-slate-900 dark:text-white",
-  };
-
   return (
     <Card classname={"mt-6 w-[50%] ml-5"}>
       <Header classname={"mb-4"}>
@@ -57,31 +52,29 @@ export default function SettingsRight() {
         </Group>
 
         <Group>
-          {/* labStyling */}
           <FormRow label="Display Name" classname={"mb-4"}>
             <Input
               type="text"
               name="name"
               // value={}
               // onChange={}
-              placeholder={"Enter username"}
-              // classname={styling.input}
+              placeholder="Enter username"
+              classname={"w-full"} //dark:text-white
             />
           </FormRow>
-
-          <FormRow label="Email" className={styling.label}>
-            <input
-              className={`rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs focus:outline-hidden disabled:cursor-not-allowed disabled:bg-gray-200 dark:disabled:bg-gray-500 ${styling.input}`}
+          <FormRow label="Email">
+            <Input
+              classname={
+                "w-full focus:outline-hidden disabled:cursor-not-allowed disabled:bg-gray-200 dark:text-white dark:disabled:bg-gray-500"
+              }
               disabled={true}
               placeholder="example123@gmail.com"
             />
           </FormRow>
-
           <Paragraph variant="small" classname={"mt-2 dark:text-slate-400"}>
             Email cannot be changed. Contact support if needed.
           </Paragraph>
         </Group>
-
         <Flex classname={"mt-4 items-end justify-end"}>
           <Button type="colors" onclick={() => {}}>
             Save Changes
