@@ -3,6 +3,8 @@ import Paragraph from "/src/ui/Paragraph";
 import HeaderText from "/src/ui/HeaderText";
 import Header from "/src/ui/Header";
 import Group from "/src/ui/Group";
+import Flex from "/src/ui/Flex";
+import Button from "/src/ui/Button";
 
 export default function SettingsRight() {
   return (
@@ -16,9 +18,7 @@ export default function SettingsRight() {
 
       <Group>
         <Group>
-          {/* <input id="image" type="file" accept="image/*" /> */}
-
-          <div className="medium:my-10 my-8 flex w-full items-center justify-center">
+          {/* <div className="medium:my-10 my-8 flex w-full items-center justify-center">
             <label className="cursor-pointer">
               {preview ? (
                 <img
@@ -46,9 +46,11 @@ export default function SettingsRight() {
                 onChange={handleImageChange}
               />
             </label>
-          </div>
+          </div> */}
+        </Group>
 
-          <div>
+        <Group>
+          {/* <div>
             <div className={`mb-4 ${styling.label}`}>
               <label htmlFor="name">Display Name</label>
               <Input
@@ -75,21 +77,14 @@ export default function SettingsRight() {
             <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
               Email cannot be changed. Contact support if needed.
             </p>
-          </div>
-
-          <div className="mt-4 flex items-end justify-end">
-            <Button
-              variant="primary"
-              classname={"flex items-center gap-2 justify-center py-2 border-0"}
-              color={
-                "bg-slate-500 text-white hover:bg-slate-600 focus:ring-slate-300 disabled:bg-gray-400 disabled:cursor-not-allowed"
-              }
-              onClick={handleUpdate}
-            >
-              Save Changes
-            </Button>
-          </div>
+          </div> */}
         </Group>
+
+        <Flex classname={"mt-4 items-end justify-end"}>
+          <Button type="colors" onclick={() => {}}>
+            Save Changes
+          </Button>
+        </Flex>
       </Group>
     </Card>
   );
