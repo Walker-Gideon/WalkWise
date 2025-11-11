@@ -1,12 +1,19 @@
 import Card from "/src/components/Card";
+import FormRow from "/src/components/FormRow";
 import Paragraph from "/src/ui/Paragraph";
 import HeaderText from "/src/ui/HeaderText";
 import Header from "/src/ui/Header";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 import Button from "/src/ui/Button";
+import Input from "/src/ui/Input";
 
 export default function SettingsRight() {
+  const styling = {
+    label: `flex flex-col gap-1 text-xs font-medium text-slate-900 dark:text-white`,
+    input: "w-full text-slate-900 dark:text-white",
+  };
+
   return (
     <Card classname={"mt-6 w-[50%] ml-5"}>
       <Header classname={"mb-4"}>
@@ -50,34 +57,29 @@ export default function SettingsRight() {
         </Group>
 
         <Group>
-          {/* <div>
-            <div className={`mb-4 ${styling.label}`}>
-              <label htmlFor="name">Display Name</label>
-              <Input
-                type="text"
-                name="username"
-                value={newUsername}
-                onChange={(e) => setNewUsername(e.target.value)}
-                placeholder={displayUsername || "Enter username"}
-                classname={styling.input}
-              />
-            </div>
+          {/* labStyling */}
+          <FormRow label="Display Name" classname={"mb-4"}>
+            <Input
+              type="text"
+              name="name"
+              // value={}
+              // onChange={}
+              placeholder={"Enter username"}
+              // classname={styling.input}
+            />
+          </FormRow>
 
-            <div className={styling.label}>
-              <label htmlFor="name">Email</label>
-              <input
-                className={`rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs focus:outline-hidden disabled:cursor-not-allowed disabled:bg-gray-200 dark:disabled:bg-gray-500 ${styling.input}`}
-                disabled={true}
-                placeholder={
-                  displayEmail ? displayEmail : "example123@gmail.com"
-                }
-              />
-            </div>
+          <FormRow label="Email" className={styling.label}>
+            <input
+              className={`rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs focus:outline-hidden disabled:cursor-not-allowed disabled:bg-gray-200 dark:disabled:bg-gray-500 ${styling.input}`}
+              disabled={true}
+              placeholder="example123@gmail.com"
+            />
+          </FormRow>
 
-            <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
-              Email cannot be changed. Contact support if needed.
-            </p>
-          </div> */}
+          <Paragraph variant="small" classname={"mt-2 dark:text-slate-400"}>
+            Email cannot be changed. Contact support if needed.
+          </Paragraph>
         </Group>
 
         <Flex classname={"mt-4 items-end justify-end"}>
