@@ -1,7 +1,4 @@
-import { LuX } from "react-icons/lu";
-import { LuTarget } from "react-icons/lu";
-import { LuCalendar } from "react-icons/lu";
-import { LuClock } from "react-icons/lu";
+import { LuX, LuTarget, LuCalendar, LuClock } from "react-icons/lu";
 
 import FormRow from "/src/components/FormRow";
 import HeaderText from "/src/ui/HeaderText";
@@ -99,6 +96,41 @@ export default function Model({ onDisplaySessionForm }) {
                 />
               </Group>
             </FormRow>
+          </Flex>
+
+          <Flex variant="between" classname={"gap-2 pt-4"}>
+            <Button
+              onclick={(e) => {
+                e.preventDefault();
+                onDisplaySessionForm((show) => !show);
+              }}
+              // classname="button dark:border-stone-300 border-slate-500 w-full dark:text-white disabled:cursor-not-allowed"
+              type="border"
+              classname={"w-full border-stone-300"}
+              // disabled={}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="colors"
+              classname={"w-full flex items-center justify-center"}
+              onclick={(e) => {
+                e.preventDefault();
+              }}
+            >
+              {/* {isSubmitting ? (
+                <>
+                  <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                  Adding...
+                </>
+              ) : (
+                <>
+                  <LuPlus className="mr-2 h-4 w-4" />
+                  Add Session
+                </>
+              )} */}
+              Add Session
+            </Button>
           </Flex>
         </Form>
       </Group>
