@@ -1,17 +1,21 @@
-import Card from "/src/components/Card";
+import { LuUser } from "react-icons/lu";
+
 import FormRow from "/src/components/FormRow";
-import Paragraph from "/src/ui/Paragraph";
 import HeaderText from "/src/ui/HeaderText";
+import Paragraph from "/src/ui/Paragraph";
+import Card from "/src/components/Card";
 import Header from "/src/ui/Header";
-import Group from "/src/ui/Group";
-import Flex from "/src/ui/Flex";
 import Button from "/src/ui/Button";
+import Group from "/src/ui/Group";
 import Input from "/src/ui/Input";
+import Label from "/src/ui/Label";
+import Flex from "/src/ui/Flex";
 import Form from "/src/ui/Form";
+import Box from "/src/ui/Box";
 
 export default function SettingsRight() {
   return (
-    <Card classname={"mt-6 w-[50%] ml-5"}>
+    <Card classname={"my-4 mx-5 medium:w-140 w-auto lg:w-160"}>
       <Header classname={"mb-4"}>
         <HeaderText variant="secondary">Profile Information</HeaderText>
         <Paragraph variant="small" classname={"dark:text-slate-400"}>
@@ -21,24 +25,32 @@ export default function SettingsRight() {
 
       <Form onsubmit={() => {}}>
         <Flex variant="center" classname={"medium:my-10 my-8 w-full"}>
-          <label className="cursor-pointer">
-            {/* {preview ? ( */}
+          <Label classname={"cursor-pointer"}>
+            {/* {preview ? (
             <img
-              // src={preview}
+              src={preview}
               alt="preview"
               className={`medium:w-30 medium:h-30 h-20 w-20 rounded-full object-cover`}
             />
-            {/* ) : userData.photoURL ? ( */}
-            <img
-              // src={userData.photoURL}
+             ) : userData.photoURL ? ( 
+             <img
+              src={userData.photoURL}
               alt="User profile"
               className="medium:w-30 medium:h-30 h-20 w-20 rounded-full object-cover"
-            />
-            {/* ) : ( */}
-            {/* <User
-                classname={"w-20 h-20 medium:w-30 medium:h-30"}
-                icon={"w-10 h-10"}
-              /> */}
+            /> 
+             ) : (  */}
+            <Box
+              adjustWidth={true}
+              // bg-gradient-to-r from-slate-200 to-slate-300 transition-colors duration-300 dark:from-slate-600 dark:to-slate-700
+              classname={
+                "rounded-full flex items-center justify-center medium:w-30 medium:h-30 h-20 w-20 border-2 border-slate-500"
+              }
+            >
+              {/* text-white */}
+              <LuUser
+                className={`medium:w-20 medium:h-20 h-10 w-10 text-slate-500`}
+              />
+            </Box>
             {/* )} */}
             <input
               type="file"
@@ -47,7 +59,7 @@ export default function SettingsRight() {
               className="hidden"
               // onChange={handleImageChange}
             />
-          </label>
+          </Label>
         </Flex>
 
         <Group>
