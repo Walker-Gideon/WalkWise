@@ -7,6 +7,7 @@ import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 import Button from "/src/ui/Button";
 import Input from "/src/ui/Input";
+import Form from "/src/ui/Form";
 
 export default function SettingsRight() {
   return (
@@ -18,38 +19,36 @@ export default function SettingsRight() {
         </Paragraph>
       </Header>
 
-      <Group>
-        <Group>
-          {/* <div className="medium:my-10 my-8 flex w-full items-center justify-center">
-            <label className="cursor-pointer">
-              {preview ? (
-                <img
-                  src={preview}
-                  alt="preview"
-                  className={`medium:w-30 medium:h-30 h-20 w-20 rounded-full object-cover`}
-                />
-              ) : userData.photoURL ? (
-                <img
-                  src={userData.photoURL}
-                  alt="User profile"
-                  className="medium:w-30 medium:h-30 h-20 w-20 rounded-full object-cover"
-                />
-              ) : (
-                <User
-                  classname={"w-20 h-20 medium:w-30 medium:h-30"}
-                  icon={"w-10 h-10"}
-                />
-              )}
-              <input
-                type="file"
-                ref={fileInputRef}
-                accept="image/*"
-                className="hidden"
-                onChange={handleImageChange}
-              />
-            </label>
-          </div> */}
-        </Group>
+      <Form onsubmit={() => {}}>
+        <Flex variant="center" classname={"medium:my-10 my-8 w-full"}>
+          <label className="cursor-pointer">
+            {/* {preview ? ( */}
+            <img
+              // src={preview}
+              alt="preview"
+              className={`medium:w-30 medium:h-30 h-20 w-20 rounded-full object-cover`}
+            />
+            {/* ) : userData.photoURL ? ( */}
+            <img
+              // src={userData.photoURL}
+              alt="User profile"
+              className="medium:w-30 medium:h-30 h-20 w-20 rounded-full object-cover"
+            />
+            {/* ) : ( */}
+            {/* <User
+                classname={"w-20 h-20 medium:w-30 medium:h-30"}
+                icon={"w-10 h-10"}
+              /> */}
+            {/* )} */}
+            <input
+              type="file"
+              // ref={fileInputRef}
+              accept="image/*"
+              className="hidden"
+              // onChange={handleImageChange}
+            />
+          </label>
+        </Flex>
 
         <Group>
           <FormRow label="Display Name" classname={"mb-4"}>
@@ -80,7 +79,7 @@ export default function SettingsRight() {
             Save Changes
           </Button>
         </Flex>
-      </Group>
+      </Form>
     </Card>
   );
 }
