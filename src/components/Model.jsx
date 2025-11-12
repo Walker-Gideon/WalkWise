@@ -10,7 +10,7 @@ import Form from "/src/ui/Form";
 import Flex from "/src/ui/Flex";
 import Overlay from "./Overlay";
 
-export default function Model() {
+export default function Model({ onDisplaySessionForm }) {
   // Create one for saving the note
 
   // Default is Schedule
@@ -24,7 +24,11 @@ export default function Model() {
       >
         <Flex variant="between">
           <HeaderText type="secondary">Add Study Session</HeaderText>
-          <Button variant="secondary" onclick={() => {}} classname={""}>
+          <Button
+            variant="secondary"
+            onclick={() => onDisplaySessionForm((show) => !show)}
+            classname={""}
+          >
             <LuX />
           </Button>
         </Flex>
