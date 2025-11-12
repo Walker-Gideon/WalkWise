@@ -6,12 +6,13 @@ import ScheduleActions from "./components/ScheduleActions";
 import ScheduleHeader from "./components/ScheduleHeader";
 import ScheduleStatus from "./components/ScheduleStatus";
 import Container from "/src/ui/Container";
-import Model from "/src/components/Model";
+
 import Group from "/src/ui/Group";
 import Main from "/src/ui/Main";
+import SessionForm from "./components/SessionForm";
 
 export default function Schedules() {
-  const { isDisplaySessionForm, setIsDisplaySessionForm } = useSchedule();
+  const { isDisplaySessionForm } = useSchedule();
 
   return (
     <Container>
@@ -30,9 +31,7 @@ export default function Schedules() {
         </Group>
       </Main>
 
-      {isDisplaySessionForm && (
-        <Model onDisplaySessionForm={setIsDisplaySessionForm} />
-      )}
+      {isDisplaySessionForm && <SessionForm />}
     </Container>
   );
 }
