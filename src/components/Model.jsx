@@ -29,36 +29,51 @@ export default function Model({ onDisplaySessionForm }) {
           <Button
             variant="secondary"
             onclick={() => onDisplaySessionForm((show) => !show)}
-            classname={""}
+            classname={"medium:text-2xl text-xl"}
           >
             <LuX />
           </Button>
         </Flex>
 
-        {/* Form */}
-        {/* 
-      
-    Auto generated number of cards
-    (date and time) 
-    Cancel and add session buttons  */}
         <Form onsubmit={() => {}} classname={"mt-6"}>
-          {/* Select tag input */}
+          <FormRow label="Select Tag *">
+            <select
+              className="input w-full disabled:cursor-not-allowed" //dark:bg-slate-700 dark:text-white
+              // value={}
+              // onChange={}
+              // disabled={}
+            >
+              <option value="" disabled hidden>
+                Select a flashcard tag
+              </option>
+              <option disabled>No flashcards found</option>
 
-          {/* Number of Cards */}
-          <FormRow label="Number of Cards">
+              {/* {flashcards.length === 0 ? (
+                <option disabled>No flashcards found</option>
+              ) : (
+                flashcards.map((card) => (
+                  <option key={card.id} value={card.tags?.trim()}>
+                    {card.tags || "Untitled"}
+                  </option>
+                ))
+              )} */}
+            </select>
+          </FormRow>
+
+          <FormRow label="Number of Cards" classname={"my-4"}>
             <Group classname={"relative"}>
               <LuTarget className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <Input
                 type="number"
                 placeholder="Auto-filled after selecting tag"
-                classname={`w-full dark:text-white pl-8  disabled:cursor-not-allowed`}
+                classname={"w-full pl-8 disabled:cursor-not-allowed"} //dark:text-white
                 disabled={true}
                 //   value={formData.count}
               />
             </Group>
           </FormRow>
 
-          <Flex variant="between" classname={"gap-2 my-4"}>
+          <Flex variant="between" classname={"gap-2 mb-4"}>
             <FormRow label="Date *">
               <Group classname={"relative"}>
                 <LuCalendar className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
