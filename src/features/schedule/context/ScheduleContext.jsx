@@ -3,9 +3,15 @@ import { createContext, useContext, useState } from "react";
 const ScheduleContext = createContext();
 
 function ScheduleProvider({ children }) {
+  const [isDisplaySessionForm, setIsDisplaySessionForm] = useState(false);
   const [activeView, setActiveView] = useState("today");
 
-  const value = { activeView, setActiveView };
+  const value = {
+    activeView,
+    isDisplaySessionForm,
+    setActiveView,
+    setIsDisplaySessionForm,
+  };
 
   return (
     <ScheduleContext.Provider value={value}>

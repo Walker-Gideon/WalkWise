@@ -26,7 +26,7 @@ export default function Schedules() {
         </Group>
       </Main>
 
-      <Model />
+      {/* <Model /> */}
     </Container>
   );
 }
