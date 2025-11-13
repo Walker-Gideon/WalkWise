@@ -20,6 +20,10 @@
     @apply bg-white transition-colors duration-300 dark:bg-slate-900;
   }
 
+  .transition {
+    @apply transition-colors duration-300;
+  }
+
   .borderStyling {
     /* dark:border-slate-700 */
     @apply border-stone-300;
