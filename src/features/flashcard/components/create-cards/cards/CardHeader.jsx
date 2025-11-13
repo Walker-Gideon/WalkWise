@@ -14,6 +14,8 @@ export default function CardHeader() {
     <Heading
       headerText="My Flashcards"
       paragraphText="Reinforce your memory, one card at a time."
+      theme={true}
+      paragraphStyling={"dark:text-slate-300"}
     >
       <Group classname={"space-x-2"}>
         <Button type="colors" onclick={toggleDisplay}>

@@ -15,6 +15,8 @@ export default function CreatedHeader() {
     <Heading
       headerText="Create A New flashcard Set"
       paragraphText="Create, review, and master key concepts effortlessly."
+      theme={true}
+      paragraphStyling={"dark:text-slate-300"}
     >
       <Group classname={"space-x-2"}>
         <Button
