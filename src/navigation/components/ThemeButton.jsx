@@ -5,41 +5,28 @@ import { LuSun, LuMoon } from "react-icons/lu";
 
 import Paragraph from "/src/ui/Paragraph";
 import Group from "/src/ui/Group";
+import useTheme from "/src/hook/useTheme";
 
 export default function ThemeButton() {
   const { isExpanded } = useNav();
   const [isOn, setIsOn] = useState(false);
+  const [theme, setTheme] = useTheme();
+
+  const selectedTheme = isOn ? "light" : "dark";
 
   const toggleSwitch = () => setIsOn(!isOn);
-
-  /*
-    const [isDarkMode, setIsDarkMode] = useState(() => {
-      if (typeof window !== "undefined") {
-        const saved = localStorage.getItem("darkMode");
-        if (saved !== null) return JSON.parse(saved);
-        return window.matchMedia("(prefers-color-scheme: dark)").matches;
-      }
-      return false;
-    });
-  
-    useEffect(() => {
-      document.documentElement.classList.toggle("dark", isDarkMode);
-    }, [isDarkMode]);
-  
-    const toggleDarkMode = (id) => {
-      if (id) {
-        const newMode = !isDarkMode;
-        setIsDarkMode(newMode);
-        localStorage.setItem("darkMode", JSON.stringify(newMode));
-      }
-    };
-    */
+  const handleTheme = (theme) => {
+    setTheme(theme);
+  };
 
   return (
     <div
       role="button"
       className={`flex cursor-pointer items-center justify-between`}
-      onClick={toggleSwitch}
+      onClick={() => {
+        toggleSwitch;
+        handleTheme(selectedTheme);
+      }}
     >
       <Group classname={`text-nowrap w-30 ${isExpanded ? "hidden" : "block"}`}>
         {isOn ? (
