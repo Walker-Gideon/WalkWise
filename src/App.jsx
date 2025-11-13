@@ -2,6 +2,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 import ForgetAccount from "./authentication/forget/ForgetAccount";
 import Dashboard from "./features/dashboard/Dashboard";
 import Flashcard from "./features/flashcard/Flashcard";
@@ -27,6 +29,8 @@ const queryClient = new QueryClient();
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+
       <BrowserRouter>
         <Routes>
           <Route index element={<LandingPage />} />
