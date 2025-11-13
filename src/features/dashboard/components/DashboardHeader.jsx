@@ -9,6 +9,7 @@ export default function DashboardHeader() {
     <Heading
       headerText="Welcome,&nbsp; username"
       paragraphText="Glad to have you on board."
+      theme={true}
     >
       <Flex classname={"items-center space-x-3"}>
         <Group
