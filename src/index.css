@@ -16,8 +16,8 @@
 
 @layer components {
   .defaultColor {
-    /* dark:bg-slate-900 */
-    @apply bg-white transition-colors duration-300;
+    /*  */
+    @apply bg-white transition-colors duration-300 dark:bg-slate-900;
   }
 
   .borderStyling {

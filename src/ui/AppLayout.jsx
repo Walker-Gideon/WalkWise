@@ -15,7 +15,7 @@ export default function AppLayout() {
     >
       <Slider />
 
-      <Main classname={"h-screen w-full"}>
+      <Main classname={"h-screen w-full bg-slate-50 dark:bg-slate-700"}>
         <Outlet />
       </Main>
     </Container>

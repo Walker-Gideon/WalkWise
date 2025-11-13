@@ -15,7 +15,7 @@ export default function Dashboard() {
       <DashboardHeader />
       <Main
         // medium:mt-0 mt-7
-        classname={"space-y-6 overflow-scroll h-[510px] p-6 bg-slate-50"}
+        classname={"space-y-6 overflow-y-scroll h-[510px] p-6"}
       >
         <DashboardStatus />
         <DashboardActions />
