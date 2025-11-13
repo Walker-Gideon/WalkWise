@@ -12,8 +12,11 @@ export default function ScheduleHeader() {
     <Heading
       headerText="Study Schedule"
       paragraphText="Plan and track your learning sessions"
-      // dark:bg-slate-800
-      groupStyling={"rounded-sm border borderStyling bg-white p-1"}
+      theme={true}
+      paragraphStyling={"dark:text-slate-300"}
+      groupStyling={
+        "rounded-sm border borderStyling dark:bg-slate-800 bg-white p-1"
+      }
     >
       {scheduleDate.map((view, index) => (
         <Button

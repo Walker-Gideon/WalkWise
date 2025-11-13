@@ -7,8 +7,6 @@ export default function Paragraph({ children, classname, type, variant }) {
   };
 
   if (variant === "small")
-    // paragraphStyling={"dark:text-slate-300"}
-    // theme={true}
     // dark:text-slate-300 for the header small text
     return <p className={`text-sm text-slate-500 ${classname}`}>{children}</p>;
 
