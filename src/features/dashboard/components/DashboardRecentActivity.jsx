@@ -9,7 +9,12 @@ export default function DashboardRecentActivity() {
       <HeaderText type="secondary" classname={"mb-4"}>
         Recent Activity
       </HeaderText>
-      <Flex variant="center" classname={"h-full w-full p-4"}>
+      {/* Conditional here to display */}
+
+      {/* 1. The dashboard recent activity */}
+
+      {/* #. if no data yet display this 👇 */}
+      <Flex variant="center" classname={"h-full w-full p-4 text-slate-400"}>
         <Paragraph variant="small">No recent activity yet.</Paragraph>
       </Flex>
     </Card>
