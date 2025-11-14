@@ -9,8 +9,8 @@ import {
   LuSettings2,
 } from "react-icons/lu";
 
-import UnorderedList from "/src/ui/UnorderedList";
 import SpanText from "/src/ui/SpanText";
+import Group from "/src/ui/Group";
 import List from "/src/ui/List";
 import Nav from "/src/ui/Nav";
 
@@ -53,14 +53,15 @@ export default function MainNav() {
   return (
     <Nav classname={"p-4"}>
       {buttonsData.map((data, index) => (
-        <UnorderedList
+        <Group
           key={index}
-          classname={`flex flex-col gap-1 ${index === 0 ? `pb-1` : `py-1`}`}
+          classname={`group relative flex flex-col gap-1 ${index === 0 ? `pb-1` : `py-1`}`}
         >
           <NavLink
             to={data.to}
+            end
             className={({ isActive }) =>
-              `cursor-pointer rounded-sm px-4 py-2 text-sm font-semibold text-slate-800 transition-all duration-300 hover:bg-slate-600 hover:text-white ${isExpanded ? "" : ""} ${isActive ? "bg-slate-500 text-white" : ""}`
+              `w-full cursor-pointer rounded-sm px-4 py-2 text-sm font-semibold text-slate-800 transition-all duration-300 hover:bg-slate-600 hover:text-white dark:text-slate-300 ${isExpanded ? "" : ""} ${isActive ? "bg-slate-500 text-white" : ""}`
             }
           >
             <List classname={"flex items-center gap-2.5"}>
@@ -70,7 +71,12 @@ export default function MainNav() {
               </SpanText>
             </List>
           </NavLink>
-        </UnorderedList>
+          <Group
+            classname={`pointer-events-none absolute top-1 left-14 z-10 -translate-y-1/2 transform rounded-full bg-slate-500 px-2 py-1 text-xs font-semibold whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100 ${isExpanded ? "medium:block" : "hidden"}`}
+          >
+            {data.text}
+          </Group>
+        </Group>
       ))}
     </Nav>
   );
