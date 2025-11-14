@@ -1,10 +1,11 @@
-import { useNav } from "/src/contexts/NavigationContext";
 import { LuUser } from "react-icons/lu";
 
 import Paragraph from "/src/ui/Paragraph";
 import Container from "/src/ui/Container";
 import Group from "/src/ui/Group";
 import Box from "/src/ui/Box";
+
+import { useNav } from "/src/contexts/NavigationContext";
 
 export default function UserProfile() {
   const { isExpanded } = useNav();
@@ -20,37 +21,54 @@ export default function UserProfile() {
         classname={`flex items-center gap-2 transform transition-transform duration-300 ${isExpanded ? "translate-y-30" : "translate-0"}`}
       >
         <Profile />
-        <Group>
-          <Paragraph
-            classname={
-              "font-bold whitespace-nowrap primary-text-color truncate w-30"
-            }
-          >
-            username
-          </Paragraph>
-          <Paragraph
-            type=""
-            classname={"text-xs font-medium secondary-text-color truncate w-30"}
-          >
-            example123@gmail.com
-          </Paragraph>
-        </Group>
+        <UserDetails
+          classname1={"primary-text-color"}
+          classname2={"secondary-text-color"}
+        />
       </Box>
     </Container>
   );
 }
 
 function Profile() {
+  const { isExpanded } = useNav();
+
   return (
-    <Box
-      adjustWidth={true}
-      // bg-gradient-to-r from-slate-200 to-slate-300 transition-colors duration-300 dark:from-slate-600 dark:to-slate-700
-      classname={
-        "rounded-full flex items-center justify-center w-9 h-9 border-2 border-slate-500"
-      }
-    >
-      {/* text-white */}
-      <LuUser className={`h-5 w-5 text-slate-500`} />
-    </Box>
+    <Group classname={`group relative inline-flex`}>
+      <Box
+        adjustWidth={true}
+        classname={
+          "rounded-full flex items-center justify-center w-9 h-9 border-2 borderStyling"
+        }
+      >
+        <LuUser className={`h-5 w-5 text-slate-500 dark:text-white`} />
+      </Box>
+      <Group
+        classname={`pointer-events-none absolute top-0.5 left-12 z-50 -translate-y-1/2 transform rounded-sm bg-slate-500 px-2 py-1 text-sm font-semibold whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100 ${isExpanded ? "medium:block" : "hidden"}`}
+      >
+        <UserDetails
+          classname1={"text-slate-50"}
+          classname2={"text-slate-50"}
+        />
+      </Group>
+    </Group>
+  );
+}
+
+function UserDetails({ classname1, classname2 }) {
+  return (
+    <Group>
+      <Paragraph
+        classname={`font-bold whitespace-nowrap truncate w-30 ${classname1}`}
+      >
+        username
+      </Paragraph>
+      <Paragraph
+        type=""
+        classname={`text-xs font-medium truncate w-30 ${classname2}`}
+      >
+        example123@gmail.com
+      </Paragraph>
+    </Group>
   );
 }
