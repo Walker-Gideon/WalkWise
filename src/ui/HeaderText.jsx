@@ -1,5 +1,5 @@
 export default function HeaderText({ children, classname, variant, type }) {
-  const base = "text-slate-900 dark:text-slate-200";
+  const base = "text-slate-900 dark:text-slate-50";
   const styling = {
     primary: base + " text-xl font-bold",
     secondary: base + " text-base font-semibold",

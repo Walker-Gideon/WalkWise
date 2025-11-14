@@ -14,15 +14,11 @@ export default function DashboardHeader() {
       <Flex classname={"items-center space-x-3"}>
         <Group
           classname={
-            "medium:flex hidden items-center space-x-2 rounded-full bg-slate-50 px-3 py-2 whitespace-nowrap transition dark:bg-slate-700"
+            "medium:flex hidden items-center justify-center space-x-2 rounded-full secondary-text-color bg-slate-50 px-3 py-2 whitespace-nowrap transition dark:bg-slate-700"
           }
         >
-          <LuFlame className="h-4 w-4 text-slate-600 dark:text-slate-300" />
-          <SpanText
-            classname={"text-sm font-medium text-slate-700 dark:text-slate-300"}
-          >
-            X day streak
-          </SpanText>
+          <LuFlame className="h-4 w-4" />
+          <SpanText classname={"text-sm font-medium"}>X day streak</SpanText>
         </Group>
       </Flex>
     </Heading>
