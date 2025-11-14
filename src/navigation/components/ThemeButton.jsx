@@ -28,13 +28,21 @@ export default function ThemeButton() {
         handleTheme(selectedTheme);
       }}
     >
-      <Group classname={`text-nowrap w-30 ${isExpanded ? "hidden" : "block"}`}>
+      <Group
+        classname={`text-nowrap w-30 text-slate-900 dark:text-slate-300 ${isExpanded ? "hidden" : "block"}`}
+      >
         {isOn ? (
-          <Paragraph type="xs" classname={"flex items-center gap-2"}>
+          <Paragraph
+            type="xs"
+            classname={"flex items-center font-semibold gap-2"}
+          >
             <LuSun /> Light mode
           </Paragraph>
         ) : (
-          <Paragraph type="xs" classname={"flex items-center gap-2"}>
+          <Paragraph
+            type="xs"
+            classname={"flex items-center font-semibold gap-2"}
+          >
             <LuMoon /> Dark mode
           </Paragraph>
         )}
