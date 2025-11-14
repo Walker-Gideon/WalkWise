@@ -16,13 +16,9 @@ export default function DashboardActions() {
         {actions.map((action, index) => (
           <Button key={index} group={true} to={action.to}>
             <Badge type="secondary" classname="transition-colors">
-              {/* dark:text-slate-400 */}
-              <action.icon className={"icons"} />
+              <action.icon className={"icons group-hover:text-slate-500"} />
             </Badge>
-            <SpanText
-              // dark:text-slate-300
-              classname="text-sm font-medium text-slate-700"
-            >
+            <SpanText classname="text-sm font-medium secondary-text-color">
               {action.text}
             </SpanText>
           </Button>

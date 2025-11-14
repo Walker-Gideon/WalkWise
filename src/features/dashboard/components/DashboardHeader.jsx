@@ -1,4 +1,5 @@
 import { LuFlame } from "react-icons/lu";
+
 import Heading from "/src/components/Heading";
 import SpanText from "/src/ui/SpanText";
 import Group from "/src/ui/Group";
