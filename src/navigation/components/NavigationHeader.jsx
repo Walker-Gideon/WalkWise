@@ -27,7 +27,7 @@ export default function NavigationHeader() {
         >
           <Logo show={true} />
           <SpanText
-            classname={`font-bold text-slate-500 ${isExpanded ? "hidden" : "block"}`}
+            classname={`font-bold text-slate-500 dark:text-slate-300 ${isExpanded ? "hidden" : "block"}`}
           >
             walkwise
           </SpanText>

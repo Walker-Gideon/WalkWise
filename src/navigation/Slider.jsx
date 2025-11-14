@@ -1,3 +1,5 @@
+// import { LuPanelLeft, LuMenu } from "react-icons/lu";
+
 import { useNav } from "/src/contexts/NavigationContext";
 
 import NavigationHeader from "./components/NavigationHeader";
@@ -6,8 +8,6 @@ import UserProfile from "/src/user/UserProfile";
 import MainNav from "./components/MainNav";
 import Aside from "/src/ui/Aside";
 import Box from "/src/ui/Box";
-import { LuMenu } from "react-icons/lu";
-import { LuPanelLeft } from "react-icons/lu";
 
 export default function Slider() {
   const { isExpanded } = useNav();
