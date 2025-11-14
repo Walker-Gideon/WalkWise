@@ -24,7 +24,6 @@ export default function HeaderText({ children, classname, variant, type }) {
 
   if (variant === "secondary")
     return (
-      // dark:text-slate-50
       <h2 className={`text-base font-semibold ${classname}`}>{children}</h2>
     );
 
