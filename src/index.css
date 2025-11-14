@@ -14,6 +14,10 @@
   --breakpoint-lg: 1024px;
 }
 
+/* Initial info prompt color
+text-slate-400
+ */
+
 @layer components {
   .defaultColor {
     @apply bg-white transition-colors duration-300 dark:bg-slate-900;

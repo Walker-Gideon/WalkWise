@@ -1,3 +1,4 @@
+import DashboardRecentActivity from "./components/DashboardRecentActivity";
 import DashboardMotivation from "./components/DashboardMotivation";
 import DashboardCalendar from "./components/DashboardCalendar";
 import DashboardOverView from "./components/DashboardOverView";
@@ -7,11 +8,10 @@ import DashboardStatus from "./components/DashboardStatus";
 import Container from "/src/ui/Container";
 import Group from "/src/ui/Group";
 import Main from "/src/ui/Main";
-import DashboardRecentActivity from "./components/DashboardRecentActivity";
 
 export default function Dashboard() {
   return (
-    <Container adjust={true} classname={""}>
+    <Container adjust={true}>
       <DashboardHeader />
       <Main
         // medium:mt-0 mt-7
