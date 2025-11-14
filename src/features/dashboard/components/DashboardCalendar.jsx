@@ -30,7 +30,7 @@ export default function DashboardCalendar() {
           <Box
             adjustWidth={true}
             key={day}
-            className="py-1 text-center font-medium"
+            classname={"py-1 text-center font-medium"}
           >
             {day}
           </Box>
