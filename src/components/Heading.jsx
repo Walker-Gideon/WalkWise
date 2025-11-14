@@ -24,7 +24,10 @@ export default function Heading({
           <HeaderText type="primary" classname={headerStyling}>
             {headerText}
           </HeaderText>
-          <Paragraph variant="small" classname={paragraphStyling}>
+          <Paragraph
+            variant="small"
+            classname={`secondary-text-color ${paragraphStyling}`}
+          >
             {paragraphText}
           </Paragraph>
         </Group>

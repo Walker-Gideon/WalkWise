@@ -23,14 +23,14 @@ export default function UserProfile() {
         <Group>
           <Paragraph
             classname={
-              "font-bold whitespace-nowrap text-slate-900 truncate w-30"
+              "font-bold whitespace-nowrap primary-text-color truncate w-30"
             }
           >
             username
           </Paragraph>
           <Paragraph
             type=""
-            classname={"text-xs font-medium text-slate-500 truncate w-30"}
+            classname={"text-xs font-medium secondary-text-color truncate w-30"}
           >
             example123@gmail.com
           </Paragraph>

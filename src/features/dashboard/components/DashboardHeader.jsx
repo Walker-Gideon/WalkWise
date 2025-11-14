@@ -10,7 +10,6 @@ export default function DashboardHeader() {
       headerText="Welcome,&nbsp; username"
       paragraphText="Glad to have you on board."
       theme={true}
-      paragraphStyling={"dark:text-slate-300"}
     >
       <Flex classname={"items-center space-x-3"}>
         <Group
