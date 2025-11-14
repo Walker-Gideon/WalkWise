@@ -35,7 +35,6 @@
   }
 
   .icons {
-    /* dark:text-slate-300 it's for icons that need it not all */
     @apply h-5 w-5 text-slate-600 dark:text-slate-300;
   }
 
