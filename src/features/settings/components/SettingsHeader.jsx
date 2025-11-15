@@ -6,7 +6,6 @@ export default function SettingsHeader() {
       headerText="Settings"
       paragraphText="Adjust your settings to suit your workflow."
       theme={true}
-      paragraphStyling={"dark:text-slate-300"}
     ></Heading>
   );
 }

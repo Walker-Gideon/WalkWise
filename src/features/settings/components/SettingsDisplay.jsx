@@ -15,7 +15,7 @@ import Box from "/src/ui/Box";
 
 export default function SettingsRight() {
   return (
-    <Card classname={"my-4 mx-5 w-auto md:w-3/4 lg:w-2/3"}>
+    <Card classname={"my-6 mx-5 w-auto md:w-3/4 lg:w-2/3"}>
       <Header classname={"mb-4"}>
         <HeaderText variant="secondary">Profile Information</HeaderText>
         <Paragraph variant="small" classname={"dark:text-slate-400"}>
