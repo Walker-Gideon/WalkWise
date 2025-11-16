@@ -15,8 +15,8 @@ import Box from "/src/ui/Box";
 
 export default function SettingsRight() {
   return (
-    <Card classname={"my-6 mx-5 w-auto md:w-3/4 lg:w-2/3"}>
-      <Header classname={"mb-4"}>
+    <Card classname={"my-4.5 mx-5 w-auto md:w-3/4 lg:w-2/3"}>
+      <Header>
         <HeaderText type="secondary">Profile Information</HeaderText>
         <Paragraph variant="small" classname={"secondary-text-color"}>
           Update your profile information visible to other users
@@ -24,7 +24,7 @@ export default function SettingsRight() {
       </Header>
 
       <Form onsubmit={() => {}}>
-        <Flex variant="center" classname={"medium:my-10 my-8 w-full"}>
+        <Flex variant="center" classname={"my-7 w-full"}>
           <Label classname={"cursor-pointer"}>
             {/* {preview ? (
             <img
@@ -41,14 +41,12 @@ export default function SettingsRight() {
              ) : (  */}
             <Box
               adjustWidth={true}
-              // bg-gradient-to-r from-slate-200 to-slate-300 transition-colors duration-300 dark:from-slate-600 dark:to-slate-700
               classname={
-                "rounded-full flex items-center justify-center medium:w-30 medium:h-30 h-20 w-20 border-2 border-slate-500"
+                "rounded-full flex items-center justify-center medium:w-30 medium:h-30 h-20 w-20 border-2 borderStyling"
               }
             >
-              {/* text-white */}
               <LuUser
-                className={`medium:w-20 medium:h-20 h-10 w-10 text-slate-500`}
+                className={`medium:w-20 medium:h-20 h-10 w-10 text-slate-500 dark:text-white`}
               />
             </Box>
             {/* )} */}
@@ -70,7 +68,7 @@ export default function SettingsRight() {
               // value={}
               // onChange={}
               placeholder="Enter username"
-              classname={"w-full"} //dark:text-white
+              classname={"w-full dark:text-slate-50"}
             />
           </FormRow>
           <FormRow label="Email">
