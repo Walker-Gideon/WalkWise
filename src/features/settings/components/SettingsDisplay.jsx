@@ -15,7 +15,7 @@ import Box from "/src/ui/Box";
 
 export default function SettingsRight() {
   return (
-    <Card classname={"my-4.5 mx-5 w-auto md:w-3/4 lg:w-2/3"}>
+    <Card classname={"medium:my-4.5 mx-5 w-auto md:w-3/4 lg:w-2/3"}>
       <Header>
         <HeaderText type="secondary">Profile Information</HeaderText>
         <Paragraph variant="small" classname={"secondary-text-color"}>
@@ -85,7 +85,7 @@ export default function SettingsRight() {
           </Paragraph>
         </Group>
         <Flex classname={"mt-4 items-end justify-end"}>
-          <Button type="colors" onclick={() => {}}>
+          <Button submit={true} type="colors">
             Save Changes
           </Button>
         </Flex>
