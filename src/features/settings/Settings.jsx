@@ -6,9 +6,7 @@ export default function Settings() {
   return (
     <Container adjust={true}>
       <SettingsHeader />
-      <Main classname={"my-auto flex flex-col"}>
-        <SettingsDisplay />
-      </Main>
+      <SettingsDisplay />
     </Container>
   );
 }

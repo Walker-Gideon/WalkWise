@@ -15,7 +15,7 @@ import Box from "/src/ui/Box";
 
 export default function SettingsRight() {
   return (
-    <Card classname={"medium:my-4.5 mx-5 w-auto md:w-3/4 lg:w-2/3"}>
+    <Card classname={"my-10 medium:my-4.5 mx-5 w-auto md:w-3/4 lg:w-2/3"}>
       <Header>
         <HeaderText type="secondary">Profile Information</HeaderText>
         <Paragraph variant="small" classname={"secondary-text-color"}>
