@@ -6,7 +6,6 @@ export default function InspireHeader() {
       headerText="Inspire"
       paragraphText="Stay motivated and track your achievements"
       theme={true}
-      paragraphStyling={"dark:text-slate-300"}
     ></Heading>
   );
 }
