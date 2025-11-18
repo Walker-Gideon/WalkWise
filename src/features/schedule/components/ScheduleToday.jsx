@@ -29,7 +29,7 @@ export default function ScheduleToday() {
         <Flex variant="center" classname="h-full w-full">
           <Paragraph
             variant="small"
-            // className="dark:text-slate-50"
+            classname={"text-slate-400"}
           >
             No sessions scheduled for today.
           </Paragraph>
