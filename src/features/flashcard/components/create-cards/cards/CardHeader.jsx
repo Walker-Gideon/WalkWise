@@ -1,9 +1,9 @@
-import { useFlashcard } from "/src/features/flashcard/context/FlashcardContext";
-import useToggleDisplay from "/src/hook/useToggleDisplay";
-
 import Heading from "/src/components/Heading";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
+
+import { useFlashcard } from "../../../context/FlashcardContext";
+import useToggleDisplay from "/src/hook/useToggleDisplay";
 
 export default function CardHeader() {
   const { setIsCardsInitDisplay } = useFlashcard();
@@ -15,7 +15,6 @@ export default function CardHeader() {
       headerText="My Flashcards"
       paragraphText="Reinforce your memory, one card at a time."
       theme={true}
-      paragraphStyling={"dark:text-slate-300"}
     >
       <Group classname={"space-x-2"}>
         <Button type="colors" onclick={toggleDisplay}>

@@ -14,7 +14,7 @@ export default function CardsSubHeader() {
     >
       <Button
         type="border"
-        classname={"px-8 border-stone-300"}
+        classname={"px-8 border-stone-300 dark:text-white"}
         onclick={() => {}}
       >
         Sort By
@@ -28,12 +28,12 @@ export default function CardsSubHeader() {
           placeholder="Search flashcards"
           // onKeyDown={}
           classname={
-            "w-full bg-transparent" //dark:text-white dark:border-slate-700 dark:placeholder:text-slate-400
+            "w-full bg-transparent dark:text-white"
           }
           // disabled={}
         />
         <LuSearch
-          className="absolute top-2.5 right-2 text-sm text-slate-600" //dark:text-slate-300
+          className="absolute top-2.5 right-2 text-sm text-slate-600 dark:text-slate-300"
         />
       </Group>
     </Flex>
