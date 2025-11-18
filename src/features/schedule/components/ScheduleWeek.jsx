@@ -87,7 +87,7 @@ export default function ScheduleWeek() {
                         textTwo={`${totalSessions} session${totalSessions > 1 ? "s" : ""}`}
                       />
                     ) : ( */}
-                    <Paragraph variant="small" classname={"dark:text-slate-50"}>
+                    <Paragraph variant="small" classname={"text-slate-400"}>
                       No sessions for this day
                     </Paragraph>
                     {/* )} */}
