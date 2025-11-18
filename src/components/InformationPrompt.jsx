@@ -16,14 +16,11 @@ export default function InformationPrompt({
     <Group
       classname={"h-full w-full flex items-center justify-center flex-col"}
     >
-      {/* text-slate-500 dark:text-slate-400 */}
       <Badge type="icons">
-        {/* dark:text-slate-300 */}
-        {/* <icon className="icons" /> */}
         {icon}
       </Badge>
       <Group classname={"text-center py-2"}>
-        <HeaderText variant="secondary">{promptText}</HeaderText>
+        <HeaderText type="secondary">{promptText}</HeaderText>
         <Paragraph type="information">{actionText}</Paragraph>
       </Group>
       <Button

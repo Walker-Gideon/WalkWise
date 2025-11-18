@@ -13,8 +13,7 @@ export default function LeftNoteContent() {
     <Container adjust={true} classname={`h-110`}>
       <Conditional condition={!isDisplayCreatedNote}>
         <InformationPrompt
-          /* dark:text-slate-300 */
-          icon={<LuNotebookText className="icons" />}
+          icon={<LuNotebookText className="h-5 w-5 text-slate-600 dark:text-slate-900" />}
           actionText="No notes found"
           btn={true}
         />

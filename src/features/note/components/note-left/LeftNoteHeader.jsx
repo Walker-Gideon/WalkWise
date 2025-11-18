@@ -18,7 +18,7 @@ export default function LeftNoteHeader() {
           // onChange={}
           placeholder="Search note"
           // onKeyDown={}
-          classname={"w-full pl-6"}
+          classname={"w-full pl-7 dark:text-white"}
           // disabled={}
         />
         <LuSearch className="absolute top-2.5 left-2 text-sm text-slate-600 dark:text-slate-300" />

@@ -13,8 +13,7 @@ export default function NoteRightLayout() {
     <Container>
       <Conditional condition={!isDisplayNote}>
         <InformationPrompt
-          /* dark:text-slate-300 */
-          icon={<LuNotebookText className="icons" />}
+          icon={<LuNotebookText className="h-5 w-5 text-slate-600 dark:text-slate-900" />}
           promptText="Select a note to view"
           actionText='Choose a note from the sidebar or tap "Create Note" to make one.'
           onclick={() => setIsDisplayNote((show) => !show)}
