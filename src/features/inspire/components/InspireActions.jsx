@@ -23,7 +23,7 @@ const buttons = [
 export default function InspireActions() {
   return (
     <Card>
-      <HeaderText variant="secondary" classname={"mb-4"}>
+      <HeaderText type="secondary" classname={"mb-4"}>
         Quick Actions
       </HeaderText>
       <>
