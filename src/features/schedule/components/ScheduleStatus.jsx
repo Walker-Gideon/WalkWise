@@ -1,4 +1,5 @@
 import { LuTarget, LuClock, LuFlame, LuTrendingUp } from "react-icons/lu";
+
 import HeaderText from "/src/ui/HeaderText";
 import Badge from "/src/components/Badge";
 import Paragraph from "/src/ui/Paragraph";
@@ -41,16 +42,13 @@ export default function ScheduleStatus() {
           classname={"hover:shadow-lg flex items-center justify-between"}
         >
           <Badge type="primary">
-            <stats.icon
-              // dark:text-slate-300
-              className={"icons"}
-            />
+            <stats.icon className={"icons"} />
           </Badge>
           <Group classname="text-right">
             <HeaderText type="primary">{stats.data}</HeaderText>
             <Paragraph
               variant="small"
-              classname="text-nowrap dark:text-slate-400"
+              classname="text-nowrap secondary-text-color"
             >
               {stats.text}
             </Paragraph>
