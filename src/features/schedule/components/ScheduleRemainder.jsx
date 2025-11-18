@@ -13,12 +13,12 @@ export default function ScheduleRemainder() {
         Next Session
       </HeaderText>
       <Group>
-        <Paragraph classname={"mb-4 font-medium"}>
+        <Paragraph classname={"mb-4 font-medium secondary-text-color"}>
           {/* {nearestSessions?.at(0)?.tag} starts in{" "}
           {getTimeRemaining(nearestSessions?.at(0)?.scheduledAt)} */}
           Schedule starts in X
         </Paragraph>
-        <Paragraph variant="small">
+        <Paragraph variant="small" classname={"primary-text-color"}>
           {/* {nearestSessions?.at(0)?.count}{" "}
           {nearestSessions?.at(0)?.count === 1 ? "card" : "cards"} •{" "}
           {nearestSessions?.at(0)?.estimatedTime} min */}
