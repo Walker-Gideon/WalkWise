@@ -10,7 +10,6 @@ export default function FlashcardHeader() {
       headerText="My Flashcards"
       paragraphText="Learn smarter with personalized flashcards." //When create a flashacard use this "Reinforce your memory, one card at a time."
       theme={true}
-      paragraphStyling={"dark:text-slate-300"}
       classname={`${isDisplayFlashcardLayout ? "hidden" : ""}`}
     ></Heading>
   );
