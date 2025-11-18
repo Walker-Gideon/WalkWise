@@ -79,7 +79,7 @@ export default function CreateNoteEditor() {
           key={index}
           type="customize"
           variant="secondary"
-          classname={`borderStyling ${data.style}`}
+          classname={`borderStyling dark:text-white ${data.style}`}
           //   classname={`${data.style} ${styling.base} ${data.activeCheck(editor) ? `${styling.isActive}` : `${styling.notActive}`}`}
           onclick={(e) => {
             e.preventDefault();
@@ -95,7 +95,7 @@ export default function CreateNoteEditor() {
           key={index}
           type="customize"
           variant="secondary"
-          classname={`borderStyling px-[9.5px] py-[11px]`}
+          classname={`borderStyling dark:text-white px-[9.5px] py-[11px]`}
           //   classname={`px-[9.5px] py-[11px] ${styling.base} ${
           //     editor.isActive({ textAlign: btn.align })
           //       ? `${styling.isActive}`

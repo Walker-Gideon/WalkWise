@@ -25,7 +25,7 @@ export default function CreateNote() {
 
           //   dark:text-white dark:placeholder:text-gray-500
           classname={
-            "w-full border-b borderStyling bg-transparent pb-2 text-xl font-bold text-slate-900 placeholder:text-gray-400 focus:outline-none medium:text-2xl"
+            "w-full border-b borderStyling bg-transparent pb-2 text-xl dark:text-white font-bold text-slate-900 placeholder:text-gray-400 focus:outline-none medium:text-2xl"
           }
           //   disabled={disabled}
         />
