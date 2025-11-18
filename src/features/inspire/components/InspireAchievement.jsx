@@ -48,7 +48,7 @@ const achievements = [
 export default function InspireAchievement() {
   return (
     <Card>
-      <HeaderText variant="secondary" classname={"mb-4"}>
+      <HeaderText type="secondary" classname={"mb-4"}>
         Your Achievements
       </HeaderText>
 
@@ -61,14 +61,14 @@ export default function InspireAchievement() {
             adjustWidth={true}
             classname={`flex flex-col items-center rounded-xl p-4 transition-all duration-200 ${
               badge.unlocked
-                ? "bg-slate-200 text-slate-700 shadow-md hover:scale-105 dark:bg-slate-900 dark:text-slate-300"
+                ? "bg-slate-200 text-slate-700 shadow-md hover:scale-105 dark:bg-slate-600 dark:text-slate-200"
                 : "bg-slate-50 text-slate-400 opacity-60 dark:bg-slate-700/50 dark:text-slate-600"
             }`}
           >
             <Badge
               classname={`mb-2 rounded-full ${
                 badge.unlocked
-                  ? "bg-slate-500 text-white"
+                  ? "bg-slate-500 dark:bg-slate-700 text-white"
                   : "bg-slate-200 text-slate-500 dark:bg-slate-600 dark:text-slate-400"
               }`}
             >
