@@ -1,9 +1,9 @@
-import { useFlashcard } from "/src/features/flashcard/context/FlashcardContext";
-import useToggleDisplay from "/src/hook/useToggleDisplay";
-
 import Heading from "/src/components/Heading";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
+
+import { useFlashcard } from "../../../context/FlashcardContext";
+import useToggleDisplay from "/src/hook/useToggleDisplay";
 
 export default function CreatedHeader() {
   const { setIsDisplayFlashcardLayout, setIsCardsInitDisplay } = useFlashcard();
@@ -21,7 +21,7 @@ export default function CreatedHeader() {
       <Group classname={"space-x-2"}>
         <Button
           type="border"
-          classname={"px-8 border-stone-300"}
+          classname={"px-8 border-stone-300 dark:text-white"}
           onclick={toggleDisplayFlashcard}
         >
           Cancel

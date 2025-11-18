@@ -1,13 +1,9 @@
-import Group from "/src/ui/Group";
+import FormRow from "/src/components/FormRow";
 import Input from "/src/ui/Input";
-import Label from "/src/ui/Label";
 
 export default function CreatedTag() {
   return (
-    <Group classname={"px-0.5"}>
-      <Label htmlfor="tags" classname={"label"}>
-        Tags (optional)
-      </Label>
+    <FormRow label="Tags (optional)" classname={"px-0.5"}>
       <Input
         id="tags"
         name="tags"
@@ -15,9 +11,9 @@ export default function CreatedTag() {
         // value={}
         // onChange={}
         placeholder="e.g. Biology, Chapter 2"
-        classname={"w-full text-slate-900 input"} //dark:text-white
+        classname={"w-full text-slate-900 dark:text-white input"}
         // disabled={}
       />
-    </Group>
+    </FormRow>
   );
 }

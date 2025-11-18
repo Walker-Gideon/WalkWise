@@ -1,6 +1,6 @@
-import { useFlashcard } from "../context/FlashcardContext";
-
 import Heading from "/src/components/Heading";
+
+import { useFlashcard } from "../context/FlashcardContext";
 
 export default function FlashcardHeader() {
   const { isDisplayFlashcardLayout } = useFlashcard();
