@@ -20,7 +20,7 @@ export default function InspireMotivation() {
             {/* "{currentQuote.text}" */}"Learning is a treasure that follows
             its owner everywhere."
           </blockquote>
-          <Paragraph classname={"text-right text-sm"}>
+          <Paragraph classname={"text-right text-sm primary-text-color"}>
             {/* — {currentQuote.author} */} Auther Name
           </Paragraph>
         </>
