@@ -15,7 +15,7 @@ export default function Inspire() {
       <InspireHeader />
       <Main
         classname={
-          "grid grid-cols-1 gap-x-6 gap-y-3 lg:grid-cols-3 h-[510px] overflow-y-scroll p-6"
+          "grid grid-cols-1 gap-x-6 gap-y-3 lg:grid-cols-3 medium:h-[510px] h-screen overflow-y-scroll p-6"
         }
       >
         <Group classname={"space-y-6 lg:col-span-2"}>

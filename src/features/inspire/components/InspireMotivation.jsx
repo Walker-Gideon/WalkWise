@@ -11,7 +11,7 @@ export default function InspireMotivation() {
     <Card>
       <SpanText classname={"mb-4 flex items-center space-x-3"}>
         <LuLightbulb className="h-6 w-6 text-slate-600 dark:text-slate-300" />
-        <HeaderText variant="secondary">Daily Inspiration</HeaderText>
+        <HeaderText type="secondary">Daily Inspiration</HeaderText>
       </SpanText>
       <Group>
         {/* {currentQuote ? ( */}
