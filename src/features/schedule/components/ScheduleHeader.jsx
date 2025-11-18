@@ -1,7 +1,7 @@
-import { useSchedule } from "../context/ScheduleContext";
-
 import Heading from "/src/components/Heading";
 import Button from "/src/ui/Button";
+
+import { useSchedule } from "../context/ScheduleContext";
 
 const scheduleDate = ["today", "week", "month"];
 
@@ -13,7 +13,6 @@ export default function ScheduleHeader() {
       headerText="Study Schedule"
       paragraphText="Plan and track your learning sessions"
       theme={true}
-      paragraphStyling={"dark:text-slate-300"}
       groupStyling={
         "rounded-sm border borderStyling dark:bg-slate-800 bg-white p-1"
       }
