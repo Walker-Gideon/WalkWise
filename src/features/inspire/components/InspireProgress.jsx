@@ -1,25 +1,24 @@
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
-import SpanText from "/src/ui/SpanText";
 import Badge from "/src/components/Badge";
+import SpanText from "/src/ui/SpanText";
 import Card from "/src/components/Card";
 import Group from "/src/ui/Group";
 import Box from "/src/ui/Box";
-import { useGeneral } from "../../../contexts/GeneralContext";
+
+import { useGeneral } from "/src/contexts/GeneralContext";
 
 export default function InspireProgress() {
   const { weeklyData } = useGeneral();
 
-  const styling = "mb-2 text-sm font-medium text-slate-800"; //dark:text-white
-
   return (
     <Card>
-      <HeaderText variant="secondary" classname={"mb-4"}>
+      <HeaderText type="secondary" classname={"mb-4"}>
         Study Progress
       </HeaderText>
 
       <Group classname={"mb-8"}>
-        <HeaderText classname={styling}>Weekly Study Heatmap</HeaderText>
+        <HeaderText classname={"secondary-text-color mb-2 text-sm font-medium"}>Weekly Study Heatmap</HeaderText>
 
         <Group classname={"medium:gap-2 grid grid-cols-7 gap-1"}>
           {weeklyData.map((data, index) => (
@@ -42,14 +41,14 @@ export default function InspireProgress() {
             </div>
           ))}
         </Group>
-        <p className="mt-3 text-center text-sm text-slate-500 dark:text-slate-400">
+        <Paragraph classname={"mt-3 text-center text-sm text-slate-500 dark:text-slate-400"}>
           Darker shades mean more study time.
-        </p>
+        </Paragraph>
       </Group>
 
       {/* Consistency Bar Chart */}
       <div>
-        <HeaderText classname={styling}>Consistency Score</HeaderText>
+        <HeaderText classname={"secondary-text-color mb-2 text-sm font-medium"}>Consistency Score</HeaderText>
 
         <div className="flex items-center space-x-4">
           <div className="h-4 w-full rounded-full bg-slate-200 dark:bg-slate-700">
@@ -64,9 +63,9 @@ export default function InspireProgress() {
             {consistencyScore}%
           </span> */}
         </div>
-        <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+        <Paragraph classname={"mt-2 text-sm text-slate-500 dark:text-slate-400"}>
           Your overall study consistency.
-        </p>
+        </Paragraph>
       </div>
     </Card>
   );
