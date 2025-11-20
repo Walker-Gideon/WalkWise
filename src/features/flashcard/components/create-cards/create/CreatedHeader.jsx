@@ -22,14 +22,18 @@ export default function CreatedHeader() {
         <Button
           type="border"
           classname={"px-8 border-stone-300 dark:text-white"}
-          onclick={toggleDisplayFlashcard}
+          onclick={(e) => {
+            e.preventDefault();
+            toggleDisplayFlashcard();
+          }}
         >
           Cancel
         </Button>
         <Button
           type="colors"
+          submit={true}
           classname={"px-8"}
-          onclick={toggleDisplayCardsInit}
+          // onclick={toggleDisplayCardsInit}
         >
           Create
         </Button>

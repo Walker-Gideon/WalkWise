@@ -1,3 +1,4 @@
+import { Controller } from "react-hook-form";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
 import Container from "/src/ui/Container";
@@ -10,8 +11,10 @@ import Flex from "/src/ui/Flex";
 
 import { useFlashcard } from "../../../context/FlashcardContext";
 
-export default function CreatedInputs() {
+export default function CreatedInputs({ control }) {
   const { pairs, handleDelete, handlePairChange } = useFlashcard();
+
+  // const { handleSubmit, register, reset, getValues, formState } = useForm();
 
   return (
     <Container
@@ -29,8 +32,7 @@ export default function CreatedInputs() {
           <Group>
             <Flex variant="between" classname={"w-full "}>
               <Label htmlfor={`term-${idx}`} classname={"label"}>
-                Term{" "}
-                {pairs.length > 2 ? `#${idx + 1}` : idx === 0 ? "#1" : "#2"}
+                Term {idx + 1}
               </Label>
               <Button
                 variant="secondary"
@@ -40,7 +42,7 @@ export default function CreatedInputs() {
                 <RiDeleteBin5Line className="icons text-slate-500 dark:text-slate-200" />
               </Button>
             </Flex>
-            <Input
+            {/* <Input
               id={`term-${idx}`}
               name={`term-${idx}`}
               type="text"
@@ -48,15 +50,32 @@ export default function CreatedInputs() {
               onChange={(e) => handlePairChange(idx, "term", e.target.value)}
               placeholder="Enter term..."
               classname={"w-full text-slate-900 dark:text-white input"}
-              // disabled={}
+              disabled={}
+            /> */}
+            <Controller
+              name={`pairs.${idx}.term`}
+              control={control}
+              defaultValue={pair.term}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  id={`term-${idx}`}
+                  placeholder="Enter term..."
+                  className="input w-full text-slate-900 dark:text-white"
+                  onChange={(e) => {
+                    field.onChange(e);
+                    handlePairChange(idx, "term", e.target.value);
+                  }}
+                />
+              )}
             />
           </Group>
+
           <Group>
             <Label htmlfor={`definition-${idx}`} classname={"label"}>
-              Definition{" "}
-              {pairs.length > 2 ? `#${idx + 1}` : idx === 0 ? "#1" : "#2"}
+              Definition {idx + 1}
             </Label>
-            <TextArea
+            {/* <TextArea
               id={`definition-${idx}`}
               name={`definition-${idx}`}
               rows={2}
@@ -67,7 +86,27 @@ export default function CreatedInputs() {
               resize={true}
               classname={"w-full text-slate-900 dark:text-white input"}
               placeholder="Enter definition..."
-              // disabled={}
+              disabled={}
+            /> */}
+
+            {/* DEFINITION */}
+            <Controller
+              name={`pairs.${idx}.definition`}
+              control={control}
+              defaultValue={pair.definition}
+              render={({ field }) => (
+                <textarea
+                  {...field}
+                  id={`definition-${idx}`}
+                  rows={2}
+                  className="input w-full resize-none text-slate-900 dark:text-white"
+                  placeholder="Enter definition..."
+                  onChange={(e) => {
+                    field.onChange(e);
+                    handlePairChange(idx, "definition", e.target.value);
+                  }}
+                />
+              )}
             />
           </Group>
         </Group>
