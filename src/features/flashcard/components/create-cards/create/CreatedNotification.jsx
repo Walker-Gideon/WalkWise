@@ -1,7 +1,11 @@
 import Paragraph from "/src/ui/Paragraph";
 import Group from "/src/ui/Group";
 
-export default function CreatedNotification({ pairs, MAX_PAIRS }) {
+import { useFlashcard } from "../../../context/FlashcardContext";
+
+export default function CreatedNotification() {
+  const { pairs, MAX_PAIRS } = useFlashcard();
+
   return (
     <Group classname="pt-2 text-right">
       {pairs.length >= MAX_PAIRS && (

@@ -20,7 +20,7 @@ export default function CreatedForm() {
           <CreatedTag />
           <CreatedInputs />
           <CreatedAddButton />
-          <CreatedNotification pairs={pairs} MAX_PAIRS={MAX_PAIRS} />
+          <CreatedNotification />
         </Form>
       </Box>
     </>
