@@ -19,11 +19,7 @@ export default function CreatedForm() {
         <Form onsubmit={() => {}}>
           <CreatedTag />
           <CreatedInputs />
-          <CreatedAddButton
-            pairs={pairs}
-            onPairs={setPairs}
-            MAX_PAIRS={MAX_PAIRS}
-          />
+          <CreatedAddButton />
           <CreatedNotification pairs={pairs} MAX_PAIRS={MAX_PAIRS} />
         </Form>
       </Box>

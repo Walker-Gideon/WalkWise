@@ -3,7 +3,11 @@ import { LuPlus } from "react-icons/lu";
 import Button from "/src/ui/Button";
 import Flex from "/src/ui/Flex";
 
-export default function CreatedAddButton({ pairs, onPairs, MAX_PAIRS }) {
+import { useFlashcard } from "../../../context/FlashcardContext";
+
+export default function CreatedAddButton() {
+  const { pairs, setPairs, MAX_PAIRS } = useFlashcard();
+
   return (
     <Flex classname={"items-center justify-end"}>
       <Button
@@ -16,7 +20,7 @@ export default function CreatedAddButton({ pairs, onPairs, MAX_PAIRS }) {
 
           if (pairs.length < MAX_PAIRS) {
             const updated = [...pairs, newPair];
-            onPairs(updated);
+            setPairs(updated);
           }
         }}
         disabled={pairs.length === MAX_PAIRS}
