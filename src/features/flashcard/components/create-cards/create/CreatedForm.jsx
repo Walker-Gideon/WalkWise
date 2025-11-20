@@ -1,3 +1,5 @@
+import { useForm } from "react-hook-form";
+
 import CreatedNotification from "./CreatedNotification";
 import CreatedAddButton from "./CreatedAddButton";
 import CreatedHeader from "./CreatedHeader";
@@ -5,10 +7,9 @@ import CreatedInputs from "./CreatedInputs";
 import CreatedTag from "./CreatedTag";
 import Form from "/src/ui/Form";
 import Box from "/src/ui/Box";
-import { useForm } from "react-hook-form";
 
 export default function CreatedForm() {
-  const { control, handleSubmit } = useForm();
+  const { control, register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
 
   return (
@@ -21,7 +22,7 @@ export default function CreatedForm() {
             "mx-auto medium:mt-8 mt-14 max-w-3xl maxmid:max-w-4xl medium:h-[78vh] overflow-y-scroll"
           }
         >
-          <CreatedTag />
+          <CreatedTag register={register} />
           <CreatedInputs control={control} />
           <CreatedAddButton />
           <CreatedNotification />

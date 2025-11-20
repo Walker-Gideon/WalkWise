@@ -2,10 +2,8 @@ import { Controller } from "react-hook-form";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
 import Container from "/src/ui/Container";
-import TextArea from "/src/ui/TextArea";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
-import Input from "/src/ui/Input";
 import Label from "/src/ui/Label";
 import Flex from "/src/ui/Flex";
 
@@ -42,16 +40,7 @@ export default function CreatedInputs({ control }) {
                 <RiDeleteBin5Line className="icons text-slate-500 dark:text-slate-200" />
               </Button>
             </Flex>
-            {/* <Input
-              id={`term-${idx}`}
-              name={`term-${idx}`}
-              type="text"
-              value={pair.term}
-              onChange={(e) => handlePairChange(idx, "term", e.target.value)}
-              placeholder="Enter term..."
-              classname={"w-full text-slate-900 dark:text-white input"}
-              disabled={}
-            /> */}
+
             <Controller
               name={`pairs.${idx}.term`}
               control={control}
@@ -75,19 +64,6 @@ export default function CreatedInputs({ control }) {
             <Label htmlfor={`definition-${idx}`} classname={"label"}>
               Definition {idx + 1}
             </Label>
-            {/* <TextArea
-              id={`definition-${idx}`}
-              name={`definition-${idx}`}
-              rows={2}
-              value={pair.definition}
-              onChange={(e) =>
-                handlePairChange(idx, "definition", e.target.value)
-              }
-              resize={true}
-              classname={"w-full text-slate-900 dark:text-white input"}
-              placeholder="Enter definition..."
-              disabled={}
-            /> */}
 
             {/* DEFINITION */}
             <Controller
