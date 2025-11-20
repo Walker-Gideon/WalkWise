@@ -45,3 +45,9 @@ export default function CreatedForm() {
     </>
   );
 }
+
+/*
+About the Create Flashcard
+
+
+*/
