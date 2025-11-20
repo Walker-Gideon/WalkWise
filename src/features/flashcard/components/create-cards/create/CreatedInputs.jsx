@@ -8,7 +8,11 @@ import Input from "/src/ui/Input";
 import Label from "/src/ui/Label";
 import Flex from "/src/ui/Flex";
 
+import { useFlashcard } from "../../../context/FlashcardContext";
+
 export default function CreatedInputs() {
+  const { pairs, handleDelete, handlePairChange } = useFlashcard();
+
   return (
     <Container
       adjust={true}

@@ -18,12 +18,7 @@ export default function CreatedForm() {
       >
         <Form onsubmit={() => {}}>
           <CreatedTag />
-          <CreatedInputs
-            pairs={pairs}
-            index={index}
-            onPairs={setPairs}
-            onIndex={setIndex}
-          />
+          <CreatedInputs />
           <CreatedAddButton
             pairs={pairs}
             onPairs={setPairs}
