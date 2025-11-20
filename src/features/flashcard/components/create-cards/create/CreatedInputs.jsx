@@ -8,26 +8,7 @@ import Input from "/src/ui/Input";
 import Label from "/src/ui/Label";
 import Flex from "/src/ui/Flex";
 
-export default function CreatedInputs({ pairs, index, onPairs, onIndex }) {
-  const handlePairChange = (index, field, value) => {
-    const updatedPairs = [...pairs];
-    updatedPairs[index][field] = value;
-    onPairs(updatedPairs);
-  };
-
-  const handleDelete = (e) => {
-    e.preventDefault();
-
-    if (pairs.length > 2) {
-      const updatePairs = pairs.filter((_, i) => i !== index);
-
-      onPairs(updatePairs);
-      onIndex((prev) =>
-        prev >= updatePairs.length ? updatePairs.length - 1 : prev,
-      );
-    }
-  };
-
+export default function CreatedInputs() {
   return (
     <Container
       adjust={true}
