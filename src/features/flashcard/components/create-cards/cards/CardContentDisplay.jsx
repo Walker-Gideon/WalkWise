@@ -7,8 +7,25 @@ import Paragraph from "/src/ui/Paragraph";
 import Container from "/src/ui/Container";
 import Card from "/src/components/Card";
 import Group from "/src/ui/Group";
+import { getFlashcards } from "../../../../../service/apiFlashcard";
+import { useQuery } from "@tanstack/react-query";
 
-export default function CardContentDisplay() {
+// import { useFlashcards } from "../../../hooks/useFlashcards";
+
+export default function CardContentDisplay({ userId }) {
+  const query = useQuery({
+    queryKey: ["flashcards", userId],
+    queryFn: () => getFlashcards(userId),
+  });
+
+  console.log(query.data);
+
+  query.data.map((flashcard) => console.log(flashcard));
+
+  // const { data: flashcards, isLoading, error } = useFlashcards(userId);
+
+  // console.log(flashcards);
+
   return (
     <Container adjust={true} classname={"px-6 grid grid-cols-4 gap-6"}>
       <Cards />

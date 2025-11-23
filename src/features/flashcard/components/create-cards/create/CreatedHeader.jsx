@@ -33,7 +33,7 @@ export default function CreatedHeader() {
           type="colors"
           submit={true}
           classname={"px-8"}
-          // onclick={toggleDisplayCardsInit}
+          onclick={toggleDisplayCardsInit}
         >
           Create
         </Button>

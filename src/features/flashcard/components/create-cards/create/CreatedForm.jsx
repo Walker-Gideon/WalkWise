@@ -15,7 +15,7 @@ import useUpdateFlashcard from "../../../hooks/useUpdateFlashcard";
 
 export default function CreatedForm({ editingId = null }) {
   const { control, register, handleSubmit, reset } = useForm();
-  const { createMutation, isCreating } = useCreateFlashcard();
+  const { createFlashcard, isCreating } = useCreateFlashcard();
   const { updateMutation, isUpdating } = useUpdateFlashcard();
 
   const onSubmit = async (data) => {
@@ -59,7 +59,14 @@ export default function CreatedForm({ editingId = null }) {
 
       // 5. React Query mutate
       if (editingId === null) {
-        createMutation(flashcard);
+        createFlashcard(
+          { flashcard },
+          {
+            onSuccess: () => {
+              reset();
+            },
+          },
+        );
       } else {
         updateMutation({ id: editingId, data: flashcard });
       }
@@ -68,6 +75,9 @@ export default function CreatedForm({ editingId = null }) {
       console.error(error.message);
     }
   };
+
+  // if flashcard is creating create a spinner
+  if (isCreating) return <p>loading...</p>;
 
   return (
     <>

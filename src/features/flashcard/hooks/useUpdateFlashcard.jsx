@@ -10,7 +10,7 @@ export default function useUpdateFlashcard() {
     mutationFn: ({ id, data }) => updateFlashcardAPI(id, data),
     onSuccess: () => {
       toast.success("Flashcard successfully updated");
-      //   queryClient.invalidateQueries({ queryKey: ["cabins"] });
+      //   queryClient.invalidateQueries({ queryKey: ["flashcards", userId] });
       console.log("Flashcard updated!");
       //   reset();
     },
