@@ -10,6 +10,7 @@ import Form from "/src/ui/Form";
 import Box from "/src/ui/Box";
 
 import { createFlashcard, updateFlashcard } from "/src/service/apiFlashcard";
+import toast from "react-hot-toast";
 
 export default function CreatedForm({ editingId = null }) {
   const { control, register, handleSubmit, reset } = useForm();
@@ -17,23 +18,27 @@ export default function CreatedForm({ editingId = null }) {
   const { mutate: createMutation, isPending: isCreating } = useMutation({
     mutationFn: createFlashcard,
     onSuccess: () => {
+      toast.success("Flashcard successfully created");
       console.log("Flashcard created!");
       reset();
     },
     onError: (err) => {
       console.error(err);
     },
+    // onError: (err) => toast.error(err.message),
   });
 
   const { mutate: updateMutation, isPending: isUpdating } = useMutation({
     mutationFn: ({ id, data }) => updateFlashcard(id, data),
     onSuccess: () => {
+      toast.success("Flashcard successfully updated");
       console.log("Flashcard updated!");
       reset();
     },
     onError: (err) => {
       console.error(err);
     },
+    // onError: (err) => toast.error(err.message),
   });
 
   const onSubmit = async (data) => {
@@ -58,13 +63,19 @@ export default function CreatedForm({ editingId = null }) {
 
       // 4. Build flashcard object
       const flashcard = {
+        id: crypto.randomUUID(), // optional: Firestore can generate its own
+        userId: null, // update when auth is ready
         title,
-        pairs: cleanedPairs,
+        pairs: cleanedPairs.map((pair) => ({
+          term: pair.term,
+          definition: pair.definition,
+          mastery: 0,
+          lastReviewed: null,
+        })),
+        status: "pending",
+        completed: false,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
-
-        // When auth is ready:
-        // userId: user?.uid || null,
       };
 
       console.log("Final Flashcard:", flashcard);
