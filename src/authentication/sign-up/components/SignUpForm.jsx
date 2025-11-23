@@ -27,41 +27,42 @@ export default function SignUpForm() {
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(email)) {
-      alert("Please enter a valid email address");
+      toast.error("Please enter a valid email address");
       return;
     }
 
     const trimmedUsername = username.trim();
     if (!trimmedUsername) {
-      alert("Username is required");
+      toast.error("Username is required");
       return;
     }
 
     if (trimmedUsername.length < 3) {
-      alert("Username must be at least 3 characters long");
+      toast.error("Username must be at least 3 characters long");
       return;
     }
 
     if (trimmedUsername.length > 20) {
-      alert("Username must be less than 20 characters");
+      toast.error("Username must be less than 20 characters");
+      setIsLoading(false);
       return;
     }
 
     const usernameRegex = /^[a-zA-Z0-9_-]+$/;
     if (!usernameRegex.test(trimmedUsername)) {
-      alert(
+      toast.error(
         "Username can only contain letters, numbers, underscores, and hyphens",
       );
       return;
     }
 
     if (password !== confirmPassword) {
-      alert("Passwords do not match");
+      toast.error("Passwords do not match");
       return;
     }
 
     if (password.length < 8) {
-      alert("Password must be at least 8 characters long");
+      toast.error("Password must be at least 8 characters long");
       return;
     }
 
@@ -70,7 +71,7 @@ export default function SignUpForm() {
     const hasNumbers = /\d/.test(password);
 
     if (!hasUpperCase || !hasLowerCase || !hasNumbers) {
-      alert(
+      toast.error(
         "Password must contain at least one uppercase letter, one lowercase letter, and one number",
       );
       return;
@@ -130,7 +131,8 @@ export default function SignUpForm() {
             {...register("password", { required: true })}
           />
           <Button
-            classname={"absolute top-1 -right-2"}
+            variant="secondary"
+            classname={"absolute top-2.5 right-2"}
             disabled={isLoading}
             onclick={(e) => {
               e.preventDefault();
@@ -156,7 +158,8 @@ export default function SignUpForm() {
             {...register("confirmPassword", { required: true })}
           />
           <Button
-            classname={"absolute top-1 -right-2"}
+            variant="secondary"
+            classname={"absolute top-2.5 right-2"}
             disabled={isLoading}
             onclick={(e) => {
               e.preventDefault();
