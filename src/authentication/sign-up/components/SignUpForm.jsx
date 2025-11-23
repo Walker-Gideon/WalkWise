@@ -1,70 +1,187 @@
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import { LuLoader } from "react-icons/lu";
+
 import Container from "/src/ui/Container";
 import Button from "/src/ui/Button";
-import Input from "/src/ui/Input";
 import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
 import Form from "/src/ui/Form";
 
+import { signUpUser } from "/src/service/apiAuth";
+import toast from "react-hot-toast";
+
 export default function SignUpForm() {
+  const [hidePassword, setHidePassword] = useState(true);
+  const [hideConfirmPassword, setHideConfirmPassword] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const { handleSubmit, register, reset } = useForm();
+
+  async function onSubmit(data) {
+    const { email, username, password, confirmPassword } = data;
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address");
+      return;
+    }
+
+    const trimmedUsername = username.trim();
+    if (!trimmedUsername) {
+      alert("Username is required");
+      return;
+    }
+
+    if (trimmedUsername.length < 3) {
+      alert("Username must be at least 3 characters long");
+      return;
+    }
+
+    if (trimmedUsername.length > 20) {
+      alert("Username must be less than 20 characters");
+      return;
+    }
+
+    const usernameRegex = /^[a-zA-Z0-9_-]+$/;
+    if (!usernameRegex.test(trimmedUsername)) {
+      alert(
+        "Username can only contain letters, numbers, underscores, and hyphens",
+      );
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    if (password.length < 8) {
+      alert("Password must be at least 8 characters long");
+      return;
+    }
+
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumbers = /\d/.test(password);
+
+    if (!hasUpperCase || !hasLowerCase || !hasNumbers) {
+      alert(
+        "Password must contain at least one uppercase letter, one lowercase letter, and one number",
+      );
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const { user } = await signUpUser({ email, username, password });
+      console.log("User signed up:", user);
+
+      toast.success("Account created successfully");
+      navigate("/dashboard", { replace: true });
+      reset();
+    } catch (err) {
+      toast.error(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  const styling = `w-full rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs hover:border-slate-400 focus:ring-2 focus:ring-slate-400 focus:outline-hidden`;
+
   return (
     <Container adjust={true} classname={"medium:w-80 mt-4 w-70"}>
-      <Form>
-        {/* disabled={} value={} onChange={} */}
+      <Form onsubmit={handleSubmit(onSubmit)}>
         <Flex classname={"flex-col"}>
-          <Input
+          <input
+            id="email"
             type="email"
             name="email"
             placeholder="Email"
-            required={true}
-            classname={"w-full"}
+            disabled={isLoading}
+            className={`${styling}`}
+            {...register("email", { required: true })}
           />
-          <Input
+
+          <input
+            id="username"
             type="text"
             name="username"
             placeholder="Username"
-            required={true}
-            classname={"w-full mt-2"}
+            disabled={isLoading}
+            className={`${styling} mt-2`}
+            {...register("username", { required: true })}
           />
         </Flex>
+
         <Box adjustWidth={true} classname={"relative my-2"}>
-          {/* !hidePassword ? "text" : "password" */}
-          <Input
-            type="text"
+          <input
+            id="password"
+            type={!hidePassword ? "text" : "password"}
             name="password"
             placeholder="Password"
-            required={true}
-            classname={"w-full"}
+            disabled={isLoading}
+            className={`${styling}`}
+            {...register("password", { required: true })}
           />
-          {/* {hidePassword ? (
-              <FiEye className={stylings.icon} />
+          <Button
+            classname={"absolute top-1 -right-2"}
+            disabled={isLoading}
+            onclick={(e) => {
+              e.preventDefault();
+              setHidePassword(!hidePassword);
+            }}
+          >
+            {hidePassword ? (
+              <FiEye className="text-sm" />
             ) : (
-              <FiEyeOff className={stylings.icon} />
-            )} */}
-          <Button classname={"absolute top-1 -right-2"}>
-            <FiEye className="text-sm" />
+              <FiEyeOff className="text-sm" />
+            )}
           </Button>
         </Box>
+
         <Box adjustWidth={true} classname={"relative pb-2"}>
-          {/* {!hideConfirmPassword ? "text" : "password"} */}
-          <Input
-            type="text"
-            name="confirm-password"
+          <input
+            id="confirmPassword"
+            type={!hideConfirmPassword ? "text" : "password"}
+            name="confirmPassword"
             placeholder="Confirm password"
-            required={true}
-            classname={"w-full"}
+            disabled={isLoading}
+            className={`${styling}`}
+            {...register("confirmPassword", { required: true })}
           />
-          <Button classname={"absolute top-1 -right-2"}>
-            <FiEyeOff className="text-sm" />
+          <Button
+            classname={"absolute top-1 -right-2"}
+            disabled={isLoading}
+            onclick={(e) => {
+              e.preventDefault();
+              setHideConfirmPassword(!hideConfirmPassword);
+            }}
+          >
+            {hideConfirmPassword ? (
+              <FiEye className="text-sm" />
+            ) : (
+              <FiEyeOff className="text-sm" />
+            )}
           </Button>
         </Box>
+
         <Button
           type="colors"
+          submit={true}
+          disabled={isLoading}
           classname="w-full flex items-center justify-center"
         >
-          <LuLoader className="for spinning h-5 w-5 animate-spin" />
-          Sign up
+          {!isLoading ? (
+            "Sign up"
+          ) : (
+            <LuLoader className="for spinning h-5 w-5 animate-spin" />
+          )}
         </Button>
       </Form>
     </Container>
