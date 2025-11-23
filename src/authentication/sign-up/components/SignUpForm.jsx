@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import { LuLoader } from "react-icons/lu";
@@ -12,7 +13,6 @@ import Box from "/src/ui/Box";
 import Form from "/src/ui/Form";
 
 import { signUpUser } from "/src/service/apiAuth";
-import toast from "react-hot-toast";
 
 export default function SignUpForm() {
   const [hidePassword, setHidePassword] = useState(true);
