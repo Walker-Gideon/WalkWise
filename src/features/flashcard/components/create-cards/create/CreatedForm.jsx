@@ -10,7 +10,20 @@ import Box from "/src/ui/Box";
 
 export default function CreatedForm() {
   const { control, register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = async (data) => {
+    // 1. Check for user
+
+    // 2. Check the term is empty if yes set it to untitle
+
+    // 3. Check for empty term or definition
+
+    // 4. Creating flashcard
+
+    // 5. Editing flashcard
+
+    console.log(data);
+  };
 
   return (
     <>
@@ -50,5 +63,14 @@ const { register, handleSubmit, reset, getValues, formState } = useForm({
           disabled={isWorking}
           {...register("name", { require: "This field is required" })}
         />
+
+    
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input defaultValue="test" {...register("example")} />
+      <input {...register("exampleRequired", { required: true })} />
+      {errors.exampleRequired && <span>This field is required</span>}
+      <button>Submit</button>
+    </form>
 
 */
