@@ -10,25 +10,13 @@ import CreatedTag from "./CreatedTag";
 import Form from "/src/ui/Form";
 import Box from "/src/ui/Box";
 
-import { updateFlashcard } from "/src/service/apiFlashcard";
 import useCreateFlashcard from "../../../hooks/useCreateFlashcard";
+import useUpdateFlashcard from "../../../hooks/useUpdateFlashcard";
 
 export default function CreatedForm({ editingId = null }) {
   const { control, register, handleSubmit, reset } = useForm();
   const { createMutation, isCreating } = useCreateFlashcard();
-
-  const { mutate: updateMutation, isPending: isUpdating } = useMutation({
-    mutationFn: ({ id, data }) => updateFlashcard(id, data),
-    onSuccess: () => {
-      toast.success("Flashcard successfully updated");
-      console.log("Flashcard updated!");
-      reset();
-    },
-    onError: (err) => {
-      console.error(err);
-    },
-    // onError: (err) => toast.error(err.message),
-  });
+  const { updateMutation, isUpdating } = useUpdateFlashcard();
 
   const onSubmit = async (data) => {
     try {
