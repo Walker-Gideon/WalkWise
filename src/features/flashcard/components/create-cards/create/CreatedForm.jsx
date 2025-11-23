@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 import CreatedNotification from "./CreatedNotification";
 import CreatedAddButton from "./CreatedAddButton";
@@ -9,24 +10,12 @@ import CreatedTag from "./CreatedTag";
 import Form from "/src/ui/Form";
 import Box from "/src/ui/Box";
 
-import { createFlashcard, updateFlashcard } from "/src/service/apiFlashcard";
-import toast from "react-hot-toast";
+import { updateFlashcard } from "/src/service/apiFlashcard";
+import useCreateFlashcard from "../../../hooks/useCreateFlashcard";
 
 export default function CreatedForm({ editingId = null }) {
   const { control, register, handleSubmit, reset } = useForm();
-
-  const { mutate: createMutation, isPending: isCreating } = useMutation({
-    mutationFn: createFlashcard,
-    onSuccess: () => {
-      toast.success("Flashcard successfully created");
-      console.log("Flashcard created!");
-      reset();
-    },
-    onError: (err) => {
-      console.error(err);
-    },
-    // onError: (err) => toast.error(err.message),
-  });
+  const { createMutation, isCreating } = useCreateFlashcard();
 
   const { mutate: updateMutation, isPending: isUpdating } = useMutation({
     mutationFn: ({ id, data }) => updateFlashcard(id, data),
