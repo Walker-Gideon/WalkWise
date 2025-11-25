@@ -77,11 +77,9 @@ export default function CreatedForm({ editingId = null }) {
     }
   };
 
-  // if flashcard is creating create a spinner
-  if (!isCreating) return <Spinner />;
-
   return (
     <>
+      {isCreating && <Spinner />}
       <Form onsubmit={handleSubmit(onSubmit)}>
         <CreatedHeader onHandleSubmit={handleSubmit} />
         <Box
