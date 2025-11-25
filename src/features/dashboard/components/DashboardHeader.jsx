@@ -8,9 +8,9 @@ import Flex from "/src/ui/Flex";
 import { useUserData } from "/src/user/hook/useUserData";
 
 export default function DashboardHeader() {
-  const { userData, loading } = useUserData();
-  const username = loading ? "username" : `${userData?.username}`;
-  const streak = userData?.streakCount;
+  const { userData } = useUserData();
+  const username = userData ? `${userData?.username}` : "username";
+  const streak = userData ? userData?.streakCount : 0;
 
   return (
     <Heading

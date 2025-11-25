@@ -1,18 +1,17 @@
-import { useMutation } from "@tanstack/react-query";
+import { auth } from "/src/service/firebase";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 
 import CreatedNotification from "./CreatedNotification";
 import CreatedAddButton from "./CreatedAddButton";
 import CreatedHeader from "./CreatedHeader";
 import CreatedInputs from "./CreatedInputs";
 import CreatedTag from "./CreatedTag";
+import Spinner from "/src/ui/Spinner";
 import Form from "/src/ui/Form";
 import Box from "/src/ui/Box";
 
 import useCreateFlashcard from "../../../hooks/useCreateFlashcard";
 import useUpdateFlashcard from "../../../hooks/useUpdateFlashcard";
-import Spinner from "../../../../../ui/Spinner";
 
 export default function CreatedForm({ editingId = null }) {
   const { control, register, handleSubmit, reset } = useForm();
@@ -20,13 +19,11 @@ export default function CreatedForm({ editingId = null }) {
   const { updateMutation, isUpdating } = useUpdateFlashcard();
 
   const onSubmit = async (data) => {
+    const user = auth.currentUser;
+    if (!user) return;
+
     try {
-      // 1. Check for user
-
-      // 2. Title logic
       const title = data.tags?.trim() || "Untitled";
-
-      // 3. Clean empty pairs
       const cleanedPairs = data.pairs
         .map((pair) => ({
           term: pair.term?.trim(),
@@ -35,14 +32,11 @@ export default function CreatedForm({ editingId = null }) {
         .filter((pair) => pair.term !== "" && pair.definition !== "");
 
       if (cleanedPairs.length === 0) {
-        console.log("Flashcard cannot be empty.");
         return;
       }
 
-      // 4. Build flashcard object
       const flashcard = {
-        id: crypto.randomUUID(), // optional: Firestore can generate its own
-        userId: null, // update when auth is ready
+        userId: user.uid,
         title,
         pairs: cleanedPairs.map((pair) => ({
           term: pair.term,
@@ -58,16 +52,12 @@ export default function CreatedForm({ editingId = null }) {
 
       console.log("Final Flashcard:", flashcard);
 
-      // 5. React Query mutate
       if (editingId === null) {
-        createFlashcard(
-          { flashcard },
-          {
-            onSuccess: () => {
-              reset();
-            },
+        createFlashcard(flashcard, {
+          onSuccess: () => {
+            reset();
           },
-        );
+        });
       } else {
         updateMutation({ id: editingId, data: flashcard });
       }

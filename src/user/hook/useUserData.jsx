@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { auth, db } from "../../service/firebase";
+import { auth, db } from "/src/service/firebase";
 import { doc, onSnapshot } from "firebase/firestore";
 
 export function useUserData() {
