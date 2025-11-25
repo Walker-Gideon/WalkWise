@@ -12,6 +12,7 @@ import Box from "/src/ui/Box";
 
 import useCreateFlashcard from "../../../hooks/useCreateFlashcard";
 import useUpdateFlashcard from "../../../hooks/useUpdateFlashcard";
+import Spinner from "../../../../../ui/Spinner";
 
 export default function CreatedForm({ editingId = null }) {
   const { control, register, handleSubmit, reset } = useForm();
@@ -77,7 +78,7 @@ export default function CreatedForm({ editingId = null }) {
   };
 
   // if flashcard is creating create a spinner
-  if (isCreating) return <p>loading...</p>;
+  if (!isCreating) return <Spinner />;
 
   return (
     <>
