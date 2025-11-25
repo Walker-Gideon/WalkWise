@@ -5,10 +5,16 @@ import SpanText from "/src/ui/SpanText";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
+import { useUserData } from "/src/user/hook/useUserData";
+
 export default function DashboardHeader() {
+  const { userData, loading } = useUserData();
+  const username = loading ? "username" : `${userData?.username}`;
+  const streak = userData?.streakCount;
+
   return (
     <Heading
-      headerText="Welcome,&nbsp; username"
+      headerText={`Welcome, ${username}`}
       paragraphText="Glad to have you on board."
       theme={true}
     >
@@ -20,7 +26,7 @@ export default function DashboardHeader() {
         >
           <LuFlame className="mb-1 h-4 w-4 text-slate-600 dark:text-slate-300" />
           <SpanText classname={"text-sm font-medium secondary-text-color"}>
-            X day streak
+            {streak} day streak
           </SpanText>
         </Group>
       </Flex>
