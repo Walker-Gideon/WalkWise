@@ -8,13 +8,66 @@ import Container from "/src/ui/Container";
 import Card from "/src/components/Card";
 import Group from "/src/ui/Group";
 
+import { getFlashcards } from "/src/service/apiFlashcard";
+import { useUserData } from "/src/user/hook/useUserData";
+import { useQuery } from "@tanstack/react-query";
+
 export default function CardContentDisplay() {
+  const { userData } = useUserData();
+
+  const {
+    data: flashcards,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["flashcards", userData?.uid],
+    queryFn: () => getFlashcards(userData.uid),
+    enabled: !!userData?.uid, // only run if userData.uid exists
+  });
+
+  console.log("flashcard data", flashcards);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error fetching flashcards</div>;
+
+  /*
+  // Function to fetch the flashcards
+  async function handleFlashcardsClick(flashcardId) {
+    try {
+      const flashcardsRef = doc(
+        db,
+        "users",
+        user.uid,
+        "flashcards",
+        flashcardId,
+      );
+      const flashcardSnap = await getDoc(flashcardsRef);
+
+      if (flashcardSnap.exists()) {
+        const flashcardData = flashcardSnap.data();
+        setCurrentFlashcard({ id: flashcardId, ...flashcardData });
+
+        // Display the flashcard on click
+        setShowPreview(true);
+        setShowCreateFlashcard(true);
+        setReadAlredyFlashcard(true);
+
+        // Set the id for the case a user want to edit
+        SetEditFlashcardData({ id: flashcardId, ...flashcardData });
+      }
+
+      setQueryFlashcard("");
+      setFilteredFlashcard(displayCreatedFlashcard);
+    } catch (error) {
+      return error;
+    } finally {
+      setLoadingFC(false);
+    }
+  }
+    */
+
   return (
     <Container adjust={true} classname={"px-6 grid grid-cols-4 gap-6"}>
-      <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
       <Cards />
     </Container>
   );

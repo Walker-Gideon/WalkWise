@@ -27,25 +27,22 @@ export async function updateFlashcard(id, data) {
   return { id, ...data };
 }
 
-// Fetch all flashcards for a specific user (or all if userId is null)
-export async function getFlashcards(userId = null) {
-  const colRef = collection(db, "flashcards");
+/**
+ * Fetch flashcards for a specific user
+ * @param {string} userId
+ * @returns {Promise<Array>} Array of flashcards
+ */
+export async function getFlashcards(userId) {
+  if (!userId) return [];
 
-  let q;
-  if (userId) {
-    q = query(
-      colRef,
-      where("userId", "==", userId),
-      orderBy("createdAt", "desc"),
-    );
-  } else {
-    q = query(colRef, orderBy("createdAt", "desc"));
-  }
-
+  const flashcardsRef = collection(db, "flashcards");
+  const q = query(flashcardsRef, where("userId", "==", userId));
   const snapshot = await getDocs(q);
-  const flashcards = snapshot.docs.map((doc) => ({
+
+  const userFlashcards = snapshot.docs.map((doc) => ({
     id: doc.id,
     ...doc.data(),
   }));
-  return flashcards;
+
+  return userFlashcards;
 }
