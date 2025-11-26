@@ -6,13 +6,33 @@ import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
 import Container from "/src/ui/Container";
 import Card from "/src/components/Card";
+import Spinner from "/src/ui/Spinner";
 import Group from "/src/ui/Group";
 
-export default function CardContentDisplay() {
-  console.log("flashcard data", flashcards);
+import { useFetchCards } from "../../../hooks/useCards";
+import toast from "react-hot-toast";
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error fetching flashcards</div>;
+export default function CardContentDisplay() {
+  const { flashcards, isLoading, error } = useFetchCards();
+
+  console.log("flashcard data", flashcards);
+  console.log("flashcard date", flashcards?.updatedAt);
+
+  // const formattedFlashcards = flashcards.map((card) => {
+  //   const date = new Date(card.createdAt);
+  //   const formattedDate = date.toLocaleDateString("en-US", {
+  //     month: "2-digit",
+  //     day: "2-digit",
+  //     year: "numeric",
+  //   });
+
+  //   return {
+  //     ...card,
+  //     formattedDate,
+  //   };
+  // });
+
+  // console.log(formattedFlashcards);
 
   /*
   // Function to fetch the flashcards
@@ -51,13 +71,23 @@ export default function CardContentDisplay() {
     */
 
   return (
-    <Container adjust={true} classname={"px-6 grid grid-cols-4 gap-6"}>
-      <Cards />
-    </Container>
+    <>
+      {isLoading && <Spinner />}
+      <Container adjust={true} classname={"px-6 grid grid-cols-4 gap-6"}>
+        {flashcards?.map((card) => (
+          <Cards
+            key={card.id}
+            title={card.title}
+            numOfCards={card.pairs.length}
+          />
+        ))}
+      </Container>
+      {error && toast.error("Error fetching flashcards")}
+    </>
   );
 }
 
-function Cards() {
+function Cards({ title, numOfCards }) {
   const styling = {
     button:
       "rounded-sm bg-slate-500 p-2 text-white opacity-0 transition-colors group-hover:opacity-100 hover:bg-slate-600",
@@ -66,10 +96,10 @@ function Cards() {
 
   return (
     <Card classname={"cursor-pointer group"}>
-      <HeaderText classname={"mb-6"}>Titile</HeaderText>
+      <HeaderText classname={"mb-6"}>{title}</HeaderText>
       <Group classname={"flex items-center justify-between"}>
         <Paragraph type="xs" classname={"text-slate-500 dark:text-slate-400"}>
-          # card(s)
+          {numOfCards} card{numOfCards === 1 ? "" : "s"}
         </Paragraph>
         <Paragraph>
           timing{" "}
