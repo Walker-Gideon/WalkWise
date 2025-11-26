@@ -8,23 +8,7 @@ import Container from "/src/ui/Container";
 import Card from "/src/components/Card";
 import Group from "/src/ui/Group";
 
-import { getFlashcards } from "/src/service/apiFlashcard";
-import { useUserData } from "/src/user/hook/useUserData";
-import { useQuery } from "@tanstack/react-query";
-
 export default function CardContentDisplay() {
-  const { userData } = useUserData();
-
-  const {
-    data: flashcards,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["flashcards", userData?.uid],
-    queryFn: () => getFlashcards(userData.uid),
-    enabled: !!userData?.uid, // only run if userData.uid exists
-  });
-
   console.log("flashcard data", flashcards);
 
   if (isLoading) return <div>Loading...</div>;
