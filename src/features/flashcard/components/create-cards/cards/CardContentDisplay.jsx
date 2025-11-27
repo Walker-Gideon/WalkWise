@@ -8,7 +8,9 @@ import Paragraph from "/src/ui/Paragraph";
 import Container from "/src/ui/Container";
 import Card from "/src/components/Card";
 import Spinner from "/src/ui/Spinner";
+import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
+import Flex from "/src/ui/Flex";
 
 import { useFetchCards } from "../../../hooks/useCards";
 import useFormattedDate from "/src/hook/useFormattedDate";
@@ -60,7 +62,7 @@ export default function CardContentDisplay() {
       <Container
         adjust={true}
         classname={
-          "medium:grid-cols-2 grid grid-cols-1 gap-4 medium:gap-6 lg:grid-cols-4 px-6"
+          "px-6 overflow-y-scroll h-screen medium:px-8 lg:mx-auto lg:max-w-5xl medium:h-105"
         }
       >
         {flashcards?.map((card) => (
@@ -81,18 +83,49 @@ function Cards({ title, numOfCards, timing }) {
   const createdExact = useFormattedDate(timing);
 
   return (
-    <Card classname={"cursor-pointer group flex flex-col justify-between"}>
-      <HeaderText classname={"mb-6 primary-text-color"}>{title}</HeaderText>
-      <Group classname={"flex items-center justify-between"}>
-        <Paragraph type="xs" classname={"secondary-text-color"}>
-          {numOfCards} card{numOfCards === 1 ? "" : "s"}
-        </Paragraph>
-        <Paragraph
-          variant="small"
-          classname={"flex items-center text-nowrap secondary-text-color gap-1"}
-        >
-          <GoDotFill className="h-3 w-3" /> {createdExact}
-        </Paragraph>
+    <Card
+      classname={
+        "cursor-pointer group flex gap-4 mb-4 mt-1 shadow-md transition-all duration-300 ease-in-out"
+      }
+    >
+      <div
+        className={`h-4 w-4 rounded-full bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700`}
+      ></div>
+
+      <Group classname={"w-full"}>
+        <Flex variant="between" classname={"mb-4"}>
+          <HeaderText classname={" primary-text-color"}>{title}</HeaderText>
+
+          <Flex classname={"gap-2"}>
+            <Button
+              type="colors"
+              classname={"opacity-0 group-hover:opacity-100"}
+            >
+              <RiDeleteBin5Line className={"h-4 w-4"} />
+            </Button>
+            <Button
+              type="colors"
+              classname={"opacity-0 group-hover:opacity-100"}
+            >
+              <LuPlay className={"h-4 w-4"} />
+            </Button>
+          </Flex>
+        </Flex>
+
+        <Flex variant="between">
+          <Paragraph type="xs" classname={"secondary-text-color"}>
+            {numOfCards} card{numOfCards === 1 ? "" : "s"}
+          </Paragraph>
+
+          <Paragraph
+            variant="small"
+            classname={
+              "flex items-center text-nowrap secondary-text-color gap-1"
+            }
+          >
+            <GoDotFill className="h-3 w-3" /> {createdExact}
+          </Paragraph>
+        </Flex>
       </Group>
     </Card>
   );
