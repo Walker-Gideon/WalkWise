@@ -15,24 +15,21 @@ import toast from "react-hot-toast";
 export default function CardContentDisplay() {
   const { flashcards, isLoading, error } = useFetchCards();
 
-  console.log("flashcard data", flashcards);
-  console.log("flashcard date", flashcards?.updatedAt);
+  const formattedFlashcards = flashcards?.map((card) => {
+    const date = new Date(card.createdAt);
+    const formattedDate = date.toLocaleDateString("en-US", {
+      month: "2-digit",
+      day: "2-digit",
+      year: "numeric",
+    });
 
-  // const formattedFlashcards = flashcards.map((card) => {
-  //   const date = new Date(card.createdAt);
-  //   const formattedDate = date.toLocaleDateString("en-US", {
-  //     month: "2-digit",
-  //     day: "2-digit",
-  //     year: "numeric",
-  //   });
+    return {
+      ...card,
+      formattedDate,
+    };
+  });
 
-  //   return {
-  //     ...card,
-  //     formattedDate,
-  //   };
-  // });
-
-  // console.log(formattedFlashcards);
+  console.log(formattedFlashcards);
 
   /*
   // Function to fetch the flashcards
@@ -73,12 +70,18 @@ export default function CardContentDisplay() {
   return (
     <>
       {isLoading && <Spinner />}
-      <Container adjust={true} classname={"px-6 grid grid-cols-4 gap-6"}>
-        {flashcards?.map((card) => (
+      <Container
+        adjust={true}
+        classname={
+          "medium:grid-cols-2 grid grid-cols-1 gap-4 medium:gap-6 lg:grid-cols-4 px-6"
+        }
+      >
+        {formattedFlashcards?.map((card) => (
           <Cards
             key={card.id}
             title={card.title}
             numOfCards={card.pairs.length}
+            timing={card.formattedDate}
           />
         ))}
       </Container>
@@ -87,23 +90,19 @@ export default function CardContentDisplay() {
   );
 }
 
-function Cards({ title, numOfCards }) {
-  const styling = {
-    button:
-      "rounded-sm bg-slate-500 p-2 text-white opacity-0 transition-colors group-hover:opacity-100 hover:bg-slate-600",
-    icon: "h-4 w-4",
-  };
-
+function Cards({ title, numOfCards, timing }) {
   return (
-    <Card classname={"cursor-pointer group"}>
-      <HeaderText classname={"mb-6"}>{title}</HeaderText>
+    <Card classname={"cursor-pointer group flex flex-col justify-between"}>
+      <HeaderText classname={"mb-6 primary-text-color"}>{title}</HeaderText>
       <Group classname={"flex items-center justify-between"}>
-        <Paragraph type="xs" classname={"text-slate-500 dark:text-slate-400"}>
+        <Paragraph type="xs" classname={"secondary-text-color"}>
           {numOfCards} card{numOfCards === 1 ? "" : "s"}
         </Paragraph>
-        <Paragraph>
-          timing{" "}
-          <GoDotFill className="h-3 w-3 text-slate-500 dark:text-slate-400" />
+        <Paragraph
+          variant="small"
+          classname={"flex items-center text-nowrap secondary-text-color gap-1"}
+        >
+          <GoDotFill className="h-3 w-3" /> {timing}
         </Paragraph>
       </Group>
     </Card>
