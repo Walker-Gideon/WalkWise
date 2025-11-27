@@ -1,4 +1,5 @@
 import toast from "react-hot-toast";
+
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { GoDotFill } from "react-icons/go";
 import { LuPlay } from "react-icons/lu";
@@ -17,8 +18,6 @@ import useFormattedDate from "/src/hook/useFormattedDate";
 
 export default function CardContentDisplay() {
   const { flashcards, isLoading, error } = useFetchCards();
-
-  console.log(flashcards);
 
   /*
   // Function to fetch the flashcards
@@ -59,12 +58,7 @@ export default function CardContentDisplay() {
   return (
     <>
       {isLoading && <Spinner />}
-      <Container
-        adjust={true}
-        classname={
-          "px-6 overflow-y-scroll h-screen medium:px-8 lg:mx-auto lg:max-w-5xl medium:h-105"
-        }
-      >
+      <Container adjust={true} classname={"md:px-8 lg:mx-auto lg:max-w-5xl"}>
         {flashcards?.map((card) => (
           <Cards
             key={card.id}

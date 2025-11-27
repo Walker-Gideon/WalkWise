@@ -7,14 +7,10 @@ import Flex from "/src/ui/Flex";
 
 export default function CardsSubHeader() {
   return (
-    <Flex
-      variant="between"
-      // medium:max-w-80  middle:max-w-xl medium:max-w-xl items-end justify-end
-      classname={"medium:my-6 px-6"}
-    >
+    <Flex variant="between" classname={"my-6 gap-1"}>
       <Button
         type="border"
-        classname={"px-8 border-stone-300 dark:text-white"}
+        classname={"px-6 border-stone-300 dark:text-white"}
         onclick={() => {}}
       >
         Sort By
@@ -27,14 +23,10 @@ export default function CardsSubHeader() {
           // onChange={}
           placeholder="Search flashcards"
           // onKeyDown={}
-          classname={
-            "w-full bg-transparent dark:text-white"
-          }
+          classname={"w-full bg-transparent dark:text-white"}
           // disabled={}
         />
-        <LuSearch
-          className="absolute top-2.5 right-2 text-sm text-slate-600 dark:text-slate-300"
-        />
+        <LuSearch className="absolute top-2.5 right-2 text-sm text-slate-600 dark:text-slate-300" />
       </Group>
     </Flex>
   );

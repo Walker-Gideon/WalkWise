@@ -9,7 +9,7 @@ export default function CreateFlashcardLayout() {
   const { isCardsInitDisplay } = useFlashcard();
 
   return (
-    <Container adjust={true}>
+    <Container>
       <Conditional condition={isCardsInitDisplay}>
         <CreatedForm />
       </Conditional>
