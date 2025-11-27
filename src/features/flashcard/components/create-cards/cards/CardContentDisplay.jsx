@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { GoDotFill } from "react-icons/go";
 import { LuPlay } from "react-icons/lu";
@@ -10,26 +11,12 @@ import Spinner from "/src/ui/Spinner";
 import Group from "/src/ui/Group";
 
 import { useFetchCards } from "../../../hooks/useCards";
-import toast from "react-hot-toast";
+import useFormattedDate from "/src/hook/useFormattedDate";
 
 export default function CardContentDisplay() {
   const { flashcards, isLoading, error } = useFetchCards();
 
-  const formattedFlashcards = flashcards?.map((card) => {
-    const date = new Date(card.createdAt);
-    const formattedDate = date.toLocaleDateString("en-US", {
-      month: "2-digit",
-      day: "2-digit",
-      year: "numeric",
-    });
-
-    return {
-      ...card,
-      formattedDate,
-    };
-  });
-
-  console.log(formattedFlashcards);
+  console.log(flashcards);
 
   /*
   // Function to fetch the flashcards
@@ -76,12 +63,12 @@ export default function CardContentDisplay() {
           "medium:grid-cols-2 grid grid-cols-1 gap-4 medium:gap-6 lg:grid-cols-4 px-6"
         }
       >
-        {formattedFlashcards?.map((card) => (
+        {flashcards?.map((card) => (
           <Cards
             key={card.id}
             title={card.title}
             numOfCards={card.pairs.length}
-            timing={card.formattedDate}
+            timing={card.createdAt}
           />
         ))}
       </Container>
@@ -91,6 +78,8 @@ export default function CardContentDisplay() {
 }
 
 function Cards({ title, numOfCards, timing }) {
+  const createdExact = useFormattedDate(timing);
+
   return (
     <Card classname={"cursor-pointer group flex flex-col justify-between"}>
       <HeaderText classname={"mb-6 primary-text-color"}>{title}</HeaderText>
@@ -102,7 +91,7 @@ function Cards({ title, numOfCards, timing }) {
           variant="small"
           classname={"flex items-center text-nowrap secondary-text-color gap-1"}
         >
-          <GoDotFill className="h-3 w-3" /> {timing}
+          <GoDotFill className="h-3 w-3" /> {createdExact}
         </Paragraph>
       </Group>
     </Card>
