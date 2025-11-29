@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import { LuLoader } from "react-icons/lu";
@@ -10,9 +10,8 @@ import Conditional from "/src/components/Conditional";
 import Container from "/src/ui/Container";
 import SpanText from "/src/ui/SpanText";
 import Button from "/src/ui/Button";
-import Input from "/src/ui/Input";
-import Box from "/src/ui/Box";
 import Form from "/src/ui/Form";
+import Box from "/src/ui/Box";
 
 export default function SignInForm() {
   const [hidePassword, setHidePassword] = useState(true);
@@ -76,7 +75,7 @@ export default function SignInForm() {
           classname={"w-full flex items-center justify-center"}
         > 
           <Conditional condition={!isLoading}>
-            <SpanText>Sign up</SpanText>
+            <SpanText>Log in</SpanText>
           </Conditional>
           <Conditional condition={isLoading}>
             <LuLoader className="for spinning h-5 w-5 animate-spin" />

@@ -1,16 +1,18 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import { LuLoader } from "react-icons/lu";
 
+import Conditional from "/src/components/Conditional";
 import Container from "/src/ui/Container";
+import SpanText from "/src/ui/SpanText";
 import Button from "/src/ui/Button";
 import Flex from "/src/ui/Flex";
-import Box from "/src/ui/Box";
 import Form from "/src/ui/Form";
+import Box from "/src/ui/Box";
 
 import { signUpUser } from "/src/service/apiAuth";
 
@@ -139,11 +141,12 @@ export default function SignUpForm() {
               setHidePassword(!hidePassword);
             }}
           >
-            {hidePassword ? (
+            <Conditional condition={hidePassword}>
               <FiEye className="text-sm" />
-            ) : (
+            </Conditional>
+            <Conditional condition={!hidePassword}>
               <FiEyeOff className="text-sm" />
-            )}
+            </Conditional>
           </Button>
         </Box>
 
@@ -166,11 +169,12 @@ export default function SignUpForm() {
               setHideConfirmPassword(!hideConfirmPassword);
             }}
           >
-            {hideConfirmPassword ? (
+            <Conditional condition={hideConfirmPassword}>
               <FiEye className="text-sm" />
-            ) : (
+            </Conditional>
+            <Conditional condition={!hideConfirmPassword}>
               <FiEyeOff className="text-sm" />
-            )}
+            </Conditional>
           </Button>
         </Box>
 
@@ -180,11 +184,12 @@ export default function SignUpForm() {
           disabled={isLoading}
           classname="w-full flex items-center justify-center"
         >
-          {!isLoading ? (
-            "Sign up"
-          ) : (
+          <Conditional condition={!isLoading}>
+            <SpanText>Sign up</SpanText>
+          </Conditional>
+          <Conditional condition={isLoading}>
             <LuLoader className="for spinning h-5 w-5 animate-spin" />
-          )}
+          </Conditional>
         </Button>
       </Form>
     </Container>
