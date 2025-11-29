@@ -8,7 +8,7 @@ export default function FlashcardHeader() {
   return (
     <Heading
       headerText="My Flashcards"
-      paragraphText="Learn smarter with personalized flashcards." //When create a flashacard use this "Reinforce your memory, one card at a time."
+      paragraphText="Learn smarter with personalized flashcards." 
       theme={true}
       classname={`${isDisplay ? "hidden" : ""}`}
     ></Heading>

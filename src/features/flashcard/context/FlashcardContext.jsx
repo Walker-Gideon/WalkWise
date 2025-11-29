@@ -3,10 +3,6 @@ import { createContext, useContext, useState } from "react";
 const FlashcardContext = createContext();
 
 function FlashcardProvider({ children }) {
-  const [isDisplayFlashcardLayout, setIsDisplayFlashcardLayout] =
-    useState(false);
-  const [isCardsInitDisplay, setIsCardsInitDisplay] = useState(false);
-
   const [isDisplay, setIsDisplay] = useState(false);
 
   // Create flashcard
@@ -43,17 +39,11 @@ function FlashcardProvider({ children }) {
     // States
     pairs,
     index,
-    isDisplayFlashcardLayout,
-    isCardsInitDisplay,
-
     isDisplay,
 
     // Setters
     setPairs,
     setIndex,
-    setIsDisplayFlashcardLayout,
-    setIsCardsInitDisplay,
-
     setIsDisplay,
 
     // Values

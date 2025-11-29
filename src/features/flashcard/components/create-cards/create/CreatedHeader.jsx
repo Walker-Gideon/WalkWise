@@ -7,7 +7,6 @@ import useToggleDisplay from "/src/hook/useToggleDisplay";
 
 export default function CreatedHeader() {
   const { setIsDisplay } = useFlashcard();
-
   const handleCancel = useToggleDisplay(setIsDisplay);
 
   return (
