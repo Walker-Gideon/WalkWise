@@ -75,7 +75,7 @@ export default function CreatedForm({ editingId = null }) {
         <Box
           adjustWidth={true}
           classname={
-            "mx-auto medium:mt-8 mt-14 max-w-3xl maxmid:max-w-4xl medium:h-[78vh] overflow-y-scroll"
+            "max-w-3xl maxmid:max-w-4xl mx-auto medium:mt-8 mt-14 px-8 medium:h-[78vh] overflow-y-scroll"
           }
         >
           <CreatedTag register={register} />

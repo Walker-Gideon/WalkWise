@@ -24,7 +24,7 @@ export default function CreatedInputs({ control }) {
         <Group
           key={idx}
           classname={
-            "flex flex-col gap-4 rounded-lg bg-slate-50 p-4 dark:bg-slate-600"
+            "flex flex-col gap-4 rounded-lg bg-white p-4 dark:bg-slate-600"
           }
         >
           <Group>

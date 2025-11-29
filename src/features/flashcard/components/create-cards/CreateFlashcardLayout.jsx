@@ -10,10 +10,10 @@ export default function CreateFlashcardLayout() {
 
   return (
     <Container>
-      <Conditional condition={isCardsInitDisplay}>
+      <Conditional condition={!isCardsInitDisplay}>
         <CreatedForm />
       </Conditional>
-      <Conditional condition={!isCardsInitDisplay}>
+      <Conditional condition={isCardsInitDisplay}>
         <CardsInitDisplay />
       </Conditional>
     </Container>
