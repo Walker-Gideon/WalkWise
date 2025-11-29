@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { auth, db } from "./firebase";
 
@@ -11,7 +11,6 @@ import { auth, db } from "./firebase";
 
 export async function signUpUser({ email, username, password }) {
   try {
-    // 1. Create user in Firebase Auth
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
@@ -19,10 +18,8 @@ export async function signUpUser({ email, username, password }) {
     );
     const user = userCredential.user;
 
-    // 2. Update display name
     await updateProfile(user, { displayName: username, photoURL: null });
 
-    // 3. Create user doc in Firestore
     await setDoc(doc(db, "users", user.uid), {
       uid: user.uid,
       email,
@@ -74,3 +71,91 @@ export async function signUpUser({ email, username, password }) {
     throw new Error(errorMessage);
   }
 }
+
+/**
+ * Sign in a user
+ * @param {string} email
+ * @param {string} password
+ */
+
+export async function loginUser({ email, password }) {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (err) {
+  }
+}
+
+/*
+e.preventDefault();
+    setError("");
+    setIsSigningUp(true);
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address");
+      setIsSigningUp(false);
+      return;
+    }
+
+    if (!email || !password) {
+      setError("Email and password are required.");
+      setIsSigningUp(false);
+      return;
+    }
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      setIsAuthenticated(true);
+      navigate("/verify", { replace: true });
+    } catch (err) {
+      let errorMessage = "Login failed. Please check your credentials.";
+
+      if (err.code) {
+        switch (err.code) {
+          case "auth/invalid-email":
+            errorMessage =
+              "Invalid email address. Please check your email format.";
+            break;
+          case "auth/user-disabled":
+            errorMessage =
+              "Your account has been disabled. Please contact support.";
+            break;
+          case "auth/user-not-found":
+            errorMessage =
+              "No account found with this email. Please check your email or sign up.";
+            break;
+          case "auth/wrong-password":
+            errorMessage = "Incorrect password. Please try again.";
+            break;
+          case "auth/too-many-requests":
+            errorMessage = "Too many login attempts. Please try again later.";
+            break;
+          case "auth/network-request-failed":
+            errorMessage =
+              "Network error. Please check your internet connection.";
+            break;
+          case "auth/operation-not-allowed":
+            errorMessage =
+              "Email/password login is not enabled. Please contact support.";
+            break;
+          default:
+            console.error("Firebase Auth Error:", err.code, err.message);
+            errorMessage = "An unexpected error occurred. Please try again.";
+        }
+      } else {
+        console.error("Login Error:", err);
+        if (err.message?.includes("network")) {
+          errorMessage =
+            "Network error. Please check your internet connection.";
+        } else {
+          errorMessage = "Login failed. Please try again.";
+        }
+      }
+
+      setError(errorMessage);
+    } finally {
+      setIsSigningUp(false);
+    }
+  };
+
+*/
