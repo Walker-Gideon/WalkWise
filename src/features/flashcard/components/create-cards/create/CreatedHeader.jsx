@@ -6,10 +6,10 @@ import { useFlashcard } from "../../../context/FlashcardContext";
 import useToggleDisplay from "/src/hook/useToggleDisplay";
 
 export default function CreatedHeader() {
-  const { setIsDisplayFlashcardLayout, setIsCardsInitDisplay } = useFlashcard();
+  const { setIsDisplay, setIsCardsInitDisplay } = useFlashcard();
 
-  const toggleDisplayFlashcard = useToggleDisplay(setIsDisplayFlashcardLayout);
-  const toggleDisplayCardsInit = useToggleDisplay(setIsCardsInitDisplay);
+  const handleCancel = useToggleDisplay(setIsDisplay);
+  const handleCreate = useToggleDisplay(setIsCardsInitDisplay);
 
   return (
     <Heading
@@ -24,7 +24,7 @@ export default function CreatedHeader() {
           classname={"px-8 border-stone-300 dark:text-white"}
           onclick={(e) => {
             e.preventDefault();
-            toggleDisplayFlashcard();
+            handleCancel();
           }}
         >
           Cancel
@@ -33,7 +33,7 @@ export default function CreatedHeader() {
           type="colors"
           submit={true}
           classname={"px-8"}
-          onclick={toggleDisplayCardsInit}
+          onclick={handleCreate}
         >
           Create
         </Button>

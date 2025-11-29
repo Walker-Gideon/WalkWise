@@ -6,9 +6,9 @@ import { useFlashcard } from "../../../context/FlashcardContext";
 import useToggleDisplay from "/src/hook/useToggleDisplay";
 
 export default function CardHeader() {
-  const { setIsCardsInitDisplay } = useFlashcard();
+  const { setIsDisplay } = useFlashcard();
 
-  const toggleDisplay = useToggleDisplay(setIsCardsInitDisplay);
+  const handleToggleDisplay = useToggleDisplay(setIsDisplay);
 
   return (
     <Heading
@@ -17,7 +17,7 @@ export default function CardHeader() {
       theme={true}
     >
       <Group classname={"space-x-2"}>
-        <Button type="colors" onclick={toggleDisplay}>
+        <Button type="colors" onclick={handleToggleDisplay}>
           Create Flashcard
         </Button>
       </Group>

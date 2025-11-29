@@ -7,6 +7,8 @@ function FlashcardProvider({ children }) {
     useState(false);
   const [isCardsInitDisplay, setIsCardsInitDisplay] = useState(false);
 
+  const [isDisplay, setIsDisplay] = useState(false);
+
   // Create flashcard
   const [pairs, setPairs] = useState([
     { term: "", definition: "" },
@@ -44,11 +46,15 @@ function FlashcardProvider({ children }) {
     isDisplayFlashcardLayout,
     isCardsInitDisplay,
 
+    isDisplay,
+
     // Setters
     setPairs,
     setIndex,
     setIsDisplayFlashcardLayout,
     setIsCardsInitDisplay,
+
+    setIsDisplay,
 
     // Values
     MAX_PAIRS,
