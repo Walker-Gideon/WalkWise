@@ -1,9 +1,9 @@
 import { LuRectangleVertical } from "react-icons/lu";
 
+import CardsInitDisplay from "./components/create-cards/CardsInitDisplay";
 import CreatedForm from "./components/create-cards/create/CreatedForm";
 import InformationPrompt from "/src/components/InformationPrompt";
 import FlashcardHeader from "./components/FlashcardHeader";
-import CardsInitDisplay from "./components/create-cards/CardsInitDisplay";
 import Conditional from "/src/components/Conditional";
 import Container from "/src/ui/Container";
 
@@ -40,7 +40,7 @@ export default function Flashcard() {
       </Conditional>
 
       {/* 3. Flashcard Layout/ Study Flashcard */}
-      <Conditional condition={hasFlashcards}>
+      <Conditional condition={hasFlashcards && !isDisplay}>
         <CardsInitDisplay />
       </Conditional>
     </Container>

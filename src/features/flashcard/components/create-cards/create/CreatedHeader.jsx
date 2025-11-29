@@ -6,10 +6,9 @@ import { useFlashcard } from "../../../context/FlashcardContext";
 import useToggleDisplay from "/src/hook/useToggleDisplay";
 
 export default function CreatedHeader() {
-  const { setIsDisplay, setIsCardsInitDisplay } = useFlashcard();
+  const { setIsDisplay } = useFlashcard();
 
   const handleCancel = useToggleDisplay(setIsDisplay);
-  const handleCreate = useToggleDisplay(setIsCardsInitDisplay);
 
   return (
     <Heading
@@ -33,7 +32,6 @@ export default function CreatedHeader() {
           type="colors"
           submit={true}
           classname={"px-8"}
-          onclick={handleCreate}
         >
           Create
         </Button>

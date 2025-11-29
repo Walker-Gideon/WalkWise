@@ -12,11 +12,13 @@ import Box from "/src/ui/Box";
 
 import useCreateFlashcard from "../../../hooks/useCreateFlashcard";
 import useUpdateFlashcard from "../../../hooks/useUpdateFlashcard";
+import { useFlashcard } from "../../../context/FlashcardContext";
 
 export default function CreatedForm({ editingId = null }) {
   const { control, register, handleSubmit, reset } = useForm();
   const { createFlashcard, isCreating } = useCreateFlashcard();
   const { updateMutation, isUpdating } = useUpdateFlashcard();
+  const { setIsDisplay } = useFlashcard();
 
   const onSubmit = async (data) => {
     const user = auth.currentUser;
@@ -56,6 +58,7 @@ export default function CreatedForm({ editingId = null }) {
         createFlashcard(flashcard, {
           onSuccess: () => {
             reset();
+            setIsDisplay(false);
           },
         });
       } else {
