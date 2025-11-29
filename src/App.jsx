@@ -15,6 +15,7 @@ import LandingPage from "./landingPage/LandingPage";
 import Verify from "./authentication/verify/Verify";
 import Accounts from "./authentication/Accounts";
 import Inspire from "./features/inspire/Inspire";
+import ProtectedRoute from "./ui/ProtectedRoute";
 import PageNotFound from "./ui/PageNotFound";
 import Note from "./features/note/Note";
 import AppLayout from "./ui/AppLayout";
@@ -29,7 +30,7 @@ const queryClient = new QueryClient();
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      <ReactQueryDevtools initialIsOpen={false} />
 
       <BrowserRouter>
         <Routes>
@@ -43,7 +44,13 @@ export default function App() {
             <Route path="verify" element={<Verify />} />
           </Route>
 
-          <Route element={<AppLayout />}>
+          <Route
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route index element={<Navigate replace to="dashboard" />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="notes" element={<Note />} />

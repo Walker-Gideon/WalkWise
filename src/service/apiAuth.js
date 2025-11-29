@@ -8,7 +8,6 @@ import { auth, db } from "./firebase";
  * @param {string} username
  * @param {string} password
  */
-
 export async function signUpUser({ email, username, password }) {
   try {
     const userCredential = await createUserWithEmailAndPassword(
@@ -77,38 +76,16 @@ export async function signUpUser({ email, username, password }) {
  * @param {string} email
  * @param {string} password
  */
-
 export async function loginUser({ email, password }) {
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    );
+    return { user: userCredential.user };
   } catch (err) {
-  }
-}
-
-/*
-e.preventDefault();
-    setError("");
-    setIsSigningUp(true);
-
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(email)) {
-      setError("Please enter a valid email address");
-      setIsSigningUp(false);
-      return;
-    }
-
-    if (!email || !password) {
-      setError("Email and password are required.");
-      setIsSigningUp(false);
-      return;
-    }
-
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      setIsAuthenticated(true);
-      navigate("/verify", { replace: true });
-    } catch (err) {
-      let errorMessage = "Login failed. Please check your credentials.";
+    let errorMessage = "Login failed. Please check your credentials.";
 
       if (err.code) {
         switch (err.code) {
@@ -152,10 +129,6 @@ e.preventDefault();
         }
       }
 
-      setError(errorMessage);
-    } finally {
-      setIsSigningUp(false);
-    }
-  };
-
-*/
+      throw new Error(errorMessage);
+  }
+}

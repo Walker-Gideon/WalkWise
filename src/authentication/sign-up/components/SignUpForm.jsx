@@ -82,9 +82,7 @@ export default function SignUpForm() {
     setIsLoading(true);
 
     try {
-      const { user } = await signUpUser({ email, username, password });
-      console.log("User signed up:", user);
-
+      await signUpUser({ email, username, password });
       toast.success("Account created successfully");
       navigate("/dashboard", { replace: true });
       reset();

@@ -13,6 +13,8 @@ import Button from "/src/ui/Button";
 import Form from "/src/ui/Form";
 import Box from "/src/ui/Box";
 
+import { loginUser } from "/src/service/apiAuth";
+
 export default function SignInForm() {
   const [hidePassword, setHidePassword] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,10 +23,25 @@ export default function SignInForm() {
   const { handleSubmit, register, reset } = useForm();
 
   async function onSubmit(data) {
-  // take inputs
-  // validate inputs
-  // sign in
-    console.log(data);
+    const { email, password } = data;
+
+    if (!email || !password) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      await loginUser({ email, password });
+      toast.success("Logged in successfully");
+      navigate("/dashboard", { replace: true });
+      reset();
+    } catch (err) {
+      toast.error(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   const styling = `w-full rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs hover:border-slate-400 focus:ring-2 focus:ring-slate-400 focus:outline-hidden`;
