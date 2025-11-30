@@ -14,10 +14,12 @@ import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
 import { useFetchCards } from "../../../hooks/useCards";
+import useDeleteFlashcard from "../../../hooks/useDeleteFlashcard";
 import useFormattedDate from "/src/hook/useFormattedDate";
 
 export default function CardContentDisplay() {
   const { flashcards, isLoading, error } = useFetchCards();
+  const { isDeleting, deleteFlashcard } = useDeleteFlashcard()
 
   /*
   // Function to fetch the flashcards
@@ -64,6 +66,7 @@ export default function CardContentDisplay() {
             key={card.id}
             title={card.title}
             numOfCards={card.pairs.length}
+            handleDelete={() => deleteFlashcard(card.id)}
             timing={card.createdAt}
           />
         ))}
@@ -73,7 +76,7 @@ export default function CardContentDisplay() {
   );
 }
 
-function Cards({ title, numOfCards, timing }) {
+function Cards({ title, numOfCards, handleDelete, timing }) {
   const createdExact = useFormattedDate(timing);
 
   return (
@@ -94,6 +97,7 @@ function Cards({ title, numOfCards, timing }) {
             <Button
               type="colors"
               classname={"opacity-0 group-hover:opacity-100"}
+              onclick={handleDelete}
             >
               <RiDeleteBin5Line className={"h-4 w-4"} />
             </Button>
