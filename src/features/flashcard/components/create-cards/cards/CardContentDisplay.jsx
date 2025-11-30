@@ -4,6 +4,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { GoDotFill } from "react-icons/go";
 import { LuPlay } from "react-icons/lu";
 
+import ConfirmDelete from "/src/components/ConfirmDelete";
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
 import Container from "/src/ui/Container";
@@ -72,6 +73,7 @@ export default function CardContentDisplay() {
         ))}
       </Container>
       {error && toast.error("Error fetching flashcards")}
+      <ConfirmDelete />
     </>
   );
 }

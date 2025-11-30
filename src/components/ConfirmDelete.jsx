@@ -1,26 +1,11 @@
-import PropTypes from "prop-types";
+import { LuX } from "react-icons/lu";
 
-import styled from "styled-components";
-import Button from "./Button";
-import Heading from "./Heading";
-
-const StyledConfirmDelete = styled.div`
-  width: 40rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-
-  & p {
-    color: var(--color-grey-500);
-    margin-bottom: 1.2rem;
-  }
-
-  & div {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1.2rem;
-  }
-`;
+import HeaderText from "/src/ui/HeaderText";
+import Paragraph from "/src/ui/Paragraph";
+import Button from "/src/ui/Button";
+import Group from "/src/ui/Group";
+import Flex from "/src/ui/Flex";
+import Model from "./Model";
 
 export default function ConfirmDelete({
   resourceName,
@@ -29,26 +14,41 @@ export default function ConfirmDelete({
   onCloseModal,
 }) {
   return (
-    <Group>
-      <Heading as="h3">Delete {resourceName}</Heading>
-      <p>
-        Are you sure you want to delete this {resourceName} permanently? This
-        action cannot be undone.
-      </p>
-
-      <div>
+    <Model styling={"w-85 medium:w-full"} onClick={onCloseModal}>
+      <Flex classname={"justify-end"}>
         <Button
-          variation="secondary"
-          disabled={disabled}
-          onClick={onCloseModal}
+          variant="secondary"
+          onclick={onCloseModal}
+          classname={"medium:text-2xl text-xl dark:text-slate-50"}
         >
-          Cancel
+          <LuX />
         </Button>
-        <Button variation="danger" disabled={disabled} onClick={onConfirm}>
-          Delete
-        </Button>
-      </div>
-    </Group>
+      </Flex>
+      <Group classname={"space-y-3"}>
+        <HeaderText type="primary">Delete {resourceName}</HeaderText>
+        <Paragraph variant="small" classname={"primary-text-color"}>
+          Are you sure you want to delete this {resourceName} permanently? This action cannot be undone.
+        </Paragraph>
+
+        <Flex classname={"gap-2 justify-end"}>
+          <Button
+            type="border"
+            classname={"dark:text-slate-50"}
+            disabled={disabled}
+            onclick={onCloseModal}
+          >
+            Cancel
+          </Button>
+          <Button 
+            type="danger"
+            disabled={disabled} 
+            onclick={onConfirm}
+          >
+            Delete
+          </Button>
+        </Flex>
+      </Group>
+    </Model>
   );
 }
 

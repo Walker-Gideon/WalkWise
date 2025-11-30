@@ -1,20 +1,22 @@
 import Group from "/src/ui/Group";
 import Overlay from "./Overlay";
 
-export default function Model({ children }) {
+export default function Model({ children, styling, onClick }) {
   // Create one for saving the note
 
   // Default is Schedule
   return (
+    <div role="button" onClick={onClick}>
     <Overlay>
       <Group
-        //  dark:bg-slate-800
+      // medium:w-full w-85
         classname={
-          "w-full max-w-md rounded-2xl border borderStyling bg-white p-6 shadow-2xl "
+          `max-w-md rounded-2xl border borderStyling bg-white dark:bg-slate-900/70 p-6 shadow-2xl ${styling}`
         }
       >
         {children}
       </Group>
     </Overlay>
+    </div>
   );
 }
