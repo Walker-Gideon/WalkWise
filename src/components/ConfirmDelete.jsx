@@ -19,7 +19,7 @@ export default function ConfirmDelete({
         <Button
           variant="secondary"
           onclick={onCloseModal}
-          classname={"medium:text-2xl text-xl dark:text-slate-50"}
+          classname={"medium:text-2xl text-xl dark:text-slate-50 dark:hover:bg-slate-900 hover:bg-slate-300 p-0.5 rounded-sm"}
         >
           <LuX />
         </Button>
