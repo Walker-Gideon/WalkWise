@@ -39,10 +39,12 @@ export default function Flashcard() {
         <CreatedForm />
       </Conditional>
 
-      {/* 3. Flashcard Layout/ Study Flashcard */}
+      {/* 3. Flashcard Layout */}
       <Conditional condition={hasFlashcards && !isDisplay}>
         <CardsInitDisplay />
       </Conditional>
+
+      {/* 4. Study Flashcard */}
     </Container>
   );
 }
