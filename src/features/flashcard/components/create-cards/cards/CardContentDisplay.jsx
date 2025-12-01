@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 import toast from "react-hot-toast";
 
 import { RiDeleteBin5Line } from "react-icons/ri";
@@ -21,16 +21,29 @@ import useFormattedDate from "/src/hook/useFormattedDate";
 
 export default function CardContentDisplay() {
   const { flashcards, isLoading, error } = useFetchCards();
-  const { isDeleting, deleteFlashcard } = useDeleteFlashcard()
+  const { isDeleting, deleteFlashcard } = useDeleteFlashcard();
 
-  const [isDeleteModal, setIsDeleteModal] = useState(false)
+  const [isDeleteModal, setIsDeleteModal] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+  const [selectedCardTitle, setSelectedCardTitle] = useState("");
 
-  function handleDeleteModal() {
-    setIsDeleteModal(show => !show)
+  function handleDeleteClick(id, title) {
+    setSelectedId(id);
+    setSelectedCardTitle(title);
+    setIsDeleteModal(true);
   }
 
   function handleCloseModal() {
-    setIsDeleteModal(false)
+    setIsDeleteModal(false);
+    setSelectedId(null);
+    setSelectedCardTitle("");
+  }
+
+  function handleConfirmDelete() {
+    if (selectedId) {
+      deleteFlashcard(selectedId);
+      handleCloseModal();
+    }
   }
 
   /*
@@ -67,7 +80,6 @@ export default function CardContentDisplay() {
       setLoadingFC(false);
     }
   }
-    deleteFlashcard(card.id)
     */
 
   return (
@@ -75,18 +87,23 @@ export default function CardContentDisplay() {
       {isLoading && <Spinner />}
       <Container adjust={true} classname={"md:px-8 lg:mx-auto lg:max-w-5xl"}>
         {flashcards?.map((card) => (
-          <>
-            <Cards
-              key={card.id}
-              title={card.title}
-              numOfCards={card.pairs.length}
-              handleDelete={handleDeleteModal}
-              timing={card.createdAt}
-            />
-            {isDeleteModal && <ConfirmDelete resourceName={card.title} onCloseModal={handleCloseModal} onConfirm={() => deleteFlashcard(card.id)} />}
-         </>
+          <Cards
+            key={card.id}
+            title={card.title}
+            numOfCards={card.pairs.length}
+            handleDelete={() => handleDeleteClick(card.id, card.title)}
+            timing={card.createdAt}
+          />
         ))}
       </Container>
+      {isDeleteModal && (
+        <ConfirmDelete
+          resourceName={selectedCardTitle}
+          disabled={isDeleting}
+          onCloseModal={handleCloseModal}
+          onConfirm={handleConfirmDelete}
+        />
+      )}
       {error && toast.error("Error fetching flashcards")}
     </>
   );
