@@ -22,6 +22,7 @@ export default function Button({
     danger: `bg-red-500 text-white hover:bg-red-400`,
     colors: `bg-slate-500 text-white hover:bg-slate-600`,
     customize: `font-medium text-sm border p-2 rounded-sm`, //transition-all duration-200
+    back: "w-10 rounded-sm hover:bg-slate-500 flex items-center justify-center p-1 text-slate-600 dark:text-slate-300 hover:text-slate-50 transition-colors duration-300",
   };
 
   /* I will be changing the primary button
