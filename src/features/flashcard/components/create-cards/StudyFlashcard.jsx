@@ -1,9 +1,12 @@
-import { LuArrowLeft } from "react-icons/lu";
+import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
 
 import HeaderText from "/src/ui/HeaderText";
 import Container from "/src/ui/Container";
+import Paragraph from "/src/ui/Paragraph";
+import Card from "/src/components/Card";
 import Header from "/src/ui/Header";
 import Button from "/src/ui/Button";
+import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
 export default function StudyFlashcard() {
@@ -27,7 +30,7 @@ export default function StudyFlashcard() {
 
     return (
         <Container classname={"p-4"}>
-            <Header classname={"mb-4 px-8 flex items-center justify-between"}>
+            <Header classname={"mb-4 py-6 px-8 flex items-center justify-between"}>
                 <Flex classname={"items-center gap-2"}>
                     <Button
                       variant="secondary" 
@@ -40,6 +43,27 @@ export default function StudyFlashcard() {
                 </Flex>
                 <Buttons handleDelete={handleDelete} handleEdit={handleEdit} />
             </Header>
+
+            <Flex variant="center" classname={"px-8 flex-col gap-8"}>
+                <Card classname={"flex items-center justify-center w-full md:mx-auto md:max-w-3xl h-85 medium:h-85"}>
+                    <Paragraph>Term</Paragraph>
+                    <Paragraph>Definition</Paragraph>
+                </Card>
+
+                <Group classname={"flex items-center gap-8"}>
+                    <Button variant="secondary" type="border" classname={"rounded-full p-3 borderStyling"}>
+                        <LuArrowLeft className="icons" />
+                    </Button>
+                    <Group>
+                        <Paragraph classname={"text-xl font-bold primary-text-color"}>
+                            X
+                        </Paragraph>
+                    </Group>
+                    <Button variant="secondary" type="border" classname={"rounded-full p-3 borderStyling"}>
+                        <LuArrowRight className="icons" />
+                    </Button>
+                </Group>
+            </Flex>
         </Container>
     );
 }
