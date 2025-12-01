@@ -16,10 +16,12 @@ import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
 import useDeleteFlashcard from "../../../hooks/useDeleteFlashcard";
+import { useFlashcard } from "../../../context/FlashcardContext";
 import { useFetchCards } from "../../../hooks/useCards";
 import useFormattedDate from "/src/hook/useFormattedDate";
 
 export default function CardContentDisplay() {
+  const { setIsPlay } = useFlashcard();
   const { flashcards, isLoading, error } = useFetchCards();
   const { isDeleting, deleteFlashcard } = useDeleteFlashcard();
 
@@ -44,6 +46,11 @@ export default function CardContentDisplay() {
       deleteFlashcard(selectedId);
       handleCloseModal();
     }
+  }
+
+  function handlePlayClick(id) {
+    console.log(id);
+    setIsPlay(true);
   }
 
   /*
@@ -92,6 +99,7 @@ export default function CardContentDisplay() {
             title={card.title}
             numOfCards={card.pairs.length}
             handleDelete={() => handleDeleteClick(card.id, card.title)}
+            handlePlay={() => handlePlayClick(card.id)}
             timing={card.createdAt}
           />
         ))}
@@ -109,7 +117,7 @@ export default function CardContentDisplay() {
   );
 }
 
-function Cards({ title, numOfCards, handleDelete, timing }) {
+function Cards({ title, numOfCards, handleDelete, handlePlay, timing }) {
   const createdExact = useFormattedDate(timing);
 
   return (
@@ -137,6 +145,7 @@ function Cards({ title, numOfCards, handleDelete, timing }) {
             <Button
               type="colors"
               classname={"opacity-0 group-hover:opacity-100"}
+              onclick={handlePlay}
             >
               <LuPlay className={"h-4 w-4"} />
             </Button>

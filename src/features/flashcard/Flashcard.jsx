@@ -1,6 +1,7 @@
 import { LuRectangleVertical } from "react-icons/lu";
 
 import CardsInitDisplay from "./components/create-cards/CardsInitDisplay";
+import StudyFlashcard from "./components/create-cards/StudyFlashcard";
 import CreatedForm from "./components/create-cards/create/CreatedForm";
 import InformationPrompt from "/src/components/InformationPrompt";
 import FlashcardHeader from "./components/FlashcardHeader";
@@ -15,7 +16,7 @@ import { useFlashcards } from "./hooks/useFlashcards";
 export default function Flashcard() {
   const { user } = useAuthentication();
   const { data: flashcards } = useFlashcards(user?.uid);
-  const { isDisplay , setIsDisplay} = useFlashcard();
+  const { isPlay, isDisplay , setIsDisplay} = useFlashcard();
 
   const handleToggleDisplay = useToggleDisplay(setIsDisplay);
   const hasFlashcards = flashcards?.length > 0;
@@ -39,12 +40,15 @@ export default function Flashcard() {
         <CreatedForm />
       </Conditional>
 
-      {/* 3. Flashcard Layout */}
+      {/* 3. Flashcard Layout/ Study Flashcard */}
       <Conditional condition={hasFlashcards && !isDisplay}>
-        <CardsInitDisplay />
+        <Conditional condition={!isPlay}>
+          <CardsInitDisplay />
+        </Conditional>
+        <Conditional condition={isPlay}>
+          <StudyFlashcard />
+        </Conditional>
       </Conditional>
-
-      {/* 4. Study Flashcard */}
     </Container>
   );
 }

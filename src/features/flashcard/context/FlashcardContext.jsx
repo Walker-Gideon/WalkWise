@@ -4,6 +4,7 @@ const FlashcardContext = createContext();
 
 function FlashcardProvider({ children }) {
   const [isDisplay, setIsDisplay] = useState(false);
+  const [isPlay, setIsPlay] = useState(false);
 
   // Create flashcard
   const [pairs, setPairs] = useState([
@@ -39,11 +40,13 @@ function FlashcardProvider({ children }) {
     // States
     pairs,
     index,
+    isPlay,
     isDisplay,
 
     // Setters
     setPairs,
     setIndex,
+    setIsPlay,
     setIsDisplay,
 
     // Values
