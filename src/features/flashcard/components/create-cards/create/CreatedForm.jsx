@@ -1,5 +1,6 @@
 import { auth } from "/src/service/firebase";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 import CreatedNotification from "./CreatedNotification";
 import CreatedAddButton from "./CreatedAddButton";
@@ -18,7 +19,7 @@ export default function CreatedForm({ editingId = null }) {
   const { control, register, handleSubmit, reset } = useForm();
   const { createFlashcard, isCreating } = useCreateFlashcard();
   const { updateMutation, isUpdating } = useUpdateFlashcard();
-  const { setIsDisplay } = useFlashcard();
+  const { setIsDisplay, setPairs } = useFlashcard();
 
   const onSubmit = async (data) => {
     const user = auth.currentUser;
@@ -58,6 +59,10 @@ export default function CreatedForm({ editingId = null }) {
         createFlashcard(flashcard, {
           onSuccess: () => {
             reset();
+            setPairs([
+              { term: "", definition: "" },
+              { term: "", definition: "" },
+            ]);
             setIsDisplay(false);
           },
         });
@@ -65,8 +70,7 @@ export default function CreatedForm({ editingId = null }) {
         updateMutation({ id: editingId, data: flashcard });
       }
     } catch (error) {
-      // toast this error if any
-      console.error(error.message);
+      toast.error(error.message);
     }
   };
 
@@ -90,39 +94,3 @@ export default function CreatedForm({ editingId = null }) {
     </>
   );
 }
-
-/*
-When you add Firebase Auth later, simply update:
-
-const user = auth.currentUser;
-flashcard.userId = user?.uid;
-
-
-About the Create Flashcard
-
-1.tag
-2. Inputs
-3. Onsubmit
-// 4. Created notification 
-
-const { register, handleSubmit, reset, getValues, formState } = useForm({
-    defaultValues: isEditSession ? editValues : {},
-  });
-
-<Input
-          type="text"
-          id="name"
-          disabled={isWorking}
-          {...register("name", { require: "This field is required" })}
-        />
-
-    
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input defaultValue="test" {...register("example")} />
-      <input {...register("exampleRequired", { required: true })} />
-      {errors.exampleRequired && <span>This field is required</span>}
-      <button>Submit</button>
-    </form>
-
-*/
