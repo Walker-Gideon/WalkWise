@@ -9,7 +9,10 @@ import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
+import { useFlashcard } from "../../context/FlashcardContext";
+
 export default function StudyFlashcard() {
+    const { setIsPlay } = useFlashcard();
     /*
     1. header ( card title, menu button [back, delete, edit])
     2. Card content (term, definition)
@@ -25,7 +28,7 @@ export default function StudyFlashcard() {
     }
 
     function handleBack() {
-        
+        setIsPlay(false)
     }
 
     return (
