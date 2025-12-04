@@ -3,6 +3,7 @@ import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
 import HeaderText from "/src/ui/HeaderText";
 import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
+import Menus from "/src/components/Menus";
 import Card from "/src/components/Card";
 import Header from "/src/ui/Header";
 import Button from "/src/ui/Button";
@@ -44,7 +45,16 @@ export default function StudyFlashcard() {
                     </Button>
                     <HeaderText classname={"text-xl font-bold text-slate-900 dark:text-white"}>Title</HeaderText>
                 </Flex>
-                <Buttons handleDelete={handleDelete} handleEdit={handleEdit} />
+
+                {/* <Buttons handleDelete={handleDelete} handleEdit={handleEdit} /> */}
+                <Flex classname={"items-center justify-end"}>
+                    <Menus.Toggle />
+
+                    <Menus.Lists>
+                        <Menus.Buttons>edit</Menus.Buttons>
+                        <Menus.Buttons>delete</Menus.Buttons>
+                    </Menus.Lists>
+                </Flex>
             </Header>
 
             <Flex variant="center" classname={"px-8 flex-col gap-8"}>
