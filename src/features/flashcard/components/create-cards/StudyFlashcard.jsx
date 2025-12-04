@@ -1,5 +1,7 @@
 import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
 
+import { RiDeleteBin5Line, RiEditLine } from "react-icons/ri";
+
 import HeaderText from "/src/ui/HeaderText";
 import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
@@ -21,11 +23,11 @@ export default function StudyFlashcard() {
     */ 
 
     function handleEdit() {
-        
+        console.log("Edit")
     }
 
     function handleDelete() {
-        
+        console.log("Delete")
     }
 
     function handleBack() {
@@ -46,14 +48,21 @@ export default function StudyFlashcard() {
                     <HeaderText classname={"text-xl font-bold text-slate-900 dark:text-white"}>Title</HeaderText>
                 </Flex>
 
-                {/* <Buttons handleDelete={handleDelete} handleEdit={handleEdit} /> */}
                 <Flex classname={"items-center justify-end"}>
-                    <Menus.Toggle />
+                    <Menus>
+                        <Menus.Toggle />
 
-                    <Menus.Lists>
-                        <Menus.Buttons>edit</Menus.Buttons>
-                        <Menus.Buttons>delete</Menus.Buttons>
-                    </Menus.Lists>
+                        <Menus.Lists>
+                            <Menus.Buttons onClick={handleEdit}>
+                                <RiEditLine className="w-4 h-4" />
+                                Edit
+                            </Menus.Buttons>
+                            <Menus.Buttons onClick={handleDelete}>
+                                <RiDeleteBin5Line className="w-4 h-4" />
+                                Delete
+                            </Menus.Buttons>
+                        </Menus.Lists>
+                    </Menus>
                 </Flex>
             </Header>
 
