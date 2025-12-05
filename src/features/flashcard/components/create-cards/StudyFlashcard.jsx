@@ -89,12 +89,3 @@ export default function StudyFlashcard() {
         </Container>
     );
 }
-
-function Buttons({ handleDelete, handleEdit }) {
-    return (
-        <Flex classname={"items-center gap-2"}>
-            <Button type="danger" onclick={handleDelete}>Delete</Button>
-            <Button type="colors" classname={"px-6"} onclick={handleEdit}>Edit</Button>
-        </Flex>
-    );
-}
