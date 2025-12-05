@@ -36,7 +36,7 @@ export default function StudyFlashcard() {
 
     return (
         <Container classname={"p-4"}>
-            <Header classname={"mb-4 py-6 px-8 flex items-center justify-between"}>
+            <Header classname={"mb-4 py-6 middle:px-4 lg:px-8 flex items-center justify-between"}>
                 <Flex classname={"items-center gap-2"}>
                     <Button
                       variant="secondary" 
@@ -67,7 +67,7 @@ export default function StudyFlashcard() {
             </Header>
 
             <Flex variant="center" classname={"px-8 flex-col gap-8"}>
-                <Card classname={"flex items-center justify-center w-full md:mx-auto md:max-w-3xl h-85 medium:h-85"}>
+                <Card classname={"flex items-center justify-center w-full md:mx-auto md:max-w-3xl h-85 medium:h-85 lg:max-w-2xl"}>
                     <Paragraph>Term</Paragraph>
                     <Paragraph>Definition</Paragraph>
                 </Card>
