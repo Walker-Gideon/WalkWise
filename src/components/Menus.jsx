@@ -22,15 +22,22 @@ export default function Menus({ children }) {
   );
 }
 
-function Toggle({type = false}) {
+function Toggle({type = false, align = "right"}) {
   const { isOpen, close, open, setPosition } = useContext(MenusContext);
 
   function handleClick(e) {
     e.stopPropagation();
     const rect = e.target.closest("button").getBoundingClientRect();
+    
+    // Calculate x based on alignment
+    const x = align === "left" 
+      ? rect.x 
+      : window.innerWidth - rect.width - rect.x;
+
     setPosition({
-      x: window.innerWidth - rect.width - rect.x,
+      x: x,
       y: rect.y + rect.height + 8,
+      align: align // Store alignment to use in Lists
     });
 
     isOpen ? close() : open(true);
@@ -56,11 +63,21 @@ function Lists({ children }) {
 
   if (!isOpen) return null;
 
+  const style = {
+    top: `${position?.y}px`
+  };
+
+  if (position?.align === "left") {
+    style.left = `${position?.x}px`;
+  } else {
+    style.right = `${position?.x}px`;
+  }
+
   return createPortal(
     <ul
       ref={ref}
-      className="fixed z-50 bg-white dark:bg-slate-900 shadow-md rounded-md right-[var(--right)] top-[var(--top)]"
-      style={{ "--right": `${position?.x}px`, "--top": `${position?.y}px` }}
+      className="fixed z-50 bg-white dark:bg-slate-900 shadow-md rounded-md"
+      style={style}
     >
       {children}
     </ul>,

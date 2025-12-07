@@ -15,7 +15,7 @@ export default function CardsSubHeader() {
     <Flex variant="between" classname={"my-6 gap-1"}>
       <Group>
         <Menus>
-          <Menus.Toggle type={true} />
+          <Menus.Toggle type={true} align="left" />
           <Menus.Lists>
             <Menus.Buttons onClick={() => {}}>
               Flashcard name (title)
