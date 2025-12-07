@@ -1,6 +1,8 @@
 import { createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
+
 import { TbDotsVertical } from "react-icons/tb";
+import { LuListFilter } from "react-icons/lu";
 
 import { useOutsideClick } from "../hook/useOutsideClick";
 
@@ -20,7 +22,7 @@ export default function Menus({ children }) {
   );
 }
 
-function Toggle() {
+function Toggle({type = false}) {
   const { isOpen, close, open, setPosition } = useContext(MenusContext);
 
   function handleClick(e) {
@@ -39,7 +41,11 @@ function Toggle() {
       className="cursor-pointer p-1 rounded-sm hover:bg-slate-100 transition-colors duration-300 dark:hover:bg-slate-900"
       onClick={handleClick}
     >
-      <TbDotsVertical className="secondary-text-color h-6 w-6" />
+      {type ? (
+        <LuListFilter className="secondary-text-color h-6 w-6" /> 
+      ):(
+        <TbDotsVertical className="secondary-text-color h-6 w-6" />
+      )}
     </button>
   );
 }
@@ -53,7 +59,7 @@ function Lists({ children }) {
   return createPortal(
     <ul
       ref={ref}
-      className="fixed bg-white dark:bg-slate-900 shadow-md rounded-md right-[var(--right)] top-[var(--top)]"
+      className="fixed z-50 bg-white dark:bg-slate-900 shadow-md rounded-md right-[var(--right)] top-[var(--top)]"
       style={{ "--right": `${position?.x}px`, "--top": `${position?.y}px` }}
     >
       {children}

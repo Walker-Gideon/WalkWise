@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 import { RiDeleteBin5Line } from "react-icons/ri";
@@ -21,13 +21,28 @@ import { useFetchCards } from "../../../hooks/useCards";
 import useFormattedDate from "/src/hook/useFormattedDate";
 
 export default function CardContentDisplay() {
-  const { setIsPlay } = useFlashcard();
+  const { setIsPlay, query } = useFlashcard();
   const { flashcards, isLoading, error } = useFetchCards();
   const { isDeleting, deleteFlashcard } = useDeleteFlashcard();
 
-  const [isDeleteModal, setIsDeleteModal] = useState(false);
-  const [selectedId, setSelectedId] = useState(null);
   const [selectedCardTitle, setSelectedCardTitle] = useState("");
+  const [isDeleteModal, setIsDeleteModal] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+
+  useEffect(() => {
+    if (query) {
+      setIsSearching(true);
+      const timer = setTimeout(() => setIsSearching(false), 500);
+      return () => clearTimeout(timer);
+    } else {
+      setIsSearching(false);
+    }
+  }, [query]);
+
+  const filteredFlashcards = flashcards?.filter((card) =>
+    card.title.toLowerCase().includes(query.toLowerCase())
+  );
 
   function handleDeleteClick(id, title) {
     setSelectedId(id);
@@ -53,56 +68,21 @@ export default function CardContentDisplay() {
     setIsPlay(true);
   }
 
-  /*
-  // Function to fetch the flashcards
-  async function handleFlashcardsClick(flashcardId) {
-    try {
-      const flashcardsRef = doc(
-        db,
-        "users",
-        user.uid,
-        "flashcards",
-        flashcardId,
-      );
-      const flashcardSnap = await getDoc(flashcardsRef);
-
-      if (flashcardSnap.exists()) {
-        const flashcardData = flashcardSnap.data();
-        setCurrentFlashcard({ id: flashcardId, ...flashcardData });
-
-        // Display the flashcard on click
-        setShowPreview(true);
-        setShowCreateFlashcard(true);
-        setReadAlredyFlashcard(true);
-
-        // Set the id for the case a user want to edit
-        SetEditFlashcardData({ id: flashcardId, ...flashcardData });
-      }
-
-      setQueryFlashcard("");
-      setFilteredFlashcard(displayCreatedFlashcard);
-    } catch (error) {
-      return error;
-    } finally {
-      setLoadingFC(false);
-    }
-  }
-    */
-
   return (
     <>
-      {isLoading && <Spinner />}
+      {(isLoading || isSearching) && <Spinner />}
       <Container adjust={true} classname={"md:px-8 lg:mx-auto lg:max-w-5xl"}>
-        {flashcards?.map((card) => (
-          <Cards
-            key={card.id}
-            title={card.title}
-            numOfCards={card.pairs.length}
-            handleDelete={() => handleDeleteClick(card.id, card.title)}
-            handlePlay={() => handlePlayClick(card.id)}
-            timing={card.createdAt}
-          />
-        ))}
+        {!isSearching &&
+          filteredFlashcards?.map((card) => (
+            <Cards
+              key={card.id}
+              title={card.title}
+              numOfCards={card.pairs.length}
+              handleDelete={() => handleDeleteClick(card.id, card.title)}
+              handlePlay={() => handlePlayClick(card.id)}
+              timing={card.createdAt}
+            />
+          ))}
       </Container>
       {isDeleteModal && (
         <ConfirmDelete
@@ -111,6 +91,13 @@ export default function CardContentDisplay() {
           onCloseModal={handleCloseModal}
           onConfirm={handleConfirmDelete}
         />
+      )}
+      {!isSearching && filteredFlashcards?.length === 0 && (
+        <Flex variant="center" classname={"h-80"}>
+          <Paragraph classname={"text-center primary-text-color"}>
+            No flashcards found
+          </Paragraph>
+        </Flex>
       )}
       {error && toast.error("Error fetching flashcards")}
     </>

@@ -16,6 +16,8 @@
 
 /* Initial info prompt color
 text-slate-400
+
+import { LuChartNoAxesColumnDecreasing } from "react-icons/lu";
  */
 
 @layer components {
