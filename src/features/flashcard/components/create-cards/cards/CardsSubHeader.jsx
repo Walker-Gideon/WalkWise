@@ -1,7 +1,6 @@
 import { LuSearch } from "react-icons/lu";
 
 import Menus from "/src/components/Menus";
-import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 import Input from "/src/ui/Input";
 import Flex from "/src/ui/Flex";
@@ -9,7 +8,11 @@ import Flex from "/src/ui/Flex";
 import { useFlashcard } from "../../../context/FlashcardContext";
 
 export default function CardsSubHeader() {
-  const {query, setQuery} = useFlashcard();
+  const {
+    query,
+    setSort,
+    setQuery
+  } = useFlashcard();
 
   return (
     <Flex variant="between" classname={"my-6 gap-1"}>
@@ -17,14 +20,14 @@ export default function CardsSubHeader() {
         <Menus>
           <Menus.Toggle type={true} align="left" />
           <Menus.Lists>
-            <Menus.Buttons onClick={() => {}}>
-              Flashcard name (title)
+            <Menus.Buttons onClick={() => setSort("title")}>
+              Flashcard name 
             </Menus.Buttons>
-            <Menus.Buttons onClick={() => {}}>
-              Number of cards (pairs.length)
+            <Menus.Buttons onClick={() => setSort("count")}>
+              Number of cards 
             </Menus.Buttons>
-            <Menus.Buttons onClick={() => {}}>
-              Time created (createdAt)
+            <Menus.Buttons onClick={() => setSort("time")}>
+              Time created 
             </Menus.Buttons>
           </Menus.Lists>
         </Menus>

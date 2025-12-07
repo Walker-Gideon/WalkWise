@@ -21,7 +21,7 @@ import { useFetchCards } from "../../../hooks/useCards";
 import useFormattedDate from "/src/hook/useFormattedDate";
 
 export default function CardContentDisplay() {
-  const { setIsPlay, query } = useFlashcard();
+  const { setIsPlay, query, sort } = useFlashcard();
   const { flashcards, isLoading, error } = useFetchCards();
   const { isDeleting, deleteFlashcard } = useDeleteFlashcard();
 
@@ -30,6 +30,7 @@ export default function CardContentDisplay() {
   const [isSearching, setIsSearching] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
 
+  // Search
   useEffect(() => {
     if (query) {
       setIsSearching(true);
@@ -40,9 +41,21 @@ export default function CardContentDisplay() {
     }
   }, [query]);
 
-  const filteredFlashcards = flashcards?.filter((card) =>
-    card.title.toLowerCase().includes(query.toLowerCase())
-  );
+  // Sort
+  const sortCards = (a, b) => {
+    const normalizeDate = (d) => (d?.toDate ? d.toDate() : new Date(d || 0));
+
+    if (sort === "title") return a.title.localeCompare(b.title);
+    if (sort === "count") return b.pairs.length - a.pairs.length;
+    if (sort === "time") return normalizeDate(b.createdAt) - normalizeDate(a.createdAt);
+    return 0;
+  };
+
+  const filteredFlashcards = flashcards
+    ?.filter((card) =>
+      card.title.toLowerCase().includes(query.toLowerCase())
+    )
+    ?.sort(sortCards);
 
   function handleDeleteClick(id, title) {
     setSelectedId(id);

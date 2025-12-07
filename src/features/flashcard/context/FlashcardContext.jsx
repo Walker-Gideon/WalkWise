@@ -6,9 +6,10 @@ function FlashcardProvider({ children }) {
   const [isDisplay, setIsDisplay] = useState(false);
   const [isPlay, setIsPlay] = useState(false);
 
-  // Search
+  // Search && Sort
+  const [sort, setSort] = useState("title");
   const [query, setQuery] = useState("");
-
+  
   // Create flashcard
   const [pairs, setPairs] = useState([
     { term: "", definition: "" },
@@ -41,6 +42,7 @@ function FlashcardProvider({ children }) {
 
   const value = {
     // States
+    sort,
     pairs,
     index,
     query,
@@ -48,6 +50,7 @@ function FlashcardProvider({ children }) {
     isDisplay,
 
     // Setters
+    setSort,
     setPairs,
     setIndex,
     setQuery,
