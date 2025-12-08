@@ -1,15 +1,12 @@
 import toast from "react-hot-toast";
 
 import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
-import { RiDeleteBin5Line, RiEditLine } from "react-icons/ri";
 
-import HeaderText from "/src/ui/HeaderText";
+import StudyFlashcardHeader from "./StudyFlashcardHeader";
 import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
-import Menus from "/src/components/Menus";
 import Card from "/src/components/Card";
 import Spinner from "/src/ui/Spinner";
-import Header from "/src/ui/Header";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
@@ -19,7 +16,7 @@ import { useFetchCards, isPending, error } from "/src/hook/useCards";
 
 export default function StudyFlashcard() {
     const { flashcards } = useFetchCards();
-    const { setActiveId, setIsPlay, activeId } = useFlashcard();
+    const { activeId } = useFlashcard();
    
    const card = flashcards?.find((card) => card.id === activeId)
    console.log(card)
@@ -27,22 +24,9 @@ export default function StudyFlashcard() {
     const title = card?.title 
     const pairs = card?.pairs
 
-    function handleEdit() {
-        console.log("Edit")
-    }
-
-    function handleDelete() {
-        console.log("Delete")
-    }
-
-    function handleBack() {
-        setActiveId(null)
-        setIsPlay(false)
-    }
-
     return (
         <Container classname={"p-4"}>
-            {/*  */}
+            <StudyFlashcardHeader title={title} />
 
             {isPending ? (
                 <Spinner />

@@ -1,4 +1,30 @@
-export default function StudyFlashcardHeader() {
+import { LuArrowLeft } from "react-icons/lu";
+import { RiDeleteBin5Line, RiEditLine } from "react-icons/ri";
+
+import HeaderText from "/src/ui/HeaderText";
+import Menus from "/src/components/Menus";
+import Header from "/src/ui/Header";
+import Button from "/src/ui/Button";
+import Flex from "/src/ui/Flex";
+
+import { useFlashcard } from "../../context/FlashcardContext";
+
+export default function StudyFlashcardHeader({ title }) {
+    const { setActiveId, setIsPlay } = useFlashcard();
+
+    function handleEdit() {
+        console.log("Edit")
+    }
+    
+    function handleDelete() {
+        console.log("Delete")
+    }
+    
+    function handleBack() {
+        setActiveId(null)
+        setIsPlay(false)
+    }
+
     return (
         <Header classname={"mb-4 py-6 middle:px-4 lg:px-8 flex items-center justify-between"}>
             <Flex classname={"items-center gap-2"}>
