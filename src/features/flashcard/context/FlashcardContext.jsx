@@ -16,6 +16,7 @@ function FlashcardProvider({ children }) {
     { term: "", definition: "" },
   ]);
   const [index, setIndex] = useState(0);
+  const [activeId, setActiveId] = useState(null);
 
   const MAX_PAIRS = 50;
 
@@ -47,6 +48,7 @@ function FlashcardProvider({ children }) {
     index,
     query,
     isPlay,
+    activeId,
     isDisplay,
 
     // Setters
@@ -55,6 +57,7 @@ function FlashcardProvider({ children }) {
     setIndex,
     setQuery,
     setIsPlay,
+    setActiveId,
     setIsDisplay,
 
     // Values

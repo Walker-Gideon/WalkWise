@@ -8,7 +8,7 @@ export function useFetchCards() {
 
   const {
     data: flashcards,
-    isLoading,
+    isPending,
     error,
   } = useQuery({
     queryKey: ["flashcards", userData?.uid],
@@ -16,5 +16,5 @@ export function useFetchCards() {
     enabled: !!userData?.uid,
   });
 
-  return { flashcards, isLoading, error };
+  return { flashcards, isPending, error };
 }

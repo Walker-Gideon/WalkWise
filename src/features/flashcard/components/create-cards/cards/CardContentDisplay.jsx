@@ -17,12 +17,12 @@ import Flex from "/src/ui/Flex";
 
 import useDeleteFlashcard from "../../../hooks/useDeleteFlashcard";
 import { useFlashcard } from "../../../context/FlashcardContext";
-import { useFetchCards } from "../../../hooks/useCards";
+import { useFetchCards } from "/src/hook/useCards";
 import useFormattedDate from "/src/hook/useFormattedDate";
 
 export default function CardContentDisplay() {
-  const { setIsPlay, query, sort } = useFlashcard();
-  const { flashcards, isLoading, error } = useFetchCards();
+  const { setActiveId, setIsPlay, query, sort } = useFlashcard();
+  const { flashcards, isPending, error } = useFetchCards();
   const { isDeleting, deleteFlashcard } = useDeleteFlashcard();
 
   const [selectedCardTitle, setSelectedCardTitle] = useState("");
@@ -77,13 +77,13 @@ export default function CardContentDisplay() {
   }
 
   function handlePlayClick(id) {
-    console.log(id);
+    setActiveId(id);
     setIsPlay(true);
   }
 
   return (
     <>
-      {(isLoading || isSearching) && <Spinner />}
+      {(isPending || isSearching) && <Spinner />}
       <Container adjust={true} classname={"md:px-8 lg:mx-auto lg:max-w-5xl"}>
         {!isSearching &&
           filteredFlashcards?.map((card) => (

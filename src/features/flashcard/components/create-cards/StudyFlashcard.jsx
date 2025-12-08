@@ -1,5 +1,6 @@
-import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
+import toast from "react-hot-toast";
 
+import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
 import { RiDeleteBin5Line, RiEditLine } from "react-icons/ri";
 
 import HeaderText from "/src/ui/HeaderText";
@@ -7,20 +8,24 @@ import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
 import Menus from "/src/components/Menus";
 import Card from "/src/components/Card";
+import Spinner from "/src/ui/Spinner";
 import Header from "/src/ui/Header";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
 import { useFlashcard } from "../../context/FlashcardContext";
+import { useFetchCards, isPending, error } from "/src/hook/useCards";
 
 export default function StudyFlashcard() {
-    const { setIsPlay } = useFlashcard();
-    /*
-    1. header ( card title, menu button [back, delete, edit])
-    2. Card content (term, definition)
-    3. if study card successiful display success message on display
-    */ 
+    const { flashcards } = useFetchCards();
+    const { setActiveId, setIsPlay, activeId } = useFlashcard();
+   
+   const card = flashcards?.find((card) => card.id === activeId)
+   console.log(card)
+
+    const title = card?.title 
+    const pairs = card?.pairs
 
     function handleEdit() {
         console.log("Edit")
@@ -31,6 +36,7 @@ export default function StudyFlashcard() {
     }
 
     function handleBack() {
+        setActiveId(null)
         setIsPlay(false)
     }
 
@@ -45,7 +51,7 @@ export default function StudyFlashcard() {
                     >
                         <LuArrowLeft className="w-5 h-5" />
                     </Button>
-                    <HeaderText classname={"text-xl font-bold text-slate-900 dark:text-white"}>Title</HeaderText>
+                    <HeaderText classname={"text-xl font-bold text-slate-900 dark:text-white"}>{title}</HeaderText>
                 </Flex>
 
                 <Flex classname={"items-center justify-end"}>
@@ -66,7 +72,10 @@ export default function StudyFlashcard() {
                 </Flex>
             </Header>
 
-            <Flex variant="center" classname={"px-8 flex-col gap-8"}>
+            {isPending ? (
+                <Spinner />
+            ) : (
+                <Flex variant="center" classname={"px-8 flex-col gap-8"}>
                 <Card classname={"flex items-center justify-center w-full md:mx-auto md:max-w-3xl h-85 medium:h-85 lg:max-w-2xl"}>
                     <Paragraph>Term</Paragraph>
                     <Paragraph>Definition</Paragraph>
@@ -86,6 +95,8 @@ export default function StudyFlashcard() {
                     </Button>
                 </Group>
             </Flex>
+            )}
+            {error && toast.error("Error fetching flashcards")}
         </Container>
     );
 }
