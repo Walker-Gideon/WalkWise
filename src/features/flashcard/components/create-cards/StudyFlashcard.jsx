@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "motion/react";
 
 import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
 
+import ConfirmDelete from "/src/components/ConfirmDelete";
 import StudyFlashcardHeader from "./StudyFlashcardHeader";
 import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
@@ -12,15 +13,18 @@ import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
+import useDeleteFlashcard from "../../hooks/useDeleteFlashcard";
 import { useFlashcard } from "../../context/FlashcardContext";
 import { useFetchCards } from "/src/hook/useCards";
 
 export default function StudyFlashcard() {
+    const { isDeleting, deleteFlashcard } = useDeleteFlashcard();
     const { flashcards, isPending, error } = useFetchCards();
-    const { activeId } = useFlashcard();
+    const { setActiveId, setIsPlay, activeId } = useFlashcard();
     const [index, setIndex] = useState(0);
     const [isFlip, setIsFlip] = useState(false);
     const [direction, setDirection] = useState(0);
+    const [isDeleteModal, setIsDeleteModal] = useState(false);
 
     const card = flashcards?.find((card) => card.id === activeId)
     const title = card?.title 
@@ -42,6 +46,19 @@ export default function StudyFlashcard() {
         }
     }
 
+    function handleConfirmDelete() {
+        if (activeId) {
+            deleteFlashcard(activeId);
+            setIsDeleteModal(false);
+            setActiveId(null)
+            setIsPlay(false)
+        }
+    }
+
+    function handleCloseModal() {
+        setIsDeleteModal(false);
+    }
+
     const slideVariants = {
         enter: (dir) => ({
             x: dir > 0 ? 100 : -100,
@@ -61,7 +78,7 @@ export default function StudyFlashcard() {
 
     return (
         <Container classname={"p-4"}>
-            <StudyFlashcardHeader title={title} />
+            <StudyFlashcardHeader title={title} onIsDeleteModal={setIsDeleteModal} />
 
             {isPending ? (
                 <Spinner />
@@ -152,6 +169,14 @@ export default function StudyFlashcard() {
                     </Button>
                 </Group>
             </Flex>
+            )}
+            {isDeleteModal && (
+               <ConfirmDelete
+                 resourceName={title}
+                 disabled={isDeleting}
+                 onCloseModal={handleCloseModal}
+                 onConfirm={handleConfirmDelete}
+               />
             )}
             {error && toast.error("Error fetching flashcards")}
         </Container>

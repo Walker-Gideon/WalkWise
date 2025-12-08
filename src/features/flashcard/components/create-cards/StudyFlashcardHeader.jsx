@@ -9,7 +9,7 @@ import Flex from "/src/ui/Flex";
 
 import { useFlashcard } from "../../context/FlashcardContext";
 
-export default function StudyFlashcardHeader({ title }) {
+export default function StudyFlashcardHeader({ title, onIsDeleteModal }) {
     const { setActiveId, setIsPlay } = useFlashcard();
 
     function handleEdit() {
@@ -17,7 +17,7 @@ export default function StudyFlashcardHeader({ title }) {
     }
     
     function handleDelete() {
-        console.log("Delete")
+        onIsDeleteModal(true)
     }
     
     function handleBack() {
