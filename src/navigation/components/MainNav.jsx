@@ -72,7 +72,7 @@ export default function MainNav() {
             </List>
           </NavLink>
           <Group
-            classname={`pointer-events-none absolute top-1 left-14 z-10 -translate-y-1/2 transform rounded-full bg-slate-500 px-2 py-1 text-xs font-semibold whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100 ${isExpanded ? "medium:block" : "hidden"}`}
+            classname={`pointer-events-none absolute top-1 left-14 z-40 -translate-y-1/2 transform rounded-full bg-slate-500 px-2 py-1 text-xs font-semibold whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100 ${isExpanded ? "medium:block" : "hidden"}`}
           >
             {data.text}
           </Group>
