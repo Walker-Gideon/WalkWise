@@ -7,7 +7,7 @@ export default function CardsInitDisplay() {
   return (
     <Group classname={"h-screen overflow-y-scroll"}>
       <CardHeader />
-      <Group classname={"my-6 px-6"}>
+      <Group classname={"mb-6 px-6"}>
         <CardsSubHeader />
         <CardContentDisplay />
       </Group>

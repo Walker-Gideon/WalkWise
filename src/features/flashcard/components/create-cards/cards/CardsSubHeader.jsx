@@ -15,7 +15,8 @@ export default function CardsSubHeader() {
   } = useFlashcard();
 
   return (
-    <Flex variant="between" classname={"my-6 gap-1"}>
+    <Group classname={"sticky top-20.5 z-40 py-6 h-20 transition-colors duration-300 bg-slate-50 dark:bg-slate-800"}>
+    <Flex variant="between" classname={" gap-1"}>
       <Group>
         <Menus>
           <Menus.Toggle type={true} align="left" />
@@ -45,5 +46,6 @@ export default function CardsSubHeader() {
         <LuSearch className="absolute top-2.5 right-2 text-sm text-slate-600 dark:text-slate-300" />
       </Group>
     </Flex>
+    </Group>
   );
 }
