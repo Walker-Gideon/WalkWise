@@ -12,11 +12,12 @@ import { useAuthentication } from "/src/authentication/context/AuthContext";
 import { useFlashcard } from "./context/FlashcardContext";
 import useToggleDisplay from "/src/hook/useToggleDisplay";
 import { useFlashcards } from "./hooks/useFlashcards";
+import StudyFlashcardSummary from "./components/create-cards/StudyFlashcardSummary";
 
 export default function Flashcard() {
   const { user } = useAuthentication();
   const { data: flashcards } = useFlashcards(user?.uid);
-  const { isPlay, isDisplay , setIsDisplay} = useFlashcard();
+  const { isPlay, isDisplay, finished, setIsDisplay } = useFlashcard();
 
   const handleToggleDisplay = useToggleDisplay(setIsDisplay);
   const hasFlashcards = flashcards?.length > 0;
@@ -27,7 +28,9 @@ export default function Flashcard() {
       <Conditional condition={!isDisplay && !hasFlashcards}>
         <FlashcardHeader />
         <InformationPrompt
-          icon={<LuRectangleVertical className="h-5 w-5 text-slate-600 dark:text-slate-900" />}
+          icon={
+            <LuRectangleVertical className="h-5 w-5 text-slate-600 dark:text-slate-900" />
+          }
           promptText="You haven't created any flashcards yet."
           actionText='Get started by tapping "Create Flashcard"'
           onclick={handleToggleDisplay}
@@ -46,7 +49,12 @@ export default function Flashcard() {
           <CardsInitDisplay />
         </Conditional>
         <Conditional condition={isPlay}>
-          <StudyFlashcard />
+          <Conditional condition={finished}> {/*! is place here*/}
+            <StudyFlashcard />
+          </Conditional>
+          <Conditional condition={!finished}>
+            <StudyFlashcardSummary />
+          </Conditional>
         </Conditional>
       </Conditional>
     </Container>

@@ -5,11 +5,12 @@ const FlashcardContext = createContext();
 function FlashcardProvider({ children }) {
   const [isDisplay, setIsDisplay] = useState(false);
   const [isPlay, setIsPlay] = useState(false);
+  const [finished, setFinished] = useState(false);
 
   // Search && Sort
   const [sort, setSort] = useState("title");
   const [query, setQuery] = useState("");
-  
+
   // Create flashcard
   const [pairs, setPairs] = useState([
     { term: "", definition: "" },
@@ -49,6 +50,7 @@ function FlashcardProvider({ children }) {
     index,
     query,
     isPlay,
+    finished,
     activeId,
     isDisplay,
     editingId,
@@ -59,6 +61,7 @@ function FlashcardProvider({ children }) {
     setIndex,
     setQuery,
     setIsPlay,
+    setFinished,
     setActiveId,
     setIsDisplay,
     setEditingId,
