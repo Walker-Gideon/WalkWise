@@ -30,6 +30,8 @@ export default function StudyFlashcard() {
   const title = card?.title;
   const pairs = card?.pairs;
 
+  const condition = index + 1 === pairs?.length;
+
   function handleNext() {
     if (index < pairs.length - 1) {
       setDirection(1);
@@ -174,13 +176,17 @@ export default function StudyFlashcard() {
               </Paragraph>
             </Group>
             <Button
-              variant="secondary"
-              type="border"
-              disabled={index === pairs.length - 1}
-              classname={btnStyling}
+              variant={condition ? "" : "secondary"}
+              type={"border"}
+              // disabled={condition ? false : index === pairs.length - 1}
+              classname={
+                condition
+                  ? "text-sm text-slate-900 dark:text-white borderStyling"
+                  : btnStyling
+              }
               onclick={handleNext}
             >
-              <LuArrowRight className="icons" />
+              {condition ? "Finish" : <LuArrowRight className="icons" />}
             </Button>
           </Group>
         </Flex>

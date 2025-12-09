@@ -17,8 +17,8 @@ import Flex from "/src/ui/Flex";
 
 import useDeleteFlashcard from "../../../hooks/useDeleteFlashcard";
 import { useFlashcard } from "../../../context/FlashcardContext";
-import { useFetchCards } from "/src/hook/useCards";
 import useFormattedDate from "/src/hook/useFormattedDate";
+import { useFetchCards } from "/src/hook/useCards";
 
 export default function CardContentDisplay() {
   const { setActiveId, setIsPlay, query, sort } = useFlashcard();
