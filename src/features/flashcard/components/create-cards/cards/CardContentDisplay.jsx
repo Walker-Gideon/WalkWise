@@ -47,14 +47,13 @@ export default function CardContentDisplay() {
 
     if (sort === "title") return a.title.localeCompare(b.title);
     if (sort === "count") return b.pairs.length - a.pairs.length;
-    if (sort === "time") return normalizeDate(b.createdAt) - normalizeDate(a.createdAt);
+    if (sort === "time")
+      return normalizeDate(b.createdAt) - normalizeDate(a.createdAt);
     return 0;
   };
 
   const filteredFlashcards = flashcards
-    ?.filter((card) =>
-      card.title.toLowerCase().includes(query.toLowerCase())
-    )
+    ?.filter((card) => card.title.toLowerCase().includes(query.toLowerCase()))
     ?.sort(sortCards);
 
   function handleDeleteClick(id, title) {
