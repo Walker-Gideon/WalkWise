@@ -6,8 +6,35 @@ import { useFlashcard } from "../../../context/FlashcardContext";
 import useToggleDisplay from "/src/hook/useToggleDisplay";
 
 export default function CreatedHeader() {
-  const { setIsDisplay } = useFlashcard();
-  const handleCancel = useToggleDisplay(setIsDisplay);
+  const { setIsDisplay, setIsPlay, editingId, setEditingId, setPairs } = useFlashcard();
+
+  let handleCancel;
+  const toggleDisplay = useToggleDisplay(setIsDisplay);
+
+  function restPairs() {
+    setPairs([
+        { term: "", definition: "" },
+        { term: "", definition: "" },
+    ]);
+  }
+
+  function cancelWhenEditing() {
+    setIsDisplay(false);
+    setIsPlay(true);
+    setEditingId(null);
+    restPairs();
+  }
+
+  function cancelDefault() {
+    toggleDisplay();
+    restPairs();
+  }
+
+  if(editingId){
+    handleCancel = cancelWhenEditing;
+  } else {
+    handleCancel = cancelDefault;
+  }
 
   return (
     <Heading
@@ -30,9 +57,9 @@ export default function CreatedHeader() {
         <Button
           type="colors"
           submit={true}
-          classname={"px-8"}
+          classname={`${editingId ? "px-11" : "px-8"}`}
         >
-          Create
+          {editingId ? "Edit" : "Create"}
         </Button>
       </Group>
     </Heading>

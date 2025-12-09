@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { auth } from "/src/service/firebase";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -14,12 +15,27 @@ import Box from "/src/ui/Box";
 import useCreateFlashcard from "../../../hooks/useCreateFlashcard";
 import useUpdateFlashcard from "../../../hooks/useUpdateFlashcard";
 import { useFlashcard } from "../../../context/FlashcardContext";
+import { useFetchCards } from "/src/hook/useCards";
 
-export default function CreatedForm({ editingId = null }) {
+export default function CreatedForm() {
   const { control, register, handleSubmit, reset } = useForm();
   const { createFlashcard, isCreating } = useCreateFlashcard();
   const { updateMutation, isUpdating } = useUpdateFlashcard();
-  const { setIsDisplay, setPairs } = useFlashcard();
+  const { setIsDisplay, setPairs, editingId, setEditingId } = useFlashcard();
+  const { flashcards } = useFetchCards();
+
+  useEffect(() => {
+    if (editingId && flashcards) {
+      const cardToEdit = flashcards.find((card) => card.id === editingId);
+      if (cardToEdit) {
+        setPairs(cardToEdit.pairs);
+        reset({
+          tags: cardToEdit.title,
+          pairs: cardToEdit.pairs
+        });
+      }
+    }
+  }, [editingId, flashcards, setPairs, reset]);
 
   const onSubmit = async (data) => {
     const user = auth.currentUser;
@@ -53,8 +69,6 @@ export default function CreatedForm({ editingId = null }) {
         updatedAt: new Date().toISOString(),
       };
 
-      console.log("Final Flashcard:", flashcard);
-
       if (editingId === null) {
         createFlashcard(flashcard, {
           onSuccess: () => {
@@ -67,7 +81,17 @@ export default function CreatedForm({ editingId = null }) {
           },
         });
       } else {
-        updateMutation({ id: editingId, data: flashcard });
+        updateMutation({ id: editingId, data: flashcard }, {
+             onSuccess: () => {
+                reset();
+                setPairs([
+                    { term: "", definition: "" },
+                    { term: "", definition: "" },
+                ]);
+                setIsDisplay(false);
+                setEditingId(null);
+             }
+        });
       }
     } catch (error) {
       toast.error(error.message);
@@ -76,7 +100,7 @@ export default function CreatedForm({ editingId = null }) {
 
   return (
     <>
-      {isCreating && <Spinner />}
+      {(isCreating || isUpdating) && <Spinner />}
       <Form onsubmit={handleSubmit(onSubmit)}>
         <CreatedHeader onHandleSubmit={handleSubmit} />
         <Box

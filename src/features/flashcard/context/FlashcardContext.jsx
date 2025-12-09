@@ -17,6 +17,7 @@ function FlashcardProvider({ children }) {
   ]);
   const [index, setIndex] = useState(0);
   const [activeId, setActiveId] = useState(null);
+  const [editingId, setEditingId] = useState(null);
 
   const MAX_PAIRS = 50;
 
@@ -50,6 +51,7 @@ function FlashcardProvider({ children }) {
     isPlay,
     activeId,
     isDisplay,
+    editingId,
 
     // Setters
     setSort,
@@ -59,6 +61,7 @@ function FlashcardProvider({ children }) {
     setIsPlay,
     setActiveId,
     setIsDisplay,
+    setEditingId,
 
     // Values
     MAX_PAIRS,

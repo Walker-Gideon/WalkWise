@@ -10,10 +10,12 @@ import Flex from "/src/ui/Flex";
 import { useFlashcard } from "../../context/FlashcardContext";
 
 export default function StudyFlashcardHeader({ title, onIsDeleteModal }) {
-    const { setActiveId, setIsPlay } = useFlashcard();
+    const { setActiveId, setIsPlay, setEditingId, activeId, setIsDisplay } = useFlashcard();
 
     function handleEdit() {
-        console.log("Edit")
+        setEditingId(activeId);
+        setIsDisplay(true);
+        setIsPlay(false);
     }
     
     function handleDelete() {
