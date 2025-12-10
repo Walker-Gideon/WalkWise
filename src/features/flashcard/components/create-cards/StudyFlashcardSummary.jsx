@@ -1,5 +1,6 @@
 import { LuArrowLeft, LuFlame, LuCheck } from "react-icons/lu";
 
+import Menus from "/src/components/Menus";
 import HeaderText from "/src/ui/HeaderText";
 import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
@@ -12,27 +13,21 @@ import Box from "/src/ui/Box";
 
 export default function StudyFlashcardSummary() {
   function handleBack() {}
+  function handleAgain() {}
+  function handleToFlashcard() {}
 
   const rounded = "py-2 px-3 text-sm font-medium rounded-full space-x-4";
 
   return (
     <Container classname={"p-4"}>
-      <Header classname={"mb-4 py-6 middle:px-4 lg:px-8"}>
-        <Flex classname={"items-center gap-2"}>
-          <Button variant="secondary" type="back" onclick={handleBack}>
-            <LuArrowLeft className="h-5 w-5" />
-          </Button>
+      <InnerHeader 
+        onHandleBack={handleBack} 
+        onHandleAgain={handleAgain} 
+        onHandleToFlashcard={handleToFlashcard}
+      />
 
-          <HeaderText
-            classname={"text-xl font-bold text-slate-900 dark:text-white"}
-          >
-            Review Complete
-          </HeaderText>
-        </Flex>
-      </Header>
-
-      <Group classname={"px-8 medium:px-6 middle:px-8 lg:px-8 space-y-8 primary-text-color my-auto w-full h-full mt-8"}>
-        <Group classname={""}>
+      <Group classname={"px-8 medium:px-6 middle:px-8 lg:px-14 space-y-8 primary-text-color my-auto w-full h-full mt-8"}>
+        <Group>
           <Paragraph classname={"text-5xl font-bold mb-4"}>
             You reviewed all your flashcards.
           </Paragraph>
@@ -66,26 +61,34 @@ export default function StudyFlashcardSummary() {
             </Flex>
           </Flex>
         </Group>
-
-        {/* <div className="medium:mt-8 mt-10 flex w-full justify-between gap-4">
-          <Button
-            //   variant="outline"
-            classname="cursor-pointer dark:text-white flex items-center gap-1 text-sm"
-            onclick={() => {}}
-          >
-            Review Again
-          </Button>
-
-          <Button
-            //   variant="outline"
-            //   classname="primaryButton"
-            onclick={() => {}}
-            classname="btn-primary"
-          >
-            Back to Flashcard
-          </Button>
-        </div> */}
       </Group>
     </Container>
   );
+}
+
+function InnerHeader({ onHandleBack, onHandleAgain, onHandleToFlashcard }) {
+  return (
+    <Header classname={"mb-4 py-6 flex items-center justify-between medium:px-4 middle:px-6 lg:px-8"}>
+      <Flex classname={"items-center gap-2"}>
+        <Button variant="secondary" type="back" onclick={onHandleBack}>
+          <LuArrowLeft className="h-5 w-5" />
+        </Button>
+
+        <HeaderText
+            classname={"text-xl font-bold text-slate-900 dark:text-white"}
+          >
+          Review Complete
+        </HeaderText>
+      </Flex>
+
+      <Menus>
+        <Menus.Toggle />
+
+        <Menus.Lists>
+          <Menus.Buttons onClick={onHandleAgain}>Review Again</Menus.Buttons>
+          <Menus.Buttons onClick={onHandleToFlashcard}>Back to Flashcard</Menus.Buttons>
+        </Menus.Lists>
+      </Menus>
+    </Header>
+  )
 }
