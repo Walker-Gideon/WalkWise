@@ -11,7 +11,7 @@ export default function AppLayout() {
 
   return (
     <Container
-      classname={`defaultColor flex overflow-hidden ${isExpanded ? "" : ""}`}
+      classname={`defaultColor flex overflow-hidden ${isExpanded ? "bg-red-500" : "bg-green-500"}`}
     >
       <Slider />
 

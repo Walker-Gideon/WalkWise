@@ -13,10 +13,7 @@ export default function Dashboard() {
   return (
     <Container adjust={true}>
       <DashboardHeader />
-      <Main
-        // medium:mt-0 mt-7
-        classname={"space-y-6 overflow-y-scroll h-[510px] p-6"}
-      >
+      <Main classname={"space-y-6 overflow-y-scroll h-[510px] p-6"}>
         <DashboardStatus />
         <DashboardActions />
         <Group classname={"grid grid-cols-1 gap-6 lg:grid-cols-3"}>

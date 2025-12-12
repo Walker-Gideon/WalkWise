@@ -14,7 +14,8 @@ export default function Slider() {
 
   return (
     <Aside
-      classname={`borderStyling medium:flex hidden border-r h-screen flex flex-col justify-between transitiona-all duration-500 ${isExpanded ? "w-20" : "w-65"}`}
+    // medium:flex
+      classname={`borderStyling md:flex hidden border-r h-screen flex flex-col justify-between transitiona-all duration-500 ${isExpanded ? "w-20" : "w-65"}`}
     >
       <Box adjustWidth={true}>
         <NavigationHeader />
