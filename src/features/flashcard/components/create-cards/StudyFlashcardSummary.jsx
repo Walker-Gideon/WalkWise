@@ -18,10 +18,9 @@ import { useFetchCards } from "/src/hook/useCards";
 
 export default function StudyFlashcardSummary() {
   const { setFinished, activeId, setIsPlay, setActiveId } = useFlashcard();
-  const { flashcards, isPending, error } = useFetchCards();
+  const { flashcards } = useFetchCards();
   const { userData } = useUserData();
   const [count, setCount] = useState(0);
-  const [isCountFinish, setIsCountFinish] = useState(false) 
 
   const card = flashcards?.find((card) => card.id === activeId);
   const pairs = card?.pairs;
@@ -42,18 +41,21 @@ export default function StudyFlashcardSummary() {
   useEffect(() => {
     if (count === 10) {
       setTimeout(() => {
-        setIsPlay(false);
-        setFinished(false);
-        setActiveId(null);
+        handleToFlashcard()
       }, 1000);
     }
   }, [count]);
 
+  function handleToFlashcard() {
+    setIsPlay(false);
+    setFinished(false);
+    setActiveId(null);
+  }
+
   function handleBack() {
     setFinished(false);
   }
-  function handleAgain() {}
-  function handleToFlashcard() {}
+
 
   const rounded = "py-2 px-3 text-sm font-medium rounded-full space-x-4";
 
@@ -61,7 +63,7 @@ export default function StudyFlashcardSummary() {
     <Container classname={"p-4"}>
       <InnerHeader 
         onHandleBack={handleBack} 
-        onHandleAgain={handleAgain} 
+        onHandleAgain={handleBack} 
         onHandleToFlashcard={handleToFlashcard}
       />
 
