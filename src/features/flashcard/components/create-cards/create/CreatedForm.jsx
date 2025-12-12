@@ -40,10 +40,6 @@ export default function CreatedForm() {
     }
   }, [editingId, flashcards, setPairs, reset]);
 
-  // Update user data
-  // 2. lastActiveDate: to the current date
-  // 3. flashcards: to the flashcards array use the flashcards ids to update the array
-
   const onSubmit = async (data) => {
     const user = auth.currentUser;
     if (!user) return;

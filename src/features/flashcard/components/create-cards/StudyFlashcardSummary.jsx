@@ -27,15 +27,6 @@ export default function StudyFlashcardSummary() {
   const pairs = card?.pairs;
   const cardLength = pairs?.length;
 
-  // Update user data
-  /*
-  1. streakCount
-  2. lastActiveDate
-*/ 
-
-  console.log(userData)
-
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCount((prev) => {
@@ -107,7 +98,7 @@ export default function StudyFlashcardSummary() {
               </Flex>
             <Paragraph variant="small" classname={"flex items-center gap-1"}>
               <LuFlame />
-              Current Streak : X day
+              Current Streak : {userData?.streakCount} day
             </Paragraph>
             </Flex>
           </Flex>

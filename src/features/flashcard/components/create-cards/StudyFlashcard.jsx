@@ -1,5 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { auth } from "/src/service/firebase";
 import { motion, AnimatePresence } from "motion/react";
 
 import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
@@ -15,9 +16,13 @@ import Flex from "/src/ui/Flex";
 
 import useDeleteFlashcard from "../../hooks/useDeleteFlashcard";
 import { useFlashcard } from "../../context/FlashcardContext";
+import { useUserData } from "/src/user/hook/useUserData";
 import { useFetchCards } from "/src/hook/useCards";
+import { updateUser } from "/src/service/apiUser";
 
 export default function StudyFlashcard() {
+  const user = auth.currentUser;
+  const { userData } = useUserData();
   const { isDeleting, deleteFlashcard } = useDeleteFlashcard();
   const { flashcards, isPending, error } = useFetchCards();
   const { setActiveId, setFinished, setIsPlay, activeId } = useFlashcard();
@@ -64,6 +69,13 @@ export default function StudyFlashcard() {
   function handleFinish() {
     setActiveId(activeId);
     setFinished(true)
+
+    if (user) {
+      updateUser(user.uid, {
+        lastActiveDate: new Date().toISOString(),
+        streakCount: userData?.streakCount + 1,
+      });
+    }
   }
 
   const slideVariants = {
