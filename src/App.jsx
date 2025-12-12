@@ -20,12 +20,13 @@ import PageNotFound from "./ui/PageNotFound";
 import Note from "./features/note/Note";
 import AppLayout from "./ui/AppLayout";
 
-const queryClient = new QueryClient();
-// defaultOptions: {
-//   queries: {
-//     staleTime: 60 * 1000,
-//   },
-// },
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000,
+    },
+  },
+});
 
 export default function App() {
   return (

@@ -20,7 +20,7 @@ import { useFetchCards } from "/src/hook/useCards";
 export default function StudyFlashcard() {
   const { isDeleting, deleteFlashcard } = useDeleteFlashcard();
   const { flashcards, isPending, error } = useFetchCards();
-  const { setActiveId, setIsPlay, activeId } = useFlashcard();
+  const { setActiveId, setFinished, setIsPlay, activeId } = useFlashcard();
   const [index, setIndex] = useState(0);
   const [isFlip, setIsFlip] = useState(false);
   const [direction, setDirection] = useState(0);
@@ -59,6 +59,11 @@ export default function StudyFlashcard() {
 
   function handleCloseModal() {
     setIsDeleteModal(false);
+  }
+
+  function handleFinish() {
+    setActiveId(activeId);
+    setFinished(true)
   }
 
   const slideVariants = {
@@ -184,7 +189,7 @@ export default function StudyFlashcard() {
                   ? "text-sm text-slate-900 dark:text-white borderStyling"
                   : btnStyling
               }
-              onclick={handleNext}
+              onclick={condition ? handleFinish : handleNext}
             >
               {condition ? "Finish" : <LuArrowRight className="icons" />}
             </Button>

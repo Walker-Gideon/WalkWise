@@ -49,10 +49,10 @@ export default function Flashcard() {
           <CardsInitDisplay />
         </Conditional>
         <Conditional condition={isPlay}>
-          <Conditional condition={finished}> {/*! is place here*/}
+          <Conditional condition={!finished}> 
             <StudyFlashcard />
           </Conditional>
-          <Conditional condition={!finished}>
+          <Conditional condition={finished}>
             <StudyFlashcardSummary />
           </Conditional>
         </Conditional>

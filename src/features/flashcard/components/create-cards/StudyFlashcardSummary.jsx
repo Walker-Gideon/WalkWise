@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { LuArrowLeft, LuFlame, LuCheck } from "react-icons/lu";
 
 import Menus from "/src/components/Menus";
@@ -11,8 +12,22 @@ import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
 
+import { useFlashcard } from "../../context/FlashcardContext";
+
 export default function StudyFlashcardSummary() {
-  function handleBack() {}
+  const { setFinished } = useFlashcard();
+  const [isCountFinish, setIsCountFinish] = useState(false) 
+
+  let count = 0;
+  // while(count !== 10) {
+  //   setTimeout(() => {
+  //     count = count + 1
+  //   }, 2000);
+  // }
+
+  function handleBack() {
+    setFinished(false);
+  }
   function handleAgain() {}
   function handleToFlashcard() {}
 
@@ -42,7 +57,8 @@ export default function StudyFlashcardSummary() {
 
           <Flex variant="between" classname={"gap-6"}>
             <Box adjustWidth={true} classname={"flex h-25 w-25 items-center justify-center rounded-full border-8 border-green-200 text-green-200 dark:border-green-300/30 dark:text-green-300/30"}>
-              <LuCheck className="h-16 w-16" />
+               <SpanText classname={"text-4xl font-bold"}>{count}</SpanText>
+              {/* <LuCheck className="h-16 w-16" /> */}
             </Box>
 
             <Flex classname={"flex-col gap-3"}>
