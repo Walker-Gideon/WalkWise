@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { LuArrowLeft, LuFlame, LuCheck } from "react-icons/lu";
 
 import Menus from "/src/components/Menus";
@@ -13,17 +13,52 @@ import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
 
 import { useFlashcard } from "../../context/FlashcardContext";
+import { useUserData } from "/src/user/hook/useUserData";
+import { useFetchCards } from "/src/hook/useCards";
 
 export default function StudyFlashcardSummary() {
-  const { setFinished } = useFlashcard();
+  const { setFinished, activeId, setIsPlay, setActiveId } = useFlashcard();
+  const { flashcards, isPending, error } = useFetchCards();
+  const { userData } = useUserData();
+  const [count, setCount] = useState(0);
   const [isCountFinish, setIsCountFinish] = useState(false) 
 
-  let count = 0;
-  // while(count !== 10) {
-  //   setTimeout(() => {
-  //     count = count + 1
-  //   }, 2000);
-  // }
+  const card = flashcards?.find((card) => card.id === activeId);
+  const pairs = card?.pairs;
+  const cardLength = pairs?.length;
+
+  // Update user data
+  /*
+  1. streakCount
+  2. lastActiveDate
+
+  **. flashcards is an array
+*/ 
+
+  console.log(userData)
+
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount((prev) => {
+        if (prev < 10) return prev + 1;
+        clearInterval(interval);
+        return prev;
+      });
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (count === 10) {
+      setTimeout(() => {
+        setIsPlay(false);
+        setFinished(false);
+        setActiveId(null);
+      }, 1000);
+    }
+  }, [count]);
 
   function handleBack() {
     setFinished(false);
@@ -57,14 +92,16 @@ export default function StudyFlashcardSummary() {
 
           <Flex variant="between" classname={"gap-6"}>
             <Box adjustWidth={true} classname={"flex h-25 w-25 items-center justify-center rounded-full border-8 border-green-200 text-green-200 dark:border-green-300/30 dark:text-green-300/30"}>
-               <SpanText classname={"text-4xl font-bold"}>{count}</SpanText>
-              {/* <LuCheck className="h-16 w-16" /> */}
+              {count === 10 ? 
+                 <LuCheck className="h-16 w-16" /> : 
+                 <SpanText classname={"text-4xl font-bold"}>{count}</SpanText>
+              }
             </Box>
 
             <Flex classname={"flex-col gap-3"}>
               <Flex variant="between" classname={`${rounded} bg-green-200 text-green-900 dark:bg-green-300/30 dark:text-white`}>
                 <SpanText>Completed</SpanText>
-                <SpanText>X</SpanText>
+                <SpanText>{cardLength}</SpanText>
               </Flex>
               <Flex variant="between" classname={`${rounded} bg-slate-500 text-white`}>
                 <SpanText>Terms left</SpanText>
