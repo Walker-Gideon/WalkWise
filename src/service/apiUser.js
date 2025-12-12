@@ -11,3 +11,12 @@ export async function updateUser(userId, data) {
   const userRef = doc(db, "users", userId);
   await updateDoc(userRef, data);
 }
+
+/*
+import { auth } from "/src/service/firebase";
+ const user = auth.currentUser;
+updateUser(user.uid, {
+        lastActiveDate: new Date().toISOString(),
+        streakCount: newStreak,
+      });
+      */

@@ -68,12 +68,22 @@ export default function StudyFlashcard() {
 
   function handleFinish() {
     setActiveId(activeId);
-    setFinished(true)
+    setFinished(true);
 
     if (user) {
+      const today = new Date().toDateString();
+      const lastActive = userData?.lastActiveDate
+        ? new Date(userData.lastActiveDate).toDateString()
+        : null;
+
+      let newStreak = userData?.streakCount || 0;
+      if (today !== lastActive) {
+        newStreak += 1;
+      }
+
       updateUser(user.uid, {
         lastActiveDate: new Date().toISOString(),
-        streakCount: userData?.streakCount + 1,
+        streakCount: newStreak,
       });
     }
   }
