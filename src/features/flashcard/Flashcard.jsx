@@ -1,5 +1,6 @@
 import { LuRectangleVertical } from "react-icons/lu";
 
+import StudyFlashcardSummary from "./components/create-cards/StudyFlashcardSummary";
 import CardsInitDisplay from "./components/create-cards/CardsInitDisplay";
 import StudyFlashcard from "./components/create-cards/StudyFlashcard";
 import CreatedForm from "./components/create-cards/create/CreatedForm";
@@ -12,7 +13,6 @@ import { useAuthentication } from "/src/authentication/context/AuthContext";
 import { useFlashcard } from "./context/FlashcardContext";
 import useToggleDisplay from "/src/hook/useToggleDisplay";
 import { useFlashcards } from "./hooks/useFlashcards";
-import StudyFlashcardSummary from "./components/create-cards/StudyFlashcardSummary";
 
 export default function Flashcard() {
   const { user } = useAuthentication();

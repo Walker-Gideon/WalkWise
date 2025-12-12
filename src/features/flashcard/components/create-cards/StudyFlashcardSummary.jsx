@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 import { LuArrowLeft, LuFlame, LuCheck } from "react-icons/lu";
 
-import Menus from "/src/components/Menus";
 import HeaderText from "/src/ui/HeaderText";
+import Menus from "/src/components/Menus";
 import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
 import SpanText from "/src/ui/SpanText";
@@ -55,7 +55,6 @@ export default function StudyFlashcardSummary() {
   function handleBack() {
     setFinished(false);
   }
-
 
   const rounded = "py-2 px-3 text-sm font-medium rounded-full space-x-4";
 
