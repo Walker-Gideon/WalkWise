@@ -31,8 +31,6 @@ export default function StudyFlashcardSummary() {
   /*
   1. streakCount
   2. lastActiveDate
-
-  **. flashcards is an array
 */ 
 
   console.log(userData)

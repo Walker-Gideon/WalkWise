@@ -15,7 +15,9 @@ import Box from "/src/ui/Box";
 import useCreateFlashcard from "../../../hooks/useCreateFlashcard";
 import useUpdateFlashcard from "../../../hooks/useUpdateFlashcard";
 import { useFlashcard } from "../../../context/FlashcardContext";
+import { useUserData } from "/src/user/hook/useUserData";
 import { useFetchCards } from "/src/hook/useCards";
+import { updateUser } from "/src/service/apiUser";
 
 export default function CreatedForm() {
   const { control, register, handleSubmit, reset } = useForm();
@@ -23,6 +25,7 @@ export default function CreatedForm() {
   const { updateMutation, isUpdating } = useUpdateFlashcard();
   const { setIsDisplay, setPairs, editingId, setEditingId } = useFlashcard();
   const { flashcards } = useFetchCards();
+  const { userData } = useUserData();
 
   useEffect(() => {
     if (editingId && flashcards) {
@@ -36,6 +39,10 @@ export default function CreatedForm() {
       }
     }
   }, [editingId, flashcards, setPairs, reset]);
+
+  // Update user data
+  // 2. lastActiveDate: to the current date
+  // 3. flashcards: to the flashcards array use the flashcards ids to update the array
 
   const onSubmit = async (data) => {
     const user = auth.currentUser;
@@ -71,27 +78,47 @@ export default function CreatedForm() {
 
       if (editingId === null) {
         createFlashcard(flashcard, {
-          onSuccess: () => {
+          onSuccess: (newCard) => {
             reset();
             setPairs([
               { term: "", definition: "" },
               { term: "", definition: "" },
             ]);
             setIsDisplay(false);
+
+            if (user) {
+              const updatedFlashcards = userData?.flashcards
+                ? [...userData.flashcards, newCard.id]
+                : [newCard.id];
+
+              updateUser(user.uid, {
+                lastActiveDate: new Date().toISOString(),
+                flashcards: updatedFlashcards,
+              });
+            }
           },
         });
       } else {
-        updateMutation({ id: editingId, data: flashcard }, {
-             onSuccess: () => {
-                reset();
-                setPairs([
-                    { term: "", definition: "" },
-                    { term: "", definition: "" },
-                ]);
-                setIsDisplay(false);
-                setEditingId(null);
-             }
-        });
+        updateMutation(
+          { id: editingId, data: flashcard },
+          {
+            onSuccess: () => {
+              reset();
+              setPairs([
+                { term: "", definition: "" },
+                { term: "", definition: "" },
+              ]);
+              setIsDisplay(false);
+              setEditingId(null);
+
+              if (user) {
+                updateUser(user.uid, {
+                  lastActiveDate: new Date().toISOString(),
+                });
+              }
+            },
+          },
+        );
       }
     } catch (error) {
       toast.error(error.message);
