@@ -1,6 +1,7 @@
 import { useNav } from "/src/contexts/NavigationContext";
 import { LuCircleChevronLeft, LuCircleChevronRight } from "react-icons/lu";
 
+import Conditional from "/src/components/Conditional"
 import Logo from "/src/components/Logo";
 import SpanText from "/src/ui/SpanText";
 import Button from "/src/ui/Button";
@@ -8,7 +9,7 @@ import Header from "/src/ui/Header";
 import Box from "/src/ui/Box";
 
 export default function NavigationHeader() {
-  const { isExpanded, setIsExpanded } = useNav();
+  const { isExpanded, isMenuClick, setIsExpanded } = useNav();
 
   function handleIsExpanded() {
     setIsExpanded((show) => !show);
@@ -32,13 +33,15 @@ export default function NavigationHeader() {
             walkwise
           </SpanText>
         </Box>
-        <Button variant="secondary" onclick={handleIsExpanded}>
-          {isExpanded ? (
-            <LuCircleChevronRight className="icons" />
-          ) : (
-            <LuCircleChevronLeft className="icons" />
-          )}
-        </Button>
+        <Conditional condition={!isMenuClick}>
+          <Button variant="secondary" onclick={handleIsExpanded}>
+            {isExpanded ? (
+              <LuCircleChevronRight className="icons" />
+            ) : (
+              <LuCircleChevronLeft className="icons" />
+            )}
+          </Button>
+        </Conditional>
       </Box>
     </Header>
   );

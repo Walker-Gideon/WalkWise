@@ -4,8 +4,14 @@ const NavigationContext = createContext();
 
 function NavigationProvider({ children }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isMenuClick, setIsMenuClick] = useState(false)
 
-  const value = { isExpanded, setIsExpanded };
+  const value = { 
+    isExpanded, 
+    isMenuClick, 
+    setIsExpanded, 
+    setIsMenuClick 
+  };
 
   return (
     <NavigationContext.Provider value={value}>

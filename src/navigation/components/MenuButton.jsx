@@ -2,9 +2,14 @@ import { BiMenuAltLeft } from "react-icons/bi"
 
 import Button from "/src/ui/Button";
 
+import { useNav } from "/src/contexts/NavigationContext";
+
 export default function MenuButton() {
+    const { setIsMenuClick } = useNav();
+
     function handleToggle() {
-        console.log("Menu click")
+        setIsMenuClick(show => !show)
+        // setIsMenuClick(true)
     }
 
     return (

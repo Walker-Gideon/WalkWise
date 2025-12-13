@@ -8,11 +8,11 @@ import Aside from "/src/ui/Aside";
 import Box from "/src/ui/Box";
 
 export default function Slider() {
-  const { isExpanded } = useNav();
+  const { isExpanded, isMenuClick } = useNav();
 
   return (
     <Aside
-      classname={`borderStyling md:flex hidden border-r h-screen flex flex-col justify-between transitiona-all duration-500 ${isExpanded ? "w-20" : "w-65"}`}
+      classname={`borderStyling border-r h-screen flex flex-col justify-between transitiona-all duration-500 ${isExpanded ? "w-20" : "w-65"} ${isMenuClick ? "md:flex" : "md:flex hidden"}`}
     >
       <Box adjustWidth={true}>
         <NavigationHeader />
