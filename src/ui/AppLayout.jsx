@@ -19,16 +19,14 @@ export default function AppLayout() {
     <Container
       classname={`defaultColor flex overflow-hidden`}
     >
-      <Conditional condition={!isMenuClick}>
-        <Slider />
-      </Conditional>
+      <Slider menu={false} />
       <Conditional condition={isMenuClick}>
         <Model 
           menu={true} 
           styling={"md:hidden"}
           onClick={handleToggle} 
         >
-         <Slider />
+         <Slider menu={true} />
         </Model>
       </Conditional>
 

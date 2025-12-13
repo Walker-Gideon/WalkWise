@@ -29,4 +29,4 @@ function useNav() {
   return context;
 }
 
-export { NavigationProvider, useNav };
+export { NavigationProvider, useNav, NavigationContext };

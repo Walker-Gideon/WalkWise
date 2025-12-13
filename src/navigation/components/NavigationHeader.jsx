@@ -1,4 +1,3 @@
-import { useNav } from "/src/contexts/NavigationContext";
 import { LuCircleChevronLeft, LuCircleChevronRight } from "react-icons/lu";
 
 import Conditional from "/src/components/Conditional"
@@ -7,6 +6,8 @@ import SpanText from "/src/ui/SpanText";
 import Button from "/src/ui/Button";
 import Header from "/src/ui/Header";
 import Box from "/src/ui/Box";
+
+import { useNav } from "/src/contexts/NavigationContext";
 
 export default function NavigationHeader() {
   const { isExpanded, isMenuClick, setIsExpanded } = useNav();
