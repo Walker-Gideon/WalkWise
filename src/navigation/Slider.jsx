@@ -1,5 +1,3 @@
-// import { LuPanelLeft, LuMenu } from "react-icons/lu";
-
 import { useNav } from "/src/contexts/NavigationContext";
 
 import NavigationHeader from "./components/NavigationHeader";
@@ -14,7 +12,6 @@ export default function Slider() {
 
   return (
     <Aside
-    // medium:flex
       classname={`borderStyling md:flex hidden border-r h-screen flex flex-col justify-between transitiona-all duration-500 ${isExpanded ? "w-20" : "w-65"}`}
     >
       <Box adjustWidth={true}>
