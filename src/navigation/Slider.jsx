@@ -12,7 +12,7 @@ export default function Slider() {
 
   return (
     <Aside
-      classname={`borderStyling border-r h-screen flex flex-col justify-between transitiona-all duration-500 ${isExpanded ? "w-20" : "w-65"} ${isMenuClick ? "md:flex" : "md:flex hidden"}`}
+      classname={`borderStyling border-r h-screen flex flex-col justify-between transitiona-all duration-500 ${isExpanded ? "w-20" : "w-65"} ${isMenuClick ? `md:hidden z-50 defaultColor` : "md:flex hidden"}`}
     >
       <Box adjustWidth={true}>
         <NavigationHeader />

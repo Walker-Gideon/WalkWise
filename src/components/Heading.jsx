@@ -19,7 +19,7 @@ export default function Heading({
 }) {
   return (
     <Header
-      classname={`sticky top-0 z-40 border-b border-stone-300 shadow-sm backdrop-blur-sm  ${classname} ${theme ? "defaultColor dark:border-slate-700" : "bg-white/30"}`}
+      classname={`sticky top-0 z-30 border-b border-stone-300 shadow-sm backdrop-blur-sm  ${classname} ${theme ? "defaultColor dark:border-slate-700" : "bg-white/30"}`}
     >
       <Flex classname={`w-full py-4 ${menu ? "pl-4" : "px-6"}`}>
         <Conditional condition={menu}>

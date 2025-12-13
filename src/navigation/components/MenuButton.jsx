@@ -8,8 +8,7 @@ export default function MenuButton() {
     const { setIsMenuClick } = useNav();
 
     function handleToggle() {
-        setIsMenuClick(show => !show)
-        // setIsMenuClick(true)
+        setIsMenuClick(true)
     }
 
     return (

@@ -3,12 +3,17 @@ import { Outlet } from "react-router-dom";
 import Conditional from "/src/components/Conditional"
 import Slider from "/src/navigation/Slider";
 import Container from "/src/ui/Container";
+import Model from "/src/components/Model"
 import Main from "/src/ui/Main";
 
 import { useNav } from "/src/contexts/NavigationContext";
 
 export default function AppLayout() {
   const { isMenuClick, setIsMenuClick } = useNav();
+
+   function handleToggle() {
+        setIsMenuClick(false)
+    }
 
   return (
     <Container
@@ -18,9 +23,13 @@ export default function AppLayout() {
         <Slider />
       </Conditional>
       <Conditional condition={isMenuClick}>
-        <div className="p-6 bg-red-500">
+        <Model 
+          menu={true} 
+          styling={"md:hidden"}
+          onClick={handleToggle} 
+        >
          <Slider />
-        </div>
+        </Model>
       </Conditional>
 
       <Main
