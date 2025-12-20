@@ -6,6 +6,7 @@ import Group from "/src/ui/Group";
 import Box from "/src/ui/Box";
 
 import { useNav } from "/src/contexts/NavigationContext";
+import { useUserData } from "./hook/useUserData";
 
 export default function UserProfile() {
   const { isExpanded } = useNav();
@@ -56,18 +57,20 @@ function Profile() {
 }
 
 function UserDetails({ classname1, classname2 }) {
+  const { userData, loading } = useUserData();
+
   return (
     <Group>
       <Paragraph
         classname={`font-bold whitespace-nowrap truncate w-30 ${classname1}`}
       >
-        username
+        {loading ? "username" : userData?.username}
       </Paragraph>
       <Paragraph
         type=""
         classname={`text-xs font-medium truncate w-30 ${classname2}`}
       >
-        example123@gmail.com
+        {loading ? "example123@gmail.com" : userData?.email}
       </Paragraph>
     </Group>
   );
