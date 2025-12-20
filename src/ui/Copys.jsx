@@ -1,162 +1,88 @@
-import { createContext, useContext, useState } from "react";
-import { createPortal } from "react-dom";
-import { HiEllipsisVertical } from "react-icons/hi2";
-import styled from "styled-components";
+import { useSearchParams } from "react-router-dom";
+import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 
-import { useOutsideClick } from "../hooks/useOutsideClick";
-
-const Menu = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-`;
-
-const StyledToggle = styled.button`
-  background: none;
-  border: none;
-  padding: 0.4rem;
-  border-radius: var(--border-radius-sm);
-  transform: translateX(0.8rem);
-  transition: all 0.2s;
-
-  &:hover {
-    background-color: var(--color-grey-100);
-  }
-
-  & svg {
-    width: 2.4rem;
-    height: 2.4rem;
-    color: var(--color-grey-700);
-  }
-`;
-
-const StyledList = styled.ul`
-  position: fixed;
-
+const StyledFilter = styled.div`
+  border: 1px solid var(--color-grey-100);
   background-color: var(--color-grey-0);
-  box-shadow: var(--shadow-md);
-  border-radius: var(--border-radius-md);
-
-  right: ${(props) => props.position.x}px;
-  top: ${(props) => props.position.y}px;
-`;
-
-const StyledButton = styled.button`
-  width: 100%;
-  text-align: left;
-  background: none;
-  border: none;
-  padding: 1.2rem 2.4rem;
-  font-size: 1.4rem;
-  transition: all 0.2s;
-
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--border-radius-sm);
+  padding: 0.4rem;
   display: flex;
-  align-items: center;
-  gap: 1.6rem;
+  gap: 0.4rem;
+`;
 
-  &:hover {
-    background-color: var(--color-grey-50);
-  }
+const FilterButton = styled.button`
+  background-color: var(--color-grey-0);
+  border: none;
 
-  & svg {
-    width: 1.6rem;
-    height: 1.6rem;
-    color: var(--color-grey-400);
-    transition: all 0.3s;
+  ${(props) =>
+    props.active &&
+    css`
+      background-color: var(--color-brand-600);
+      color: var(--color-brand-50);
+    `}
+
+  border-radius: var(--border-radius-sm);
+  font-weight: 500;
+  font-size: 1.4rem;
+  /* To give the same height as select */
+  padding: 0.44rem 0.8rem;
+  transition: all 0.3s;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-brand-600);
+    color: var(--color-brand-50);
   }
 `;
 
-const MenusContext = createContext();
+export default function Filter({ filterField, options }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentFilter = searchParams.get(filterField) || options?.at(0).value;
 
-export default function Menus({ children }) {
-  const [openId, setOpenId] = useState("");
-  const [position, setPosition] = useState(null);
-  const close = () => setOpenId("");
-  const open = setOpenId;
-  return (
-    <MenusContext.Provider
-      value={{ openId, close, open, position, setPosition }}
-    >
-      {children}
-    </MenusContext.Provider>
-  );
-}
+  function handleClick(value) {
+    /*
+    searchParams.set(filterField, value);
+    if (searchParams.get("page")) searchParams.set("page", 1);
 
-function Toggle({ id }) {
-  const { openId, close, open, setPosition } = useContext(MenusContext);
-  function handleClick(e) {
-    e.stopPropagation();
-    const rect = e.target.closest("button").getBoundingClientRect();
-    console.log(rect);
+    setSearchParams(searchParams); // update the URL with the new search parameters (will trigger a re-render)
+    */
 
-    setPosition({
-      x: window.innerWidth - rect.width - rect.x,
-      y: rect.y + rect.height + 8,
-    });
-
-    openId === "" || openId !== id ? open(id) : close();
+    searchParams.set(filterField, value);
+    setSearchParams(searchParams)
   }
+
   return (
-    <StyledToggle onClick={handleClick}>
-      <HiEllipsisVertical />
-    </StyledToggle>
+    <StyledFilter>
+      {options?.map((option) => (
+        <FilterButton
+          key={option.value}
+          onClick={() => handleClick(option.value)}
+          active={option.value === currentFilter}
+          disabled={option.value === currentFilter}
+        >
+          {option.label}
+        </FilterButton>
+      ))}
+
+      {/* <FilterButton onClick={() => handleClick("all")}>All</FilterButton>
+      <FilterButton onClick={() => handleClick("no-discount")}>
+        No discount
+      </FilterButton>
+      <FilterButton onClick={() => handleClick("with-discount")}>
+        With discount
+      </FilterButton> */}
+    </StyledFilter>
   );
 }
 
-function List({ id, children }) {
-  const { openId, close, open, position } = useContext(MenusContext);
-  console.log(open)
-  const ref = useOutsideClick(() => {
-    close();
-  }, false);
-
-  if (openId !== id) return null;
-
-  return createPortal(
-    <StyledList position={position} ref={ref}>
-      {children}
-    </StyledList>,
-    document.body
-  );
-}
-
-function Button({ children, icon, onClick }) {
-  const { close } = useContext(MenusContext);
-  function handleClick() {
-    onClick?.();
-    close();
-  }
-  return (
-    <li>
-      <StyledButton onClick={handleClick}>
-        {icon}
-        <span>{children}</span>
-      </StyledButton>
-    </li>
-  );
-}
-
-Menus.Menu = Menu;
-Menus.Toggle = Toggle;
-Menus.List = List;
-Menus.Button = Button;
-
-Menus.propTypes = {
-  children: PropTypes.node,
-};
-
-Toggle.propTypes = {
-  id: PropTypes.string.isRequired,
-};
-
-List.propTypes = {
-  children: PropTypes.node,
-  id: PropTypes.string.isRequired,
-};
-
-Button.propTypes = {
-  children: PropTypes.node,
-  icon: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired,
+Filter.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+      label: PropTypes.node.isRequired,
+    })
+  ).isRequired,
+  filterField: PropTypes.string.isRequired,
 };
