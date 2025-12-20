@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { AnimatePresence } from "motion/react";
 
-import Conditional from "/src/components/Conditional"
 import Slider from "/src/navigation/Slider";
 import Container from "/src/ui/Container";
 import Model from "/src/components/Model"
@@ -10,11 +9,7 @@ import Main from "/src/ui/Main";
 import { useNav } from "/src/contexts/NavigationContext";
 
 export default function AppLayout() {
-  const { isMenuClick, setIsMenuClick } = useNav();
-
-   function handleToggle() {
-        setIsMenuClick(false)
-    }
+  const { isMenuClick, handleToggle } = useNav();
 
   return (
     <Container

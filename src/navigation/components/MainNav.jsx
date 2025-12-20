@@ -49,7 +49,7 @@ const buttonsData = [
 ];
 
 export default function MainNav() {
-  const { isExpanded } = useNav();
+  const { isExpanded, handleToggle } = useNav();
 
   return (
     <Nav classname={"p-4"}>
@@ -61,6 +61,7 @@ export default function MainNav() {
           <NavLink
             to={data.to}
             end
+            onClick={handleToggle}
             className={({ isActive }) =>
               `w-full cursor-pointer rounded-sm px-4 py-2 text-sm font-semibold text-slate-800 transition-all duration-300 hover:bg-slate-600 hover:text-white dark:text-slate-300 ${isExpanded ? "" : ""} ${isActive ? "bg-slate-500 text-white" : ""}`
             }

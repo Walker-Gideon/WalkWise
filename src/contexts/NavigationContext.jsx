@@ -6,11 +6,18 @@ function NavigationProvider({ children }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMenuClick, setIsMenuClick] = useState(false)
 
+  function handleToggle() {
+    setIsMenuClick(false);
+  }
+
   const value = { 
     isExpanded, 
     isMenuClick, 
     setIsExpanded, 
-    setIsMenuClick 
+    setIsMenuClick, 
+
+    // Function
+    handleToggle
   };
 
   return (
