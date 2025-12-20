@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import { AnimatePresence } from "motion/react";
 
 import Conditional from "/src/components/Conditional"
 import Slider from "/src/navigation/Slider";
@@ -20,15 +21,18 @@ export default function AppLayout() {
       classname={`defaultColor flex overflow-hidden`}
     >
       <Slider menu={false} />
-      <Conditional condition={isMenuClick}>
-        <Model 
-          menu={true} 
-          styling={"md:hidden"}
-          onClick={handleToggle} 
-        >
-         <Slider menu={true} />
-        </Model>
-      </Conditional>
+      <AnimatePresence>
+        {isMenuClick && (
+          <Model 
+            menu={true} 
+            styling={"md:hidden"}
+            onClick={handleToggle} 
+            key="mobile-menu"
+          >
+            <Slider menu={true} />
+          </Model>
+        )}
+      </AnimatePresence>
 
       <Main
         classname={"h-screen w-full bg-slate-50 dark:bg-slate-800 transition"}
