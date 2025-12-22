@@ -1,5 +1,6 @@
 import { LuSearch } from "react-icons/lu";
 
+import Filter from "/src/components/Filter";
 import Menus from "/src/components/Menus";
 import Group from "/src/ui/Group";
 import Input from "/src/ui/Input";
@@ -30,6 +31,8 @@ export default function CardsSubHeader() {
       </Group>
 
       <Group>
+        <Filter />
+        {/* 
         <Menus>
           <Menus.Toggle type={true} />
           <Menus.Lists>
@@ -44,6 +47,7 @@ export default function CardsSubHeader() {
             </Menus.Buttons>
           </Menus.Lists>
         </Menus>
+         */}
       </Group>
     </Flex>
     </Group>

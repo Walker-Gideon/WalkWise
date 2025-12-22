@@ -85,7 +85,7 @@ function Lists({ children }) {
   );
 }
 
-function Buttons({ children, onClick }) {
+function Buttons({ children, onClick, className }) {
   const { close } = useContext(MenusContext);
 
   function handleClick() {
@@ -96,7 +96,7 @@ function Buttons({ children, onClick }) {
   return (
     <li>
       <button
-        className="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 rounded-md dark:hover:bg-slate-700 dark:text-slate-50 transition-colors duration-300 flex items-center gap-2 cursor-pointer"
+        className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 rounded-md dark:hover:bg-slate-700 dark:text-slate-50 transition-colors duration-300 flex items-center gap-2 cursor-pointer ${className}`}
         onClick={handleClick}
       >
         {children}

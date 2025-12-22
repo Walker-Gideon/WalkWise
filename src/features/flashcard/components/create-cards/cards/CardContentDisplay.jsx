@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import { RiDeleteBin5Line } from "react-icons/ri";
@@ -30,6 +31,8 @@ export default function CardContentDisplay() {
   const [isSearching, setIsSearching] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
 
+  const [searchParams] = useSearchParams();
+
   // Search
   useEffect(() => {
     if (query) {
@@ -41,13 +44,15 @@ export default function CardContentDisplay() {
     }
   }, [query]);
 
-  // Sort
+  // 1. Filter
+  const filterValue = searchParams.get("sort") || "title";
+
   const sortCards = (a, b) => {
     const normalizeDate = (d) => (d?.toDate ? d.toDate() : new Date(d || 0));
 
-    if (sort === "title") return a.title.localeCompare(b.title);
-    if (sort === "count") return b.pairs.length - a.pairs.length;
-    if (sort === "time")
+    if (filterValue === "title") return a.title.localeCompare(b.title);
+    if (filterValue === "count") return b.pairs.length - a.pairs.length;
+    if (filterValue === "time")
       return normalizeDate(b.createdAt) - normalizeDate(a.createdAt);
     return 0;
   };
