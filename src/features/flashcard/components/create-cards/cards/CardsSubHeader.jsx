@@ -10,7 +10,6 @@ import { useFlashcard } from "../../../context/FlashcardContext";
 export default function CardsSubHeader() {
   const {
     query,
-    setSort,
     setQuery
   } = useFlashcard();
 
