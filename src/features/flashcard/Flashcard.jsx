@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { LuRectangleVertical } from "react-icons/lu";
 
 import StudyFlashcardSummary from "./components/create-cards/StudyFlashcardSummary";
@@ -17,10 +19,26 @@ import { useFlashcards } from "./hooks/useFlashcards";
 export default function Flashcard() {
   const { user } = useAuthentication();
   const { data: flashcards } = useFlashcards(user?.uid);
-  const { isPlay, isDisplay, finished, setIsDisplay } = useFlashcard();
+  const { isPlay, isDisplay, finished, setIsDisplay, setIsPlay, setActiveId, activeId } = useFlashcard();
+  const [searchParams] = useSearchParams();
 
   const handleToggleDisplay = useToggleDisplay(setIsDisplay);
   const hasFlashcards = flashcards?.length > 0;
+
+  // Sync URL with context
+  useEffect(() => {
+    const studyId = searchParams.get("study");
+
+    if (studyId && studyId !== activeId) {
+        setActiveId(studyId);
+        setIsPlay(true);
+        setIsDisplay(false);
+    } else if (!studyId && isPlay) {
+        setIsPlay(false);
+        setActiveId(null);
+    }
+
+  }, [searchParams, setActiveId, setIsPlay, setIsDisplay, activeId, isPlay]);
 
   return (
     <Container>

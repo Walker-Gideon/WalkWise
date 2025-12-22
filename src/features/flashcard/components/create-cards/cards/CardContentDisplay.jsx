@@ -22,7 +22,7 @@ import useFormattedDate from "/src/hook/useFormattedDate";
 import { useFetchCards } from "/src/hook/useCards";
 
 export default function CardContentDisplay() {
-  const { setActiveId, setIsPlay, query, sort } = useFlashcard();
+  const { query } = useFlashcard();
   const { flashcards, isPending, error } = useFetchCards();
   const { isDeleting, deleteFlashcard } = useDeleteFlashcard();
 
@@ -31,7 +31,7 @@ export default function CardContentDisplay() {
   const [isSearching, setIsSearching] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
 
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   // Search
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function CardContentDisplay() {
   }, [query]);
 
   // 1. Filter
-  const filterValue = searchParams.get("sort") || "title";
+  const filterValue = searchParams.get("filter") || "title";
 
   const sortCards = (a, b) => {
     const normalizeDate = (d) => (d?.toDate ? d.toDate() : new Date(d || 0));
@@ -81,8 +81,9 @@ export default function CardContentDisplay() {
   }
 
   function handlePlayClick(id) {
-    setActiveId(id);
-    setIsPlay(true);
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("study", id);
+    setSearchParams(newParams);
   }
 
   return (

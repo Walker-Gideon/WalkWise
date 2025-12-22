@@ -4,11 +4,11 @@ import Menus from "./Menus";
 
 export default function Filter() {
     const [searchParams, setSearchParams] = useSearchParams();
-    const currentFilter = searchParams.get("sort") || "title";
+    const currentFilter = searchParams.get("filter") || "title";
 
     function handleClick(value) {
         const newParams = new URLSearchParams(searchParams);
-        newParams.set("sort", value);
+        newParams.set("filter", value);
         setSearchParams(newParams);
     }
 

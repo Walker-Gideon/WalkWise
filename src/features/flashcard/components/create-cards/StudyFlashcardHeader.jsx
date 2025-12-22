@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 import { LuArrowLeft } from "react-icons/lu";
 import { RiDeleteBin5Line, RiEditLine } from "react-icons/ri";
 
@@ -10,7 +11,9 @@ import Flex from "/src/ui/Flex";
 import { useFlashcard } from "../../context/FlashcardContext";
 
 export default function StudyFlashcardHeader({ title, onIsDeleteModal }) {
-    const { setActiveId, setIsPlay, setEditingId, activeId, setIsDisplay } = useFlashcard();
+    const { setIsPlay, setEditingId, activeId, setIsDisplay } = useFlashcard();
+
+    const [searchParams, setSearchParams] = useSearchParams();
 
     function handleEdit() {
         setEditingId(activeId);
@@ -23,8 +26,9 @@ export default function StudyFlashcardHeader({ title, onIsDeleteModal }) {
     }
     
     function handleBack() {
-        setActiveId(null)
-        setIsPlay(false)
+        const newParams = new URLSearchParams(searchParams);
+        newParams.delete("study");
+        setSearchParams(newParams);
     }
 
     return (
