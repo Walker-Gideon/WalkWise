@@ -1,7 +1,6 @@
 import { LuSearch } from "react-icons/lu";
 
 import Filter from "/src/components/Filter";
-import Menus from "/src/components/Menus";
 import Group from "/src/ui/Group";
 import Input from "/src/ui/Input";
 import Flex from "/src/ui/Flex";
@@ -32,22 +31,6 @@ export default function CardsSubHeader() {
 
       <Group>
         <Filter />
-        {/* 
-        <Menus>
-          <Menus.Toggle type={true} />
-          <Menus.Lists>
-            <Menus.Buttons onClick={() => setSort("title")}>
-              Flashcard name 
-            </Menus.Buttons>
-            <Menus.Buttons onClick={() => setSort("count")}>
-              Number of cards 
-            </Menus.Buttons>
-            <Menus.Buttons onClick={() => setSort("time")}>
-              Time created 
-            </Menus.Buttons>
-          </Menus.Lists>
-        </Menus>
-         */}
       </Group>
     </Flex>
     </Group>
