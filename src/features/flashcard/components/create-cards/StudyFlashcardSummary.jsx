@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useSearchParams, useLocation } from "react-router-dom";
 import { LuArrowLeft, LuFlame, LuCheck } from "react-icons/lu";
 
 import HeaderText from "/src/ui/HeaderText";
@@ -17,10 +18,14 @@ import { useUserData } from "/src/user/hook/useUserData";
 import { useFetchCards } from "/src/hook/useCards";
 
 export default function StudyFlashcardSummary() {
-  const { setFinished, activeId, setIsPlay, setActiveId } = useFlashcard();
+  /* eslint-disable no-unused-vars */
+  const { setFinished, activeId } = useFlashcard();
   const { flashcards } = useFetchCards();
   const { userData } = useUserData();
   const [count, setCount] = useState(0);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
 
   const card = flashcards?.find((card) => card.id === activeId);
   const pairs = card?.pairs;
@@ -47,9 +52,9 @@ export default function StudyFlashcardSummary() {
   }, [count]);
 
   function handleToFlashcard() {
-    setIsPlay(false);
     setFinished(false);
-    setActiveId(null);
+    const previousFilter = location.state?.previousFilter || "title";
+    setSearchParams({ filter: previousFilter });
   }
 
   function handleBack() {

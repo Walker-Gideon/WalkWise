@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import { auth } from "/src/service/firebase";
 import { motion, AnimatePresence } from "motion/react";
@@ -33,6 +33,7 @@ export default function StudyFlashcard() {
   const [isDeleteModal, setIsDeleteModal] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
 
   const card = flashcards?.find((card) => card.id === activeId);
   const title = card?.title;
@@ -61,9 +62,8 @@ export default function StudyFlashcard() {
       deleteFlashcard(activeId);
       setIsDeleteModal(false);
       
-      const newParams = new URLSearchParams(searchParams);
-      newParams.delete("study");
-      setSearchParams(newParams);
+      const previousFilter = location.state?.previousFilter || "title";
+      setSearchParams({ filter: previousFilter });
     }
   }
 

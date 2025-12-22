@@ -47,6 +47,13 @@ export default function CardContentDisplay() {
   // 1. Filter
   const filterValue = searchParams.get("filter") || "title";
 
+  // Enforce default param
+  useEffect(() => {
+    if (!searchParams.get("filter") && !searchParams.get("study")) {
+      setSearchParams({ filter: "title" }, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
+
   const sortCards = (a, b) => {
     const normalizeDate = (d) => (d?.toDate ? d.toDate() : new Date(d || 0));
 
@@ -81,9 +88,7 @@ export default function CardContentDisplay() {
   }
 
   function handlePlayClick(id) {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set("study", id);
-    setSearchParams(newParams);
+    setSearchParams({ study: id }, { state: { previousFilter: filterValue } });
   }
 
   return (
