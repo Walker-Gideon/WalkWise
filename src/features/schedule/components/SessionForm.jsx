@@ -21,7 +21,7 @@ export default function SessionForm() {
         <Button
           variant="secondary"
           onclick={() => setIsDisplaySessionForm((show) => !show)}
-          classname={"medium:text-2xl text-xl"}
+          classname={"medium:text-2xl text-xl dark:text-white"}
         >
           <LuX />
         </Button>
@@ -101,7 +101,7 @@ export default function SessionForm() {
             }}
             // classname="button dark:border-stone-300 border-slate-500 w-full dark:text-white disabled:cursor-not-allowed"
             type="border"
-            classname={"w-full border-stone-300"}
+            classname={"w-full border-stone-300 dark:text-white"}
             // disabled={}
           >
             Cancel

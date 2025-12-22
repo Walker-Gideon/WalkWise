@@ -3,6 +3,7 @@ import ScheduleRemainder from "./components/ScheduleRemainder";
 import ScheduleActions from "./components/ScheduleActions";
 import ScheduleHeader from "./components/ScheduleHeader";
 import ScheduleStatus from "./components/ScheduleStatus";
+import Conditional from "/src/components/Conditional";
 import SessionForm from "./components/SessionForm";
 import Container from "/src/ui/Container";
 import Group from "/src/ui/Group";
@@ -29,7 +30,11 @@ export default function Schedules() {
         </Group>
       </Main>
 
-      {isDisplaySessionForm && <SessionForm />}
+      <Conditional
+        condition={isDisplaySessionForm}
+      >
+        <SessionForm />
+      </Conditional>
     </Container>
   );
 }
