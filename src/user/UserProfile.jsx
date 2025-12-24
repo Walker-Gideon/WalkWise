@@ -57,20 +57,20 @@ function Profile() {
 }
 
 function UserDetails({ classname1, classname2 }) {
-  const { userData, loading } = useUserData();
+  const { userData } = useUserData();
 
   return (
     <Group>
       <Paragraph
         classname={`font-bold whitespace-nowrap truncate w-30 ${classname1}`}
       >
-        {loading ? "username" : userData?.username}
+        {!userData ? "username" : userData?.username}
       </Paragraph>
       <Paragraph
         type=""
         classname={`text-xs font-medium truncate w-30 ${classname2}`}
       >
-        {loading ? "example123@gmail.com" : userData?.email}
+        {!userData ? "example123@gmail.com" : userData?.email}
       </Paragraph>
     </Group>
   );
