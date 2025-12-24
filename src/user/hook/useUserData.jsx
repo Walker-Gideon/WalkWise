@@ -1,42 +1,8 @@
-import { onAuthStateChanged } from "firebase/auth";
-import { useEffect, useState } from "react";
-import { auth, db } from "/src/service/firebase";
-import { doc, onSnapshot } from "firebase/firestore";
+import { useAuthentication } from "/src/authentication/context/AuthContext";
 
 export function useUserData() {
-  const [firebaseUser, setFirebaseUser] = useState(null);
-  const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
-      setFirebaseUser(user);
-
-      if (!user) {
-        setUserData(null);
-        setLoading(false);
-        return;
-      }
-
-      const userRef = doc(db, "users", user.uid);
-      const unsubscribeDoc = onSnapshot(
-        userRef,
-        (snapshot) => {
-          setUserData(snapshot.data());
-          setLoading(false);
-        },
-        (err) => {
-          setError(err);
-          setLoading(false);
-        },
-      );
-
-      return unsubscribeDoc;
-    });
-
-    return () => unsubscribeAuth();
-  }, []);
+  const { user: firebaseUser, userData, isLoading: loading, logout } = useAuthentication();
+  const error = null; // AuthContext handles errors internally for now
 
   return { firebaseUser, userData, loading, error };
 }

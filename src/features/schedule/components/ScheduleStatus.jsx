@@ -52,7 +52,7 @@ export default function ScheduleStatus() {
     })
 
     setStatusData(updated);
-  }, [])
+  }, [userData])
 
   /*
   const { progress, loadingProgress, consistencyScore, todayFlashcards } =

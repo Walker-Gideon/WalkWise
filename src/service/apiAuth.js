@@ -62,9 +62,12 @@ export async function signUpUser({ email, username, password }) {
             "Email/password signup is not enabled. Please contact support.";
           break;
         default:
-          console.error("Firebase Auth Error:", err.code, err.message);
-          errorMessage = "An unexpected error occurred. Please try again.";
+          console.error("Firebase Auth Error:", err);
+          errorMessage = err.message || "An unexpected error occurred. Please try again.";
       }
+    } else {
+        console.error("Unexpected Error:", err);
+        errorMessage = err.message || "An unexpected error occurred. Please try again.";
     }
 
     throw new Error(errorMessage);
