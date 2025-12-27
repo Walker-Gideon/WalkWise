@@ -2,6 +2,7 @@ import { LuCheck, LuPlay, LuPlus, LuClock, LuZap } from "react-icons/lu";
 
 import { useSchedule } from "../context/ScheduleContext";
 
+// import Conditional from "/src/components/Conditional";
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
 import Button from "/src/ui/Button";
@@ -25,7 +26,6 @@ export default function ScheduleToday() {
         </Button>
       </Flex>
       <Group classname={"h-190 space-y-3 overflow-y-scroll"}>
-        {/* There will be a conditional here */}
         <Flex variant="center" classname="h-full w-full">
           <Paragraph
             variant="small"
@@ -35,6 +35,8 @@ export default function ScheduleToday() {
           </Paragraph>
         </Flex>
       </Group>
+      {/* <Conditional condition={false}>
+      </Conditional> */}
     </>
   );
 }
