@@ -1,18 +1,45 @@
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { LuX, LuTarget, LuCalendar, LuClock } from "react-icons/lu";
-
-import { useSchedule } from "../context/ScheduleContext";
 
 import FormRow from "/src/components/FormRow";
 import HeaderText from "/src/ui/HeaderText";
 import Model from "/src/components/Model";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
-import Input from "/src/ui/Input";
 import Form from "/src/ui/Form";
 import Flex from "/src/ui/Flex";
 
+import { useSchedule } from "../context/ScheduleContext";
+import { useFetchCards } from "/src/hook/useCards";
+
 export default function SessionForm() {
+  const { flashcards = [] } = useFetchCards();
   const { setIsDisplaySessionForm } = useSchedule();
+  const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm({
+    defaultValues: {
+      tag: "",
+    },
+  });
+
+  const selectedId = watch("tag");
+
+  useEffect(() => {
+    if (selectedId) {
+      const selectedCard = flashcards.find((card) => card.id === selectedId);
+      const count = selectedCard?.pairs?.length || 0;
+      setValue("cardCount", count);
+    } else {
+        setValue("cardCount", "");
+    }
+  }, [selectedId, flashcards, setValue]);
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  const baseInputStyles = "rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs hover:border-slate-400 focus:ring-2 focus:ring-slate-400 focus:outline-hidden";
+  const errorStyling = "text-red-500 text-sm";
 
   return (
     <Model>
@@ -27,67 +54,59 @@ export default function SessionForm() {
         </Button>
       </Flex>
 
-      <Form onsubmit={() => {}} classname={"mt-6"}>
-        <FormRow label="Select Tag *">
+      <Form onsubmit={handleSubmit(onSubmit)} classname={"mt-6"}>
+        <FormRow label="Select Tag *" error={errors?.tag?.message} errStyling={errorStyling}>
           <select
-            className="input w-full disabled:cursor-not-allowed" //dark:bg-slate-700 dark:text-white
-            // value={}
-            // onChange={}
-            // disabled={}
+            className="input w-full disabled:cursor-not-allowed dark:text-white dark:bg-slate-700"
+            {...register("tag", { required: "Tag is required" })}
           >
             <option value="" disabled hidden>
               Select a flashcard tag
             </option>
-            <option disabled>No flashcards found</option>
-
-            {/* {flashcards.length === 0 ? (
-                <option disabled>No flashcards found</option>
-              ) : (
-                flashcards.map((card) => (
-                  <option key={card.id} value={card.tags?.trim()}>
-                    {card.tags || "Untitled"}
-                  </option>
-                ))
-              )} */}
+            {flashcards.length === 0 ? (
+              <option disabled>No flashcards found</option>
+            ) : (
+              flashcards.map((card) => (
+                <option key={card.id} value={card.id}>
+                  {card.title}
+                </option>
+              ))
+            )}
           </select>
         </FormRow>
 
         <FormRow label="Number of Cards" classname={"my-4"}>
           <Group classname={"relative"}>
             <LuTarget className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
-            <Input
+            <input
               type="number"
               placeholder="Auto-filled after selecting tag"
-              classname={"w-full pl-8 disabled:cursor-not-allowed"} //dark:text-white
+              className={`${baseInputStyles} w-full pl-8 disabled:cursor-not-allowed dark:text-white dark:bg-slate-700`}
               disabled={true}
-              //   value={formData.count}
+              {...register("cardCount")}
             />
           </Group>
         </FormRow>
 
         <Flex variant="between" classname={"gap-2 mb-4"}>
-          <FormRow label="Date *">
+          <FormRow label="Date *" error={errors?.date?.message} errStyling={errorStyling}>
             <Group classname={"relative"}>
               <LuCalendar className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
-              <Input
+              <input
                 type="date"
-                classname={`w-full pl-8`} //dark:text-white
-                //   value={}
-                // onChange={}
-                // disabled={}
+                className={`${baseInputStyles} w-full pl-8 dark:text-white dark:bg-slate-700`}
+                {...register("date", { required: "Date is required" })}
               />
             </Group>
           </FormRow>
 
-          <FormRow label="Time *">
+          <FormRow label="Time *" error={errors?.time?.message} errStyling={errorStyling}>
             <Group classname={"relative"}>
               <LuClock className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
-              <Input
+              <input
                 type="time"
-                classname={`w-full pl-8`} //dark:text-white
-                //   value={}
-                // onChange={}
-                // disabled={}
+                className={`${baseInputStyles} w-full pl-8 dark:text-white dark:bg-slate-700`}
+                {...register("time", { required: "Time is required" })}
               />
             </Group>
           </FormRow>
@@ -99,31 +118,15 @@ export default function SessionForm() {
               e.preventDefault();
               setIsDisplaySessionForm((show) => !show);
             }}
-            // classname="button dark:border-stone-300 border-slate-500 w-full dark:text-white disabled:cursor-not-allowed"
             type="border"
             classname={"w-full border-stone-300 dark:text-white"}
-            // disabled={}
           >
             Cancel
           </Button>
           <Button
             type="colors"
             classname={"w-full flex items-center justify-center"}
-            onclick={(e) => {
-              e.preventDefault();
-            }}
           >
-            {/* {isSubmitting ? (
-                <>
-                  <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                  Adding...
-                </>
-              ) : (
-                <>
-                  <LuPlus className="mr-2 h-4 w-4" />
-                  Add Session
-                </>
-              )} */}
             Add Session
           </Button>
         </Flex>
