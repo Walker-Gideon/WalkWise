@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { LuTarget, LuClock, LuFlame, LuTrendingUp } from "react-icons/lu";
+import Spinner from "/src/ui/Spinner";
 
 import HeaderText from "/src/ui/HeaderText";
 import Badge from "/src/components/Badge";
@@ -34,8 +35,6 @@ const status = [
 
 export default function ScheduleStatus() {
   const { userData, loading, error } = useUserData();
-  // console.log(userData);
-
   const [statusData, setStatusData] = useState(status)
 
   useEffect(() => {
@@ -44,51 +43,32 @@ export default function ScheduleStatus() {
         return { ...card, data: 1 }; // will change the data here
       }
 
+      if (card.text === "Study Time") {
+        return { ...card, data: 1 + "m" }; // will change the data here (userData?.studyTime + "m")
+      }
+
       if (card.text === "Day Streak") {
         return { ...card, data: userData?.streakCount };
+      }
+
+      if (card.text === "Success Rate") {
+        return { ...card, data: 1 + "%" }; // will change the data here (userData?.successRate + "%")
       }
 
       return card; 
     })
 
     setStatusData(updated);
-  }, [userData])
+  }, [userData]) 
 
-  /*
-  const { progress, loadingProgress, consistencyScore, todayFlashcards } =
-    useGen();
-  const [cardData, setCardData] = useState(initialCardData);
+  if (loading) return <Spinner classname="flex items-center justify-center p-8" />;
 
-  useEffect(() => {
-    if (!loadingProgress && progress) {
-      const today = new Date().toISOString().split("T")[0];
-      const todayCards = progress.studyLogs?.[today] || 0;
-
-      const updated = initialCardData.map((card) => {
-        if (card.text === "Cards Today") {
-          return { ...card, data: todayFlashcards?.length };
-        }
-
-        if (card.text === "Day Streak") {
-          return { ...card, data: progress?.streakCount };
-        }
-
-        if (card.text === "Study Time") {
-          return { ...card, data: todayCards + "m" };
-        }
-
-        if (card.text === "Success Rate") {
-          return { ...card, data: consistencyScore + "%" };
-        }
-
-        return card;
-      });
-
-      setCardData(updated);
-    }
-  }, [loadingProgress, progress, consistencyScore, todayFlashcards?.length]);
-
-  */ 
+  if (error)
+    return (
+      <Paragraph classname="text-red-500 text-center">
+        Error loading schedule data
+      </Paragraph>
+    );
 
   return (
     <Group
