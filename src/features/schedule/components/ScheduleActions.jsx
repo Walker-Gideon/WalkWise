@@ -5,20 +5,11 @@ import Card from "/src/components/Card";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 
-const buttons = [
-  {
-    text: "Start Next Session",
-    icon: LuPlay,
-    // to:
-  },
-  {
-    text: "Add Session",
-    icon: LuPlus,
-    // to:
-  },
-];
+import { useSchedule } from "../context/ScheduleContext";
 
 export default function ScheduleActions() {
+  const { setIsDisplaySessionForm } = useSchedule();
+
   const styling = "h-5 w-5 text-white";
 
   return (
@@ -27,16 +18,23 @@ export default function ScheduleActions() {
         Quick Actions
       </HeaderText>
       <Group>
-        {buttons.map((data, index) => (
-          <Button
-            key={index}
-            type="colors"
-            classname={`flex gap-3 w-full py-3 ${index === 1 ? "my-2" : ""}`}
-          >
-            {<data.icon className={styling} />}
-            {data.text}
-          </Button>
-        ))}
+        <Button
+          type="colors"
+          onclick={() => {}}
+          classname={"flex gap-3 w-full py-3"}
+        >
+          {<LuPlay className={styling} />}
+          Start Next Session
+        </Button>
+
+        <Button
+          type="colors"
+          onclick={() => setIsDisplaySessionForm(true)}
+          classname={"flex gap-3 w-full py-3 my-2"}
+        >
+          {<LuPlus className={styling} />}
+          Add Session
+        </Button>
 
         <Button
           type="colors"
