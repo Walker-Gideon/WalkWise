@@ -13,7 +13,7 @@ export default function useCreateSession() {
     const { mutate: createSession, isPending: isCreating } = useMutation({
         mutationFn: (data) => {
             if (!userId) {
-                toast.error("You must be logged in to create a session.");
+                throw new Error("You must be logged in to create a session.");
             }
 
             return createSessionAPI({ ...data, userId });
