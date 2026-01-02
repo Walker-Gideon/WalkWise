@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { createSession as createSessionAPI } from "/src/service/apiSchedule";
 import { useUserData } from "/src/user/hook/useUserData";
 
-export default function useCreateSession() {
+export function useCreateSession() {
     const queryClient = useQueryClient();
 
     const { firebaseUser } = useUserData();

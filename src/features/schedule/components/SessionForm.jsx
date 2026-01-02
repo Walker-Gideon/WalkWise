@@ -5,17 +5,20 @@ import { LuX, LuTarget, LuCalendar, LuClock } from "react-icons/lu";
 import FormRow from "/src/components/FormRow";
 import HeaderText from "/src/ui/HeaderText";
 import Model from "/src/components/Model";
+import Spinner from "/src/ui/Spinner";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 import Form from "/src/ui/Form";
 import Flex from "/src/ui/Flex";
 
 import { useSchedule } from "../context/ScheduleContext";
+import { useCreateSession } from "../hooks/useCreateSession";
 import { useFetchCards } from "/src/hook/useCards";
 
 export default function SessionForm() {
   const { flashcards = [] } = useFetchCards();
   const { setIsDisplaySessionForm } = useSchedule();
+  const { createSession, isCreating } = useCreateSession();
   const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm({
     defaultValues: {
       tag: "",
@@ -35,13 +38,19 @@ export default function SessionForm() {
   }, [selectedId, flashcards, setValue]);
 
   const onSubmit = (data) => {
-    console.log(data);
+    createSession(data, {
+      onSuccess: () => {
+        setIsDisplaySessionForm(false);
+      },
+    });
   };
 
   const baseInputStyles = "rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs hover:border-slate-400 focus:ring-2 focus:ring-slate-400 focus:outline-hidden";
   const errorStyling = "text-red-500 text-sm";
 
   return (
+    <>
+    {isCreating && <Spinner />}
     <Model>
       <Flex variant="between">
         <HeaderText type="secondary">Add Study Session</HeaderText>
@@ -132,5 +141,6 @@ export default function SessionForm() {
         </Flex>
       </Form>
     </Model>
+    </>
   );
 }
