@@ -38,7 +38,15 @@ export default function SessionForm() {
   }, [selectedId, flashcards, setValue]);
 
   const onSubmit = (data) => {
-    createSession(data, {
+    const selectedCard = flashcards.find((card) => card.id === data.tag);
+    const sessionData = {
+      ...data,
+      title: selectedCard?.title || "Untitled Session",
+      numCards: Number(data.cardCount),
+      duration: Number(data.cardCount) * 1, // Estimating 1 min per card
+    };
+
+    createSession(sessionData, {
       onSuccess: () => {
         setIsDisplaySessionForm(false);
       },

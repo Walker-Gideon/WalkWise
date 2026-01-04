@@ -3,12 +3,20 @@ import { LuCheck, LuPlay, LuPlus, LuClock, LuZap } from "react-icons/lu";
 // import Conditional from "/src/components/Conditional";
 import HeaderText from "/src/ui/HeaderText";
 import Button from "/src/ui/Button";
+import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
 import { useSchedule } from "../context/ScheduleContext";
+import { useSessions } from "../hooks/useSessions";
+import Spinner from "/src/ui/Spinner";
+import SessionCard from "./SessionCard";
+import Paragraph from "/src/ui/Paragraph";
 
 export default function ScheduleToday() {
   const { setIsDisplaySessionForm } = useSchedule();
+  const { sessions, isLoading } = useSessions();
+
+  if (isLoading) return <Spinner />;
 
   return (
     <>
@@ -23,18 +31,27 @@ export default function ScheduleToday() {
           Add Session
         </Button>
       </Flex>
-      {/* <Group classname={"h-190 space-y-3 overflow-y-scroll"}>
-        <Flex variant="center" classname="h-full w-full">
-          <Paragraph
-            variant="small"
-            classname={"text-slate-400"}
-          >
-            No sessions scheduled for today.
-          </Paragraph>
-        </Flex>
-      </Group> */}
-      {/* <Conditional condition={false}>
-      </Conditional> */}
+      <Group classname={"h-190 space-y-3 overflow-y-scroll"}>
+        {sessions?.length === 0 ? (
+          <Flex variant="center" classname="h-full w-full">
+            <Paragraph variant="small" classname={"text-slate-400"}>
+              No sessions scheduled for today.
+            </Paragraph>
+          </Flex>
+        ) : (
+          sessions?.map((session) => (
+            <SessionCard
+              key={session.id}
+              title={session.title}
+              count={session.numCards}
+              estimatedTime={session.duration}
+              onPlay={() => console.log("Play", session.id)}
+              onEdit={() => console.log("Edit", session.id)}
+              onDelete={() => console.log("Delete", session.id)}
+            />
+          ))
+        )}
+      </Group>
     </>
   );
 }

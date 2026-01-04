@@ -9,7 +9,7 @@ import Flex from "/src/ui/Flex";
 
 export default function SessionCard({title, count, estimatedTime, onPlay, onEdit, onDelete}) {
     return (
-        <Group classname={"h-190 space-y-3 overflow-y-scroll"}>
+        <>
           <Card>
             <Flex variant="between">
               <Flex variant="center">
@@ -45,6 +45,6 @@ export default function SessionCard({title, count, estimatedTime, onPlay, onEdit
               </Group>
             </Flex>
           </Card>
-      </Group>
+      </>
     );
 }
