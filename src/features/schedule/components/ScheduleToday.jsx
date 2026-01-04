@@ -2,19 +2,21 @@ import { LuCheck, LuPlay, LuPlus, LuClock, LuZap } from "react-icons/lu";
 
 // import Conditional from "/src/components/Conditional";
 import HeaderText from "/src/ui/HeaderText";
+import Paragraph from "/src/ui/Paragraph";
+import SessionCard from "./SessionCard";
+import Spinner from "/src/ui/Spinner";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
 import { useSchedule } from "../context/ScheduleContext";
 import { useSessions } from "../hooks/useSessions";
-import Spinner from "/src/ui/Spinner";
-import SessionCard from "./SessionCard";
-import Paragraph from "/src/ui/Paragraph";
 
 export default function ScheduleToday() {
   const { setIsDisplaySessionForm } = useSchedule();
   const { sessions, isLoading } = useSessions();
+
+  console.log(sessions);
 
   if (isLoading) return <Spinner />;
 

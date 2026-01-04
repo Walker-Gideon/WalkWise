@@ -1,10 +1,10 @@
 import { LuPlay } from "react-icons/lu";
 import { RiEditLine, RiDeleteBin5Line } from "react-icons/ri";
 
-import Group from "/src/components/Group";
 import Menus from "/src/components/Menus";
 import Paragraph from "/src/ui/Paragraph";
-import Card from "/src/ui/Card";
+import Card from "/src/components/Card";
+import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
 export default function SessionCard({title, count, estimatedTime, onPlay, onEdit, onDelete}) {
