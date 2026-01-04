@@ -15,9 +15,6 @@ import { useSessions } from "../hooks/useSessions";
 export default function ScheduleToday() {
   const { setIsDisplaySessionForm } = useSchedule();
   const { sessions, isLoading } = useSessions();
-
-  console.log(sessions);
-
   const display = sessions?.length === 0;
 
   if (isLoading) return <Spinner />;

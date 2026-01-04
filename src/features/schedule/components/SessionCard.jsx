@@ -12,7 +12,7 @@ export default function SessionCard({title, count, estimatedTime, onPlay, onEdit
         <>
           <Card>
             <Flex variant="between">
-              <Flex variant="center">
+              <Flex variant="center" classname={"gap-2"}>
                 <Group classname={"h-4 w-4 rounded-full bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700"}>
                 </Group>
                 <Flex classname={"flex-col"}>
