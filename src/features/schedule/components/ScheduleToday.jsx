@@ -1,6 +1,6 @@
 import { LuCheck, LuPlay, LuPlus, LuClock, LuZap } from "react-icons/lu";
 
-// import Conditional from "/src/components/Conditional";
+import Conditional from "/src/components/Conditional";
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
 import SessionCard from "./SessionCard";
@@ -18,6 +18,8 @@ export default function ScheduleToday() {
 
   console.log(sessions);
 
+  const display = sessions?.length === 0;
+
   if (isLoading) return <Spinner />;
 
   return (
@@ -33,15 +35,16 @@ export default function ScheduleToday() {
           Add Session
         </Button>
       </Flex>
-      <Group classname={"h-190 space-y-3 overflow-y-scroll"}>
-        {sessions?.length === 0 ? (
-          <Flex variant="center" classname="h-full w-full">
-            <Paragraph variant="small" classname={"text-slate-400"}>
-              No sessions scheduled for today.
-            </Paragraph>
-          </Flex>
-        ) : (
-          sessions?.map((session) => (
+      <Conditional condition={display}>
+        <Flex variant="center" classname="h-full w-full">
+          <Paragraph variant="small" classname={"text-slate-400"}>
+            No sessions scheduled for today.
+          </Paragraph>
+        </Flex>
+      </Conditional>
+      <Conditional condition={!display}>
+        <Group classname={"h-190 space-y-3 overflow-y-scroll"}>
+          {sessions?.map((session) => (
             <SessionCard
               key={session.id}
               title={session.title}
@@ -51,9 +54,9 @@ export default function ScheduleToday() {
               onEdit={() => console.log("Edit", session.id)}
               onDelete={() => console.log("Delete", session.id)}
             />
-          ))
-        )}
-      </Group>
+          ))}
+        </Group>
+      </Conditional>
     </>
   );
 }
