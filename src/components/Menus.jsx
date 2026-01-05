@@ -76,7 +76,7 @@ function Lists({ children }) {
   return createPortal(
     <ul
       ref={ref}
-      className="fixed z-50 bg-white dark:bg-slate-900 shadow-md rounded-md"
+      className="fixed z-50 border border-stone-300 bg-white dark:border-slate-700 dark:bg-slate-900 shadow-md rounded-md"
       style={style}
     >
       {children}
