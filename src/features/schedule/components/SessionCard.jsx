@@ -26,7 +26,7 @@ export default function SessionCard({title, count, estimatedTime, status, status
                     </Group>
 
                     <Group classname={"flex items-center gap-2"}>
-                      <SpanText>{estimatedTime} min</SpanText>
+                      <SpanText>{estimatedTime}</SpanText>
                       <GoDotFill />
                     </Group>
                     

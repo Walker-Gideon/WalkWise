@@ -1,4 +1,5 @@
-import { LuCheck, LuPlay, LuPlus, LuClock, LuZap } from "react-icons/lu";
+import { format } from "date-fns";
+import { LuPlus } from "react-icons/lu";
 
 import Conditional from "/src/components/Conditional";
 import HeaderText from "/src/ui/HeaderText";
@@ -50,12 +51,19 @@ export default function ScheduleToday() {
              const status = getScheduleStatus(session);
              const statusColor = getStatusColor(status);
              
+             // Format scheduled time: YYYY/MM/DD HH:MM
+             let formattedTime = "Invalid Date";
+             if (session.scheduledAt) {
+                 const date = session.scheduledAt.toDate ? session.scheduledAt.toDate() : new Date(session.scheduledAt);
+                 formattedTime = format(date, "MM/dd/yyyy HH:mm");
+             }
+
              return (
               <SessionCard
                 key={session.id}
                 title={session.title}
                 count={session.numCards}
-                estimatedTime={session.duration}
+                estimatedTime={formattedTime}
                 status={status}
                 statusColor={statusColor}
                 onPlay={() => console.log("Play", session.id)}
