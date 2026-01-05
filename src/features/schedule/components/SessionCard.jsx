@@ -1,9 +1,11 @@
 import { LuPlay } from "react-icons/lu";
+import { GoDotFill } from "react-icons/go";
 import { RiEditLine, RiDeleteBin5Line } from "react-icons/ri";
 
 import Menus from "/src/components/Menus";
 import Paragraph from "/src/ui/Paragraph";
 import Card from "/src/components/Card";
+import SpanText from "/src/ui/SpanText";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
@@ -17,8 +19,19 @@ export default function SessionCard({title, count, estimatedTime, onPlay, onEdit
                 </Group>
                 <Flex classname={"flex-col"}>
                   <Paragraph classname={"font-medium text-slate-900 dark:text-white"} >{title}</Paragraph>
-                  <Paragraph classname="text-sm text-slate-500 dark:text-slate-400">
-                    {count} cards • {estimatedTime} min
+                  <Paragraph classname={"text-sm text-slate-500 dark:text-slate-400 space-x-2 flex items-center"}>
+                    <Group classname={"flex items-center gap-2"}>
+                      <SpanText>{count} cards</SpanText>
+                      <GoDotFill />
+                    </Group>
+
+                    <Group classname={"flex items-center gap-2"}>
+                      <SpanText>{estimatedTime} min</SpanText>
+                      <GoDotFill />
+                    </Group>
+                    
+                    <SpanText>Status </SpanText>
+                    <SpanText classname={"bg-green-500 text-white rounded-full px-2 py-1"}>Completed</SpanText>
                   </Paragraph>
                 </Flex>
               </Flex>
