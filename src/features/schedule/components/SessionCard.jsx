@@ -18,8 +18,8 @@ export default function SessionCard({title, count, estimatedTime, status, status
                 <Group classname={"h-4 w-4 rounded-full bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700"}>
                 </Group>
                 <Flex classname={"flex-col"}>
-                  <Paragraph classname={"font-medium text-slate-900 dark:text-white"} >{title}</Paragraph>
-                  <Paragraph classname={"text-sm text-slate-500 dark:text-slate-400 space-x-2 flex items-center"}>
+                  <Paragraph classname={"font-medium primary-text-color"} >{title}</Paragraph>
+                  <Flex classname={"text-sm text-slate-500 dark:text-slate-400 space-x-2 items-center"}>
                     <Group classname={"flex items-center gap-2"}>
                       <SpanText>{count} cards</SpanText>
                       <GoDotFill />
@@ -32,7 +32,7 @@ export default function SessionCard({title, count, estimatedTime, status, status
                     
                     <SpanText>Status </SpanText>
                     <SpanText classname={`${statusColor} rounded-full px-2 py-0.5 text-xs`}>{status}</SpanText>
-                  </Paragraph>
+                  </Flex>
                 </Flex>
               </Flex>
 
