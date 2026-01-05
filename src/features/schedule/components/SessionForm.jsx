@@ -39,11 +39,17 @@ export default function SessionForm() {
 
   const onSubmit = (data) => {
     const selectedCard = flashcards.find((card) => card.id === data.tag);
+    
+    // Combine date and time
+    const scheduledAt = new Date(`${data.date}T${data.time}`);
+
     const sessionData = {
       ...data,
       title: selectedCard?.title || "Untitled Session",
       numCards: Number(data.cardCount),
       duration: Number(data.cardCount) * 1, // Estimating 1 min per card
+      scheduledAt,
+      status: "pending",
     };
 
     createSession(sessionData, {

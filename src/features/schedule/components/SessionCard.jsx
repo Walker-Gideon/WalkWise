@@ -9,7 +9,7 @@ import SpanText from "/src/ui/SpanText";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
-export default function SessionCard({title, count, estimatedTime, onPlay, onEdit, onDelete}) {
+export default function SessionCard({title, count, estimatedTime, status, statusColor, onPlay, onEdit, onDelete}) {
     return (
         <>
           <Card>
@@ -31,7 +31,7 @@ export default function SessionCard({title, count, estimatedTime, onPlay, onEdit
                     </Group>
                     
                     <SpanText>Status </SpanText>
-                    <SpanText classname={"bg-green-500 text-white rounded-full px-2 py-1"}>Completed</SpanText>
+                    <SpanText classname={`${statusColor} rounded-full px-2 py-0.5 text-xs`}>{status}</SpanText>
                   </Paragraph>
                 </Flex>
               </Flex>

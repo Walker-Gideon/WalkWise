@@ -9,8 +9,9 @@ import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
-import { useSchedule } from "../context/ScheduleContext";
 import { useSessions } from "../hooks/useSessions";
+import { useSchedule } from "../context/ScheduleContext";
+import { getScheduleStatus, getStatusColor } from "/src/helper/helpers";
 
 export default function ScheduleToday() {
   const { setIsDisplaySessionForm } = useSchedule();
@@ -18,6 +19,10 @@ export default function ScheduleToday() {
   const display = sessions?.length === 0;
 
   if (isLoading) return <Spinner />;
+
+  // Sort sessions: Due first, then Pending, then Completed
+  // Within status, sort by date? User didn't ask, but good UX.
+  // For now just display.
 
   return (
     <>
@@ -41,17 +46,24 @@ export default function ScheduleToday() {
       </Conditional>
       <Conditional condition={!display}>
         <Group classname={"h-190 space-y-3 overflow-y-scroll"}>
-          {sessions?.map((session) => (
-            <SessionCard
-              key={session.id}
-              title={session.title}
-              count={session.numCards}
-              estimatedTime={session.duration}
-              onPlay={() => console.log("Play", session.id)}
-              onEdit={() => console.log("Edit", session.id)}
-              onDelete={() => console.log("Delete", session.id)}
-            />
-          ))}
+          {sessions?.map((session) => {
+             const status = getScheduleStatus(session);
+             const statusColor = getStatusColor(status);
+             
+             return (
+              <SessionCard
+                key={session.id}
+                title={session.title}
+                count={session.numCards}
+                estimatedTime={session.duration}
+                status={status}
+                statusColor={statusColor}
+                onPlay={() => console.log("Play", session.id)}
+                onEdit={() => console.log("Edit", session.id)}
+                onDelete={() => console.log("Delete", session.id)}
+              />
+            );
+          })}
         </Group>
       </Conditional>
     </>
