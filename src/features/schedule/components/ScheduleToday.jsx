@@ -17,7 +17,7 @@ import { useSchedule } from "../context/ScheduleContext";
 import { getScheduleStatus, getStatusColor } from "/src/helper/helpers";
 
 export default function ScheduleToday() {
-  const { setIsDisplaySessionForm } = useSchedule();
+  const { setSelectedId, setIsDeleteModal, setSelectedSessionTitle, setIsDisplaySessionForm } = useSchedule();
   const { sessions, isLoading } = useSessions();
   const [searchParams] = useSearchParams();
   const display = sessions?.length === 0;
@@ -41,6 +41,12 @@ export default function ScheduleToday() {
           const dateB = b.scheduledAt?.toDate ? b.scheduledAt.toDate() : new Date(b.scheduledAt || 0);
           return dateA - dateB;
       });
+  }
+
+  function handleDeleteModel(id, title) {
+    setSelectedId(id)
+    setIsDeleteModal(true)
+    setSelectedSessionTitle(title)
   }
 
   return (
@@ -93,7 +99,7 @@ export default function ScheduleToday() {
                 statusColor={statusColor}
                 onPlay={() => console.log("Play", session.id)}
                 onEdit={() => console.log("Edit", session.id)}
-                onDelete={() => console.log("Delete", session.id)}
+                onDelete={() => handleDeleteModel(session.id, session.title)}
               />
             );
           })}

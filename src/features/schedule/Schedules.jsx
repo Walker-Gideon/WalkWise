@@ -1,5 +1,6 @@
 import ScheduleContentLayout from "./components/ScheduleContentLayout";
 import ScheduleRemainder from "./components/ScheduleRemainder";
+import ConfirmDelete from "/src/components/ConfirmDelete";
 import ScheduleActions from "./components/ScheduleActions";
 import ScheduleHeader from "./components/ScheduleHeader";
 import ScheduleStatus from "./components/ScheduleStatus";
@@ -12,7 +13,13 @@ import Main from "/src/ui/Main";
 import { useSchedule } from "./context/ScheduleContext";
 
 export default function Schedules() {
-  const { isDisplaySessionForm } = useSchedule();
+  const { isDeleteModal, isDisplaySessionForm, setSelectedId, selectedSessionTitle, setSelectedSessionTitle, setIsDeleteModal } = useSchedule();
+
+  function handleCloseModal() {
+    setSelectedId(null);
+    setIsDeleteModal(false);
+    setSelectedSessionTitle("");
+  }
 
   return (
     <Container>
@@ -34,6 +41,15 @@ export default function Schedules() {
         condition={isDisplaySessionForm}
       >
         <SessionForm />
+      </Conditional>
+      
+      <Conditional condition={isDeleteModal}>
+        <ConfirmDelete
+          resourceName={selectedSessionTitle}
+          // disabled={}
+          onCloseModal={handleCloseModal}
+          onConfirm={() => console.log("Delete")}
+        />
       </Conditional>
     </Container>
   );
