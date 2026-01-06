@@ -2,9 +2,9 @@ import { useSearchParams } from "react-router-dom";
 
 import Menus from "./Menus";
 
-export default function Filter() {
+export default function Filter({ options = [] }) {
     const [searchParams, setSearchParams] = useSearchParams();
-    const currentFilter = searchParams.get("filter") || "title";
+    const currentFilter = searchParams.get("filter") || options[0]?.value || "";
 
     function handleClick(value) {
         const newParams = new URLSearchParams(searchParams);
@@ -18,26 +18,15 @@ export default function Filter() {
         <Menus>
           <Menus.Toggle type={true} />
           <Menus.Lists>
-            <Menus.Buttons 
-                onClick={() => handleClick("title")}
-                className={currentFilter === "title" ? `${styling}` : ""}
-            >
-              Flashcard name 
-            </Menus.Buttons>
-
-            <Menus.Buttons 
-                onClick={() => handleClick("count")}
-                className={currentFilter === "count" ? `${styling}` : ""}
-            >
-              Number of cards 
-            </Menus.Buttons>
-
-            <Menus.Buttons 
-                onClick={() => handleClick("time")}
-                className={currentFilter === "time" ? `${styling}` : ""}
-            >
-              Time created 
-            </Menus.Buttons>
+            {options.map((option) => (
+              <Menus.Buttons
+                key={option.value}
+                onClick={() => handleClick(option.value)}
+                className={currentFilter === option.value ? `${styling}` : ""}
+              >
+                {option.label}
+              </Menus.Buttons>
+            ))}
           </Menus.Lists>
         </Menus>
     );

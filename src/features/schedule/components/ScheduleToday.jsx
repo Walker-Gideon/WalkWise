@@ -1,8 +1,10 @@
 import { format } from "date-fns";
 import { LuPlus } from "react-icons/lu";
+import { useSearchParams } from "react-router-dom";
 
 import Conditional from "/src/components/Conditional";
 import HeaderText from "/src/ui/HeaderText";
+import Filter from "/src/components/Filter";
 import Paragraph from "/src/ui/Paragraph";
 import SessionCard from "./SessionCard";
 import Spinner from "/src/ui/Spinner";
@@ -17,26 +19,49 @@ import { getScheduleStatus, getStatusColor } from "/src/helper/helpers";
 export default function ScheduleToday() {
   const { setIsDisplaySessionForm } = useSchedule();
   const { sessions, isLoading } = useSessions();
+  const [searchParams] = useSearchParams();
   const display = sessions?.length === 0;
 
   if (isLoading) return <Spinner />;
 
-  // Sort sessions: Due first, then Pending, then Completed
-  // Within status, sort by date? User didn't ask, but good UX.
-  // For now just display.
+  // Sort sessions
+  const currentFilter = searchParams.get("filter") || "date";
+  let sortedSessions = [...(sessions || [])];
+
+  if (currentFilter === "status") {
+    const statusOrder = { Due: 1, Pending: 2, Completed: 3 };
+    sortedSessions.sort((a, b) => {
+        const statusA = getScheduleStatus(a);
+        const statusB = getScheduleStatus(b);
+        return (statusOrder[statusA] || 99) - (statusOrder[statusB] || 99);
+    });
+  } else if (currentFilter === "date") {
+      sortedSessions.sort((a, b) => {
+          const dateA = a.scheduledAt?.toDate ? a.scheduledAt.toDate() : new Date(a.scheduledAt || 0);
+          const dateB = b.scheduledAt?.toDate ? b.scheduledAt.toDate() : new Date(b.scheduledAt || 0);
+          return dateA - dateB;
+      });
+  }
 
   return (
     <>
       <Flex variant="between">
         <HeaderText type="secondary">Today's Sessions</HeaderText>
-        <Button
-          type="colors"
-          onclick={() => setIsDisplaySessionForm((show) => !show)}
-          classname={"flex items-center gap-1"}
-        >
-          <LuPlus className="h-4 w-4" />
-          Add Session
-        </Button>
+        <Flex classname={"gap-4"}>
+            <Filter options={[
+                { value: "date", label: "Date" },
+                { value: "status", label: "Status" },
+              ]} 
+            />
+            <Button
+            type="colors"
+            onclick={() => setIsDisplaySessionForm((show) => !show)}
+            classname={"flex items-center gap-1"}
+            >
+            <LuPlus className="h-4 w-4" />
+            Add Session
+            </Button>
+        </Flex>
       </Flex>
       <Conditional condition={display}>
         <Flex variant="center" classname="h-full w-full">
@@ -47,7 +72,7 @@ export default function ScheduleToday() {
       </Conditional>
       <Conditional condition={!display}>
         <Group classname={"h-190 space-y-3 overflow-y-scroll"}>
-          {sessions?.map((session) => {
+          {sortedSessions?.map((session) => {
              const status = getScheduleStatus(session);
              const statusColor = getStatusColor(status);
              

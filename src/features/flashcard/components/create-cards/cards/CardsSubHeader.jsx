@@ -29,7 +29,12 @@ export default function CardsSubHeader() {
       </Group>
 
       <Group>
-        <Filter />
+        <Filter options={[
+            { value: "title", label: "Flashcard name" },
+            { value: "count", label: "Number of cards" },
+            { value: "time", label: "Time created" },
+          ]} 
+        />
       </Group>
     </Flex>
     </Group>
