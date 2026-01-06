@@ -11,14 +11,23 @@ import Group from "/src/ui/Group";
 import Main from "/src/ui/Main";
 
 import { useSchedule } from "./context/ScheduleContext";
+import useDeleteSession from "./hooks/useDeleteSession";
 
 export default function Schedules() {
-  const { isDeleteModal, isDisplaySessionForm, setSelectedId, selectedSessionTitle, setSelectedSessionTitle, setIsDeleteModal } = useSchedule();
+  const { isDeleting, deleteSession } = useDeleteSession();
+  const { selectedId, isDeleteModal, isDisplaySessionForm, setSelectedId, selectedSessionTitle, setSelectedSessionTitle, setIsDeleteModal } = useSchedule();
 
   function handleCloseModal() {
     setSelectedId(null);
     setIsDeleteModal(false);
     setSelectedSessionTitle("");
+  }
+
+  function handleDeleteSession() {
+    if (selectedId) {
+      deleteSession(selectedId);
+      handleCloseModal();
+    }
   }
 
   return (
@@ -46,9 +55,9 @@ export default function Schedules() {
       <Conditional condition={isDeleteModal}>
         <ConfirmDelete
           resourceName={selectedSessionTitle}
-          // disabled={}
+          disabled={isDeleting}
           onCloseModal={handleCloseModal}
-          onConfirm={() => console.log("Delete")}
+          onConfirm={handleDeleteSession}
         />
       </Conditional>
     </Container>
