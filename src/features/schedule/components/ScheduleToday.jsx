@@ -43,6 +43,11 @@ export default function ScheduleToday() {
       });
   }
 
+  function handleEdit(id) {
+    setSelectedId(id)
+    setIsDisplaySessionForm(true)
+  }
+
   function handleDeleteModel(id, title) {
     setSelectedId(id)
     setIsDeleteModal(true)
@@ -98,7 +103,7 @@ export default function ScheduleToday() {
                 status={status}
                 statusColor={statusColor}
                 onPlay={() => console.log("Play", session.id)}
-                onEdit={() => console.log("Edit", session.id)}
+                onEdit={() => handleEdit(session.id)}
                 onDelete={() => handleDeleteModel(session.id, session.title)}
               />
             );
