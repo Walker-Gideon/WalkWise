@@ -13,29 +13,61 @@ import Flex from "/src/ui/Flex";
 
 import { useSchedule } from "../context/ScheduleContext";
 import { useCreateSession } from "../hooks/useCreateSession";
+import { useUpdateSession } from "../hooks/useUpdateSession";
+import { useSessions } from "../hooks/useSessions";
 import { useFetchCards } from "/src/hook/useCards";
 
 export default function SessionForm() {
   const { flashcards = [] } = useFetchCards();
-  const { setIsDisplaySessionForm } = useSchedule();
+  const { selectedId, setIsDisplaySessionForm } = useSchedule();
   const { createSession, isCreating } = useCreateSession();
+  const { updateMutation: updateSession, isUpdating } = useUpdateSession();
+  const { sessions } = useSessions();
   const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm({
     defaultValues: {
       tag: "",
     },
   });
 
-  const selectedId = watch("tag");
+  const sesssionSelectedId = watch("tag");
 
   useEffect(() => {
-    if (selectedId) {
-      const selectedCard = flashcards.find((card) => card.id === selectedId);
+    if (sesssionSelectedId) {
+      const selectedCard = flashcards.find((card) => card.id === sesssionSelectedId);
       const count = selectedCard?.pairs?.length || 0;
       setValue("cardCount", count);
     } else {
         setValue("cardCount", "");
     }
-  }, [selectedId, flashcards, setValue]);
+  }, [sesssionSelectedId, flashcards, setValue]);
+
+  useEffect(() => {
+    if (selectedId && sessions) {
+      const sessionToEdit = sessions.find((s) => s.id === selectedId);
+      if (sessionToEdit) {
+        setValue("tag", sessionToEdit.tag);
+        setValue("cardCount", sessionToEdit.numCards);
+        
+        if (sessionToEdit.scheduledAt) {
+            const dateObj = sessionToEdit.scheduledAt.toDate ? sessionToEdit.scheduledAt.toDate() : new Date(sessionToEdit.scheduledAt);
+            const year = dateObj.getFullYear();
+            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const day = String(dateObj.getDate()).padStart(2, '0');
+            
+            const hours = String(dateObj.getHours()).padStart(2, '0');
+            const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+
+            setValue("date", `${year}-${month}-${day}`);
+            setValue("time", `${hours}:${minutes}`);
+        }
+      }
+    } else {
+        setValue("tag", "");
+        setValue("cardCount", "");
+        setValue("date", "");
+        setValue("time", "");
+    }
+  }, [selectedId, sessions, setValue]);
 
   const onSubmit = (data) => {
     const selectedCard = flashcards.find((card) => card.id === data.tag);
@@ -52,11 +84,22 @@ export default function SessionForm() {
       status: "pending",
     };
 
-    createSession(sessionData, {
-      onSuccess: () => {
-        setIsDisplaySessionForm(false);
-      },
-    });
+    if (selectedId) {
+      updateSession(
+        { id: selectedId, data: sessionData },
+        {
+          onSuccess: () => {
+            setIsDisplaySessionForm(false);
+          },
+        }
+      );
+    } else {
+      createSession(sessionData, {
+        onSuccess: () => {
+          setIsDisplaySessionForm(false);
+        },
+      });
+    }
   };
 
   const baseInputStyles = "rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs hover:border-slate-400 focus:ring-2 focus:ring-slate-400 focus:outline-hidden";
@@ -64,10 +107,10 @@ export default function SessionForm() {
 
   return (
     <>
-    {isCreating && <Spinner />}
+    {isCreating || isUpdating && <Spinner />}
     <Model>
       <Flex variant="between">
-        <HeaderText type="secondary">Add Study Session</HeaderText>
+        <HeaderText type="secondary">{selectedId ? "Edit Study Session" : "Add Study Session"}</HeaderText>
         <Button
           variant="secondary"
           onclick={() => setIsDisplaySessionForm((show) => !show)}
@@ -150,7 +193,7 @@ export default function SessionForm() {
             type="colors"
             classname={"w-full flex items-center justify-center"}
           >
-            Add Session
+            {selectedId ? "Save Changes" : "Add Session"}
           </Button>
         </Flex>
       </Form>

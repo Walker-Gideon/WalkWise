@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 import { updateSession as updateSessionAPI } from "/src/service/apiSchedule";
 
-export default function useUpdateSession() {
+export function useUpdateSession() {
     const queryClient = useQueryClient();
 
     const { mutate: updateMutation, isPending: isUpdating } = useMutation({
