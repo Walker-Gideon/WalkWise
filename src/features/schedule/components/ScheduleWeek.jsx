@@ -6,6 +6,7 @@ import {
   addDays,
 } from "date-fns";
 
+import Conditional from "/src/components/Conditional";
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
 import Card from "/src/components/Card";
@@ -15,8 +16,8 @@ import Flex from "/src/ui/Flex";
 
 export default function ScheduleWeek() {
   const now = new Date();
-  const start = startOfWeek(now, { weekStartsOn: 1 }); // Monday
-  const end = endOfWeek(now, { weekStartsOn: 1 }); // Sunday
+  const start = startOfWeek(now, { weekStartsOn: 0 }); 
+  const end = endOfWeek(now, { weekStartsOn: 0 }); 
 
   // Step 1: Get sessions within the current week
 
@@ -79,18 +80,17 @@ export default function ScheduleWeek() {
 
                 return (
                   <>
-                    {/* {sessionsByDay[day.date]?.length ? (
-                      <CardDiscription
-                        classnameFirst="font-medium text-slate-900 dark:text-white"
-                        classnameSecond="text-sm text-slate-500 dark:text-slate-400"
-                        textOne={`${totalCards} cards scheduled`}
-                        textTwo={`${totalSessions} session${totalSessions > 1 ? "s" : ""}`}
+                    <Conditional condition={true}>
+                      <WeeksSessionDisplay
+                        title={"classnameFirst totalCards cards scheduled"}
+                        totalcards={"classnameSecond totalSessions session"}
                       />
-                    ) : ( */}
-                    <Paragraph variant="small" classname={"text-slate-400"}>
-                      No sessions for this day
-                    </Paragraph>
-                    {/* )} */}
+                    </Conditional>
+                    <Conditional condition={false}>
+                      <Paragraph variant="small" classname={"text-slate-400"}>
+                        No sessions for this day
+                      </Paragraph>
+                    </Conditional>
                   </>
                 );
               })()}
@@ -100,4 +100,19 @@ export default function ScheduleWeek() {
       </Group>
     </>
   );
+}
+
+function WeeksSessionDisplay({ title, totalcards }) {
+  return (
+    <Group>
+      <Group>
+        <Paragraph classname={"font-medium text-sm text-slate-900 dark:text-white border px-1 py-0.5 rounded-full"}>
+          {title}
+        </Paragraph>
+      </Group>
+      <Paragraph classname={"text-xs text-slate-500 dark:text-slate-400"}>
+        {totalcards}
+      </Paragraph>
+    </Group>
+  )
 }
