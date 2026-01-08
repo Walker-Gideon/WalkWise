@@ -19,7 +19,7 @@ import { useFetchCards } from "/src/hook/useCards";
 
 export default function SessionForm() {
   const { flashcards = [] } = useFetchCards();
-  const { selectedId, setIsDisplaySessionForm } = useSchedule();
+  const { selectedId, setSelectedId, setIsDisplaySessionForm } = useSchedule();
   const { createSession, isCreating } = useCreateSession();
   const { updateMutation: updateSession, isUpdating } = useUpdateSession();
   const { sessions } = useSessions();
@@ -89,18 +89,27 @@ export default function SessionForm() {
         { id: selectedId, data: sessionData },
         {
           onSuccess: () => {
-            setIsDisplaySessionForm(false);
+             handleCloseModal();
           },
         }
       );
     } else {
       createSession(sessionData, {
         onSuccess: () => {
-          setIsDisplaySessionForm(false);
+           handleCloseModal();
         },
       });
     }
   };
+
+  function handleCloseModal() {
+    setIsDisplaySessionForm(false);
+    setSelectedId(null);
+    setValue("tag", "");
+    setValue("cardCount", "");
+    setValue("date", "");
+    setValue("time", "");
+  }
 
   const baseInputStyles = "rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs hover:border-slate-400 focus:ring-2 focus:ring-slate-400 focus:outline-hidden";
   const errorStyling = "text-red-500 text-sm";
@@ -113,7 +122,7 @@ export default function SessionForm() {
         <HeaderText type="secondary">{selectedId ? "Edit Study Session" : "Add Study Session"}</HeaderText>
         <Button
           variant="secondary"
-          onclick={() => setIsDisplaySessionForm((show) => !show)}
+          onclick={handleCloseModal}
           classname={"medium:text-2xl text-xl dark:text-white"}
         >
           <LuX />
@@ -182,7 +191,7 @@ export default function SessionForm() {
           <Button
             onclick={(e) => {
               e.preventDefault();
-              setIsDisplaySessionForm((show) => !show);
+              handleCloseModal();
             }}
             type="border"
             classname={"w-full border-stone-300 dark:text-white"}
