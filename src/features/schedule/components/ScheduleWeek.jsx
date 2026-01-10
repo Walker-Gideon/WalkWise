@@ -14,12 +14,15 @@ import Header from "/src/ui/Header";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
+import { useSessions } from "../hooks/useSessions";
+
 export default function ScheduleWeek() {
   const now = new Date();
   const start = startOfWeek(now, { weekStartsOn: 0 }); 
   const end = endOfWeek(now, { weekStartsOn: 0 }); 
 
   // Step 1: Get sessions within the current week
+  const { sessions } = useSessions();
 
   // Step 2: Static days to display (guaranteed order)
   const weekDays = Array.from({ length: 7 }, (_, index) => {
@@ -68,25 +71,29 @@ export default function ScheduleWeek() {
               </Flex>
 
               {(() => {
-                /*
-                const sessionsForDay = sessionsByDay[day.date] || [];
+                const sessionsForDay = sessions?.filter((session) => {
+                    if (!session.scheduledAt) return false;
+                    const sessionDate = session.scheduledAt.toDate ? session.scheduledAt.toDate() : new Date(session.scheduledAt);
+                    return format(sessionDate, "yyyy-MM-dd") === day.date;
+                }) || [];
 
                 const totalSessions = sessionsForDay.length;
                 const totalCards = sessionsForDay.reduce(
-                  (sum, session) => sum + Number(session.count || 0),
+                  (sum, session) => sum + Number(session.numCards || 0),
                   0,
                 );
-                */
+
+                const titles = sessionsForDay.map(s => s.title);
 
                 return (
                   <>
-                    <Conditional condition={true}>
+                    <Conditional condition={totalSessions > 0}>
                       <WeeksSessionDisplay
-                        title={"classnameFirst totalCards cards scheduled"}
-                        totalcards={"classnameSecond totalSessions session"}
+                        titles={titles}
+                        totalcards={`${totalCards} cards scheduled`}
                       />
                     </Conditional>
-                    <Conditional condition={false}>
+                    <Conditional condition={totalSessions === 0}>
                       <Paragraph variant="small" classname={"text-slate-400"}>
                         No sessions for this day
                       </Paragraph>
@@ -102,15 +109,17 @@ export default function ScheduleWeek() {
   );
 }
 
-function WeeksSessionDisplay({ title, totalcards }) {
+function WeeksSessionDisplay({ titles, totalcards }) {
   return (
     <Group>
-      <Group>
-        <Paragraph classname={"font-medium text-sm text-slate-900 dark:text-white border px-1 py-0.5 rounded-full"}>
-          {title}
-        </Paragraph>
+      <Group classname="flex flex-wrap gap-1 mb-1">
+        {titles.map((title, i) => (
+             <Paragraph key={i} classname={"font-medium text-[10px] text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded-full bg-white dark:bg-slate-800"}>
+                {title}
+            </Paragraph>
+        ))}
       </Group>
-      <Paragraph classname={"text-xs text-slate-500 dark:text-slate-400"}>
+      <Paragraph classname={"text-xs text-slate-500 dark:text-slate-400 pl-1"}>
         {totalcards}
       </Paragraph>
     </Group>
