@@ -2,15 +2,15 @@ import {
   format,
   startOfWeek,
   endOfWeek,
-  isWithinInterval,
   addDays,
 } from "date-fns";
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
 import Conditional from "/src/components/Conditional";
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
 import Card from "/src/components/Card";
-import Header from "/src/ui/Header";
+import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
@@ -21,10 +21,8 @@ export default function ScheduleWeek() {
   const start = startOfWeek(now, { weekStartsOn: 0 }); 
   const end = endOfWeek(now, { weekStartsOn: 0 }); 
 
-  // Step 1: Get sessions within the current week
   const { sessions } = useSessions();
 
-  // Step 2: Static days to display (guaranteed order)
   const weekDays = Array.from({ length: 7 }, (_, index) => {
     const date = addDays(start, index);
     const isoDate = format(date, "yyyy-MM-dd");
@@ -36,13 +34,41 @@ export default function ScheduleWeek() {
     };
   });
 
-  // Step 3: Group sessions by day
+  function handlePrevWeek() {
+    
+  }
+
+  function handleNextWeek() {
+    
+  }
+
+  const styling = {
+    icon: "h-4 w-4 text-slate-600 dark:text-slate-400",
+    button: "hover:bg-slate-100 dark:hover:bg-slate-700 p-2 rounded-sm",
+  };
 
   return (
     <>
-      <Header>
+      <Flex variant="between">
         <HeaderText type="secondary">This Week</HeaderText>
-      </Header>
+        
+        <Group classname={"space-x-2"}>
+          <Button
+            variant="secondary"
+            onclick={handlePrevWeek}
+            classname={styling.button}
+          >
+            <LuChevronLeft className={styling.icon} />
+          </Button>
+          <Button
+            variant="secondary"
+            onclick={handleNextWeek}
+            classname={styling.button}
+          >
+            <LuChevronRight className={styling.icon} />
+          </Button>
+        </Group>
+      </Flex>
 
       <Group classname={"h-190 space-y-3 overflow-y-scroll"}>
         {weekDays.map((day) => (
