@@ -3,7 +3,10 @@ import {
   startOfWeek,
   endOfWeek,
   addDays,
+  addWeeks,
+  subWeeks,
 } from "date-fns";
+import { useState } from "react";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
 import Conditional from "/src/components/Conditional";
@@ -17,9 +20,9 @@ import Flex from "/src/ui/Flex";
 import { useSessions } from "../hooks/useSessions";
 
 export default function ScheduleWeek() {
-  const now = new Date();
-  const start = startOfWeek(now, { weekStartsOn: 0 }); 
-  const end = endOfWeek(now, { weekStartsOn: 0 }); 
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const start = startOfWeek(currentDate, { weekStartsOn: 0 }); 
+  const end = endOfWeek(currentDate, { weekStartsOn: 0 }); 
 
   const { sessions } = useSessions();
 
@@ -35,11 +38,11 @@ export default function ScheduleWeek() {
   });
 
   function handlePrevWeek() {
-    
+    setCurrentDate((cur) => subWeeks(cur, 1));
   }
 
   function handleNextWeek() {
-    
+    setCurrentDate((cur) => addWeeks(cur, 1));
   }
 
   const styling = {
@@ -47,10 +50,12 @@ export default function ScheduleWeek() {
     button: "hover:bg-slate-100 dark:hover:bg-slate-700 p-2 rounded-sm",
   };
 
+  const headerTitle = `${format(start, "MMM dd")} - ${format(end, "MMM dd")}`;
+
   return (
     <>
       <Flex variant="between">
-        <HeaderText type="secondary">This Week</HeaderText>
+        <HeaderText type="secondary" classname={"capitalize"}>{headerTitle}</HeaderText>
         
         <Group classname={"space-x-2"}>
           <Button
