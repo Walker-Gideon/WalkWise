@@ -1,6 +1,4 @@
-
 import { LuCalendar } from "react-icons/lu";
-import CalendarGrid from "/src/components/CalendarGrid";
 
 import HeaderText from "/src/ui/HeaderText";
 import Card from "/src/components/Card";
@@ -9,6 +7,7 @@ import Group from "/src/ui/Group";
 import Box from "/src/ui/Box";
 
 import useCalendar from "/src/hook/useCalendar";
+import CalendarGrid from "/src/components/CalendarGrid";
 
 export default function DashboardCalendar() {
   const { currentMonth, monthLabel, calendarDays } = useCalendar();
