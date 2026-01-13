@@ -1,8 +1,9 @@
-import { isSameMonth, isToday } from "date-fns";
+import { isSameMonth, isToday, isSameDay } from "date-fns";
 import Group from "/src/ui/Group";
 import Box from "/src/ui/Box";
+import { getScheduleStatus, getStatusColor } from "/src/helper/helpers";
 
-export default function CalendarGrid({ calendarDays, currentMonth }) {
+export default function CalendarGrid({ calendarDays, currentMonth, sessions = [] }) {
   return (
     <Group
       classname={
@@ -30,13 +31,36 @@ export default function CalendarGrid({ calendarDays, currentMonth }) {
             ? "text-slate-600 dark:text-slate-400"
             : "text-slate-400 dark:text-slate-600";
 
+        // Filter sessions for this day
+        const daySessions = sessions.filter((session) => {
+             if (!session.scheduledAt) return false;
+             const sessionDate = session.scheduledAt.toDate ? session.scheduledAt.toDate() : new Date(session.scheduledAt);
+             return isSameDay(sessionDate, day);
+        });
+
         return (
           <Box
             adjustWidth={true}
             key={day.toISOString()}
-            classname={`flex items-center justify-center text-sm rounded-lg aspect-square ${backgroundColor}`}
+            classname={`flex flex-col items-center justify-center text-sm rounded-lg aspect-square ${backgroundColor} relative`}
           >
             {dayNumber}
+            
+            {/* Session Indicators */}
+            <div className="flex justify-center gap-0.5 mt-1 absolute bottom-1">
+                {daySessions.slice(0, 3).map((session, i) => {
+                    const status = getScheduleStatus(session);
+                    
+                    let dotColor = "bg-slate-400 dark:bg-slate-500"; // default
+                    if (status === "Completed") dotColor = "bg-green-500 dark:bg-green-400";
+                    if (status === "Due") dotColor = "bg-amber-500 dark:bg-amber-400";
+                    if (status === "Pending") dotColor = "bg-blue-500 dark:bg-blue-400";
+
+                    return (
+                        <div key={i} className={`h-1.5 w-1.5 rounded-full ${dotColor}`} />
+                    )
+                })}
+            </div>
           </Box>
         );
       })}

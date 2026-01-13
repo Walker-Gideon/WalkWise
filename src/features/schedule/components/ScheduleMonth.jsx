@@ -8,9 +8,11 @@ import Flex from "/src/ui/Flex";
 
 import CalendarGrid from "/src/components/CalendarGrid";
 import useCalendar from "/src/hook/useCalendar";
+import { useSessions } from "../hooks/useSessions";
 
 export default function ScheduleMonth() {
   const { currentMonth, monthLabel, calendarDays, onCurrentMonth } = useCalendar();
+  const { sessions } = useSessions();
 
   function handlePrevMonth() {
     onCurrentMonth((cur) => subMonths(cur, 1));
@@ -46,7 +48,11 @@ export default function ScheduleMonth() {
           </Button>
         </Group>
       </Flex>
-      <CalendarGrid calendarDays={calendarDays} currentMonth={currentMonth} />
+      <CalendarGrid
+        calendarDays={calendarDays}
+        currentMonth={currentMonth}
+        sessions={sessions}
+      />
     </>
   );
 }
