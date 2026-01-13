@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { LuPlus } from "react-icons/lu";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 import Conditional from "/src/components/Conditional";
 import HeaderText from "/src/ui/HeaderText";
@@ -20,6 +20,7 @@ export default function ScheduleToday() {
   const { setSelectedId, setIsDeleteModal, setSelectedSessionTitle, setIsDisplaySessionForm } = useSchedule();
   const { sessions, isLoading } = useSessions();
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const display = sessions?.length === 0;
 
   if (isLoading) return <Spinner />;
@@ -52,6 +53,12 @@ export default function ScheduleToday() {
     setSelectedId(id)
     setIsDeleteModal(true)
     setSelectedSessionTitle(title)
+  }
+
+  function handlePlay(flashcardSetId) {
+      if (flashcardSetId) {
+          navigate(`/flashcards?study=${flashcardSetId}`);
+      }
   }
 
   return (
@@ -94,6 +101,7 @@ export default function ScheduleToday() {
                  formattedTime = format(date, "MM/dd/yyyy HH:mm");
              }
 
+             
              return (
               <SessionCard
                 key={session.id}
@@ -102,7 +110,7 @@ export default function ScheduleToday() {
                 estimatedTime={formattedTime}
                 status={status}
                 statusColor={statusColor}
-                onPlay={() => console.log("Play", session.id)}
+                onPlay={() => handlePlay(session.tag)} // Assuming 'tag' is the flashcard Set ID based on previous context
                 onEdit={() => handleEdit(session.id)}
                 onDelete={() => handleDeleteModel(session.id, session.title)}
               />
