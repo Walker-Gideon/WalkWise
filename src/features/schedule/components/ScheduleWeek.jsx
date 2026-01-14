@@ -6,18 +6,21 @@ import {
   addWeeks,
   subWeeks,
 } from "date-fns";
-import { useState } from "react";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import { useState } from "react";
 
 import Conditional from "/src/components/Conditional";
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
+import SpanText from "/src/ui/SpanText";
 import Card from "/src/components/Card";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
+import Box from "/src/ui/Box";
 
 import { useSessions } from "../hooks/useSessions";
+import { getScheduleStatus, getStatusColor } from "/src/helper/helpers";
 
 export default function ScheduleWeek() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -114,13 +117,13 @@ export default function ScheduleWeek() {
                   0,
                 );
 
-                const titles = sessionsForDay.map(s => s.title);
+                const sessionsList = sessionsForDay;
 
                 return (
                   <>
                     <Conditional condition={totalSessions > 0}>
                       <WeeksSessionDisplay
-                        titles={titles}
+                        sessions={sessionsList}
                         totalcards={`${totalCards} cards scheduled`}
                       />
                     </Conditional>
@@ -136,23 +139,48 @@ export default function ScheduleWeek() {
           </Card>
         ))}
       </Group>
+
+      <Group classname={"flex mt-4 items-center justify-end space-x-6 text-xs"}>
+        <StatusColor status="Pending" />
+        <StatusColor status="In Progress" />
+        <StatusColor status="Due" />
+        <StatusColor status="Completed" />
+      </Group>
     </>
   );
 }
 
-function WeeksSessionDisplay({ titles, totalcards }) {
+function WeeksSessionDisplay({ sessions, totalcards }) {
   return (
     <Group>
       <Group classname="flex flex-wrap gap-1 mb-1">
-        {titles.map((title, i) => (
-             <Paragraph key={i} classname={"font-medium text-[10px] text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded-full bg-white dark:bg-slate-800"}>
-                {title}
-            </Paragraph>
-        ))}
+        {sessions.map((session, i) => {
+             const status = getScheduleStatus(session);
+             const statusColor = getStatusColor(status);
+             
+             return (
+             <Paragraph key={i} classname={`${statusColor} font-medium text-[10px] border border-transparent px-2 py-0.5 rounded-full`}>
+                {session.title}
+             </Paragraph>
+             );
+        })}
       </Group>
       <Paragraph classname={"text-xs text-slate-500 dark:text-slate-400 pl-1"}>
         {totalcards}
       </Paragraph>
     </Group>
   )
+}
+
+function StatusColor({ status }) {
+  const statusColor = getStatusColor(status);
+  return (
+    <Group classname={"flex items-center space-x-2 text-xs"}>
+      <Box
+        adjustWidth={true}
+        classname={`h-3 w-3 rounded-full ${statusColor}`}
+      ></Box>
+      <SpanText classname={"primary-text-color"}>{status}</SpanText>
+    </Group>
+  );
 }
