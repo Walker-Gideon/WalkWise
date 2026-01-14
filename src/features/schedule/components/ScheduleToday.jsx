@@ -1,5 +1,5 @@
-import { format } from "date-fns";
 import { LuPlus } from "react-icons/lu";
+import { format, differenceInHours } from "date-fns";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
 import Conditional from "/src/components/Conditional";
@@ -26,23 +26,44 @@ export default function ScheduleToday() {
 
   if (isLoading) return <Spinner />;
 
-  // Filter out completed sessions
-  const activeSessions = sessions?.filter(session => getScheduleStatus(session) !== 'Completed') || [];
+  // Filter sessions: Show pending/in-progress OR completed within last 24h
+  const activeSessions = sessions?.filter(session => {
+      const status = getScheduleStatus(session);
+      if (status !== 'Completed') return true;
+      
+      if (session.completedAt) {
+          const completedDate = session.completedAt.toDate ? session.completedAt.toDate() : new Date(session.completedAt);
+          return differenceInHours(new Date(), completedDate) < 24;
+      }
+      return false; // Completed but no timestamp -> hide
+  }) || [];
+  
   const display = activeSessions.length === 0;
 
-  // Sort sessions
   const currentFilter = searchParams.get("filter") || "date";
   let sortedSessions = [...activeSessions];
 
+  const isCompleted = (s) => getScheduleStatus(s) === 'Completed';
+
+  sortedSessions.sort((a, b) => {
+      if (isCompleted(a) && !isCompleted(b)) return 1;
+      if (!isCompleted(a) && isCompleted(b)) return -1;
+      return 0;
+  });
+
   if (currentFilter === "status") {
-    const statusOrder = { Due: 1, Pending: 2, Completed: 3 };
+    const statusOrder = { Due: 1, "In Progress": 2, Pending: 3 };
     sortedSessions.sort((a, b) => {
+        if (isCompleted(a) !== isCompleted(b)) return 0;
+        
         const statusA = getScheduleStatus(a);
         const statusB = getScheduleStatus(b);
         return (statusOrder[statusA] || 99) - (statusOrder[statusB] || 99);
     });
   } else if (currentFilter === "date") {
       sortedSessions.sort((a, b) => {
+          if (isCompleted(a) !== isCompleted(b)) return 0;
+
           const dateA = a.scheduledAt?.toDate ? a.scheduledAt.toDate() : new Date(a.scheduledAt || 0);
           const dateB = b.scheduledAt?.toDate ? b.scheduledAt.toDate() : new Date(b.scheduledAt || 0);
           return dateA - dateB;
