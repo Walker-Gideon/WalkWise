@@ -17,6 +17,8 @@ import { useFlashcard } from "../../context/FlashcardContext";
 import { useUserData } from "/src/user/hook/useUserData";
 import { useFetchCards } from "/src/hook/useCards";
 
+import { useUpdateSession } from "/src/features/schedule/hooks/useUpdateSession";
+
 export default function StudyFlashcardSummary() {
   /* eslint-disable no-unused-vars */
   const { setFinished, activeId } = useFlashcard();
@@ -24,8 +26,16 @@ export default function StudyFlashcardSummary() {
   const { userData } = useUserData();
   const [count, setCount] = useState(0);
 
+  const { updateSession } = useUpdateSession();
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
+  const sessionId = searchParams.get("session");
+
+  useEffect(() => {
+    if (sessionId) {
+      updateSession({ id: sessionId, data: { status: 'Completed' } });
+    }
+  }, [sessionId, updateSession]);
 
   const card = flashcards?.find((card) => card.id === activeId);
   const pairs = card?.pairs;

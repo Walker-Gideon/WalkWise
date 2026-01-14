@@ -21,7 +21,7 @@ export default function SessionForm() {
   const { flashcards = [] } = useFetchCards();
   const { selectedId, setSelectedId, setIsDisplaySessionForm } = useSchedule();
   const { createSession, isCreating } = useCreateSession();
-  const { updateMutation: updateSession, isUpdating } = useUpdateSession();
+  const { updateSession, isUpdating } = useUpdateSession();
   const { sessions } = useSessions();
   const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm({
     defaultValues: {

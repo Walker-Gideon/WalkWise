@@ -15,5 +15,5 @@ export function useUpdateSession() {
         onError: (err) => toast.error(err.message),
     });
 
-    return { updateMutation, isUpdating };
+    return { updateSession: updateMutation, isUpdating };
 }

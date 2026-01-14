@@ -15,19 +15,24 @@ import Flex from "/src/ui/Flex";
 import { useSessions } from "../hooks/useSessions";
 import { useSchedule } from "../context/ScheduleContext";
 import { getScheduleStatus, getStatusColor } from "/src/helper/helpers";
+import { useUpdateSession } from "../hooks/useUpdateSession";
 
 export default function ScheduleToday() {
   const { setSelectedId, setIsDeleteModal, setSelectedSessionTitle, setIsDisplaySessionForm } = useSchedule();
   const { sessions, isLoading } = useSessions();
+  const { updateSession } = useUpdateSession();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const display = sessions?.length === 0;
 
   if (isLoading) return <Spinner />;
 
+  // Filter out completed sessions
+  const activeSessions = sessions?.filter(session => getScheduleStatus(session) !== 'Completed') || [];
+  const display = activeSessions.length === 0;
+
   // Sort sessions
   const currentFilter = searchParams.get("filter") || "date";
-  let sortedSessions = [...(sessions || [])];
+  let sortedSessions = [...activeSessions];
 
   if (currentFilter === "status") {
     const statusOrder = { Due: 1, Pending: 2, Completed: 3 };
@@ -55,9 +60,10 @@ export default function ScheduleToday() {
     setSelectedSessionTitle(title)
   }
 
-  function handlePlay(flashcardSetId) {
+  function handlePlay(id, flashcardSetId) {
       if (flashcardSetId) {
-          navigate(`/flashcards?study=${flashcardSetId}`);
+          updateSession({ id: id, data: { status: 'in-progress' } });
+          navigate(`/flashcards?study=${flashcardSetId}&session=${id}`);
       }
   }
 
@@ -110,7 +116,7 @@ export default function ScheduleToday() {
                 estimatedTime={formattedTime}
                 status={status}
                 statusColor={statusColor}
-                onPlay={() => handlePlay(session.tag)} // Assuming 'tag' is the flashcard Set ID based on previous context
+                onPlay={() => handlePlay(session.id, session.tag)} 
                 onEdit={() => handleEdit(session.id)}
                 onDelete={() => handleDeleteModel(session.id, session.title)}
               />
