@@ -10,14 +10,13 @@ import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { useState } from "react";
 
 import Conditional from "/src/components/Conditional";
+import Legend from "/src/components/Legend";
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
-import SpanText from "/src/ui/SpanText";
 import Card from "/src/components/Card";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
-import Box from "/src/ui/Box";
 
 import { useSessions } from "../hooks/useSessions";
 import { getScheduleStatus, getStatusColor } from "/src/helper/helpers";
@@ -141,10 +140,10 @@ export default function ScheduleWeek() {
       </Group>
 
       <Group classname={"flex mt-4 items-center justify-end space-x-6 text-xs"}>
-        <StatusColor status="Pending" />
-        <StatusColor status="In Progress" />
-        <StatusColor status="Due" />
-        <StatusColor status="Completed" />
+        <Legend status="Pending" />
+        <Legend status="In Progress" />
+        <Legend status="Due" />
+        <Legend status="Completed" />
       </Group>
     </>
   );
@@ -172,15 +171,3 @@ function WeeksSessionDisplay({ sessions, totalcards }) {
   )
 }
 
-function StatusColor({ status }) {
-  const statusColor = getStatusColor(status);
-  return (
-    <Group classname={"flex items-center space-x-2 text-xs"}>
-      <Box
-        adjustWidth={true}
-        classname={`h-3 w-3 rounded-full ${statusColor}`}
-      ></Box>
-      <SpanText classname={"primary-text-color"}>{status}</SpanText>
-    </Group>
-  );
-}
