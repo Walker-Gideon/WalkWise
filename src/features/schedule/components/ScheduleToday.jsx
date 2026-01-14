@@ -62,7 +62,7 @@ export default function ScheduleToday() {
 
   function handlePlay(id, flashcardSetId) {
       if (flashcardSetId) {
-          updateSession({ id: id, data: { status: 'in-progress' } });
+          updateSession({ id: id, data: { status: 'in-progress' }, silent: true });
           navigate(`/flashcards?study=${flashcardSetId}&session=${id}`);
       }
   }

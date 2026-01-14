@@ -33,7 +33,7 @@ export default function StudyFlashcardSummary() {
 
   useEffect(() => {
     if (sessionId) {
-      updateSession({ id: sessionId, data: { status: 'Completed' } });
+      updateSession({ id: sessionId, data: { status: 'completed' }, silent: true });
     }
   }, [sessionId, updateSession]);
 

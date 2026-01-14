@@ -6,7 +6,10 @@ import { isAfter } from "date-fns";
  * @returns {string} The status of the session
  */ 
 export function getScheduleStatus(session) {
-  if (session.status === "completed") return "Completed"; 
+  const status = session.status?.toLowerCase();
+  
+  if (status === "completed") return "Completed"; 
+  if (status === "in-progress") return "In Progress";
 
   // Check if session has a scheduled time
   if (session.scheduledAt) {
@@ -33,6 +36,8 @@ export function getStatusColor(status) {
       return "bg-green-500 text-white";
     case "Due":
       return "bg-amber-500 text-white";
+    case "In Progress":
+      return "bg-blue-600 text-white";
     case "Pending":
     default:
       return "bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300";

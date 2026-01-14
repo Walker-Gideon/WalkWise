@@ -7,9 +7,11 @@ export function useUpdateSession() {
     const queryClient = useQueryClient();
 
     const { mutate: updateMutation, isPending: isUpdating } = useMutation({
-        mutationFn: ({ id, data }) => updateSessionAPI(id, data),
-        onSuccess: () => {
-            toast.success("Session successfully updated");
+        mutationFn: ({ id, data, silent }) => updateSessionAPI(id, data),
+        onSuccess: (data, variables) => {
+            if (!variables.silent) {
+                toast.success("Session successfully updated");
+            }
             queryClient.invalidateQueries({ queryKey: ["sessions"] });
         },
         onError: (err) => toast.error(err.message),
