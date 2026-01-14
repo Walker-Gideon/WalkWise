@@ -52,6 +52,7 @@ export default function ScheduleMonth() {
         calendarDays={calendarDays}
         currentMonth={currentMonth}
         sessions={sessions}
+        showSessionDetails={true}
       />
     </>
   );
