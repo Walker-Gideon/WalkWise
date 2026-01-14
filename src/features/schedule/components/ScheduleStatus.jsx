@@ -14,7 +14,7 @@ const status = [
   {
     icon: LuTarget,
     data: 0,
-    text: "Cards Today",
+    text: "Session Today",
   },
   {
     icon: LuClock,
@@ -39,7 +39,7 @@ export default function ScheduleStatus() {
 
   useEffect(() => {
     const updated = status.map((card) => {
-      if (card.text === "Cards Today") {
+      if (card.text === "Session Today") {
         return { ...card, data: 1 }; // will change the data here
       }
 
