@@ -1,6 +1,7 @@
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { addMonths, subMonths } from "date-fns";
 
+import Legend from "/src/components/Legend";
 import HeaderText from "/src/ui/HeaderText";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
@@ -54,6 +55,12 @@ export default function ScheduleMonth() {
         sessions={sessions}
         showSessionDetails={true}
       />
+      <Group classname={"flex mt-4 items-center justify-end space-x-6 text-xs"}>
+        <Legend status="Pending" />
+        <Legend status="In Progress" />
+        <Legend status="Due" />
+        <Legend status="Completed" />
+      </Group>
     </>
   );
 }
