@@ -6,30 +6,15 @@ import Card from "/src/components/Card";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 
+import { useActiveSessions } from "../hooks/useActiveSessions";
 import { useUpdateSession } from "../hooks/useUpdateSession";
 import { useSchedule } from "../context/ScheduleContext";
-import { getScheduleStatus } from "/src/helper/helpers";
-import { useSessions } from "../hooks/useSessions";
 
 export default function ScheduleActions() {
   const { setIsDisplaySessionForm } = useSchedule();
   const { updateSession } = useUpdateSession();
-  const { sessions } = useSessions();
+  const { nextSession } = useActiveSessions();
   const navigate = useNavigate();
-
-  const styling = "h-5 w-5 text-white";
-
-  // Calculate Next Session
-  const pendingSessions = sessions?.filter(session => {
-    const status = getScheduleStatus(session);
-    return status !== 'Completed';
-  }) || [];
-
-  const nextSession = pendingSessions.sort((a, b) => {
-    const dateA = a.scheduledAt?.toDate ? a.scheduledAt.toDate() : new Date(a.scheduledAt || 0);
-    const dateB = b.scheduledAt?.toDate ? b.scheduledAt.toDate() : new Date(b.scheduledAt || 0);
-    return dateA - dateB;
-  })[0];
 
   function handleStartNext() {
     if (nextSession) {
@@ -38,6 +23,8 @@ export default function ScheduleActions() {
     }
   }
 
+  const styling = "h-5 w-5 text-white";
+  
   return (
     <Card>
       <HeaderText type="secondary" classname="mb-4">
