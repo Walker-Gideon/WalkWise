@@ -9,6 +9,7 @@ import Spinner from "/src/ui/Spinner";
 import Group from "/src/ui/Group";
 
 import { useUserData } from "/src/user/hook/useUserData";
+import { useSessions } from "../hooks/useSessions";
 
 const status = [
   {
@@ -35,6 +36,8 @@ const status = [
 
 export default function ScheduleStatus() {
   const { userData, loading, error } = useUserData();
+  const { sessions } = useSessions();
+
   const [statusData, setStatusData] = useState(status)
 
   useEffect(() => {
