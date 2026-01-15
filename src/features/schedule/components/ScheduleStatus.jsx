@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { LuTarget, LuClock, LuFlame, LuTrendingUp } from "react-icons/lu";
-import Spinner from "/src/ui/Spinner";
 
 import HeaderText from "/src/ui/HeaderText";
 import Badge from "/src/components/Badge";
 import Paragraph from "/src/ui/Paragraph";
 import Card from "/src/components/Card";
+import Spinner from "/src/ui/Spinner";
 import Group from "/src/ui/Group";
 
 import { useUserData } from "/src/user/hook/useUserData";
