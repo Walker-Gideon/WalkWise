@@ -1,6 +1,7 @@
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { addMonths, subMonths } from "date-fns";
 
+import Conditional from "/src/components/Conditional";
 import Legend from "/src/components/Legend";
 import HeaderText from "/src/ui/HeaderText";
 import Button from "/src/ui/Button";
@@ -8,8 +9,8 @@ import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
 import CalendarGrid from "/src/components/CalendarGrid";
-import useCalendar from "/src/hook/useCalendar";
 import { useSessions } from "../hooks/useSessions";
+import useCalendar from "/src/hook/useCalendar";
 
 export default function ScheduleMonth() {
   const { currentMonth, monthLabel, calendarDays, onCurrentMonth } = useCalendar();
@@ -55,12 +56,14 @@ export default function ScheduleMonth() {
         sessions={sessions}
         showSessionDetails={true}
       />
-      <Group classname={"flex mt-4 items-center justify-end space-x-6 text-xs"}>
-        <Legend status="Pending" />
-        <Legend status="In Progress" />
-        <Legend status="Due" />
-        <Legend status="Completed" />
-      </Group>
+      <Conditional condition={sessions?.length > 0}>
+        <Group classname={"flex mt-4 items-center justify-end space-x-6 text-xs"}>
+          <Legend status="Pending" />
+          <Legend status="In Progress" />
+          <Legend status="Due" />
+          <Legend status="Completed" />
+        </Group>
+      </Conditional>
     </>
   );
 }
