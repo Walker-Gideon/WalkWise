@@ -1,9 +1,9 @@
-import { useSchedule } from "../context/ScheduleContext";
-
 import ScheduleMonth from "./ScheduleMonth";
 import ScheduleToday from "./ScheduleToday";
 import ScheduleWeek from "./ScheduleWeek";
 import Card from "/src/components/Card";
+
+import { useSchedule } from "../context/ScheduleContext";
 
 export default function ScheduleContentLayout() {
   const { activeView } = useSchedule();
