@@ -47,12 +47,12 @@ export default function ScheduleWeek() {
     setCurrentDate((cur) => addWeeks(cur, 1));
   }
 
+  const headerTitle = `${format(start, "MMM dd")} - ${format(end, "MMM dd")}`;
+
   const styling = {
     icon: "h-4 w-4 text-slate-600 dark:text-slate-400",
     button: "hover:bg-slate-100 dark:hover:bg-slate-700 p-2 rounded-sm",
   };
-
-  const headerTitle = `${format(start, "MMM dd")} - ${format(end, "MMM dd")}`;
 
   return (
     <>
@@ -77,7 +77,7 @@ export default function ScheduleWeek() {
         </Group>
       </Flex>
 
-      <Group classname={"h-190 space-y-3 overflow-y-scroll"}>
+      <Group classname={"h-185 space-y-3"}>
         {weekDays.map((day) => (
           <Card
             key={day.date}
@@ -105,9 +105,9 @@ export default function ScheduleWeek() {
 
               {(() => {
                 const sessionsForDay = sessions?.filter((session) => {
-                    if (!session.scheduledAt) return false;
-                    const sessionDate = session.scheduledAt.toDate ? session.scheduledAt.toDate() : new Date(session.scheduledAt);
-                    return format(sessionDate, "yyyy-MM-dd") === day.date;
+                  if (!session.scheduledAt) return false;
+                  const sessionDate = session.scheduledAt.toDate ? session.scheduledAt.toDate() : new Date(session.scheduledAt);
+                  return format(sessionDate, "yyyy-MM-dd") === day.date;
                 }) || [];
 
                 const totalSessions = sessionsForDay.length;
@@ -138,13 +138,14 @@ export default function ScheduleWeek() {
           </Card>
         ))}
       </Group>
-
-      <Group classname={"flex mt-4 items-center justify-end space-x-6 text-xs"}>
-        <Legend status="Pending" />
-        <Legend status="In Progress" />
-        <Legend status="Due" />
-        <Legend status="Completed" />
-      </Group>
+      <Conditional condition={sessions?.length > 0}>
+        <Group classname={"flex mt-4 items-center justify-end space-x-6 text-xs"}>
+          <Legend status="Pending" />
+          <Legend status="In Progress" />
+          <Legend status="Due" />
+          <Legend status="Completed" />
+        </Group>
+      </Conditional>
     </>
   );
 }
@@ -154,14 +155,14 @@ function WeeksSessionDisplay({ sessions, totalcards }) {
     <Group>
       <Group classname="flex flex-wrap gap-1 mb-1">
         {sessions.map((session, i) => {
-             const status = getScheduleStatus(session);
-             const statusColor = getStatusColor(status);
+          const status = getScheduleStatus(session);
+          const statusColor = getStatusColor(status);
              
-             return (
-             <Paragraph key={i} classname={`${statusColor} font-medium text-[10px] border border-transparent px-2 py-0.5 rounded-full`}>
-                {session.title}
-             </Paragraph>
-             );
+          return (
+            <Paragraph key={i} classname={`${statusColor} font-medium text-[10px] border border-transparent px-2 py-0.5 rounded-full`}>
+              {session.title}
+            </Paragraph>
+          );
         })}
       </Group>
       <Paragraph classname={"text-xs text-slate-500 dark:text-slate-400 pl-1"}>
