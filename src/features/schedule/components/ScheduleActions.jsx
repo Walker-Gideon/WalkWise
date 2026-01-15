@@ -48,7 +48,7 @@ export default function ScheduleActions() {
           type="colors"
           disabled={!nextSession}
           onclick={handleStartNext}
-          classname={`flex gap-3 w-full py-3 ${!nextSession ? 'opacity-50 cursor-not-allowed' : ''}`}
+          classname={`flex gap-3 w-full py-3`}
         >
           {<LuPlay className={styling} />}
           Start Next Session

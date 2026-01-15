@@ -15,12 +15,12 @@ export default function Button({
 }) {
   const navigateTo = useNavigateToAction();
   const base =
-    "cursor-pointer rounded-sm transition-colors duration-300 whitespace-nowrap py-2 px-4 text-[0.8rem] font-semibold disabled:cursor-not-allowed disabled:bg-gray-400";
+    "cursor-pointer rounded-sm transition-colors duration-300 whitespace-nowrap py-2 px-4 text-[0.8rem] font-semibold disabled:cursor-not-allowed disabled:opacity-50";
   const styling = {
     // hover:border-slate-400 border-stone-300
     border: `border text-slate-800`,
     danger: `bg-red-500 text-white hover:bg-red-400`,
-    colors: `bg-slate-500 text-white hover:bg-slate-600`,
+    colors: `bg-slate-500 text-white hover:bg-slate-600 disabled:hover:bg-slate-500`,
     customize: `font-medium text-sm border p-2 rounded-sm`, //transition-all duration-200
     back: "w-10 rounded-md hover:bg-slate-100 flex items-center justify-center p-1 text-slate-600 dark:text-slate-300 dark:hover:bg-slate-900 transition-colors duration-300",
   };
