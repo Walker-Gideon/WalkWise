@@ -1,7 +1,7 @@
 import { useSessions } from "./useSessions";
 import { getScheduleStatus } from "/src/helper/helpers";
 
-export default function useActiveSessions() {
+export function useActiveSessions() {
   const { sessions } = useSessions();
 
   const activeSessions = sessions?.filter(session => {
