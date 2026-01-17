@@ -2,6 +2,7 @@ import { LuPlay } from "react-icons/lu";
 import { GoDotFill } from "react-icons/go";
 import { RiEditLine, RiDeleteBin5Line } from "react-icons/ri";
 
+import Conditional from "/src/components/Conditional";
 import Menus from "/src/components/Menus";
 import Paragraph from "/src/ui/Paragraph";
 import Card from "/src/components/Card";
@@ -9,7 +10,9 @@ import SpanText from "/src/ui/SpanText";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
-export default function SessionCard({title, count, estimatedTime, status, statusColor, onPlay, onEdit, onDelete}) {
+import { formatTime } from "/src/helper/helpers";
+
+export default function SessionCard({title, count, estimatedTime, duration, status, statusColor, onPlay, onEdit, onDelete}) {
     return (
         <>
           <Card>
@@ -32,6 +35,11 @@ export default function SessionCard({title, count, estimatedTime, status, status
                     
                     <SpanText>Status </SpanText>
                     <SpanText classname={`${statusColor} rounded-full px-2 py-0.5 text-xs`}>{status}</SpanText>
+                    
+                    <Conditional condition={status === "Completed"}>
+                      <SpanText>Duration </SpanText>
+                      <SpanText classname={`bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300 rounded-full px-2 py-0.5 text-xs`}>{formatTime(duration || 0)}</SpanText>
+                    </Conditional>
                   </Flex>
                 </Flex>
               </Flex>

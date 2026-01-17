@@ -134,6 +134,7 @@ export default function ScheduleToday() {
                 title={session.title}
                 count={session.numCards}
                 estimatedTime={formattedTime}
+                duration={session.duration}
                 status={status}
                 statusColor={statusColor}
                 onPlay={() => handlePlay(session.id, session.tag)} 
