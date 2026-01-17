@@ -9,6 +9,7 @@ import Card from "/src/components/Card";
 import Spinner from "/src/ui/Spinner";
 import Group from "/src/ui/Group";
 
+import { useStudyTiming } from "/src/hook/useStudyTiming";
 import { useUserData } from "/src/user/hook/useUserData";
 import { useSessions } from "../hooks/useSessions";
 
@@ -21,7 +22,7 @@ const status = [
   {
     icon: LuClock,
     data: 0 + "m",
-    text: "Study Time",
+    text: "Focus Time",
   },
   {
     icon: LuFlame,
@@ -35,13 +36,13 @@ const status = [
   },
 ];
 
+
 export default function ScheduleStatus() {
   const { userData, loading, error } = useUserData();
   const { sessions } = useSessions();
+  const { formattedTime } = useStudyTiming(sessions);
 
   const [statusData, setStatusData] = useState(status)
-  
-  console.log(sessions);
 
   useEffect(() => {
     if (!sessions) return;
@@ -57,8 +58,8 @@ export default function ScheduleStatus() {
         return { ...card, data: todaySessionsCount };
       }
 
-      if (card.text === "Study Time") {
-        return { ...card, data: 1 + "m" }; // will change the data here (userData?.studyTime + "m")
+      if (card.text === "Focus Time") {
+        return { ...card, data: formattedTime };
       }
 
       if (card.text === "Day Streak") {
@@ -73,7 +74,7 @@ export default function ScheduleStatus() {
     })
 
     setStatusData(updated);
-  }, [userData, sessions]) 
+  }, [userData, sessions, formattedTime]) 
 
   if (loading) return <Spinner classname="flex items-center justify-center p-8" />;
 

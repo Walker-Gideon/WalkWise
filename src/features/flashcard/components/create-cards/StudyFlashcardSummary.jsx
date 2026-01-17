@@ -36,9 +36,17 @@ export default function StudyFlashcardSummary() {
 
   useEffect(() => {
     if (sessionId) {
-      updateSession({ id: sessionId, data: { status: 'completed', completedAt: new Date() }, silent: true });
+      updateSession({ 
+        id: sessionId, 
+        data: { 
+          status: 'completed', 
+          completedAt: new Date(),
+          duration: studyTime
+        }, 
+        silent: true 
+      });
     }
-  }, [sessionId, updateSession]);
+  }, [sessionId, updateSession, studyTime]);
 
   const card = flashcards?.find((card) => card.id === activeId);
   const pairs = card?.pairs;
