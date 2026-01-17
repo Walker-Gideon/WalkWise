@@ -1,3 +1,4 @@
+import {isSameDay} from "date-fns";
 import { useEffect, useState } from "react";
 import { LuTarget, LuClock, LuFlame, LuTrendingUp } from "react-icons/lu";
 
@@ -39,11 +40,21 @@ export default function ScheduleStatus() {
   const { sessions } = useSessions();
 
   const [statusData, setStatusData] = useState(status)
+  
+  console.log(sessions);
 
   useEffect(() => {
+    if (!sessions) return;
+
+    const todaySessionsCount = sessions.filter((session) => {
+      if (!session.scheduledAt) return false;
+      const date = session.scheduledAt.toDate ? session.scheduledAt.toDate() : new Date(session.scheduledAt);
+      return isSameDay(date, new Date());
+    }).length;
+
     const updated = status.map((card) => {
       if (card.text === "Session Today") {
-        return { ...card, data: 1 }; // will change the data here
+        return { ...card, data: todaySessionsCount };
       }
 
       if (card.text === "Study Time") {
@@ -62,7 +73,7 @@ export default function ScheduleStatus() {
     })
 
     setStatusData(updated);
-  }, [userData]) 
+  }, [userData, sessions]) 
 
   if (loading) return <Spinner classname="flex items-center justify-center p-8" />;
 
