@@ -4,8 +4,10 @@ import { RiDeleteBin5Line, RiEditLine } from "react-icons/ri";
 
 import HeaderText from "/src/ui/HeaderText";
 import Menus from "/src/components/Menus";
+import SpanText from "/src/ui/SpanText";
 import Header from "/src/ui/Header";
 import Button from "/src/ui/Button";
+import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
 import { useFlashcard } from "../../context/FlashcardContext";
@@ -43,21 +45,30 @@ export default function StudyFlashcardHeader({ title, onIsDeleteModal }) {
                 <HeaderText classname={"text-xl font-bold text-slate-900 dark:text-white"}>{title}</HeaderText>
             </Flex>
 
-            <Flex classname={"items-center justify-end"}>
-                <Menus>
-                    <Menus.Toggle />
+            <Flex classname={"items-center justify-end gap-4"}>
+                <Group
+                  classname={"medium:flex hidden items-center justify-center gap-2 rounded-full px-3 py-2 whitespace-nowrap transition bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700"}
+                >
+                    <SpanText classname={"text-sm font-medium secondary-text-color"}>
+                        00 : 00
+                    </SpanText>
+                </Group>
+                <Group>
+                    <Menus>
+                        <Menus.Toggle />
 
-                    <Menus.Lists>
-                        <Menus.Buttons onClick={handleEdit}>
-                            <RiEditLine className="w-4 h-4" />
-                            Edit
-                        </Menus.Buttons>
-                        <Menus.Buttons onClick={handleDelete}>
-                            <RiDeleteBin5Line className="w-4 h-4" />
-                            Delete
-                        </Menus.Buttons>
-                    </Menus.Lists>
-                </Menus>
+                        <Menus.Lists>
+                            <Menus.Buttons onClick={handleEdit}>
+                                <RiEditLine className="w-4 h-4" />
+                                Edit
+                            </Menus.Buttons>
+                            <Menus.Buttons onClick={handleDelete}>
+                                <RiDeleteBin5Line className="w-4 h-4" />
+                                Delete
+                            </Menus.Buttons>
+                        </Menus.Lists>
+                    </Menus>
+                </Group>
             </Flex>
         </Header>
     );
