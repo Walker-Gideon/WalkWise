@@ -43,3 +43,16 @@ export function getStatusColor(status) {
       return "bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300";
   }
 }
+
+/**
+ * Format time in seconds to MM:SS
+ * @param {number} time - Time in seconds
+ * @returns {string} Formatted time string
+ */
+export function formatTime(time) {
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+  return `${minutes.toString().padStart(2, "0")} : ${seconds
+    .toString()
+    .padStart(2, "0")}`;
+}

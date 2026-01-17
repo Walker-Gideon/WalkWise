@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
-import { useSearchParams, useLocation } from "react-router-dom";
 import { LuArrowLeft, LuFlame, LuCheck } from "react-icons/lu";
+import { useSearchParams, useLocation } from "react-router-dom";
 
 import HeaderText from "/src/ui/HeaderText";
 import Menus from "/src/components/Menus";
@@ -13,21 +13,24 @@ import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
 
+import { useUpdateSession } from "/src/features/schedule/hooks/useUpdateSession";
 import { useFlashcard } from "../../context/FlashcardContext";
+import { useGeneral } from "/src/contexts/GeneralContext";
 import { useUserData } from "/src/user/hook/useUserData";
 import { useFetchCards } from "/src/hook/useCards";
-
-import { useUpdateSession } from "/src/features/schedule/hooks/useUpdateSession";
+import { formatTime } from "/src/helper/helpers";
 
 export default function StudyFlashcardSummary() {
   /* eslint-disable no-unused-vars */
   const { setFinished, activeId } = useFlashcard();
+  const { updateSession } = useUpdateSession();
   const { flashcards } = useFetchCards();
   const { userData } = useUserData();
+  const { studyTime } = useGeneral();
+
+  const [searchParams, setSearchParams] = useSearchParams();
   const [count, setCount] = useState(0);
 
-  const { updateSession } = useUpdateSession();
-  const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
   const sessionId = searchParams.get("session");
 
@@ -110,7 +113,7 @@ export default function StudyFlashcardSummary() {
               </Flex>
               <Flex variant="between" classname={`${rounded} bg-slate-500 text-white`}>
                 <SpanText>Timing</SpanText>
-                <SpanText>00 : 00</SpanText>
+                <SpanText>{formatTime(studyTime)}</SpanText>
               </Flex>
             <Paragraph variant="small" classname={"flex items-center gap-1"}>
               <LuFlame />

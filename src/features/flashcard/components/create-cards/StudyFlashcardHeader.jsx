@@ -1,6 +1,6 @@
-import { useSearchParams, useLocation } from "react-router-dom";
 import { LuArrowLeft } from "react-icons/lu";
 import { RiDeleteBin5Line, RiEditLine } from "react-icons/ri";
+import { useSearchParams, useLocation } from "react-router-dom";
 
 import HeaderText from "/src/ui/HeaderText";
 import Menus from "/src/components/Menus";
@@ -12,7 +12,7 @@ import Flex from "/src/ui/Flex";
 
 import { useFlashcard } from "../../context/FlashcardContext";
 
-export default function StudyFlashcardHeader({ title, onIsDeleteModal }) {
+export default function StudyFlashcardHeader({ title, onIsDeleteModal, timer }) {
     const { setIsPlay, setEditingId, activeId, setIsDisplay } = useFlashcard();
     const [searchParams, setSearchParams] = useSearchParams();
     const location = useLocation();
@@ -50,7 +50,7 @@ export default function StudyFlashcardHeader({ title, onIsDeleteModal }) {
                   classname={"medium:flex hidden items-center justify-center gap-2 rounded-full px-3 py-2 whitespace-nowrap transition bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700"}
                 >
                     <SpanText classname={"text-sm font-medium secondary-text-color"}>
-                        00 : 00
+                        {timer}
                     </SpanText>
                 </Group>
                 <Group>

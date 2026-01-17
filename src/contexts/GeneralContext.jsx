@@ -6,7 +6,15 @@ function GeneralProvider({ children }) {
   // Inspire
   const [weeklyData, setWeeklyData] = useState([]);
 
-  const value = { weeklyData, setWeeklyData };
+  // Flashcard
+  const [studyTime, setStudyTime] = useState(0);
+
+  const value = { 
+    studyTime, 
+    weeklyData, 
+    setStudyTime, 
+    setWeeklyData 
+  };
 
   return (
     <GeneralContext.Provider value={value}>{children}</GeneralContext.Provider>

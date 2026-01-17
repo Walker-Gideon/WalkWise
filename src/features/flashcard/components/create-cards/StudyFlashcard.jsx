@@ -1,10 +1,9 @@
-import { useState } from "react";
-import { useSearchParams, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import { auth } from "/src/service/firebase";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-
 import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
+import { useSearchParams, useLocation } from "react-router-dom";
 
 import ConfirmDelete from "/src/components/ConfirmDelete";
 import StudyFlashcardHeader from "./StudyFlashcardHeader";
@@ -17,22 +16,29 @@ import Flex from "/src/ui/Flex";
 
 import useDeleteFlashcard from "../../hooks/useDeleteFlashcard";
 import { useFlashcard } from "../../context/FlashcardContext";
+import { useGeneral } from "/src/contexts/GeneralContext";
 import { useUserData } from "/src/user/hook/useUserData";
 import { useFetchCards } from "/src/hook/useCards";
 import { updateUser } from "/src/service/apiUser";
+import { formatTime } from "/src/helper/helpers";
 
 export default function StudyFlashcard() {
   const user = auth.currentUser;
+
   const { userData } = useUserData();
-  const { isDeleting, deleteFlashcard } = useDeleteFlashcard();
+  const { setStudyTime } = useGeneral();
   const { flashcards, isPending, error } = useFetchCards();
+  const { isDeleting, deleteFlashcard } = useDeleteFlashcard();
   const { setActiveId, setFinished, setIsPlay, activeId } = useFlashcard();
+  
+  const timerRef = useRef(null);
   const [index, setIndex] = useState(0);
+  const [timer, setTimer] = useState(0);
   const [isFlip, setIsFlip] = useState(false);
   const [direction, setDirection] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isDeleteModal, setIsDeleteModal] = useState(false);
 
-  const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
 
   const card = flashcards?.find((card) => card.id === activeId);
@@ -40,6 +46,14 @@ export default function StudyFlashcard() {
   const pairs = card?.pairs;
 
   const condition = index + 1 === pairs?.length;
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      setTimer((prev) => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(timerRef.current);
+  }, []);
 
   function handleNext() {
     if (index < pairs.length - 1) {
@@ -72,8 +86,10 @@ export default function StudyFlashcard() {
   }
 
   function handleFinish() {
+    clearInterval(timerRef.current);
     setActiveId(activeId);
     setFinished(true);
+    setStudyTime(timer);
 
     if (user) {
       const today = new Date().toDateString();
@@ -86,9 +102,14 @@ export default function StudyFlashcard() {
         newStreak += 1;
       }
 
+      // Calculate total study time
+      const currentStudyTime = userData?.studyTime || 0;
+      const totalStudyTime = currentStudyTime + timer;
+
       updateUser(user.uid, {
         lastActiveDate: new Date().toISOString(),
         streakCount: newStreak,
+        studyTime: totalStudyTime
       });
     }
   }
@@ -113,7 +134,7 @@ export default function StudyFlashcard() {
 
   return (
     <Container classname={"p-4"}>
-      <StudyFlashcardHeader title={title} onIsDeleteModal={setIsDeleteModal} />
+      <StudyFlashcardHeader title={title} onIsDeleteModal={setIsDeleteModal} timer={formatTime(timer)} />
 
       {isPending ? (
         <Spinner />
