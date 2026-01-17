@@ -109,8 +109,8 @@ export default function StudyFlashcardSummary() {
                 <SpanText>{cardLength}</SpanText>
               </Flex>
               <Flex variant="between" classname={`${rounded} bg-slate-500 text-white`}>
-                <SpanText>Terms left</SpanText>
-                <SpanText>0</SpanText>
+                <SpanText>Timing</SpanText>
+                <SpanText>00 : 00</SpanText>
               </Flex>
             <Paragraph variant="small" classname={"flex items-center gap-1"}>
               <LuFlame />
