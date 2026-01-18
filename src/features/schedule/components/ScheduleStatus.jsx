@@ -10,6 +10,7 @@ import Spinner from "/src/ui/Spinner";
 import Group from "/src/ui/Group";
 
 import { useStudyTiming } from "/src/hook/useStudyTiming";
+import { useSuccessRate } from "/src/hook/useSuccessRate";
 import { useUserData } from "/src/user/hook/useUserData";
 import { useSessions } from "../hooks/useSessions";
 
@@ -40,6 +41,7 @@ const status = [
 export default function ScheduleStatus() {
   const { userData, loading, error } = useUserData();
   const { sessions } = useSessions();
+  const successRate = useSuccessRate(sessions);
   const { formattedTime } = useStudyTiming(sessions);
 
   const [statusData, setStatusData] = useState(status)
@@ -67,14 +69,14 @@ export default function ScheduleStatus() {
       }
 
       if (card.text === "Success Rate") {
-        return { ...card, data: 1 + "%" }; // will change the data here (userData?.successRate + "%")
+        return { ...card, data: successRate + "%" }; 
       }
 
       return card; 
     })
 
     setStatusData(updated);
-  }, [userData, sessions, formattedTime]) 
+  }, [userData, sessions, formattedTime, successRate]) 
 
   if (loading) return <Spinner classname="flex items-center justify-center p-8" />;
 
