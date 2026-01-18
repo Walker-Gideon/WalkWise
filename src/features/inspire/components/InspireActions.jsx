@@ -26,20 +26,20 @@ export default function InspireActions() {
       <HeaderText type="secondary" classname={"mb-4"}>
         Quick Actions
       </HeaderText>
-      <>
+      <Group>
         {buttons.map((data, index) => (
           <Group key={index} classname={`${index === 1 ? "mt-2" : ""}`}>
             <Button
               type="colors"
               to={data.to}
-              classname={"w-full flex items-center gap-3 py-3"}
+              classname={"flex gap-3 w-full py-3"}
             >
-              <data.icon />
+              <data.icon className="h-5 w-5 text-white" />
               {data.text}
             </Button>
           </Group>
         ))}
-      </>
+      </Group>
     </Card>
   );
 }
