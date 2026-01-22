@@ -1,5 +1,6 @@
 import { LuLightbulb } from "react-icons/lu";
 
+import Conditional from "/src/components/Conditional";
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
 import SpanText from "/src/ui/SpanText";
@@ -10,7 +11,7 @@ import { useQuotes } from "/src/hook/useQuotes";
 
 export default function InspireMotivation() {
   const {quote, author} = useQuotes();
-  
+
   return (
     <Card>
       <SpanText classname={"mb-4 flex items-center space-x-3"}>
@@ -18,23 +19,14 @@ export default function InspireMotivation() {
         <HeaderText type="secondary">Daily Inspiration</HeaderText>
       </SpanText>
       <Group>
-        {/* {currentQuote ? ( */}
-        <>
+        <Conditional condition={true}>
           <blockquote className="mb-4 text-lg text-slate-500 italic dark:text-slate-400">
-            {/* "{currentQuote.text}" */}"Learning is a treasure that follows
-            its owner everywhere."
+            {quote}
           </blockquote>
           <Paragraph classname={"text-right text-sm primary-text-color"}>
-            {/* — {currentQuote.author} */} Auther Name
+            — {author}
           </Paragraph>
-        </>
-        {/* ) : ( */}
-        <>
-          {/* <Paragraph classname={"italic dark:text-slate-400"}>
-            Loading quote...
-          </Paragraph> */}
-        </>
-        {/* )} */}
+        </Conditional>
       </Group>
     </Card>
   );
