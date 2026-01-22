@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { LuLightbulb } from "react-icons/lu";
 
 import HeaderText from "/src/ui/HeaderText";
@@ -7,25 +6,11 @@ import SpanText from "/src/ui/SpanText";
 import Card from "/src/components/Card";
 import Group from "/src/ui/Group";
 
-import quotes from "/src/data/quote";
+import { useQuotes } from "/src/hook/useQuotes";
 
 export default function InspireMotivation() {
-  const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
-
-  const currentQuote = quotes[currentQuoteIndex];
-
-    useEffect(() => {
-    if (quotes.length === 0) return;
-
-    const quoteTimer = setInterval(() => {
-      setCurrentQuoteIndex((prevIndex) => (prevIndex + 1) % quotes.length);
-    }, 10000);
-
-    return () => clearInterval(quoteTimer);
-  }, [quotes]);
-
-  console.log(currentQuote.quote, currentQuote.author);
-
+  const {quote, author} = useQuotes();
+  
   return (
     <Card>
       <SpanText classname={"mb-4 flex items-center space-x-3"}>
