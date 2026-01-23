@@ -1,21 +1,16 @@
-import { LuLightbulb } from "react-icons/lu";
-
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
 import SpanText from "/src/ui/SpanText";
 import Card from "/src/components/Card";
 import Group from "/src/ui/Group";
 
-import { useQuotes } from "/src/hook/useQuotes";
 
-export default function Motivation() {
-  const {quote, author} = useQuotes();
-
+export default function Motivation({icon, headerText, quote, author}) {
   return (
     <Card>
       <HeaderText type="secondary" classname={"mb-4 flex items-center gap-2"}>
-        <LuLightbulb className="icons mb-1" />
-        <SpanText>Daily Inspiration</SpanText>
+        {icon}
+        <SpanText>{headerText}</SpanText>
       </HeaderText>
       <Group classname={"space-y-2"}>
         <blockquote className="secondary-text-color text-sm italic">

@@ -1,3 +1,5 @@
+import { LuLightbulb } from "react-icons/lu";
+
 import DashboardRecentActivity from "./components/DashboardRecentActivity";
 import DashboardCalendar from "./components/DashboardCalendar";
 import DashboardOverView from "./components/DashboardOverView";
@@ -9,7 +11,11 @@ import Container from "/src/ui/Container";
 import Group from "/src/ui/Group";
 import Main from "/src/ui/Main";
 
+import { useQuotes } from "/src/hook/useQuotes";
+
 export default function Dashboard() {
+  const {quote, author} = useQuotes();
+
   return (
     <Container adjust={true}>
       <DashboardHeader />
@@ -20,7 +26,12 @@ export default function Dashboard() {
           <DashboardOverView />
           <Group classname={"space-y-6"}>
             <DashboardCalendar />
-            <Motivation />
+            <Motivation
+              icon={<LuLightbulb className="icons mb-1" />}
+              headerText="Daily Inspiration"
+              quote={quote}
+              author={author}
+            />
           </Group>
         </Group>
         <DashboardRecentActivity />
