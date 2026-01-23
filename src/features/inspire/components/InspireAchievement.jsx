@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { LuFlame, LuBookOpen, LuSun, LuMoon, LuTarget } from "react-icons/lu";
 
 import HeaderText from "/src/ui/HeaderText";
@@ -6,6 +7,8 @@ import Badge from "/src/components/Badge";
 import Card from "/src/components/Card";
 import Group from "/src/ui/Group";
 import Box from "/src/ui/Box";
+
+import { useUserData } from "/src/user/hook/useUserData";
 
 const achievements = [
   {
@@ -46,6 +49,41 @@ const achievements = [
 ];
 
 export default function InspireAchievement() {
+  const { userData } = useUserData();
+  console.log(userData);
+  
+  const [achievementData, setAchievementData] = useState(achievements)
+
+  useEffect(() => {
+    const streak = userData ? userData?.streakCount : 0;
+
+    const updataAchievements = achievements.map((achievement) => {
+      if (achievement.name === "7-Day Streak" && achievement.id === 1) {
+        return { ...achievement, unlocked: streak >= 7 };
+      }
+
+      if (achievement.name === "100 Cards Studied" && achievement.id === 2) {
+        return { ...achievement, unlocked: false };
+      }
+
+      if (achievement.name === "Early Bird" && achievement.id === 3) {
+        return { ...achievement, unlocked: false };
+      }
+
+      if (achievement.name === "Night Owl" && achievement.id === 4) {
+        return { ...achievement, unlocked: false };
+      }
+
+      if (achievement.name === "Tag Master" && achievement.id === 5) {
+        return { ...achievement, unlocked: false };
+      }
+
+      return achievement
+    })
+
+    setAchievementData(updataAchievements)
+  }, [userData])
+
   return (
     <Card>
       <HeaderText type="secondary" classname={"mb-4"}>
@@ -55,7 +93,7 @@ export default function InspireAchievement() {
       <Group
         classname={"medium:grid-cols-3 grid grid-cols-2 gap-4 md:grid-cols-4"}
       >
-        {achievements.map((badge) => (
+        {achievementData.map((badge) => (
           <Box
             key={badge.id}
             adjustWidth={true}
