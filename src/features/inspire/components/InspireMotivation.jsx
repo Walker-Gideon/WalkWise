@@ -1,6 +1,5 @@
 import { LuLightbulb } from "react-icons/lu";
 
-import Conditional from "/src/components/Conditional";
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
 import SpanText from "/src/ui/SpanText";
@@ -18,15 +17,13 @@ export default function InspireMotivation() {
         <LuLightbulb className="h-6 w-6 text-slate-600 dark:text-slate-300" />
         <HeaderText type="secondary">Daily Inspiration</HeaderText>
       </SpanText>
-      <Group>
-        <Conditional condition={true}>
-          <blockquote className="mb-4 text-lg text-slate-500 italic dark:text-slate-400">
-            {quote}
-          </blockquote>
-          <Paragraph classname={"text-right text-sm primary-text-color"}>
-            — {author}
-          </Paragraph>
-        </Conditional>
+      <Group classname={"space-y-2"}>
+        <blockquote className="secondary-text-color text-sm italic">
+          "{quote}"
+        </blockquote>
+        <Paragraph classname={"text-right text-sm primary-text-color"}>
+          — {author}
+        </Paragraph>
       </Group>
     </Card>
   );
