@@ -5,9 +5,11 @@ import InspireProgress from "./components/InspireProgress";
 import InspireActions from "./components/InspireActions";
 import InspirePraises from "./components/InspirePraises";
 import InspireHeader from "./components/InspireHeader";
+import Motivation from "/src/components/Motivation";
 import Container from "/src/ui/Container";
 import Group from "/src/ui/Group";
 import Main from "/src/ui/Main";
+
 
 export default function Inspire() {
   return (
@@ -19,7 +21,8 @@ export default function Inspire() {
         }
       >
         <Group classname={"space-y-6 lg:col-span-2"}>
-          <InspireMotivation />
+          {/* <InspireMotivation /> */}
+          <Motivation />
           <InspireAchievement />
           <InspireProgress />
         </Group>

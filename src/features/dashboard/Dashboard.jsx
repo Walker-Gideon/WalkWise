@@ -1,10 +1,10 @@
 import DashboardRecentActivity from "./components/DashboardRecentActivity";
-import DashboardMotivation from "./components/DashboardMotivation";
 import DashboardCalendar from "./components/DashboardCalendar";
 import DashboardOverView from "./components/DashboardOverView";
 import DashboardActions from "./components/DashboardActions";
 import DashboardHeader from "./components/DashboardHeader";
 import DashboardStatus from "./components/DashboardStatus";
+import Motivation from "/src/components/Motivation";
 import Container from "/src/ui/Container";
 import Group from "/src/ui/Group";
 import Main from "/src/ui/Main";
@@ -20,7 +20,7 @@ export default function Dashboard() {
           <DashboardOverView />
           <Group classname={"space-y-6"}>
             <DashboardCalendar />
-            <DashboardMotivation />
+            <Motivation />
           </Group>
         </Group>
         <DashboardRecentActivity />

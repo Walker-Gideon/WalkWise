@@ -8,7 +8,7 @@ import Group from "/src/ui/Group";
 
 import { useQuotes } from "/src/hook/useQuotes";
 
-export default function DashboardMotivation() {
+export default function Motivation() {
   const {quote, author} = useQuotes();
 
   return (
