@@ -11,12 +11,9 @@ import { useSuccessRate } from "/src/hook/useSuccessRate";
 import { useSessions } from "/src/features/schedule/hooks/useSessions";
 
 export default function InspireProgress() {
-  const { weeklyData } = useGeneral();
-
   const { sessions } = useSessions();
+  const { weeklyData } = useGeneral();
   const successRate = useSuccessRate(sessions);
-
-  console.log(successRate);
 
   return (
     <Card>
