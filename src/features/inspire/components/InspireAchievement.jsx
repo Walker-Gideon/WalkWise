@@ -63,7 +63,7 @@ export default function InspireAchievement() {
       }
 
       if (achievement.name === "100 Cards Studied" && achievement.id === 2) {
-        return { ...achievement, unlocked: false };
+        return { ...achievement, unlocked: (userData?.cardsStudied || 0) >= 100 };
       }
 
       if (achievement.name === "Early Bird" && achievement.id === 3) {

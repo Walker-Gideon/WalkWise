@@ -106,10 +106,15 @@ export default function StudyFlashcard() {
       const currentStudyTime = userData?.studyTime || 0;
       const totalStudyTime = currentStudyTime + timer;
 
+      // Calculate total cards studied
+      const currentCardsStudied = userData?.cardsStudied || 0;
+      const totalCardsStudied = currentCardsStudied + pairs.length;
+
       updateUser(user.uid, {
         lastActiveDate: new Date().toISOString(),
         streakCount: newStreak,
-        studyTime: totalStudyTime
+        studyTime: totalStudyTime,
+        cardsStudied: totalCardsStudied,
       });
     }
   }
