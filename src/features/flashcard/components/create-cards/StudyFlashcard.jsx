@@ -110,12 +110,20 @@ export default function StudyFlashcard() {
       const currentCardsStudied = userData?.cardsStudied || 0;
       const totalCardsStudied = currentCardsStudied + pairs.length;
 
-      updateUser(user.uid, {
+      const updateData = {
         lastActiveDate: new Date().toISOString(),
         streakCount: newStreak,
         studyTime: totalStudyTime,
         cardsStudied: totalCardsStudied,
-      });
+      };
+
+      // Early Bird Logic
+      const currentHour = new Date().getHours();
+      if (currentHour < 8) {
+        updateData.lastEarlyBirdDate = new Date().toISOString();
+      }
+
+      updateUser(user.uid, updateData);
     }
   }
 

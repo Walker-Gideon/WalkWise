@@ -54,6 +54,8 @@ export default function InspireAchievement() {
   
   const [achievementData, setAchievementData] = useState(achievements)
 
+  const today = new Date().toDateString();
+
   useEffect(() => {
     const streak = userData ? userData?.streakCount : 0;
 
@@ -67,7 +69,11 @@ export default function InspireAchievement() {
       }
 
       if (achievement.name === "Early Bird" && achievement.id === 3) {
-        return { ...achievement, unlocked: false };
+        const lastEarlyBirdDate = userData?.lastEarlyBirdDate
+          ? new Date(userData.lastEarlyBirdDate).toDateString()
+          : null;
+
+        return { ...achievement, unlocked: lastEarlyBirdDate === today };
       }
 
       if (achievement.name === "Night Owl" && achievement.id === 4) {
