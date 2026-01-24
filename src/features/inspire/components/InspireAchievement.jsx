@@ -77,7 +77,11 @@ export default function InspireAchievement() {
       }
 
       if (achievement.name === "Night Owl" && achievement.id === 4) {
-        return { ...achievement, unlocked: false };
+        const lastNightOwlDate = userData?.lastNightOwlDate
+          ? new Date(userData.lastNightOwlDate).toDateString()
+          : null;
+
+        return { ...achievement, unlocked: lastNightOwlDate === today };
       }
 
       if (achievement.name === "Tag Master" && achievement.id === 5) {

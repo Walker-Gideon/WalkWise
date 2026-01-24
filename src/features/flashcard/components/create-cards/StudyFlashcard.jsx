@@ -117,10 +117,14 @@ export default function StudyFlashcard() {
         cardsStudied: totalCardsStudied,
       };
 
-      // Early Bird Logic
       const currentHour = new Date().getHours();
+      // Early Bird Logic
       if (currentHour < 8) {
         updateData.lastEarlyBirdDate = new Date().toISOString();
+      }
+      // Night Owl Logic
+      if (currentHour >= 22) {
+        updateData.lastNightOwlDate = new Date().toISOString();
       }
 
       updateUser(user.uid, updateData);
