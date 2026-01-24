@@ -7,9 +7,16 @@ import Group from "/src/ui/Group";
 import Box from "/src/ui/Box";
 
 import { useGeneral } from "/src/contexts/GeneralContext";
+import { useSuccessRate } from "/src/hook/useSuccessRate";
+import { useSessions } from "/src/features/schedule/hooks/useSessions";
 
 export default function InspireProgress() {
   const { weeklyData } = useGeneral();
+
+  const { sessions } = useSessions();
+  const successRate = useSuccessRate(sessions);
+
+  console.log(successRate);
 
   return (
     <Card>
@@ -54,14 +61,14 @@ export default function InspireProgress() {
           <div className="h-4 w-full rounded-full bg-slate-200 dark:bg-slate-700">
             <div
               className="h-4 rounded-full bg-emerald-600 transition-all duration-500"
-              //   style={{
-              //     width: `${consistencyScore}%`,
-              //   }}
+                style={{
+                  width: `${successRate}%`,
+                }}
             ></div>
           </div>
-          {/* <span className="text-lg font-bold text-slate-900 dark:text-white">
-            {consistencyScore}%
-          </span> */}
+          <span className="text-lg font-bold text-slate-900 dark:text-white">
+            {successRate}%
+          </span>
         </div>
         <Paragraph classname={"mt-2 text-sm text-slate-500 dark:text-slate-400"}>
           Your overall study consistency.
