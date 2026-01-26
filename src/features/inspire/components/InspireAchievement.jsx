@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { LuFlame, LuBookOpen, LuSun, LuMoon, LuTarget } from "react-icons/lu";
+import { LuFlame, LuBookOpen, LuSun, LuMoon, LuTarget, LuAward } from "react-icons/lu";
 
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
 import Badge from "/src/components/Badge";
 import Card from "/src/components/Card";
+import SpanText from "/src/ui/SpanText";
 import Group from "/src/ui/Group";
 import Box from "/src/ui/Box";
 
@@ -111,8 +112,9 @@ export default function InspireAchievement() {
 
   return (
     <Card>
-      <HeaderText type="secondary" classname={"mb-4"}>
-        Your Achievements
+      <HeaderText type="secondary" classname={"mb-4 flex items-center gap-2"}>
+        <LuAward className="icons mb-1" />
+        <SpanText>Your Achievements</SpanText>
       </HeaderText>
 
       <Group
