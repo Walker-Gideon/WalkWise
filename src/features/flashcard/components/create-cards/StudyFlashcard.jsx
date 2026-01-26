@@ -2,8 +2,8 @@ import toast from "react-hot-toast";
 import { auth } from "/src/service/firebase";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
 import { useSearchParams, useLocation } from "react-router-dom";
+import { LuArrowLeft, LuArrowRight, LuX, LuCheck } from "react-icons/lu";
 
 import ConfirmDelete from "/src/components/ConfirmDelete";
 import StudyFlashcardHeader from "./StudyFlashcardHeader";
@@ -38,6 +38,7 @@ export default function StudyFlashcard() {
   const [direction, setDirection] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const [isDeleteModal, setIsDeleteModal] = useState(false);
+  const [sessionResults, setSessionResults] = useState({});
 
   const location = useLocation();
 
@@ -68,6 +69,19 @@ export default function StudyFlashcard() {
       setDirection(-1);
       setIndex(index - 1);
       setIsFlip(false);
+    }
+  }
+
+  function handleRate(result) {
+    setSessionResults((prev) => ({
+      ...prev,
+      [index]: result,
+    }));
+
+    if (condition) {
+      handleFinish();
+    } else {
+      handleNext();
     }
   }
 
@@ -231,33 +245,59 @@ export default function StudyFlashcard() {
           </div>
 
           <Group classname={"flex items-center gap-8"}>
-            <Button
-              variant="secondary"
-              type="border"
-              disabled={index === 0}
-              classname={btnStyling}
-              onclick={handlePrev}
-            >
-              <LuArrowLeft className="icons" />
-            </Button>
-            <Group>
-              <Paragraph classname={"text-xl font-bold primary-text-color"}>
-                {index + 1} / {pairs.length}
-              </Paragraph>
-            </Group>
-            <Button
-              variant={condition ? "" : "secondary"}
-              type={"border"}
-              // disabled={condition ? false : index === pairs.length - 1}
-              classname={
-                condition
-                  ? "text-sm text-slate-900 dark:text-white borderStyling"
-                  : btnStyling
-              }
-              onclick={condition ? handleFinish : handleNext}
-            >
-              {condition ? "Finish" : <LuArrowRight className="icons" />}
-            </Button>
+            {!isFlip ? (
+              <>
+                <Button
+                  variant="secondary"
+                  type="border"
+                  disabled={index === 0}
+                  classname={btnStyling}
+                  onclick={handlePrev}
+                >
+                  <LuArrowLeft className="icons" />
+                </Button>
+                <Group>
+                  <Paragraph classname={"text-xl font-bold primary-text-color"}>
+                    {index + 1} / {pairs.length}
+                  </Paragraph>
+                </Group>
+                <Button
+                  variant={condition ? "" : "secondary"}
+                  type={"border"}
+                  classname={
+                    condition
+                      ? "text-sm text-slate-900 dark:text-white borderStyling"
+                      : btnStyling
+                  }
+                  onclick={condition ? handleFinish : handleNext}
+                >
+                  {condition ? "Finish" : <LuArrowRight className="icons" />}
+                </Button>
+              </>
+            ) : (
+                <>
+                <Button
+                  type="danger"
+                  classname={btnStyling}
+                  onclick={() => handleRate("missed")}
+                >
+                  <LuX className="icons text-white h-5 w-5" />
+                </Button>
+
+                <Group>
+                  <Paragraph classname={"text-xl font-bold primary-text-color"}>
+                   Result
+                  </Paragraph>
+                </Group>
+
+                <Button
+                    classname={`${btnStyling} bg-green-500 hover:bg-green-600 text-white border-green-600`}
+                    onclick={() => handleRate("got_it")}
+                >
+                    <LuCheck className="icons text-white h-5 w-5" />
+                </Button>
+                </>
+            )}
           </Group>
         </Flex>
       )}
