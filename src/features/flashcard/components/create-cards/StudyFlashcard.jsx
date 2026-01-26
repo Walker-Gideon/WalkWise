@@ -15,6 +15,7 @@ import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
 
 import useDeleteFlashcard from "../../hooks/useDeleteFlashcard";
+import useUpdateFlashcard from "../../hooks/useUpdateFlashcard";
 import { useFlashcard } from "../../context/FlashcardContext";
 import { useGeneral } from "/src/contexts/GeneralContext";
 import { useUserData } from "/src/user/hook/useUserData";
@@ -27,6 +28,7 @@ export default function StudyFlashcard() {
 
   const { userData } = useUserData();
   const { setStudyTime } = useGeneral();
+  const { updateMutation } = useUpdateFlashcard();
   const { flashcards, isPending, error } = useFetchCards();
   const { isDeleting, deleteFlashcard } = useDeleteFlashcard();
   const { setActiveId, setFinished, setIsPlay, activeId } = useFlashcard();
@@ -73,13 +75,16 @@ export default function StudyFlashcard() {
   }
 
   function handleRate(result) {
-    setSessionResults((prev) => ({
-      ...prev,
+    // Create new results object immediately to avoid async state issues
+    const newResults = {
+      ...sessionResults,
       [index]: result,
-    }));
+    };
+    
+    setSessionResults(newResults);
 
     if (condition) {
-      handleFinish();
+      handleFinish(newResults);
     } else {
       handleNext();
     }
@@ -99,11 +104,33 @@ export default function StudyFlashcard() {
     setIsDeleteModal(false);
   }
 
-  function handleFinish() {
+  function handleFinish(finalResults) {
     clearInterval(timerRef.current);
     setActiveId(activeId);
     setFinished(true);
     setStudyTime(timer);
+
+    // Use passed results (from last card) or current state as fallback
+    const resultsToProcess = finalResults || sessionResults;
+
+    // Save mastery results
+    if (activeId && Object.keys(resultsToProcess).length > 0) {
+      const updatedPairs = pairs.map((pair, idx) => {
+        if (resultsToProcess[idx]) {
+          return {
+            ...pair,
+            mastery: resultsToProcess[idx] === "got_it" ? 100 : 0,
+            lastReviewed: new Date().toISOString(),
+          };
+        }
+        return pair;
+      });
+
+      updateMutation({
+        id: activeId,
+        data: { pairs: updatedPairs },
+      });
+    }
 
     if (user) {
       const today = new Date().toDateString();

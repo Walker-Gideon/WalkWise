@@ -9,6 +9,7 @@ import Group from "/src/ui/Group";
 import Box from "/src/ui/Box";
 
 import { useUserData } from "/src/user/hook/useUserData";
+import { useFetchCards } from "/src/hook/useCards";
 
 const achievements = [
   {
@@ -50,7 +51,7 @@ const achievements = [
 
 export default function InspireAchievement() {
   const { userData } = useUserData();
-  console.log(userData);
+  const { flashcards } = useFetchCards();
   
   const [achievementData, setAchievementData] = useState(achievements)
 
@@ -85,14 +86,28 @@ export default function InspireAchievement() {
       }
 
       if (achievement.name === "Tag Master" && achievement.id === 5) {
-        return { ...achievement, unlocked: false };
+        let isMaster = false;
+        
+        if (flashcards && flashcards.length > 0) {
+            isMaster = flashcards.some(cardSet => {
+                if (!cardSet.pairs || cardSet.pairs.length === 0) return false;
+                
+                const totalMastery = cardSet.pairs.reduce((sum, pair) => sum + (pair.mastery || 0), 0);
+                const averageMastery = totalMastery / cardSet.pairs.length;
+                
+                // Check if average is >= 90 (since max is 100)
+                return averageMastery >= 90;
+            });
+        }
+        
+        return { ...achievement, unlocked: isMaster };
       }
 
       return achievement
     })
 
     setAchievementData(updataAchievements)
-  }, [userData])
+  }, [userData, flashcards])
 
   return (
     <Card>
