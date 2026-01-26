@@ -151,11 +151,24 @@ export default function StudyFlashcard() {
       const currentCardsStudied = userData?.cardsStudied || 0;
       const totalCardsStudied = currentCardsStudied + pairs.length;
 
+      // Calculate Daily Study History
+      const currentHistory = userData?.studyHistory || {};
+      const todayKey = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+      const todayMinutes = currentHistory[todayKey] || 0;
+      // timer is in seconds, convert to minutes (rounded up)
+      const sessionMinutes = Math.ceil(timer / 60); 
+      
+      const newHistory = {
+        ...currentHistory,
+        [todayKey]: todayMinutes + sessionMinutes
+      };
+
       const updateData = {
         lastActiveDate: new Date().toISOString(),
         streakCount: newStreak,
         studyTime: totalStudyTime,
         cardsStudied: totalCardsStudied,
+        studyHistory: newHistory,
       };
 
       const currentHour = new Date().getHours();
