@@ -13,7 +13,15 @@ import Flex from "/src/ui/Flex";
 import Form from "/src/ui/Form";
 import Box from "/src/ui/Box";
 
+import { useUserData } from "/src/user/hook/useUserData";
+
 export default function SettingsRight() {
+  const { userData } = useUserData();
+
+  const [image, setImage] = useState(null);
+
+  console.log(userData?.email);
+
   return (
     <Card classname={"my-10 medium:my-4.5 mx-5 w-auto md:w-3/4 lg:w-2/3"}>
       <Header>
