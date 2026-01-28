@@ -9,13 +9,9 @@ import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
 
 import { useUserData } from "/src/user/hook/useUserData";
-import { useSuccessRate } from "/src/hook/useSuccessRate";
-import { useSessions } from "/src/features/schedule/hooks/useSessions";
 
 export default function InspireProgress() {
   const { userData } = useUserData();
-  const { sessions } = useSessions();
-  const successRate = useSuccessRate(sessions);
 
   // Calculate Weekly Data from userData.studyHistory
   const weeklyData = Array.from({ length: 7 }).map((_, i) => {
@@ -29,6 +25,10 @@ export default function InspireProgress() {
       minutes: userData?.studyHistory?.[dateKey] || 0,
     };
   });
+
+  // Calculate Consistency Score (Days Studied in Last 7 Days / 7)
+  const activeDays = weeklyData.filter((data) => data.minutes > 0).length;
+  const successRate = Math.round((activeDays / 7) * 100);
 
   return (
     <Card>
