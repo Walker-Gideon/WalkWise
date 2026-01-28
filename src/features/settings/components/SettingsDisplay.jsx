@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from "react";
-import { LuUser } from "react-icons/lu";
+import { useEffect, useState } from "react";
+import { LuUser, LuLoader } from "react-icons/lu";
 
+import Conditional from "/src/components/Conditional";
 import FormRow from "/src/components/FormRow";
 import HeaderText from "/src/ui/HeaderText";
 import Paragraph from "/src/ui/Paragraph";
 import Card from "/src/components/Card";
+import SpanText from "/src/ui/SpanText";
 import Header from "/src/ui/Header";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
@@ -14,20 +16,16 @@ import Flex from "/src/ui/Flex";
 import Form from "/src/ui/Form";
 import Box from "/src/ui/Box";
 
-import { doc, updateDoc } from "firebase/firestore";
-import { db } from "/src/service/firebase";
-import { uploadProfileImage } from "/src/helper/helpers";
-
 import { useUserData } from "/src/user/hook/useUserData";
+import { useUpdateProfile } from "/src/features/settings/hooks/useUpdateProfile";
 
 export default function SettingsDisplay() {
-  const { userData, firebaseUser } = useUserData();
+  const { userData } = useUserData();
+  const { updateProfile, isLoading } = useUpdateProfile();
 
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
   const [newUsername, setNewUsername] = useState("");
-  const [message, setMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   // Initialize username when userData loads
   useEffect(() => {
@@ -35,14 +33,6 @@ export default function SettingsDisplay() {
       setNewUsername(userData.username);
     }
   }, [userData]);
-
-  // Clear message after 3 seconds
-  useEffect(() => {
-    if (message) {
-      const timer = setTimeout(() => setMessage(""), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [message]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -53,49 +43,14 @@ export default function SettingsDisplay() {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    if (!firebaseUser) return;
-    setIsLoading(true);
-    setMessage("");
-
-    let hasChanges = false;
-
-    try {
-      // 1. Handle username update
-      if (newUsername.trim() && newUsername !== userData.username) {
-        const userRef = doc(db, "users", firebaseUser.uid);
-        await updateDoc(userRef, { username: newUsername });
-        hasChanges = true;
-      }
-
-      // 2. Handle image upload and update
-      if (image) {
-        const downloadURL = await uploadProfileImage(image, firebaseUser.uid);
-        if (downloadURL) {
-          const userRef = doc(db, "users", firebaseUser.uid);
-          await updateDoc(userRef, { photoURL: downloadURL });
-          setImage(null);
-          hasChanges = true;
-        } else {
-          setMessage("Failed to upload image.");
-          setIsLoading(false);
-          return;
-        }
-      }
-
-      if (hasChanges) {
-        setMessage("Profile updated successfully!");
-      } else {
-        setMessage("No changes to update.");
-      }
-    } catch (error) {
-      console.error("Update error:", error);
-      setMessage("Failed to update profile.");
-    } finally {
-      setIsLoading(false);
+    const success = await updateProfile(newUsername, image);
+    if (success) {
+      setImage(null);
+      setPreview(null);
     }
   };
 
-  const displayEmail = userData?.email;
+  const displayEmail = userData?.email || "example@email.com";
   const displayUsername = userData?.username
     ? userData.username.charAt(0).toUpperCase() + userData.username.slice(1)
     : "";
@@ -138,7 +93,6 @@ export default function SettingsDisplay() {
             )}
             <input
               type="file"
-              // ref={fileInputRef}
               accept="image/*"
               className="hidden"
               onChange={handleImageChange}
@@ -163,26 +117,28 @@ export default function SettingsDisplay() {
                 "w-full focus:outline-hidden disabled:cursor-not-allowed disabled:bg-gray-200 dark:text-white dark:disabled:bg-gray-500"
               }
               disabled={true}
-              placeholder="example123@gmail.com"
+              placeholder={displayEmail}
+              value={displayEmail}
+              readOnly
             />
           </FormRow>
           <Paragraph variant="small" classname={"mt-2 dark:text-slate-400"}>
             Email cannot be changed. Contact support if needed.
           </Paragraph>
         </Group>
-        <Flex classname={"mt-4 items-center justify-between"}>
-          {message && (
-            <Paragraph
-              variant="small"
-              classname={`${
-                message.includes("Failed") ? "text-red-500" : "text-green-500"
-              }`}
-            >
-              {message}
-            </Paragraph>
-          )}
-          <Button submit={true} type="colors" disabled={isLoading}>
-            {isLoading ? "Saving..." : "Save Changes"}
+        <Flex classname={"mt-4 items-center justify-end"}>
+          <Button
+            submit={true}
+            type="colors"
+            disabled={isLoading}
+            classname={"flex items-center justify-center min-w-[120px]"}
+          >
+            <Conditional condition={!isLoading}>
+              <SpanText>Save Changes</SpanText>
+            </Conditional>
+            <Conditional condition={isLoading}>
+              <LuLoader className="h-5 w-5 animate-spin text-white" />
+            </Conditional>
           </Button>
         </Flex>
       </Form>
