@@ -11,7 +11,10 @@ import Group from "/src/ui/Group";
 import Input from "/src/ui/Input";
 import Box from "/src/ui/Box";
 
+import { useNote } from "../../context/NoteContext";
+
 export default function CreateNote() {
+  const { content } = useNote()
 
   // Editing note
   const editor = useEditor({
@@ -36,9 +39,9 @@ export default function CreateNote() {
 
 
   return (
-    <Container adjust={true} classname={""}>
+    <Container adjust={true} classname={"min-h-0 flex-grow"}>
       <CreateNoteEditor />
-      <Group classname={"mx-4 my-2 h-full py-2"}>
+      <Group classname={"mx-4 my-1 flex h-full flex-col py-1"}>
         <Input
           id="note-title"
           type="text"
@@ -60,7 +63,7 @@ export default function CreateNote() {
         <Box
           adjustWidth={true}
           classname={
-            "mt-4 h-full flex-grow text-gray-900 placeholder:text-gray-500 dark:text-white dark:placeholder:text-gray-400"
+            "mt-2 mb-6 min-h-0 flex-grow text-gray-900 placeholder:text-gray-500 dark:text-white dark:placeholder:text-gray-400 overflow-y-auto"
           }
         >
           <EditorContent editor={editor} />

@@ -3,7 +3,12 @@ import { createContext, useContext, useState } from "react";
 const NoteContext = createContext();
 
 function NoteProvider({ children }) {
-    const value = {};
+    const [content, setContent] = useState("<p>Start...</p>");
+
+    const value = {
+      content,
+      setContent,
+    };
 
     return <NoteContext.Provider value={value}>{children}</NoteContext.Provider>
 }
