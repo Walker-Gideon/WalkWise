@@ -12,6 +12,8 @@ import Paragraph from "/src/ui/Paragraph";
 import Card from "/src/components/Card";
 import Group from "/src/ui/Group";
 
+import { useUserData } from "/src/user/hook/useUserData";
+
 const status = [
   {
     icon: LuTarget,
@@ -36,6 +38,8 @@ const status = [
 ];
 
 export default function DashboardStatus() {
+  const { userData, loading, error } = useUserData();
+
   const [statusData, setStatusData] = useState(status)
 
   useEffect(() => {
@@ -53,14 +57,14 @@ export default function DashboardStatus() {
       }
 
       if (stats.text === "Day Streak") {
-        return { ...stats, data: 0 };
+        return { ...stats, data: userData?.streakCount };
       }
-      
+
       return stats;
     })
 
     setStatusData(updatedStatus);
-  }, [])
+  }, [userData])
 
   return (
     <Group
