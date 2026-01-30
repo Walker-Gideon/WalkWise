@@ -10,7 +10,7 @@ export default function NoteRightLayout() {
   const [isDisplayNote, setIsDisplayNote] = useState(false);
 
   return (
-    <Container>
+    <Container classname="h-full">
       <Conditional condition={!isDisplayNote}>
         <InformationPrompt
           icon={<LuNotebookText className="h-5 w-5 text-slate-600 dark:text-slate-900" />}
