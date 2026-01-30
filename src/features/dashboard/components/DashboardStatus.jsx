@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   LuTarget,
   LuRectangleVertical,
@@ -35,13 +36,39 @@ const status = [
 ];
 
 export default function DashboardStatus() {
+  const [statusData, setStatusData] = useState(status)
+
+  useEffect(() => {
+    const updatedStatus = status.map((stats) => {
+      if (stats.text === "Mastery Cards") {
+        return { ...stats, data: 0 };
+      }
+
+      if (stats.text === "Cards Today") {
+        return { ...stats, data: 0 };
+      }
+
+      if (stats.text === "Study Time") {
+        return { ...stats, data: 0 };
+      }
+
+      if (stats.text === "Day Streak") {
+        return { ...stats, data: 0 };
+      }
+      
+      return stats;
+    })
+
+    setStatusData(updatedStatus);
+  }, [])
+
   return (
     <Group
       classname={
         "medium:grid-cols-2 grid grid-cols-1 gap-4 medium:gap-6 lg:grid-cols-4"
       }
     >
-      {status.map((stats, index) => (
+      {statusData.map((stats, index) => (
         <Card
           key={index}
           classname={"hover:shadow-lg flex items-center justify-between"}
