@@ -39,25 +39,22 @@ export default function CreateNoteLayout() {
   
   return (
     <Container adjust={true} classname={"flex h-full w-full flex-col overflow-hidden"}>
-      <CreateNoteEditor />
+      <div className="flex-shrink-0">
+        <CreateNoteEditor />
+      </div>
 
-{/*  flex h-full flex-col  */}
-      <Group classname={"mx-4 my-2 py-1"}>
+      <Group classname={"flex flex-col h-full min-h-0"}>
         <Input
           id="note-title"
           type="text"
           name="title"
           placeholder="Title"
-          classname={
-            "w-full border-b borderStyling bg-transparent pb-2 text-xl dark:text-white font-bold text-slate-900 placeholder:text-gray-400 focus:outline-none medium:text-2xl"
-          }
+          classname={"w-full"}
           //   disabled={disabled}
         />
         <Box
           adjustWidth={true}
-          classname={
-            "mt-2 mb-6 min-h-0 flex-grow text-gray-900 placeholder:text-gray-500 dark:text-white dark:placeholder:text-gray-400 overflow-y-auto"
-          }
+          classname={"min-h-0 flex-grow overflow-y-auto"}
         >
           <EditorContent editor={editor} />
         </Box>
