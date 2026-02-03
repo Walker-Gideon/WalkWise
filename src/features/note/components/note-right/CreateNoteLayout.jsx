@@ -5,7 +5,7 @@ import { EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useEditor } from "@tiptap/react";
 
-import CreateNoteEditor from "./CreateNoteEditor";
+import CreateNoteHeader from "./CreateNoteHeader";
 import Container from "/src/ui/Container";
 import Group from "/src/ui/Group";
 import Input from "/src/ui/Input";
@@ -40,7 +40,7 @@ export default function CreateNoteLayout() {
   return (
     <Container adjust={true} classname={"flex h-full w-full flex-col overflow-hidden"}>
       <div className="flex-shrink-0">
-        <CreateNoteEditor />
+        <CreateNoteHeader />
       </div>
 
       <Group classname={"flex flex-col h-full min-h-0 mx-4 my-2"}>

@@ -62,7 +62,7 @@ const alignments = [
   { align: "justify", icon: LuAlignJustify },
 ];
 
-export default function CreateNoteEditor() {
+export default function CreateNoteHeader() {
   // export default function CreateNoteEditor({ editor }) {
   /*
   const styling = {
