@@ -7,6 +7,7 @@ import {
 
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
+import Flex from "/src/ui/Flex";
 
 const editingTools = [
   {
@@ -71,44 +72,52 @@ export default function CreateNoteEditor() {
   };*/
 
   return (
-    <Group
-      classname={"mx-4 flex h-16 items-center gap-2 border-b borderStyling"}
+    <Flex
+      variant="between"
+      classname={"mx-4 h-16 border-b borderStyling"}
     >
-      {editingTools.map((data, index) => (
-        <Button
-          key={index}
-          type="customize"
-          variant="secondary"
-          classname={`borderStyling dark:text-white ${data.style}`}
-          //   classname={`${data.style} ${styling.base} ${data.activeCheck(editor) ? `${styling.isActive}` : `${styling.notActive}`}`}
-          onclick={(e) => {
-            e.preventDefault();
-            // data.command(editor);
-          }}
-        >
-          {data.text}
-        </Button>
-      ))}
+      <Flex classname={"gap-2"}>
+        {editingTools.map((data, index) => (
+          <Button
+            key={index}
+            type="customize"
+            variant="secondary"
+            classname={`borderStyling dark:text-white ${data.style}`}
+            //   classname={`${data.style} ${styling.base} ${data.activeCheck(editor) ? `${styling.isActive}` : `${styling.notActive}`}`}
+            onclick={(e) => {
+              e.preventDefault();
+              // data.command(editor);
+            }}
+          >
+            {data.text}
+          </Button>
+        ))}
 
-      {alignments.map((btn, index) => (
-        <Button
-          key={index}
-          type="customize"
-          variant="secondary"
-          classname={`borderStyling dark:text-white px-[9.5px] py-[11px]`}
-          //   classname={`px-[9.5px] py-[11px] ${styling.base} ${
-          //     editor.isActive({ textAlign: btn.align })
-          //       ? `${styling.isActive}`
-          //       : `${styling.notActive}`
-          //   }`}
-          onclick={(e) => {
-            e.preventDefault();
-            // editor.chain().focus().setTextAlign(btn.align).run();
-          }}
-        >
-          <btn.icon />
+        {alignments.map((btn, index) => (
+          <Button
+            key={index}
+            type="customize"
+            variant="secondary"
+            classname={`borderStyling dark:text-white px-[9.5px] py-[11px]`}
+            //   classname={`px-[9.5px] py-[11px] ${styling.base} ${
+            //     editor.isActive({ textAlign: btn.align })
+            //       ? `${styling.isActive}`
+            //       : `${styling.notActive}`
+            //   }`}
+            onclick={(e) => {
+              e.preventDefault();
+              // editor.chain().focus().setTextAlign(btn.align).run();
+            }}
+          >
+            <btn.icon />
+          </Button>
+        ))}
+      </Flex>
+      <>
+        <Button type="colors" onclick={() => {}}>
+          Save Note
         </Button>
-      ))}
-    </Group>
+      </>
+    </Flex>
   );
 }
