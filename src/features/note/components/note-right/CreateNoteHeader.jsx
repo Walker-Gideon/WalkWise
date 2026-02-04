@@ -5,6 +5,7 @@ import {
   LuAlignCenter,
 } from "react-icons/lu";
 
+import Conditional from "/src/components/Conditional";
 import Button from "/src/ui/Button";
 import Flex from "/src/ui/Flex";
 
@@ -55,7 +56,7 @@ const alignments = [
   { align: "justify", icon: LuAlignJustify },
 ];
 
-export default function CreateNoteHeader({ editor }) {
+export default function CreateNoteHeader({ editor, onSave, isSaving, showSaveButton }) {
   if (!editor) return null;
 
   const styling = {
@@ -105,11 +106,18 @@ export default function CreateNoteHeader({ editor }) {
           </Button>
         ))}
       </Flex>
-      <>
-        <Button type="colors" onclick={() => {}}>
-          Save Note
+      <Conditional condition={showSaveButton}>
+        <Button
+          type="colors"
+          onclick={(e) => {
+            e.preventDefault();
+            onSave();
+          }}
+          disabled={isSaving}
+        >
+            {isSaving ? "Saving..." : "Save Note"}
         </Button>
-      </>
+      </Conditional>
     </Flex>
   );
 }

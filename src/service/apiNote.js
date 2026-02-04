@@ -9,6 +9,7 @@ import {
   getDocs,
   query,
   where,
+  serverTimestamp,
 } from "firebase/firestore";
 
 /**
@@ -18,8 +19,10 @@ import {
  */
 export async function createNote(data) {
     try {
-        const docRef = await addDoc(collection(db, "notes"), data);
-        return { id: docRef.id, ...data };
+        const timestamp = serverTimestamp();
+        const noteData = { ...data, createdAt: timestamp, updatedAt: timestamp };
+        const docRef = await addDoc(collection(db, "notes"), noteData);
+        return { id: docRef.id, ...noteData };
     } catch (error) {
         console.error("Error creating note:", error);
         throw error;
