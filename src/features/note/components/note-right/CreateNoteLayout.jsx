@@ -40,7 +40,7 @@ export default function CreateNoteLayout() {
   return (
     <Container adjust={true} classname={"flex h-full w-full flex-col overflow-hidden"}>
       <div className="flex-shrink-0">
-        <CreateNoteHeader />
+        <CreateNoteHeader editor={editor} />
       </div>
 
       <Group classname={"flex flex-col h-full min-h-0 mx-4 my-2"}>

@@ -57,6 +57,18 @@ import { LuChartNoAxesColumnDecreasing } from "react-icons/lu";
   .ProseMirror p {
     margin: 0;
   }
+  
+  .ProseMirror h1 {
+    @apply text-2xl font-bold my-2;
+  }
+
+  .ProseMirror h2 {
+    @apply text-xl font-bold my-1.5;
+  }
+
+  .ProseMirror mark {
+    @apply bg-yellow-200 text-black px-0.5 rounded-xs dark:bg-yellow-500;
+  }
 }
 
 /*
