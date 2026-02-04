@@ -52,6 +52,11 @@ import { LuChartNoAxesColumnDecreasing } from "react-icons/lu";
   .input {
     @apply rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs hover:border-slate-400 focus:ring-2 focus:ring-slate-400 focus:outline-hidden;
   }
+
+  /* Editor specific overrides */
+  .ProseMirror p {
+    margin: 0;
+  }
 }
 
 /*
