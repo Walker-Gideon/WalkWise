@@ -39,11 +39,14 @@ export default function CreateNoteLayout() {
   });
 
   function handleSave() {
-    const html = editor?.getHTML();
-    createNote({ title, content: html });
+    const noteTitle = title.trim() || "Untitled Note";
+    const noteContent = hasContent ? editor?.getHTML() : "";
+    
+    createNote({ title: noteTitle, content: noteContent });
+    // Optional: Reset title or state after save if needed, but usually we keep it for editing
   }
 
-  const showSaveButton = title.trim().length > 0 && hasContent;
+  const showSaveButton = title.trim().length > 0 || hasContent;
   
   return (
     <Container adjust={true} classname={"flex h-full w-full flex-col overflow-hidden"}>
