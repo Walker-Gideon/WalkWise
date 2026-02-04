@@ -54,7 +54,7 @@ export default function CreateNoteLayout() {
         />
         <Box
           adjustWidth={true}
-          classname={"min-h-0 flex-grow overflow-y-auto text-gray-900 placeholder:text-gray-500 dark:text-white dark:placeholder:text-gray-400"}
+          classname={"min-h-0 mt-2 flex-grow overflow-y-auto text-gray-900 placeholder:text-gray-500 dark:text-white dark:placeholder:text-gray-400 [&_.ProseMirror]:border-0 [&_.ProseMirror]:outline-none [&_.ProseMirror]:focus:outline-none [&_.ProseMirror_p]:my-1"}
         >
           <EditorContent editor={editor} />
         </Box>
