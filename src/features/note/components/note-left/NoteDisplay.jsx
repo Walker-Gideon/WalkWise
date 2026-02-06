@@ -6,7 +6,7 @@ import Paragraph from "/src/ui/Paragraph";
 import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
 
-export default function NoteDisplay() {
+export default function NoteDisplay({ notes, isLoading }) {
   return (
     <Container classname={"mb-4 h-screen overflow-y-scroll"}>
       <Group
