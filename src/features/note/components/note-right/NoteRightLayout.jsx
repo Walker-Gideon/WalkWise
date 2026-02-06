@@ -6,7 +6,14 @@ import Conditional from "/src/components/Conditional";
 import Container from "/src/ui/Container";
 import CreateNoteLayout from "./CreateNoteLayout";
 
+import { useUserData } from "/src/user/hook/useUserData";
+
 export default function NoteRightLayout() {
+  const { userData } = useUserData();
+
+  // const uid = userData?.uid;
+  // console.log(notes)
+  
   const [isDisplayNote, setIsDisplayNote] = useState(false);
 
   return (

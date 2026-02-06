@@ -28,3 +28,23 @@ export async function createNote(data) {
         throw error;
     }
 }
+
+/**
+ * Fetch Notes for a specific user
+ * @param {string} userId
+ * @returns {Promise<Array>} Array of Notes
+ */
+export async function getNotes(userId) {
+  if (!userId) return [];
+
+  const notesRef = collection(db, "notes");
+  const q = query(notesRef, where("userId", "==", userId));
+  const snapshot = await getDocs(q);
+
+  const userNotes = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+
+  return userNotes;
+}
