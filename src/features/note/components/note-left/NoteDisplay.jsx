@@ -5,6 +5,13 @@ import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
 import Button from "/src/ui/Button";
 
+import useFormattedDate from "/src/hook/useFormattedDate";
+
+function NoteDate({ createdAt }) {
+    const formattedDate = useFormattedDate(createdAt);
+    return <>{formattedDate}</>;
+}
+
 export default function NoteDisplay({ notes }) {
   return (
     <Container classname={"mb-4 h-full overflow-y-scroll"}>
@@ -25,7 +32,7 @@ export default function NoteDisplay({ notes }) {
               variant="small"
               classname={"secondary-text-color text-xs"}
             >
-              {note.createdAt?.toDate ? note.createdAt.toDate().toLocaleDateString() : "Just now"}
+              <NoteDate createdAt={note.createdAt} />
             </Paragraph>
           </div>
           <Button
