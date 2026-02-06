@@ -4,12 +4,12 @@ import { getNotes } from "/src/service/apiNote";
 import { useUserData } from "/src/user/hook/useUserData";
 
 export function useFetchNotes() {
-    const { userData } = useUserData()
+    const { firebaseUser } = useUserData()
 
     const { data: notes, isPending, error } = useQuery({
-        queryKey: ["notes", userData?.uid],
-        queryFn: () => getNotes(userData?.uid),
-        enabled: !!userData?.uid,
+        queryKey: ["notes", firebaseUser?.uid],
+        queryFn: () => getNotes(firebaseUser?.uid),
+        enabled: !!firebaseUser?.uid,
     });
 
     return { notes, isPending, error };
