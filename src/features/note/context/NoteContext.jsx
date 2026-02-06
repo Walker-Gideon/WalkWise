@@ -5,8 +5,16 @@ const NoteContext = createContext();
 function NoteProvider({ children }) {
     const [content, setContent] = useState("<p>Start...</p>");
 
+    // Search
+    const [query, setQuery] = useState("");
+
     const value = {
+      // States
+      query,
       content,
+      
+      // Setters
+      setQuery,
       setContent,
     };
 

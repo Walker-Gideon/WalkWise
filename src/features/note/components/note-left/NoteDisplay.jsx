@@ -1,11 +1,14 @@
+import { useEffect, useState } from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
 import HeaderText from "/src/ui/HeaderText";
 import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
 import Button from "/src/ui/Button";
+import Flex from "/src/ui/Flex";
 
 import useFormattedDate from "/src/hook/useFormattedDate";
+import { useNote } from "../../context/NoteContext";
 
 function NoteDate({ createdAt }) {
     const formattedDate = useFormattedDate(createdAt);
@@ -13,9 +16,34 @@ function NoteDate({ createdAt }) {
 }
 
 export default function NoteDisplay({ notes }) {
+  const { query } = useNote();
+  
+  const [isSearching, setIsSearching] = useState(false);
+
+  useEffect(() => {
+    if (query) {
+      setIsSearching(true);
+      const timer = setTimeout(() => setIsSearching(false), 500);
+      return () => clearTimeout(timer);
+    } else {
+      setIsSearching(false);
+    }
+  }, [query]);
+
+  const filtereNote = notes
+    ?.filter((note) => note.title.toLowerCase().includes(query.toLowerCase()));
+
+  if(isSearching) {
+    return (
+      <Flex variant="center" classname={"h-full"}>
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-slate-300 border-t-slate-600" />
+      </Flex>
+    )
+  }
+
   return (
     <Container adjust={true} classname={"h-full overflow-y-auto"}>
-      {notes.map((note) => (
+      {!isSearching && filtereNote.map((note) => (
         <div
           key={note.id}
           //   hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-700
