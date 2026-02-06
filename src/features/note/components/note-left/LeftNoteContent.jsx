@@ -16,7 +16,7 @@ export default function LeftNoteContent() {
 
   if (isPending)
     return (
-      <Container adjust={true} classname={`h-110`}>
+    <Container adjust={true} classname={`h-full`}>
         <Flex variant="center" classname="h-full w-full">
           <Spinner />
         </Flex>
@@ -24,7 +24,7 @@ export default function LeftNoteContent() {
     );
 
   return (
-    <Container adjust={true} classname={`h-110`}>
+    <Container adjust={true} classname={`h-113`}>
       <Conditional condition={!notesCount}>
         <InformationPrompt
           icon={<LuNotebookText className="h-5 w-5 text-slate-600 dark:text-slate-900" />}

@@ -14,7 +14,7 @@ function NoteDate({ createdAt }) {
 
 export default function NoteDisplay({ notes }) {
   return (
-    <Container classname={"mb-4 h-full overflow-y-scroll"}>
+    <Container adjust={true} classname={"h-full overflow-y-auto"}>
       {notes.map((note) => (
         <div
           key={note.id}
