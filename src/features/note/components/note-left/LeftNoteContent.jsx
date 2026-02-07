@@ -3,9 +3,9 @@ import { LuNotebookText } from "react-icons/lu";
 import InformationPrompt from "/src/components/InformationPrompt";
 import Conditional from "/src/components/Conditional";
 import Container from "/src/ui/Container";
+import NoteDisplay from "./NoteDisplay";
 import Spinner from "/src/ui/Spinner";
 import Flex from "/src/ui/Flex";
-import NoteDisplay from "./NoteDisplay";
 
 import { useFetchNotes } from "../../hook/useFetchNotes";
 
@@ -16,11 +16,9 @@ export default function LeftNoteContent() {
 
   if (isPending)
     return (
-    <Container adjust={true} classname={`h-full`}>
-        <Flex variant="center" classname="h-full w-full">
-          <Spinner />
-        </Flex>
-      </Container>
+      <Flex variant="center" classname={"h-full"}>
+        <Spinner styling={"h-full"} />
+      </Flex>
     );
 
   return (
