@@ -4,6 +4,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import HeaderText from "/src/ui/HeaderText";
 import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
+import Spinner from "/src/ui/Spinner";
 import Button from "/src/ui/Button";
 import Flex from "/src/ui/Flex";
 
@@ -17,7 +18,7 @@ function NoteDate({ createdAt }) {
 
 export default function NoteDisplay({ notes }) {
   const { query } = useNote();
-  
+
   const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export default function NoteDisplay({ notes }) {
   if(isSearching) {
     return (
       <Flex variant="center" classname={"h-full"}>
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-slate-300 border-t-slate-600" />
+        <Spinner styling={"h-full"} />
       </Flex>
     )
   }
