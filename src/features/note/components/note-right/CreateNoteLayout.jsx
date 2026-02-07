@@ -47,7 +47,6 @@ export default function CreateNoteLayout() {
       {
         onSuccess: () => {
           setIsDisplayNote(false);
-          setTitle("");
         }
       }
     );
