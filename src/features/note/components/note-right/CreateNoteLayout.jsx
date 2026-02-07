@@ -1,11 +1,10 @@
 import { useState } from "react";
-import TextAlign from "@tiptap/extension-text-align";
+import { useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import { EditorContent } from "@tiptap/react";
 import Highlight from "@tiptap/extension-highlight";
 import Underline from "@tiptap/extension-underline";
-import { EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import { useEditor } from "@tiptap/react";
-import toast from "react-hot-toast";
+import TextAlign from "@tiptap/extension-text-align";
 
 import CreateNoteHeader from "./CreateNoteHeader";
 import Container from "/src/ui/Container";
@@ -17,10 +16,11 @@ import { useNote } from "../../context/NoteContext";
 import useCreateNote from "../../hook/useCreateNote";
 
 export default function CreateNoteLayout() {
+  const { content, setIsDisplayNote } = useNote()
+  const { createNote, isCreating } = useCreateNote()
+
   const [title, setTitle] = useState("");
   const [hasContent, setHasContent] = useState(false);
-  const { content } = useNote()
-  const { createNote, isCreating } = useCreateNote()
   
   // Editing note
   const editor = useEditor({
@@ -42,8 +42,15 @@ export default function CreateNoteLayout() {
     const noteTitle = title.trim() || "Untitled Note";
     const noteContent = hasContent ? editor?.getHTML() : "";
     
-    createNote({ title: noteTitle, content: noteContent });
-    // Optional: Reset title or state after save if needed, but usually we keep it for editing
+    createNote(
+      { title: noteTitle, content: noteContent },
+      {
+        onSuccess: () => {
+          setIsDisplayNote(false);
+          setTitle("");
+        }
+      }
+    );
   }
 
   const showSaveButton = title.trim().length > 0 || hasContent;
