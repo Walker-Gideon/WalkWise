@@ -9,7 +9,7 @@ import Group from "/src/ui/Group";
 import { useNote } from "../../context/NoteContext";
 
 export default function LeftNoteHeader() {
-  const { query, setQuery } = useNote();
+  const { query, setQuery, isDisplayNote, setIsDisplayNote } = useNote();
 
   return (
     <Header classname={"px-6 py-4 border-b borderStyling"}>
@@ -28,7 +28,8 @@ export default function LeftNoteHeader() {
       <Button
         type="colors"
         classname={"w-full flex items-center justify-center gap-0.5"}
-        onclick={() => {}}
+        onclick={() => setIsDisplayNote((show) => !show)}
+        disabled={isDisplayNote}
       >
         <LuPlus className="h-3.5 w-3.5 text-white" />
         New note

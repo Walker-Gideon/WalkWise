@@ -3,6 +3,7 @@ import { createContext, useContext, useState } from "react";
 const NoteContext = createContext();
 
 function NoteProvider({ children }) {
+    const [isDisplayNote, setIsDisplayNote] = useState(false);
     const [content, setContent] = useState("<p>Start...</p>");
 
     // Search
@@ -12,10 +13,12 @@ function NoteProvider({ children }) {
       // States
       query,
       content,
+      isDisplayNote,
       
       // Setters
       setQuery,
       setContent,
+      setIsDisplayNote
     };
 
     return <NoteContext.Provider value={value}>{children}</NoteContext.Provider>

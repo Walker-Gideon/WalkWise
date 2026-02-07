@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { LuNotebookText } from "react-icons/lu";
 
 import InformationPrompt from "/src/components/InformationPrompt";
@@ -6,8 +5,10 @@ import Conditional from "/src/components/Conditional";
 import Container from "/src/ui/Container";
 import CreateNoteLayout from "./CreateNoteLayout";
 
+import { useNote } from "../../context/NoteContext";
+
 export default function NoteRightLayout() {
-  const [isDisplayNote, setIsDisplayNote] = useState(false);
+  const { isDisplayNote, setIsDisplayNote } = useNote(); 
 
   return (
     <Container classname="h-full">
