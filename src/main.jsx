@@ -9,7 +9,6 @@ import { ScheduleProvider } from "./features/schedule/context/ScheduleContext.js
 import { InspireProvider } from "./features/inspire/context/InspireContext.jsx";
 import { GeneralProvider } from "./contexts/GeneralContext.jsx";
 import { AuthProvider } from "./authentication/context/AuthContext.jsx";
-import { NoteProvider } from "./features/note/context/NoteContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -18,11 +17,9 @@ createRoot(document.getElementById("root")).render(
         <InspireProvider>
           <NavigationProvider>
             <GeneralProvider>
-              <NoteProvider>
-                <AuthProvider>
-                  <App />
-                </AuthProvider>
-              </NoteProvider>
+              <AuthProvider>
+                <App />
+              </AuthProvider>
             </GeneralProvider>
           </NavigationProvider>
         </InspireProvider>

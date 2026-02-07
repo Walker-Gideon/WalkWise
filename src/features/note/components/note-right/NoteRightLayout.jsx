@@ -2,8 +2,8 @@ import { LuNotebookText } from "react-icons/lu";
 
 import InformationPrompt from "/src/components/InformationPrompt";
 import Conditional from "/src/components/Conditional";
-import Container from "/src/ui/Container";
 import CreateNoteLayout from "./CreateNoteLayout";
+import Container from "/src/ui/Container";
 
 import { useNote } from "../../context/NoteContext";
 
