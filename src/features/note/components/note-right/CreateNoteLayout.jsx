@@ -6,8 +6,6 @@ import Highlight from "@tiptap/extension-highlight";
 import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
 
-import { useQuery } from "@tanstack/react-query";
-
 import CreateNoteHeader from "./CreateNoteHeader";
 import Container from "/src/ui/Container";
 import Spinner from "/src/ui/Spinner";
@@ -16,25 +14,19 @@ import Input from "/src/ui/Input";
 import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
 
+import { useFetchNoteById } from "../../hook/useFetchNoteById";
 import useCreateNote from "../../hook/useCreateNote";
 import useUpdateNote from "../../hook/useUpdateNote";
 import { useNote } from "../../context/NoteContext";
-import { getNoteById } from "/src/service/apiNote";
 
 export default function CreateNoteLayout({ noteId }) {
-  const { content, setIsDisplayNote } = useNote();
+  const { note: noteData, isPending: isLoadingNote } = useFetchNoteById(noteId);
   const { createNote, isCreating } = useCreateNote();
   const { updateNote, isUpdating } = useUpdateNote();
+  const { content, setIsDisplayNote } = useNote();
 
   const [title, setTitle] = useState("");
   const [hasContent, setHasContent] = useState(false);
-
-  // Fetch note data if noteId is present
-  const { data: noteData, isPending: isLoadingNote } = useQuery({
-    queryKey: ["note", noteId],
-    queryFn: () => getNoteById(noteId),
-    enabled: !!noteId,
-  });
 
   // Editing note editor instance
   const editor = useEditor({
