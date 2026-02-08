@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 import { LuPlus, LuSearch } from "react-icons/lu";
 
 import HeaderText from "/src/ui/HeaderText";
@@ -10,6 +11,8 @@ import { useNote } from "../../context/NoteContext";
 
 export default function LeftNoteHeader() {
   const { query, setQuery, isDisplayNote, setIsDisplayNote } = useNote();
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <Header classname={"px-6 py-4 border-b borderStyling"}>
@@ -28,8 +31,11 @@ export default function LeftNoteHeader() {
       <Button
         type="colors"
         classname={"w-full flex items-center justify-center gap-0.5"}
-        onclick={() => setIsDisplayNote((show) => !show)}
         disabled={isDisplayNote}
+        onclick={() => {
+            setIsDisplayNote(true);
+            setSearchParams({});
+        }}
       >
         <LuPlus className="h-3.5 w-3.5 text-white" />
         New note
