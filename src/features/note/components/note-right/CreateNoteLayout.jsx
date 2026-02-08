@@ -89,7 +89,7 @@ export default function CreateNoteLayout({ noteId }) {
   const showSaveButton = title.trim().length > 0 || hasContent;
   const isSaving = isCreating || isUpdating;
 
-  if (isLoadingNote) {
+  if (noteId && isLoadingNote) {
     return (
       <Flex variant="center" classname={"h-full"}>
         <Spinner styling={"h-full"} />
