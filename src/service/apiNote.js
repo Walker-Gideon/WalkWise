@@ -71,3 +71,25 @@ export async function getNoteById(noteId) {
         throw error;
     }
 }
+
+/**
+ * Update an existing note
+ * @param {string} noteId
+ * @param {Object} data - The data to update
+ * @returns {Promise<Object>} The updated note data
+ */
+export async function updateNote(noteId, data) {
+    if (!noteId) throw new Error("Note ID is required for update");
+    
+    try {
+        const timestamp = serverTimestamp();
+        const updateData = { ...data, updatedAt: timestamp };
+        const docRef = doc(db, "notes", noteId);
+        
+        await updateDoc(docRef, updateData);
+        return { id: noteId, ...updateData };
+    } catch (error) {
+        console.error("Error updating note:", error);
+        throw error;
+    }
+}
