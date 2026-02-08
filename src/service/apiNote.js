@@ -48,3 +48,26 @@ export async function getNotes(userId) {
 
   return userNotes;
 }
+
+/**
+ * Fetch a single note by ID
+ * @param {string} noteId
+ * @returns {Promise<Object>} The note data
+ */
+export async function getNoteById(noteId) {
+    if (!noteId) return null;
+    
+    try {
+        const docRef = doc(db, "notes", noteId);
+        const docSnap = await getDoc(docRef);
+        
+        if (docSnap.exists()) {
+            return { id: docSnap.id, ...docSnap.data() };
+        } else {
+            return null; // Note not found
+        }
+    } catch (error) {
+        console.error("Error fetching note:", error);
+        throw error;
+    }
+}

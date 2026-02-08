@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 import { LuNotebookText } from "react-icons/lu";
 
 import InformationPrompt from "/src/components/InformationPrompt";
@@ -8,11 +9,16 @@ import Container from "/src/ui/Container";
 import { useNote } from "../../context/NoteContext";
 
 export default function NoteRightLayout() {
-  const { isDisplayNote, setIsDisplayNote } = useNote(); 
+  const { isDisplayNote, setIsDisplayNote } = useNote();
+
+  const [searchParams] = useSearchParams();
+
+  const noteId = searchParams.get("noteId");
+  const isEditorOpen = isDisplayNote || noteId;
 
   return (
     <Container classname="h-full">
-      <Conditional condition={!isDisplayNote}>
+      <Conditional condition={!isEditorOpen}>
         <InformationPrompt
           icon={<LuNotebookText className="h-5 w-5 text-slate-600 dark:text-slate-900" />}
           promptText="Select a note to view"
@@ -21,8 +27,8 @@ export default function NoteRightLayout() {
           buttonText="Create Note"
         />
       </Conditional>
-      <Conditional condition={isDisplayNote}>
-        <CreateNoteLayout />
+      <Conditional condition={isEditorOpen}>
+        <CreateNoteLayout noteId={noteId} />
       </Conditional>
     </Container>
   );
