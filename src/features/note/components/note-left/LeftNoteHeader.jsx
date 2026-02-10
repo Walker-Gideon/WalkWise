@@ -13,6 +13,9 @@ export default function LeftNoteHeader() {
   const { query, setQuery, isDisplayNote, setIsDisplayNote } = useNote();
 
   const [searchParams, setSearchParams] = useSearchParams();
+  
+  const noteId = searchParams.get("noteId");
+  const isCreatingNewNote = isDisplayNote && !noteId;
 
   return (
     <Header classname={"px-6 py-4 border-b borderStyling"}>
@@ -31,7 +34,7 @@ export default function LeftNoteHeader() {
       <Button
         type="colors"
         classname={"w-full flex items-center justify-center gap-0.5"}
-        disabled={isDisplayNote}
+        disabled={isCreatingNewNote}
         onclick={() => {
             setIsDisplayNote(true);
             setSearchParams({});

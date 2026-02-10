@@ -56,7 +56,11 @@ export default function NoteDisplay({ notes }) {
           //   hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-700
           className={`my-1 flex w-full cursor-pointer items-center justify-between gap-2 border-b border-stone-300`}
         >
-          <div role="button" onClick={() => handleDisplayNote(note.id)} className="w-full py-2 pl-4">
+          <div 
+            role="button" 
+            className="w-full py-2 pl-4"
+            onClick={() => handleDisplayNote(note.id)} 
+          >
             <HeaderText
               variant="secondary"
               classname={"w-40 truncate whitespace-nowrap primary-text-color"}
