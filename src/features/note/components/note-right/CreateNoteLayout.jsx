@@ -6,29 +6,28 @@ import Highlight from "@tiptap/extension-highlight";
 import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
 
-import CreateNoteHeader from "./CreateNoteHeader";
-import Container from "/src/ui/Container";
-import Spinner from "/src/ui/Spinner";
+import Box from "/src/ui/Box";
+import Flex from "/src/ui/Flex";
 import Group from "/src/ui/Group";
 import Input from "/src/ui/Input";
-import Flex from "/src/ui/Flex";
-import Box from "/src/ui/Box";
+import Spinner from "/src/ui/Spinner";
+import Container from "/src/ui/Container";
+import CreateNoteHeader from "./CreateNoteHeader";
 
-import { useFetchNoteById } from "../../hook/useFetchNoteById";
+import { useNote } from "../../context/NoteContext";
 import useCreateNote from "../../hook/useCreateNote";
 import useUpdateNote from "../../hook/useUpdateNote";
-import { useNote } from "../../context/NoteContext";
+import { useFetchNoteById } from "../../hook/useFetchNoteById";
 
 export default function CreateNoteLayout({ noteId }) {
-  const { note: noteData, isPending: isLoadingNote } = useFetchNoteById(noteId);
+  const { content, setIsDisplayNote } = useNote();
   const { createNote, isCreating } = useCreateNote();
   const { updateNote, isUpdating } = useUpdateNote();
-  const { content, setIsDisplayNote } = useNote();
+  const { note: noteData, isPending: isLoadingNote } = useFetchNoteById(noteId);
 
   const [title, setTitle] = useState("");
   const [hasContent, setHasContent] = useState(false);
 
-  // Editing note editor instance
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -38,13 +37,12 @@ export default function CreateNoteLayout({ noteId }) {
       Highlight,
       Underline,
     ],
-    content, // Default content from context
+    content,
     onUpdate: ({ editor }) => {
       setHasContent(!editor.isEmpty);
     },
   });
 
-  // Sync state with fetched note data (or reset for new note)
   useEffect(() => {
     if (editor) {
       if (noteId && noteData) {
@@ -64,7 +62,6 @@ export default function CreateNoteLayout({ noteId }) {
     const noteContent = hasContent ? editor?.getHTML() : "";
 
     if (noteId) {
-      // Update existing note
       updateNote(
         { noteId, data: { title: noteTitle, content: noteContent } },
         {
@@ -74,7 +71,6 @@ export default function CreateNoteLayout({ noteId }) {
         }
       );
     } else {
-      // Create new note
       createNote(
         { title: noteTitle, content: noteContent },
         {
@@ -102,7 +98,7 @@ export default function CreateNoteLayout({ noteId }) {
       adjust={true}
       classname={"flex h-full w-full flex-col overflow-hidden"}
     >
-      <div className="flex-shrink-0">
+      <Box adjustWidth={true} classname={"flex-shrink-0"}>
         <CreateNoteHeader
           noteId={noteId}
           editor={editor}
@@ -110,8 +106,7 @@ export default function CreateNoteLayout({ noteId }) {
           isSaving={isSaving}
           showSaveButton={showSaveButton}
         />
-      </div>
-
+      </Box>
       <Group classname={"mx-4 my-2 flex h-full min-h-0 flex-col"}>
         <Input
           id="note-title"
