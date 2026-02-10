@@ -56,7 +56,7 @@ const alignments = [
   { align: "justify", icon: LuAlignJustify },
 ];
 
-export default function CreateNoteHeader({ editor, onSave, isSaving, showSaveButton }) {
+export default function CreateNoteHeader({ noteId, editor, onSave, isSaving, showSaveButton }) {
   if (!editor) return null;
 
   const styling = {
@@ -115,7 +115,7 @@ export default function CreateNoteHeader({ editor, onSave, isSaving, showSaveBut
           }}
           disabled={isSaving}
         >
-            {isSaving ? "Saving..." : "Save Note"}
+            {isSaving ? "Saving..." : noteId ? "Update Note" : "Save Note"}
         </Button>
       </Conditional>
     </Flex>

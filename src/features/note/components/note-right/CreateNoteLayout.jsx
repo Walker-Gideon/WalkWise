@@ -104,6 +104,7 @@ export default function CreateNoteLayout({ noteId }) {
     >
       <div className="flex-shrink-0">
         <CreateNoteHeader
+          noteId={noteId}
           editor={editor}
           onSave={handleSave}
           isSaving={isSaving}
