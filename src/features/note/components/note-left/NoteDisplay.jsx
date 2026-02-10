@@ -33,6 +33,8 @@ export default function NoteDisplay({ notes }) {
     }
   }, [query]);
 
+  const noteId = searchParams.get("noteId");
+
   const filtereNote = notes
     ?.filter((note) => note.title.toLowerCase().includes(query.toLowerCase()));
 
@@ -53,8 +55,7 @@ export default function NoteDisplay({ notes }) {
       {!isSearching && filtereNote.map((note) => (
         <div
           key={note.id}
-          //   hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-700
-          className={`my-1 flex w-full cursor-pointer items-center justify-between gap-2 border-b border-stone-300`}
+          className={`my-1 flex w-full cursor-pointer items-center justify-between gap-2 border-b border-stone-300 ${noteId === note.id ? "bg-slate-300 dark:bg-slate-700" : ""}`}
         >
           <div 
             role="button" 
@@ -77,7 +78,7 @@ export default function NoteDisplay({ notes }) {
           <Button
             variant="secondary"
             onclick={() => {}}
-            classname={"text-slate-700 pr-4"}
+            classname={"text-slate-700 dark:text-slate-100 pr-4"}
           >
             <RiDeleteBin5Line className="h-5 w-5" />
           </Button>
