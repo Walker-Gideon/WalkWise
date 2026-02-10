@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { useSearchParams } from "react-router-dom";
 
 import ConfirmDelete from "/src/components/ConfirmDelete";
 import Conditional from "/src/components/Conditional";
@@ -26,9 +26,9 @@ export default function NoteDisplay({ notes }) {
 
   const [selectedId, setSelectedId] = useState(null);
   const [isSearching, setIsSearching] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isDeleteModal, setIsDeleteModal] = useState(false);
   const [selectedNoteTitle, setSelectedNoteTitle] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     if (query) {
@@ -51,6 +51,13 @@ export default function NoteDisplay({ notes }) {
 
   function handleCloseModel() {
     setIsDeleteModal(false);
+
+    if (selectedId === noteId) {
+      setSearchParams({});
+    }
+    
+    setSelectedId(null);
+    setSelectedNoteTitle("");
   }
 
   function handleDeleteClick(id, title) {
