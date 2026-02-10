@@ -93,3 +93,15 @@ export async function updateNote(noteId, data) {
         throw error;
     }
 }
+
+/**
+ * Delete a note
+ * @param {string} id
+ * @returns {Promise<Object>} The note
+ */
+export async function deleteNote(id) {
+  if (!id) throw new Error("Note ID is required for deletion");
+
+  const ref = doc(db, "notes", id);
+  await deleteDoc(ref);
+}
