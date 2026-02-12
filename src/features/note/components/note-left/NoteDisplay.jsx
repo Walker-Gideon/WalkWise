@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { useSearchParams } from "react-router-dom";
 
-import ConfirmDelete from "/src/components/ConfirmDelete";
-import Conditional from "/src/components/Conditional";
-import HeaderText from "/src/ui/HeaderText";
-import Container from "/src/ui/Container";
-import Paragraph from "/src/ui/Paragraph";
-import Spinner from "/src/ui/Spinner";
-import Button from "/src/ui/Button";
 import Flex from "/src/ui/Flex";
+import Button from "/src/ui/Button";
+import Spinner from "/src/ui/Spinner";
+import Paragraph from "/src/ui/Paragraph";
+import Container from "/src/ui/Container";
+import HeaderText from "/src/ui/HeaderText";
+import Conditional from "/src/components/Conditional";
+import ConfirmDelete from "/src/components/ConfirmDelete";
 
-import useFormattedDate from "/src/hook/useFormattedDate";
-import useDeleteNote from "../../hook/useDeleteNote";
 import { useNote } from "../../context/NoteContext";
+import useDeleteNote from "../../hook/useDeleteNote";
+import useFormattedDate from "/src/hook/useFormattedDate";
 
 function NoteDate({ createdAt }) {
     const formattedDate = useFormattedDate(createdAt);
@@ -41,7 +41,6 @@ export default function NoteDisplay({ notes }) {
   }, [query]);
 
   const noteId = searchParams.get("noteId");
-
   const filtereNote = notes
     ?.filter((note) => note.title.toLowerCase().includes(query.toLowerCase()));
 
