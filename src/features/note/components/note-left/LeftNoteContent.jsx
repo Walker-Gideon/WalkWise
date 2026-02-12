@@ -7,7 +7,7 @@ import Container from "/src/ui/Container";
 import Conditional from "/src/components/Conditional";
 import InformationPrompt from "/src/components/InformationPrompt";
 
-import { useFetchNotes } from "../../hook/useFetchNotes";
+import useFetchNotes from "../../hook/useFetchNotes";
 
 export default function LeftNoteContent() {
   const { notes, isPending } = useFetchNotes();
