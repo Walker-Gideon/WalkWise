@@ -1,10 +1,10 @@
 import { useSearchParams } from "react-router-dom";
 import { LuNotebookText } from "react-icons/lu";
 
-import InformationPrompt from "/src/components/InformationPrompt";
-import Conditional from "/src/components/Conditional";
-import CreateNoteLayout from "./CreateNoteLayout";
 import Container from "/src/ui/Container";
+import CreateNoteLayout from "./CreateNoteLayout";
+import Conditional from "/src/components/Conditional";
+import InformationPrompt from "/src/components/InformationPrompt";
 
 import { useNote } from "../../context/NoteContext";
 
