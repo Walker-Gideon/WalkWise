@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   LuAlignLeft,
   LuAlignJustify,
@@ -57,6 +58,22 @@ const alignments = [
 ];
 
 export default function CreateNoteHeader({ noteId, editor, onSave, isSaving, showSaveButton }) {
+  const [editorState, setEditorState] = useState(0);
+
+  useEffect(() => {
+    if (!editor) return;
+
+    const updateState = () => {
+      setEditorState((prev) => prev + 1);
+    };
+
+    editor.on("transaction", updateState);
+
+    return () => {
+      editor.off("transaction", updateState);
+    };
+  }, [editor]);
+
   if (!editor) return null;
 
   const styling = {
