@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-import { deleteNote as deleteNoteApi } from "/src/service/apiNote";
 import { useUserData } from "/src/user/hook/useUserData";
+import { deleteNote as deleteNoteApi } from "/src/service/apiNote";
 
 export default function useDeleteNote() {
   const queryClient = useQueryClient();
