@@ -5,9 +5,9 @@ import {
   LuAlignCenter,
 } from "react-icons/lu";
 
-import Conditional from "/src/components/Conditional";
-import Button from "/src/ui/Button";
 import Flex from "/src/ui/Flex";
+import Button from "/src/ui/Button";
+import Conditional from "/src/components/Conditional";
 
 const editingTools = [
   {
@@ -99,7 +99,12 @@ export default function CreateNoteHeader({ noteId, editor, onSave, isSaving, sho
             }`}
             onclick={(e) => {
               e.preventDefault();
-              editor.chain().focus().setTextAlign(btn.align).run();
+              // Toggle: if already active, unset; otherwise set
+              if (editor.isActive({ textAlign: btn.align })) {
+                editor.chain().focus().unsetTextAlign().run();
+              } else {
+                editor.chain().focus().setTextAlign(btn.align).run();
+              }
             }}
           >
             <btn.icon />
