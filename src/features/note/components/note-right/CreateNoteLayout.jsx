@@ -17,7 +17,7 @@ import CreateNoteHeader from "./CreateNoteHeader";
 import { useNote } from "../../context/NoteContext";
 import useCreateNote from "../../hook/useCreateNote";
 import useUpdateNote from "../../hook/useUpdateNote";
-import { useFetchNoteById } from "../../hook/useFetchNoteById";
+import useFetchNoteById from "../../hook/useFetchNoteById";
 
 export default function CreateNoteLayout({ noteId }) {
   const { content, setIsDisplayNote } = useNote();
