@@ -1,11 +1,11 @@
 import { useSearchParams } from "react-router-dom";
 import { LuPlus, LuSearch } from "react-icons/lu";
 
-import HeaderText from "/src/ui/HeaderText";
-import Button from "/src/ui/Button";
-import Header from "/src/ui/Header";
-import Input from "/src/ui/Input";
 import Group from "/src/ui/Group";
+import Input from "/src/ui/Input";
+import Header from "/src/ui/Header";
+import Button from "/src/ui/Button";
+import HeaderText from "/src/ui/HeaderText";
 
 import { useNote } from "../../context/NoteContext";
 
@@ -36,8 +36,8 @@ export default function LeftNoteHeader() {
         classname={"w-full flex items-center justify-center gap-0.5"}
         disabled={isCreatingNewNote}
         onclick={() => {
-            setIsDisplayNote(true);
-            setSearchParams({});
+          setIsDisplayNote(true);
+          setSearchParams({});
         }}
       >
         <LuPlus className="h-3.5 w-3.5 text-white" />
