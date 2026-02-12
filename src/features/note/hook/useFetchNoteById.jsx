@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getNoteById } from "/src/service/apiNote";
 
-export function useFetchNoteById(noteId) {
+export default function useFetchNoteById(noteId) {
     const { data: note, isPending, error } = useQuery({
         queryKey: ["note", noteId],
         queryFn: () => getNoteById(noteId),
