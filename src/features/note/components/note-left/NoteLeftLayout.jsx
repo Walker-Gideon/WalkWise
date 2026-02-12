@@ -1,6 +1,6 @@
-import LeftNoteContent from "./LeftNoteContent";
-import LeftNoteHeader from "./LeftNoteHeader";
 import Container from "/src/ui/Container";
+import LeftNoteHeader from "./LeftNoteHeader";
+import LeftNoteContent from "./LeftNoteContent";
 
 export default function NoteLeftLayout() {
   return (
