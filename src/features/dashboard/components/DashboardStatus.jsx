@@ -13,6 +13,7 @@ import Badge from "/src/components/Badge";
 import HeaderText from "/src/ui/HeaderText";
 
 import { useUserData } from "/src/user/hook/useUserData";
+import useTodayStudyTime from "../hooks/useTodayStudyTime";
 import useTodayFlashcards from "../hooks/useTodayFlashcards";
 
 const status = [
@@ -40,6 +41,7 @@ const status = [
 
 export default function DashboardStatus() {
   const { userData } = useUserData();
+  const { totalStudyTime } = useTodayStudyTime();
   const { todayFlashcards } = useTodayFlashcards();
 
   const [statusData, setStatusData] = useState(status);
@@ -57,7 +59,7 @@ export default function DashboardStatus() {
       }
 
       if (stats.text === "Study Time") {
-        return { ...stats, data: 0 };
+        return { ...stats, data: `${totalStudyTime}m` };
       }
 
       if (stats.text === "Day Streak") {
@@ -68,7 +70,7 @@ export default function DashboardStatus() {
     })
 
     setStatusData(updatedStatus);
-  }, [userData, cardCount])
+  }, [userData, cardCount, totalStudyTime])
 
   return (
     <Group
