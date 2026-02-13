@@ -6,13 +6,14 @@ import {
   LuFlame,
 } from "react-icons/lu";
 
-import HeaderText from "/src/ui/HeaderText";
-import Badge from "/src/components/Badge";
-import Paragraph from "/src/ui/Paragraph";
-import Card from "/src/components/Card";
 import Group from "/src/ui/Group";
+import Card from "/src/components/Card";
+import Paragraph from "/src/ui/Paragraph";
+import Badge from "/src/components/Badge";
+import HeaderText from "/src/ui/HeaderText";
 
 import { useUserData } from "/src/user/hook/useUserData";
+import useTodayFlashcards from "../hooks/useTodayFlashcards";
 
 const status = [
   {
@@ -38,9 +39,12 @@ const status = [
 ];
 
 export default function DashboardStatus() {
-  const { userData, loading, error } = useUserData();
+  const { userData } = useUserData();
+  const { todayFlashcards } = useTodayFlashcards();
 
-  const [statusData, setStatusData] = useState(status)
+  const [statusData, setStatusData] = useState(status);
+
+  const cardCount = todayFlashcards?.length || 0;
 
   useEffect(() => {
     const updatedStatus = status.map((stats) => {
@@ -49,7 +53,7 @@ export default function DashboardStatus() {
       }
 
       if (stats.text === "Cards Today") {
-        return { ...stats, data: 0 };
+        return { ...stats, data: cardCount };
       }
 
       if (stats.text === "Study Time") {
@@ -64,7 +68,7 @@ export default function DashboardStatus() {
     })
 
     setStatusData(updatedStatus);
-  }, [userData])
+  }, [userData, cardCount])
 
   return (
     <Group
