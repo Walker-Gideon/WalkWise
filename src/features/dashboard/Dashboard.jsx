@@ -1,15 +1,15 @@
 import { LuLightbulb } from "react-icons/lu";
 
-import DashboardRecentActivity from "./components/DashboardRecentActivity";
-import DashboardCalendar from "./components/DashboardCalendar";
-import DashboardOverView from "./components/DashboardOverView";
-import DashboardActions from "./components/DashboardActions";
+import Main from "/src/ui/Main";
+import Group from "/src/ui/Group";
+import Container from "/src/ui/Container";
+import Motivation from "/src/components/Motivation";
 import DashboardHeader from "./components/DashboardHeader";
 import DashboardStatus from "./components/DashboardStatus";
-import Motivation from "/src/components/Motivation";
-import Container from "/src/ui/Container";
-import Group from "/src/ui/Group";
-import Main from "/src/ui/Main";
+import DashboardActions from "./components/DashboardActions";
+import DashboardOverView from "./components/DashboardOverView";
+import DashboardCalendar from "./components/DashboardCalendar";
+import DashboardRecentActivity from "./components/DashboardRecentActivity";
 
 import { useQuotes } from "/src/hook/useQuotes";
 
