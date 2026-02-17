@@ -119,14 +119,20 @@ export default function CreateNoteLayout({ noteId }) {
             "borderStyling medium:text-2xl w-full border-b bg-transparent pb-2 text-xl font-bold text-slate-900 placeholder:text-gray-400 focus:outline-none dark:text-white"
           }
         />
-        <Box
-          adjustWidth={true}
-          classname={
+        <div
+          className={
             "min-h-0 mt-2 flex-grow overflow-y-auto text-gray-900 placeholder:text-gray-500 dark:text-white dark:placeholder:text-gray-400 [&_.ProseMirror]:border-0 [&_.ProseMirror]:outline-none [&_.ProseMirror]:focus:outline-none"
           }
+          onClick={() => {
+            if (editor) {
+              editor.commands.focus();
+            }
+          }}
         >
-          <EditorContent editor={editor} />
-        </Box>
+          <div className="h-full w-full cursor-text pb-96">
+            <EditorContent editor={editor} className="h-full" />
+          </div>
+        </div>
       </Group>
     </Container>
   );

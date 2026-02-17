@@ -54,6 +54,10 @@ import { LuChartNoAxesColumnDecreasing } from "react-icons/lu";
   }
 
   /* Editor specific overrides */
+  .ProseMirror {
+    @apply h-full outline-hidden;
+  }
+
   .ProseMirror p {
     margin: 0;
   }
