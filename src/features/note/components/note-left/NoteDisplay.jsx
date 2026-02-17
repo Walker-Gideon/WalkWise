@@ -79,6 +79,14 @@ export default function NoteDisplay({ notes }) {
     )
   }
 
+  if(!isSearching && (filtereNote && !filtereNote.length)) {
+    return (
+      <Flex variant="center" classname={"h-full"}>
+        <Paragraph classname={"secondary-text-color"}>No search results match</Paragraph>
+      </Flex>
+    )
+  }
+
   return (
     <>
       <Container adjust={true} classname={"h-full overflow-y-auto"}>
