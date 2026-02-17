@@ -6,7 +6,7 @@ export default function NoteLeftLayout() {
   return (
     <Container
       // medium:w-70 medium:mt-0  mt-5 transform  border-stone-300 transition-transform duration-500 ease-in-out dark:border-slate-700
-      classname={`medium:border-r borderStyling border-r-0`}
+      classname={`flex h-screen flex-col border-r-0 borderStyling medium:border-r`}
     >
       <LeftNoteHeader />
       <LeftNoteContent />

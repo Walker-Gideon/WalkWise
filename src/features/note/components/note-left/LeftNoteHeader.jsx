@@ -18,7 +18,7 @@ export default function LeftNoteHeader() {
   const isCreatingNewNote = isDisplayNote && !noteId;
 
   return (
-    <Header classname={"px-6 py-4 border-b borderStyling"}>
+    <Header type={"padding"} classname={"border-b borderStyling"}>
       <HeaderText type="primary">My Note</HeaderText>
       <Group classname={"relative my-2"}>
         <Input

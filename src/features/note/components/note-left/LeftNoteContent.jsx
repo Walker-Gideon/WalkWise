@@ -23,7 +23,7 @@ export default function LeftNoteContent() {
   }
 
   return (
-    <Container adjust={true} classname={`h-113`}>
+    <Container classname={`flex-1 overflow-y-auto min-h-0`}>
       <Conditional condition={!notesCount}>
         <InformationPrompt
           icon={<LuNotebookText className="h-5 w-5 text-slate-600 dark:text-slate-900" />}
