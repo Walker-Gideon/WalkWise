@@ -17,7 +17,7 @@ export default function NoteRightLayout() {
   const isEditorOpen = isDisplayNote || noteId;
 
   return (
-    <Container classname="h-full">
+    <Container classname={"h-full"}>
       <Conditional condition={!isEditorOpen}>
         <InformationPrompt
           icon={<LuNotebookText className="h-5 w-5 text-slate-600 dark:text-slate-900" />}

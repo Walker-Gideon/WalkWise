@@ -8,7 +8,7 @@ export default function Note() {
   return (
     <NoteProvider>
       <Container
-        classname={`medium:grid medium:grid-cols-[17.5rem_auto] overflow-hidden`}
+        classname={`medium:grid medium:grid-cols-[17.5rem_auto] overflow-hidden middle:bg-red-500`}
       >
         <NoteLeftLayout />
         <NoteRightLayout />
