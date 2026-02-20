@@ -5,10 +5,13 @@ import NoteRightLayout from "./components/note-right/NoteRightLayout";
 import { NoteProvider } from "./context/NoteContext";
 
 export default function Note() {
+  /*
+  For the first responsive layout I was using here was "medium grid"
+  */ 
   return (
     <NoteProvider>
       <Container
-        classname={`medium:grid medium:grid-cols-[17.5rem_auto] overflow-hidden middle:bg-red-500`}
+        classname={`maxmid:grid maxmid:grid-cols-[17.5rem_auto] overflow-hidden`}
       >
         <NoteLeftLayout />
         <NoteRightLayout />
