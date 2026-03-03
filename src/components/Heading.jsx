@@ -1,25 +1,22 @@
-import MenuButton from "/src/navigation/components/MenuButton";
-import HeaderText from "/src/ui/HeaderText";
-import Paragraph from "/src/ui/Paragraph";
-import Conditional from "./Conditional"
-import Header from "/src/ui/Header";
-import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
-import { useState } from "react";
+import Group from "/src/ui/Group";
+import Header from "/src/ui/Header";
+import Conditional from "./Conditional"
+import Paragraph from "/src/ui/Paragraph";
+import HeaderText from "/src/ui/HeaderText";
+import MenuButton from "/src/navigation/components/MenuButton";
 
 export default function Heading({
+  theme,
   children,
+  classname,
   headerText,
+  groupStyling,
   paragraphText,
   headerStyling,
   paragraphStyling,
-  groupStyling,
-  classname,
-  theme,
   menu = true,
 }) {
-  const [isSmall, setIsSmall] = useState(true);
-
   return (
     <Header
       classname={`sticky top-0 z-30 border-b border-stone-300 shadow-sm backdrop-blur-sm  ${classname} ${theme ? "defaultColor dark:border-slate-700" : "bg-white/30"}`}
@@ -30,29 +27,20 @@ export default function Heading({
         </Conditional>
         <Flex variant="between" classname={`w-full ${menu ? "pl-4 pr-6" : ""}`}>
           <Group>
-            {/* <HeaderText type="primary" classname={`${headerStyling}`}>
-              {isSmall ? "WalkWise" : `${headerText}`}
-            </HeaderText>
-            <Paragraph
-              variant="small"
-              classname={`secondary-text-color ${paragraphStyling}`}
-            >
-              {paragraphText}
-            </Paragraph> */}
-            <Conditional condition={true}>
+            <div className="block medium:hidden">
               <Small 
                 paragraphStyling={paragraphStyling} 
                 paragraphText={paragraphText} 
               />
-            </Conditional>
-            <Conditional condition={false}>
+            </div>
+            <div className="hidden medium:block">
               <Large
                 headerStyling={headerStyling} 
                 headerText={headerText}
                 paragraphStyling={paragraphStyling} 
                 paragraphText={paragraphText}
               />
-            </Conditional>
+            </div>
           </Group>
           <Group classname={groupStyling}>{children}</Group>
         </Flex>
@@ -69,7 +57,7 @@ function Small ({ paragraphStyling, paragraphText }) {
       </HeaderText>
       <Paragraph
         variant="small"
-        classname={`secondary-text-color ${paragraphStyling}`}
+        classname={`secondary-text-color whitespace-nowrap truncate w-70 ${paragraphStyling}`}
       >
         {paragraphText}
       </Paragraph>
