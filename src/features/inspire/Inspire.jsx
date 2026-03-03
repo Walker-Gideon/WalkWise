@@ -16,7 +16,7 @@ export default function Inspire() {
   const {quote, author} = useQuotes();
 
   return (
-    <Container>
+    <Container classname={""}>
       <InspireHeader />
       <Main
         classname={

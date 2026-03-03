@@ -27,13 +27,13 @@ export default function Heading({
         </Conditional>
         <Flex variant="between" classname={`w-full ${menu ? "pl-4 pr-6" : ""}`}>
           <Group>
-            <div className="block medium:hidden">
+            <div className="block md:hidden">
               <Small 
                 paragraphStyling={paragraphStyling} 
                 paragraphText={paragraphText} 
               />
             </div>
-            <div className="hidden medium:block">
+            <div className="hidden md:block">
               <Large
                 headerStyling={headerStyling} 
                 headerText={headerText}
