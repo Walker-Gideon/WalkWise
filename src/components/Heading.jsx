@@ -5,6 +5,7 @@ import Conditional from "./Conditional"
 import Header from "/src/ui/Header";
 import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
+import { useState } from "react";
 
 export default function Heading({
   children,
@@ -17,6 +18,8 @@ export default function Heading({
   theme,
   menu = true,
 }) {
+  const [isSmall, setIsSmall] = useState(true);
+
   return (
     <Header
       classname={`sticky top-0 z-30 border-b border-stone-300 shadow-sm backdrop-blur-sm  ${classname} ${theme ? "defaultColor dark:border-slate-700" : "bg-white/30"}`}
@@ -27,19 +30,65 @@ export default function Heading({
         </Conditional>
         <Flex variant="between" classname={`w-full ${menu ? "pl-4 pr-6" : ""}`}>
           <Group>
-            <HeaderText type="primary" classname={headerStyling}>
-              {headerText}
+            {/* <HeaderText type="primary" classname={`${headerStyling}`}>
+              {isSmall ? "WalkWise" : `${headerText}`}
             </HeaderText>
             <Paragraph
               variant="small"
               classname={`secondary-text-color ${paragraphStyling}`}
             >
               {paragraphText}
-            </Paragraph>
+            </Paragraph> */}
+            <Conditional condition={true}>
+              <Small 
+                paragraphStyling={paragraphStyling} 
+                paragraphText={paragraphText} 
+              />
+            </Conditional>
+            <Conditional condition={false}>
+              <Large
+                headerStyling={headerStyling} 
+                headerText={headerText}
+                paragraphStyling={paragraphStyling} 
+                paragraphText={paragraphText}
+              />
+            </Conditional>
           </Group>
           <Group classname={groupStyling}>{children}</Group>
         </Flex>
       </Flex>
     </Header>
+  );
+}
+
+function Small ({ paragraphStyling, paragraphText }) {
+  return (
+    <>
+      <HeaderText type="primary">
+        WalkWise
+      </HeaderText>
+      <Paragraph
+        variant="small"
+        classname={`secondary-text-color ${paragraphStyling}`}
+      >
+        {paragraphText}
+      </Paragraph>
+    </>
+  );
+}
+
+function Large ({ headerStyling, headerText, paragraphStyling, paragraphText }) {
+  return (
+    <>
+      <HeaderText type="primary" classname={`${headerStyling}`}>
+        {headerText}
+      </HeaderText>
+      <Paragraph
+        variant="small"
+        classname={`secondary-text-color ${paragraphStyling}`}
+      >
+        {paragraphText}
+      </Paragraph>
+    </>
   );
 }
