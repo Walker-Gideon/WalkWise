@@ -1,12 +1,12 @@
 import { LuChartNoAxesCombined } from "react-icons/lu";
 
-import HeaderText from "/src/ui/HeaderText";
-import Paragraph from "/src/ui/Paragraph";
-import SpanText from "/src/ui/SpanText";
-import Card from "/src/components/Card";
-import Group from "/src/ui/Group";
-import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
+import Flex from "/src/ui/Flex";
+import Group from "/src/ui/Group";
+import Card from "/src/components/Card";
+import SpanText from "/src/ui/SpanText";
+import Paragraph from "/src/ui/Paragraph";
+import HeaderText from "/src/ui/HeaderText";
 
 import { useUserData } from "/src/user/hook/useUserData";
 
@@ -36,7 +36,6 @@ export default function InspireProgress() {
         <LuChartNoAxesCombined className="icons mb-1" />
         <SpanText>Study Progress</SpanText>
       </HeaderText>
-
       <Group classname={"mb-8"}>
         <HeaderText classname={"secondary-text-color mb-2 text-sm font-medium"}>Weekly Study Heatmap</HeaderText>
 
