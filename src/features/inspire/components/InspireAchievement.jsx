@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { LuFlame, LuBookOpen, LuSun, LuMoon, LuTarget, LuAward } from "react-icons/lu";
 
-import HeaderText from "/src/ui/HeaderText";
-import Paragraph from "/src/ui/Paragraph";
-import Badge from "/src/components/Badge";
-import Card from "/src/components/Card";
-import SpanText from "/src/ui/SpanText";
-import Group from "/src/ui/Group";
 import Box from "/src/ui/Box";
+import Group from "/src/ui/Group";
+import SpanText from "/src/ui/SpanText";
+import Card from "/src/components/Card";
+import Badge from "/src/components/Badge";
+import Paragraph from "/src/ui/Paragraph";
+import HeaderText from "/src/ui/HeaderText";
 
-import { useUserData } from "/src/user/hook/useUserData";
 import { useFetchCards } from "/src/hook/useCards";
+import { useUserData } from "/src/user/hook/useUserData";
 
 const achievements = [
   {
@@ -116,7 +116,6 @@ export default function InspireAchievement() {
         <LuAward className="icons mb-1" />
         <SpanText>Your Achievements</SpanText>
       </HeaderText>
-
       <Group
         classname={"medium:grid-cols-3 grid grid-cols-2 gap-4 md:grid-cols-4"}
       >
