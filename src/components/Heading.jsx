@@ -57,7 +57,7 @@ function Small ({ paragraphStyling, paragraphText }) {
       </HeaderText>
       <Paragraph
         variant="small"
-        classname={`secondary-text-color whitespace-nowrap truncate w-70 ${paragraphStyling}`}
+        classname={`secondary-text-color whitespace-nowrap truncate smallest:w-60 sm:w-70 medium:w-96 ${paragraphStyling}`}
       >
         {paragraphText}
       </Paragraph>
