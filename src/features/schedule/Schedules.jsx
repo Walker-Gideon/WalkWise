@@ -1,14 +1,14 @@
-import ScheduleContentLayout from "./components/ScheduleContentLayout";
-import ScheduleRemainder from "./components/ScheduleRemainder";
-import ScheduleActions from "./components/ScheduleActions";
-import ConfirmDelete from "/src/components/ConfirmDelete";
-import ScheduleHeader from "./components/ScheduleHeader";
-import ScheduleStatus from "./components/ScheduleStatus";
-import Conditional from "/src/components/Conditional";
-import SessionForm from "./components/SessionForm";
-import Container from "/src/ui/Container";
-import Group from "/src/ui/Group";
 import Main from "/src/ui/Main";
+import Group from "/src/ui/Group";
+import Container from "/src/ui/Container";
+import SessionForm from "./components/SessionForm";
+import Conditional from "/src/components/Conditional";
+import ScheduleStatus from "./components/ScheduleStatus";
+import ScheduleHeader from "./components/ScheduleHeader";
+import ConfirmDelete from "/src/components/ConfirmDelete";
+import ScheduleActions from "./components/ScheduleActions";
+import ScheduleRemainder from "./components/ScheduleRemainder";
+import ScheduleContentLayout from "./components/ScheduleContentLayout";
 
 import { useSchedule } from "./context/ScheduleContext";
 import useDeleteSession from "./hooks/useDeleteSession";
@@ -31,10 +31,10 @@ export default function Schedules() {
   }
 
   return (
-    <Container>
+    <Container classname={"flex h-full flex-col"}>
       <ScheduleHeader />
       <Main
-        classname={"h-screen medium:h-[510px] space-y-6 overflow-y-scroll p-6"}
+        classname={"min-h-0 flex-1 space-y-6 overflow-y-scroll p-6"}
       >
         <ScheduleStatus />
         <Group classname={"grid grid-cols-1 gap-x-6 gap-y-3 lg:grid-cols-3"}>
@@ -45,13 +45,9 @@ export default function Schedules() {
           </Group>
         </Group>
       </Main>
-
-      <Conditional
-        condition={isDisplaySessionForm}
-      >
+      <Conditional condition={isDisplaySessionForm}>
         <SessionForm />
       </Conditional>
-      
       <Conditional condition={isDeleteModal}>
         <ConfirmDelete
           resourceName={selectedSessionTitle}
