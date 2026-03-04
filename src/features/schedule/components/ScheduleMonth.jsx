@@ -1,20 +1,20 @@
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { addMonths, subMonths } from "date-fns";
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
-import Conditional from "/src/components/Conditional";
-import Legend from "/src/components/Legend";
-import HeaderText from "/src/ui/HeaderText";
-import Button from "/src/ui/Button";
-import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
-
+import Group from "/src/ui/Group";
+import Button from "/src/ui/Button";
+import HeaderText from "/src/ui/HeaderText";
+import Legend from "/src/components/Legend";
+import Conditional from "/src/components/Conditional";
 import CalendarGrid from "/src/components/CalendarGrid";
-import { useSessions } from "../hooks/useSessions";
+
 import useCalendar from "/src/hook/useCalendar";
+import { useSessions } from "../hooks/useSessions";
 
 export default function ScheduleMonth() {
-  const { currentMonth, monthLabel, calendarDays, onCurrentMonth } = useCalendar();
   const { sessions } = useSessions();
+  const { currentMonth, monthLabel, calendarDays, onCurrentMonth } = useCalendar();
 
   function handlePrevMonth() {
     onCurrentMonth((cur) => subMonths(cur, 1));
