@@ -1,5 +1,5 @@
-import Heading from "/src/components/Heading";
 import Button from "/src/ui/Button";
+import Heading from "/src/components/Heading";
 
 import { useSchedule } from "../context/ScheduleContext";
 
