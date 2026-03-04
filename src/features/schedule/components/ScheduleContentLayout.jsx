@@ -1,7 +1,7 @@
-import ScheduleMonth from "./ScheduleMonth";
-import ScheduleToday from "./ScheduleToday";
-import ScheduleWeek from "./ScheduleWeek";
 import Card from "/src/components/Card";
+import ScheduleWeek from "./ScheduleWeek";
+import ScheduleToday from "./ScheduleToday";
+import ScheduleMonth from "./ScheduleMonth";
 
 import { useSchedule } from "../context/ScheduleContext";
 
