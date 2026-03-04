@@ -1,11 +1,11 @@
 import { LuX } from "react-icons/lu";
 
-import HeaderText from "/src/ui/HeaderText";
-import Paragraph from "/src/ui/Paragraph";
-import Button from "/src/ui/Button";
-import Group from "/src/ui/Group";
-import Flex from "/src/ui/Flex";
 import Model from "./Model";
+import Flex from "/src/ui/Flex";
+import Group from "/src/ui/Group";
+import Button from "/src/ui/Button";
+import Paragraph from "/src/ui/Paragraph";
+import HeaderText from "/src/ui/HeaderText";
 
 export default function ConfirmDelete({
   resourceName,
@@ -29,7 +29,6 @@ export default function ConfirmDelete({
         <Paragraph variant="small" classname={"primary-text-color"}>
           Are you sure you want to delete this {resourceName} permanently? This action cannot be undone.
         </Paragraph>
-
         <Flex classname={"gap-2 justify-end"}>
           <Button
             type="border"
