@@ -1,8 +1,8 @@
-import HeaderText from "/src/ui/HeaderText";
-import Paragraph from "/src/ui/Paragraph";
-import SpanText from "/src/ui/SpanText";
-import Card from "/src/components/Card";
 import Group from "/src/ui/Group";
+import Card from "/src/components/Card";
+import SpanText from "/src/ui/SpanText";
+import Paragraph from "/src/ui/Paragraph";
+import HeaderText from "/src/ui/HeaderText";
 
 
 export default function Motivation({icon, headerText, quote, author}) {
