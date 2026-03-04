@@ -2,27 +2,28 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { LuX, LuTarget, LuCalendar, LuClock } from "react-icons/lu";
 
-import FormRow from "/src/components/FormRow";
-import HeaderText from "/src/ui/HeaderText";
-import Model from "/src/components/Model";
-import Spinner from "/src/ui/Spinner";
-import Button from "/src/ui/Button";
-import Group from "/src/ui/Group";
-import Form from "/src/ui/Form";
 import Flex from "/src/ui/Flex";
+import Form from "/src/ui/Form";
+import Group from "/src/ui/Group";
+import Button from "/src/ui/Button";
+import Spinner from "/src/ui/Spinner";
+import Model from "/src/components/Model";
+import HeaderText from "/src/ui/HeaderText";
+import FormRow from "/src/components/FormRow";
 
-import { useSchedule } from "../context/ScheduleContext";
-import { useCreateSession } from "../hooks/useCreateSession";
-import { useUpdateSession } from "../hooks/useUpdateSession";
-import { useSessions } from "../hooks/useSessions";
 import { useFetchCards } from "/src/hook/useCards";
+import { useSessions } from "../hooks/useSessions";
+import { useSchedule } from "../context/ScheduleContext";
+import { useUpdateSession } from "../hooks/useUpdateSession";
+import { useCreateSession } from "../hooks/useCreateSession";
 
 export default function SessionForm() {
-  const { flashcards = [] } = useFetchCards();
-  const { selectedId, setSelectedId, setIsDisplaySessionForm } = useSchedule();
-  const { createSession, isCreating } = useCreateSession();
-  const { updateSession, isUpdating } = useUpdateSession();
   const { sessions } = useSessions();
+  const { flashcards = [] } = useFetchCards();
+  const { updateSession, isUpdating } = useUpdateSession();
+  const { createSession, isCreating } = useCreateSession();
+  const { selectedId, setSelectedId, setIsDisplaySessionForm } = useSchedule();
+
   const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm({
     defaultValues: {
       tag: "",
@@ -128,7 +129,6 @@ export default function SessionForm() {
           <LuX />
         </Button>
       </Flex>
-
       <Form onsubmit={handleSubmit(onSubmit)} classname={"mt-6"}>
         <FormRow label="Select Tag *" error={errors?.tag?.message} errStyling={errorStyling}>
           <select
@@ -149,7 +149,6 @@ export default function SessionForm() {
             )}
           </select>
         </FormRow>
-
         <FormRow label="Number of Cards" classname={"my-4"}>
           <Group classname={"relative"}>
             <LuTarget className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
@@ -162,7 +161,6 @@ export default function SessionForm() {
             />
           </Group>
         </FormRow>
-
         <Flex variant="between" classname={"gap-2 mb-4"}>
           <FormRow label="Date *" error={errors?.date?.message} errStyling={errorStyling}>
             <Group classname={"relative"}>
@@ -174,7 +172,6 @@ export default function SessionForm() {
               />
             </Group>
           </FormRow>
-
           <FormRow label="Time *" error={errors?.time?.message} errStyling={errorStyling}>
             <Group classname={"relative"}>
               <LuClock className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
@@ -186,7 +183,6 @@ export default function SessionForm() {
             </Group>
           </FormRow>
         </Flex>
-
         <Flex variant="between" classname={"gap-2 pt-4"}>
           <Button
             onclick={(e) => {
