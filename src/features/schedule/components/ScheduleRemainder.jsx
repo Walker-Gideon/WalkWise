@@ -1,10 +1,10 @@
 import { LuClock } from "react-icons/lu";
 import { formatDistanceToNow } from "date-fns";
 
-import HeaderText from "/src/ui/HeaderText";
-import Paragraph from "/src/ui/Paragraph";
-import Card from "/src/components/Card";
 import Group from "/src/ui/Group";
+import Card from "/src/components/Card";
+import Paragraph from "/src/ui/Paragraph";
+import HeaderText from "/src/ui/HeaderText";
 
 import { useSessions } from "../hooks/useSessions";
 import { getScheduleStatus } from "/src/helper/helpers";
@@ -29,7 +29,6 @@ export default function ScheduleRemainder() {
   if (!nextSession) return null;
 
   const scheduledDate = nextSession.scheduledAt?.toDate ? nextSession.scheduledAt.toDate() : new Date(nextSession.scheduledAt);
-  // Using formatDistanceToNow to act as a countdown
   const timeRemaining = formatDistanceToNow(scheduledDate);
 
   return (
