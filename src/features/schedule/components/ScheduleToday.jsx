@@ -2,15 +2,15 @@ import { LuPlus } from "react-icons/lu";
 import { format, differenceInHours } from "date-fns";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
-import Conditional from "/src/components/Conditional";
-import HeaderText from "/src/ui/HeaderText";
-import Filter from "/src/components/Filter";
-import Paragraph from "/src/ui/Paragraph";
-import SessionCard from "./SessionCard";
-import Spinner from "/src/ui/Spinner";
-import Button from "/src/ui/Button";
-import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
+import Group from "/src/ui/Group";
+import Button from "/src/ui/Button";
+import Spinner from "/src/ui/Spinner";
+import SessionCard from "./SessionCard";
+import Paragraph from "/src/ui/Paragraph";
+import Filter from "/src/components/Filter";
+import HeaderText from "/src/ui/HeaderText";
+import Conditional from "/src/components/Conditional";
 
 import { useSessions } from "../hooks/useSessions";
 import { useSchedule } from "../context/ScheduleContext";
@@ -18,10 +18,12 @@ import { useUpdateSession } from "../hooks/useUpdateSession";
 import { getScheduleStatus, getStatusColor } from "/src/helper/helpers";
 
 export default function ScheduleToday() {
-  const { setSelectedId, setIsDeleteModal, setSelectedSessionTitle, setIsDisplaySessionForm } = useSchedule();
-  const { sessions, isLoading } = useSessions();
   const { updateSession } = useUpdateSession();
+  const { sessions, isLoading } = useSessions();
+  const { setSelectedId, setIsDeleteModal, setSelectedSessionTitle, setIsDisplaySessionForm } = useSchedule();
+
   const [searchParams] = useSearchParams();
+  
   const navigate = useNavigate();
 
   if (isLoading) return <Spinner />;
