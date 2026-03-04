@@ -1,19 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import { LuPlus, LuPlay, LuChartColumnIncreasing } from "react-icons/lu";
 
-import HeaderText from "/src/ui/HeaderText";
-import Card from "/src/components/Card";
-import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
+import Button from "/src/ui/Button";
+import Card from "/src/components/Card";
+import HeaderText from "/src/ui/HeaderText";
 
-import { useActiveSessions } from "../hooks/useActiveSessions";
-import { useUpdateSession } from "../hooks/useUpdateSession";
 import { useSchedule } from "../context/ScheduleContext";
+import { useUpdateSession } from "../hooks/useUpdateSession";
+import { useActiveSessions } from "../hooks/useActiveSessions";
 
 export default function ScheduleActions() {
-  const { setIsDisplaySessionForm } = useSchedule();
-  const { updateSession } = useUpdateSession();
   const { nextSession } = useActiveSessions();
+  const { updateSession } = useUpdateSession();
+  const { setIsDisplaySessionForm } = useSchedule();
+
   const navigate = useNavigate();
 
   function handleStartNext() {
@@ -40,7 +41,6 @@ export default function ScheduleActions() {
           {<LuPlay className={styling} />}
           Start Next Session
         </Button>
-
         <Button
           type="colors"
           onclick={() => setIsDisplaySessionForm(true)}
@@ -49,7 +49,6 @@ export default function ScheduleActions() {
           {<LuPlus className={styling} />}
           Add Session
         </Button>
-
         <Button
           type="colors"
           to="/dashboard"
