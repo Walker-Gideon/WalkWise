@@ -2,17 +2,17 @@ import {isSameDay} from "date-fns";
 import { useEffect, useState } from "react";
 import { LuTarget, LuClock, LuFlame, LuTrendingUp } from "react-icons/lu";
 
-import HeaderText from "/src/ui/HeaderText";
-import Badge from "/src/components/Badge";
-import Paragraph from "/src/ui/Paragraph";
-import Card from "/src/components/Card";
-import Spinner from "/src/ui/Spinner";
 import Group from "/src/ui/Group";
+import Spinner from "/src/ui/Spinner";
+import Card from "/src/components/Card";
+import Paragraph from "/src/ui/Paragraph";
+import Badge from "/src/components/Badge";
+import HeaderText from "/src/ui/HeaderText";
 
-import { useStudyTiming } from "/src/hook/useStudyTiming";
-import { useSuccessRate } from "/src/hook/useSuccessRate";
-import { useUserData } from "/src/user/hook/useUserData";
 import { useSessions } from "../hooks/useSessions";
+import { useUserData } from "/src/user/hook/useUserData";
+import { useSuccessRate } from "/src/hook/useSuccessRate";
+import { useStudyTiming } from "/src/hook/useStudyTiming";
 
 const status = [
   {
@@ -39,9 +39,9 @@ const status = [
 
 
 export default function ScheduleStatus() {
-  const { userData, loading, error } = useUserData();
   const { sessions } = useSessions();
   const successRate = useSuccessRate(sessions);
+  const { userData, loading, error } = useUserData();
   const { formattedTime } = useStudyTiming(sessions);
 
   const [statusData, setStatusData] = useState(status)
