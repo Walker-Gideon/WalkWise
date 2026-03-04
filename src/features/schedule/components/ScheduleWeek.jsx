@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import {
   format,
   startOfWeek,
@@ -6,23 +8,22 @@ import {
   addWeeks,
   subWeeks,
 } from "date-fns";
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
-import { useState } from "react";
 
-import Conditional from "/src/components/Conditional";
-import Legend from "/src/components/Legend";
-import HeaderText from "/src/ui/HeaderText";
-import Paragraph from "/src/ui/Paragraph";
-import Card from "/src/components/Card";
-import Button from "/src/ui/Button";
-import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
+import Group from "/src/ui/Group";
+import Button from "/src/ui/Button";
+import Card from "/src/components/Card";
+import Paragraph from "/src/ui/Paragraph";
+import HeaderText from "/src/ui/HeaderText";
+import Legend from "/src/components/Legend";
+import Conditional from "/src/components/Conditional";
 
 import { useSessions } from "../hooks/useSessions";
 import { getScheduleStatus, getStatusColor } from "/src/helper/helpers";
 
 export default function ScheduleWeek() {
   const [currentDate, setCurrentDate] = useState(new Date());
+
   const start = startOfWeek(currentDate, { weekStartsOn: 0 }); 
   const end = endOfWeek(currentDate, { weekStartsOn: 0 }); 
 
@@ -58,7 +59,6 @@ export default function ScheduleWeek() {
     <>
       <Flex variant="between">
         <HeaderText type="secondary" classname={"capitalize"}>{headerTitle}</HeaderText>
-        
         <Group classname={"space-x-2"}>
           <Button
             variant="secondary"
@@ -76,7 +76,6 @@ export default function ScheduleWeek() {
           </Button>
         </Group>
       </Flex>
-
       <Group classname={"h-185 space-y-3"}>
         {weekDays.map((day) => (
           <Card
