@@ -3,10 +3,8 @@ import Heading from "/src/components/Heading";
 
 import { useSchedule } from "../context/ScheduleContext";
 
-const scheduleDate = ["today", "week", "month"];
-
 export default function ScheduleHeader() {
-  const { activeView, setActiveView } = useSchedule();
+  const { activeView, setActiveView, scheduleDate } = useSchedule();
 
   return (
     <Heading

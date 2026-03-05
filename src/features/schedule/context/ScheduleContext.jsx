@@ -2,6 +2,8 @@ import { createContext, useContext, useState } from "react";
 
 const ScheduleContext = createContext();
 
+const scheduleDate = ["today", "week", "month"];
+
 function ScheduleProvider({ children }) {
   const [isDisplaySessionForm, setIsDisplaySessionForm] = useState(false);
   const [activeView, setActiveView] = useState("today");
@@ -21,6 +23,9 @@ function ScheduleProvider({ children }) {
     setIsDeleteModal,
     setSelectedSessionTitle,
     setIsDisplaySessionForm,
+
+    // Constant
+    scheduleDate,
   };
 
   return (
