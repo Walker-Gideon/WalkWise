@@ -8,6 +8,7 @@ import ScheduleHeader from "./components/ScheduleHeader";
 import ConfirmDelete from "/src/components/ConfirmDelete";
 import ScheduleActions from "./components/ScheduleActions";
 import ScheduleRemainder from "./components/ScheduleRemainder";
+import ScheduleViewButton from "./components/ScheduleViewButton";
 import ScheduleContentLayout from "./components/ScheduleContentLayout";
 
 import { useSchedule } from "./context/ScheduleContext";
@@ -38,6 +39,9 @@ export default function Schedules() {
       >
         <ScheduleStatus />
         <Group classname={"grid grid-cols-1 gap-x-6 gap-y-3 lg:grid-cols-3"}>
+          <Group classname={"flex w-fit justify-self-end rounded-sm border borderStyling dark:bg-slate-800 bg-white p-1 mt-5 md:hidden"}>
+            <ScheduleViewButton />
+          </Group>
           <ScheduleContentLayout />
           <Group classname={"space-y-6"}>
             <ScheduleActions />
