@@ -4,8 +4,6 @@ import Heading from "/src/components/Heading";
 import { useSchedule } from "../context/ScheduleContext";
 
 export default function ScheduleHeader() {
-  const { activeView, setActiveView, scheduleDate } = useSchedule();
-
   return (
     <Heading
       headerText="Study Schedule"
@@ -15,6 +13,16 @@ export default function ScheduleHeader() {
         "rounded-sm border borderStyling dark:bg-slate-800 bg-white p-1 hidden md:flex"
       }
     >
+      <ScheduleViewButton />
+    </Heading>
+  );
+}
+
+function ScheduleViewButton () {
+  const { activeView, setActiveView, scheduleDate } = useSchedule();
+
+   return (
+    <>
       {scheduleDate.map((view, index) => (
         <Button
           key={index}
@@ -24,6 +32,6 @@ export default function ScheduleHeader() {
           {view.charAt(0).toLocaleUpperCase() + view.slice(1)}
         </Button>
       ))}
-    </Heading>
-  );
+    </>
+   )
 }
