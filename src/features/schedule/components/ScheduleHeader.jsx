@@ -14,7 +14,7 @@ export default function ScheduleHeader() {
       paragraphText="Plan and track your learning sessions"
       theme={true}
       groupStyling={
-        "rounded-sm border borderStyling dark:bg-slate-800 bg-white p-1"
+        "rounded-sm border borderStyling dark:bg-slate-800 bg-white p-1 hidden md:flex"
       }
     >
       {scheduleDate.map((view, index) => (
