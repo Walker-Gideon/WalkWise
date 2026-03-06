@@ -1,31 +1,31 @@
 import { useEffect } from "react";
-import { auth } from "/src/service/firebase";
-import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
+import { auth } from "/src/service/firebase";
 
-import CreatedNotification from "./CreatedNotification";
-import CreatedAddButton from "./CreatedAddButton";
-import CreatedHeader from "./CreatedHeader";
-import CreatedInputs from "./CreatedInputs";
-import CreatedTag from "./CreatedTag";
-import Spinner from "/src/ui/Spinner";
-import Form from "/src/ui/Form";
 import Box from "/src/ui/Box";
+import Form from "/src/ui/Form";
+import Spinner from "/src/ui/Spinner";
+import CreatedTag from "./CreatedTag";
+import CreatedInputs from "./CreatedInputs";
+import CreatedHeader from "./CreatedHeader";
+import CreatedAddButton from "./CreatedAddButton";
+import CreatedNotification from "./CreatedNotification";
 
-import useCreateFlashcard from "../../../hooks/useCreateFlashcard";
-import useUpdateFlashcard from "../../../hooks/useUpdateFlashcard";
-import { useFlashcard } from "../../../context/FlashcardContext";
-import { useUserData } from "/src/user/hook/useUserData";
-import { useFetchCards } from "/src/hook/useCards";
 import { updateUser } from "/src/service/apiUser";
+import { useFetchCards } from "/src/hook/useCards";
+import { useUserData } from "/src/user/hook/useUserData";
+import { useFlashcard } from "../../../context/FlashcardContext";
+import useUpdateFlashcard from "../../../hooks/useUpdateFlashcard";
+import useCreateFlashcard from "../../../hooks/useCreateFlashcard";
 
 export default function CreatedForm() {
+  const { userData } = useUserData();
+  const { flashcards } = useFetchCards();
+  const { updateMutation, isUpdating } = useUpdateFlashcard();
   const { control, register, handleSubmit, reset } = useForm();
   const { createFlashcard, isCreating } = useCreateFlashcard();
-  const { updateMutation, isUpdating } = useUpdateFlashcard();
   const { setIsDisplay, setPairs, editingId, setEditingId } = useFlashcard();
-  const { flashcards } = useFetchCards();
-  const { userData } = useUserData();
 
   useEffect(() => {
     if (editingId && flashcards) {
@@ -124,12 +124,12 @@ export default function CreatedForm() {
   return (
     <>
       {(isCreating || isUpdating) && <Spinner />}
-      <Form onsubmit={handleSubmit(onSubmit)}>
+      <Form onsubmit={handleSubmit(onSubmit)} classname={"flex min-h-0 flex-1 flex-col"}>
         <CreatedHeader onHandleSubmit={handleSubmit} />
         <Box
           adjustWidth={true}
           classname={
-            "max-w-3xl maxmid:max-w-4xl mx-auto medium:mt-8 mt-14 px-8 medium:h-[78vh] overflow-y-scroll"
+            "max-w-3xl maxmid:max-w-4xl mx-auto medium:mt-8 mt-14 px-8 overflow-y-auto min-h-0 flex-1 w-full"
           }
         >
           <CreatedTag register={register} />

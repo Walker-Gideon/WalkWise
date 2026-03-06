@@ -42,7 +42,7 @@ export default function Flashcard() {
   }, [searchParams, setActiveId, setIsPlay, setIsDisplay, activeId, isPlay]);
 
   return (
-    <Container>
+    <Container classname={"flex h-full flex-col"}>
       {/* 1. Initial Display */}
       <Conditional condition={!isDisplay && !hasFlashcards}>
         <FlashcardHeader />
