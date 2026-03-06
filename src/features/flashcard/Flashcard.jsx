@@ -2,24 +2,25 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { LuRectangleVertical } from "react-icons/lu";
 
-import StudyFlashcardSummary from "./components/create-cards/StudyFlashcardSummary";
-import CardsInitDisplay from "./components/create-cards/CardsInitDisplay";
+import Container from "/src/ui/Container";
+import Conditional from "/src/components/Conditional";
+import FlashcardHeader from "./components/FlashcardHeader";
+import InformationPrompt from "/src/components/InformationPrompt";
 import StudyFlashcard from "./components/create-cards/StudyFlashcard";
 import CreatedForm from "./components/create-cards/create/CreatedForm";
-import InformationPrompt from "/src/components/InformationPrompt";
-import FlashcardHeader from "./components/FlashcardHeader";
-import Conditional from "/src/components/Conditional";
-import Container from "/src/ui/Container";
+import CardsInitDisplay from "./components/create-cards/CardsInitDisplay";
+import StudyFlashcardSummary from "./components/create-cards/StudyFlashcardSummary";
 
-import { useAuthentication } from "/src/authentication/context/AuthContext";
+import { useFlashcards } from "./hooks/useFlashcards";
 import { useFlashcard } from "./context/FlashcardContext";
 import useToggleDisplay from "/src/hook/useToggleDisplay";
-import { useFlashcards } from "./hooks/useFlashcards";
+import { useAuthentication } from "/src/authentication/context/AuthContext";
 
 export default function Flashcard() {
   const { user } = useAuthentication();
   const { data: flashcards } = useFlashcards(user?.uid);
   const { isPlay, isDisplay, finished, setIsDisplay, setIsPlay, setActiveId, activeId } = useFlashcard();
+  
   const [searchParams] = useSearchParams();
 
   const handleToggleDisplay = useToggleDisplay(setIsDisplay);
