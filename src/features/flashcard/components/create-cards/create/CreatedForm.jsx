@@ -5,12 +5,14 @@ import { auth } from "/src/service/firebase";
 
 import Box from "/src/ui/Box";
 import Form from "/src/ui/Form";
+import Group from "/src/ui/Group";
 import Spinner from "/src/ui/Spinner";
 import CreatedTag from "./CreatedTag";
 import CreatedInputs from "./CreatedInputs";
 import CreatedHeader from "./CreatedHeader";
 import CreatedAddButton from "./CreatedAddButton";
 import CreatedNotification from "./CreatedNotification";
+import CreatedActionButton from "./CreatedActionButton";
 
 import { updateUser } from "/src/service/apiUser";
 import { useFetchCards } from "/src/hook/useCards";
@@ -126,10 +128,13 @@ export default function CreatedForm() {
       {(isCreating || isUpdating) && <Spinner />}
       <Form onsubmit={handleSubmit(onSubmit)} classname={"flex min-h-0 flex-1 flex-col"}>
         <CreatedHeader onHandleSubmit={handleSubmit} />
+        <Group classname={"space-x-2 px-8 medium:py-6 py-4 flex justify-end middle:hidden"}>
+          <CreatedActionButton />
+        </Group>
         <Box
           adjustWidth={true}
           classname={
-            "max-w-3xl maxmid:max-w-4xl mx-auto medium:mt-8 mt-14 px-8 overflow-y-auto min-h-0 flex-1 w-full"
+            "max-w-3xl maxmid:max-w-4xl mx-auto px-8 middle:py-6 overflow-y-auto min-h-0 flex-1 w-full"
           }
         >
           <CreatedTag register={register} />
