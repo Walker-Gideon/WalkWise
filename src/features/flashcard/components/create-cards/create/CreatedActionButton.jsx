@@ -4,7 +4,7 @@ import useToggleDisplay from "/src/hook/useToggleDisplay";
 import { useFlashcard } from "../../../context/FlashcardContext";
 
 export default function CreatedActionButton() {
-    const { setIsDisplay, setIsPlay, editingId, setEditingId, setPairs } = useFlashcard();
+    const { setIsDisplay, setIsPlay, editingId, setEditingId, setPairs, pairs } = useFlashcard();
     
     let handleCancel;
     const toggleDisplay = useToggleDisplay(setIsDisplay);
@@ -34,6 +34,8 @@ export default function CreatedActionButton() {
         handleCancel = cancelDefault;
     }
 
+    const hasValidPair = pairs.some(pair => pair.term?.trim() !== "" && pair.definition?.trim() !== "");
+
     return (
         <>
           <Button
@@ -50,6 +52,7 @@ export default function CreatedActionButton() {
             type="colors"
             submit={true}
             classname={`${editingId ? "px-11" : "px-8"}`}
+            disabled={!hasValidPair}
           >
             {editingId ? "Edit" : "Create"}
           </Button>
