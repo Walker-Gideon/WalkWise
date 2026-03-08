@@ -1,37 +1,35 @@
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
-
-import { RiDeleteBin5Line } from "react-icons/ri";
-import { GoDotFill } from "react-icons/go";
 import { LuPlay } from "react-icons/lu";
+import { GoDotFill } from "react-icons/go";
+import { useEffect, useState } from "react";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { useSearchParams } from "react-router-dom";
 
-import ConfirmDelete from "/src/components/ConfirmDelete";
-import HeaderText from "/src/ui/HeaderText";
-import Paragraph from "/src/ui/Paragraph";
-import Container from "/src/ui/Container";
-import Card from "/src/components/Card";
-import Spinner from "/src/ui/Spinner";
-import Button from "/src/ui/Button";
-import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
+import Group from "/src/ui/Group";
+import Button from "/src/ui/Button";
+import Spinner from "/src/ui/Spinner";
+import Card from "/src/components/Card";
+import Container from "/src/ui/Container";
+import Paragraph from "/src/ui/Paragraph";
+import HeaderText from "/src/ui/HeaderText";
+import ConfirmDelete from "/src/components/ConfirmDelete";
 
-import useDeleteFlashcard from "../../../hooks/useDeleteFlashcard";
-import { useFlashcard } from "../../../context/FlashcardContext";
-import useFormattedDate from "/src/hook/useFormattedDate";
 import { useFetchCards } from "/src/hook/useCards";
+import useFormattedDate from "/src/hook/useFormattedDate";
+import { useFlashcard } from "../../../context/FlashcardContext";
+import useDeleteFlashcard from "../../../hooks/useDeleteFlashcard";
 
 export default function CardContentDisplay() {
   const { query } = useFlashcard();
   const { flashcards, isPending, error } = useFetchCards();
   const { isDeleting, deleteFlashcard } = useDeleteFlashcard();
 
-  const [selectedCardTitle, setSelectedCardTitle] = useState("");
-  const [isDeleteModal, setIsDeleteModal] = useState(false);
-  const [isSearching, setIsSearching] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
-
+  const [isSearching, setIsSearching] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isDeleteModal, setIsDeleteModal] = useState(false);
+  const [selectedCardTitle, setSelectedCardTitle] = useState("");
 
   // Search
   useEffect(() => {
