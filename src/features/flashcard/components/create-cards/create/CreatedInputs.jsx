@@ -1,11 +1,11 @@
 import { Controller } from "react-hook-form";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-import Container from "/src/ui/Container";
-import Button from "/src/ui/Button";
-import Group from "/src/ui/Group";
-import Label from "/src/ui/Label";
 import Flex from "/src/ui/Flex";
+import Label from "/src/ui/Label";
+import Group from "/src/ui/Group";
+import Button from "/src/ui/Button";
+import Container from "/src/ui/Container";
 
 import { useFlashcard } from "../../../context/FlashcardContext";
 
@@ -36,8 +36,9 @@ export default function CreatedInputs({ control }) {
                 variant="secondary"
                 classname={"mb-4"}
                 onclick={handleDelete}
+                disabled={pairs.length <= 2}
               >
-                <RiDeleteBin5Line className="icons text-slate-500 dark:text-slate-200" />
+                <RiDeleteBin5Line className={`icons ${pairs.length <= 2 ? "text-slate-300 dark:text-slate-500 cursor-not-allowed" : "text-slate-500 dark:text-slate-200"}`} />
               </Button>
             </Flex>
 
