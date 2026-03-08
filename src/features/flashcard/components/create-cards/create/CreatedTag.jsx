@@ -13,7 +13,6 @@ export default function CreatedTag({ register }) {
         {...register("tags", {
           require: "This field is required",
         })}
-        // disabled={}
       />
     </FormRow>
   );

@@ -1,7 +1,7 @@
 import { LuPlus } from "react-icons/lu";
 
-import Button from "/src/ui/Button";
 import Flex from "/src/ui/Flex";
+import Button from "/src/ui/Button";
 
 import { useFlashcard } from "../../../context/FlashcardContext";
 

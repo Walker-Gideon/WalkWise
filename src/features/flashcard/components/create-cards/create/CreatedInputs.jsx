@@ -12,12 +12,9 @@ import { useFlashcard } from "../../../context/FlashcardContext";
 export default function CreatedInputs({ control }) {
   const { pairs, handleDelete, handlePairChange } = useFlashcard();
 
-  // const { handleSubmit, register, reset, getValues, formState } = useForm();
-
   return (
     <Container
       adjust={true}
-      // medium:h-[41vh] h-[36vh] overflow-y-scroll
       classname={"space-y-6 py-4"}
     >
       {pairs.map((pair, idx) => (

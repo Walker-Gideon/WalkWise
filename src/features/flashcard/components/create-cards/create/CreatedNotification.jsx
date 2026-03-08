@@ -1,5 +1,5 @@
-import Paragraph from "/src/ui/Paragraph";
 import Group from "/src/ui/Group";
+import Paragraph from "/src/ui/Paragraph";
 
 import { useFlashcard } from "../../../context/FlashcardContext";
 
