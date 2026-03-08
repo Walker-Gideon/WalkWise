@@ -1,9 +1,9 @@
 import { LuSearch } from "react-icons/lu";
 
-import Filter from "/src/components/Filter";
-import Group from "/src/ui/Group";
-import Input from "/src/ui/Input";
 import Flex from "/src/ui/Flex";
+import Input from "/src/ui/Input";
+import Group from "/src/ui/Group";
+import Filter from "/src/components/Filter";
 
 import { useFlashcard } from "../../../context/FlashcardContext";
 
