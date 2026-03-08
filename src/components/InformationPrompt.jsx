@@ -1,8 +1,8 @@
-import HeaderText from "/src/ui/HeaderText";
-import Paragraph from "/src/ui/Paragraph";
-import Badge from "/src/components/Badge";
-import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
+import Button from "/src/ui/Button";
+import Badge from "/src/components/Badge";
+import Paragraph from "/src/ui/Paragraph";
+import HeaderText from "/src/ui/HeaderText";
 
 export default function InformationPrompt({
   icon,
