@@ -1,8 +1,9 @@
 import { LuSearch } from "react-icons/lu";
 
 import Flex from "/src/ui/Flex";
-import Input from "/src/ui/Input";
 import Group from "/src/ui/Group";
+import Input from "/src/ui/Input";
+import Button from "/src/ui/Button";
 import Filter from "/src/components/Filter";
 
 import { useFlashcard } from "../../../context/FlashcardContext";
@@ -14,9 +15,9 @@ export default function CardsSubHeader() {
   } = useFlashcard();
 
   return (
-    <Group classname={"sticky top-20.5 z-30 py-6 h-20 transition-colors duration-300 bg-slate-50 dark:bg-slate-800"}>
-    <Flex variant="between" classname={" gap-1"}>
-      <Group classname={"relative w-[50vw]"}>
+    <Group classname={"sticky top-20.5 z-30 py-6 bg-slate-50 dark:bg-slate-800 transition-colors duration-300"}>
+    <Flex variant="between" classname={"gap-5 md:gap-1 flex-col md:flex-row"}>
+      <Group classname={"relative w-full md:w-[50vw]"}>
         <Input
           type="text"
           name="query"
@@ -28,14 +29,22 @@ export default function CardsSubHeader() {
         <LuSearch className="absolute top-2.5 right-2 text-sm text-slate-600 dark:text-slate-300" />
       </Group>
 
-      <Group>
-        <Filter options={[
+      <Flex variant="between" classname={"w-full"}>
+        <Group>
+          <Filter options={[
             { value: "title", label: "Flashcard name" },
             { value: "count", label: "Number of cards" },
             { value: "time", label: "Time created" },
-          ]} 
-        />
-      </Group>
+            ]} 
+          />
+        </Group>
+        <Group classname={"space-x-2 md:hidden"}>
+          {/* onclick={handleToggleDisplay} */}
+          <Button type="colors" >
+            Create Flashcard
+          </Button>
+        </Group>
+      </Flex>
     </Flex>
     </Group>
   );
