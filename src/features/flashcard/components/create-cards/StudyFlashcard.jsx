@@ -5,23 +5,23 @@ import { motion, AnimatePresence } from "motion/react";
 import { useSearchParams, useLocation } from "react-router-dom";
 import { LuArrowLeft, LuArrowRight, LuX, LuCheck } from "react-icons/lu";
 
-import ConfirmDelete from "/src/components/ConfirmDelete";
-import StudyFlashcardHeader from "./StudyFlashcardHeader";
-import Container from "/src/ui/Container";
-import Paragraph from "/src/ui/Paragraph";
-import Spinner from "/src/ui/Spinner";
-import Button from "/src/ui/Button";
-import Group from "/src/ui/Group";
 import Flex from "/src/ui/Flex";
+import Group from "/src/ui/Group";
+import Button from "/src/ui/Button";
+import Spinner from "/src/ui/Spinner";
+import Paragraph from "/src/ui/Paragraph";
+import Container from "/src/ui/Container";
+import StudyFlashcardHeader from "./StudyFlashcardHeader";
+import ConfirmDelete from "/src/components/ConfirmDelete";
 
-import useDeleteFlashcard from "../../hooks/useDeleteFlashcard";
-import useUpdateFlashcard from "../../hooks/useUpdateFlashcard";
-import { useFlashcard } from "../../context/FlashcardContext";
-import { useGeneral } from "/src/contexts/GeneralContext";
-import { useUserData } from "/src/user/hook/useUserData";
-import { useFetchCards } from "/src/hook/useCards";
-import { updateUser } from "/src/service/apiUser";
 import { formatTime } from "/src/helper/helpers";
+import { updateUser } from "/src/service/apiUser";
+import { useFetchCards } from "/src/hook/useCards";
+import { useUserData } from "/src/user/hook/useUserData";
+import { useGeneral } from "/src/contexts/GeneralContext";
+import { useFlashcard } from "../../context/FlashcardContext";
+import useUpdateFlashcard from "../../hooks/useUpdateFlashcard";
+import useDeleteFlashcard from "../../hooks/useDeleteFlashcard";
 
 export default function StudyFlashcard() {
   const user = auth.currentUser;
@@ -38,9 +38,9 @@ export default function StudyFlashcard() {
   const [timer, setTimer] = useState(0);
   const [isFlip, setIsFlip] = useState(false);
   const [direction, setDirection] = useState(0);
+  const [sessionResults, setSessionResults] = useState({});
   const [searchParams, setSearchParams] = useSearchParams();
   const [isDeleteModal, setIsDeleteModal] = useState(false);
-  const [sessionResults, setSessionResults] = useState({});
 
   const location = useLocation();
 
