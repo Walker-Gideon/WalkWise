@@ -10,7 +10,7 @@ export default function InitCardActionButton({ styling }) {
     const handleToggleDisplay = useToggleDisplay(setIsDisplay);
 
     return (
-        <Group classname={`space-x-2 ${styling ? "" : "hidden md:block"}`}>
+        <Group classname={`space-x-2 ${styling ? "md:hidden" : "hidden md:block"}`}>
             <Button type="colors" onclick={handleToggleDisplay}>
                 Create Flashcard
             </Button>

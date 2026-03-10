@@ -1,5 +1,5 @@
-import InitCardActionButton from "./InitCardActionButton";
 import Heading from "/src/components/Heading";
+import InitCardActionButton from "./InitCardActionButton";
 
 export default function CardHeader() {
   return (

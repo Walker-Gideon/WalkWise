@@ -3,8 +3,8 @@ import { LuSearch } from "react-icons/lu";
 import Flex from "/src/ui/Flex";
 import Group from "/src/ui/Group";
 import Input from "/src/ui/Input";
-import Button from "/src/ui/Button";
 import Filter from "/src/components/Filter";
+import InitCardActionButton from "./InitCardActionButton";
 
 import { useFlashcard } from "../../../context/FlashcardContext";
 
@@ -38,12 +38,7 @@ export default function CardsSubHeader() {
             ]} 
           />
         </Group>
-        <Group classname={"space-x-2 md:hidden"}>
-          {/* onclick={handleToggleDisplay} */}
-          <Button type="colors" >
-            Create Flashcard
-          </Button>
-        </Group>
+        <InitCardActionButton styling={true} />
       </Flex>
     </Flex>
     </Group>
