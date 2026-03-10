@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 
 import Menus from "./Menus";
 
-export default function Filter({ options = [] }) {
+export default function Filter({ options = [], align }) {
     const [searchParams, setSearchParams] = useSearchParams();
     const currentFilter = searchParams.get("filter") || options[0]?.value || "";
 
@@ -16,7 +16,7 @@ export default function Filter({ options = [] }) {
 
     return (
         <Menus>
-          <Menus.Toggle type={true} />
+          <Menus.Toggle type={true} align={align} />
           <Menus.Lists>
             {options.map((option) => (
               <Menus.Buttons

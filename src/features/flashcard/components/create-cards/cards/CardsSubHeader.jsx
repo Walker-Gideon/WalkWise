@@ -30,17 +30,23 @@ export default function CardsSubHeader() {
       </Group>
 
       <Flex variant="between" classname={"w-full md:w-auto"}>
-        <Group>
-          <Filter options={[
-            { value: "title", label: "Flashcard name" },
-            { value: "count", label: "Number of cards" },
-            { value: "time", label: "Time created" },
-            ]} 
-          />
-        </Group>
+        <FilterDirection align="right" styling={false} />
+        <FilterDirection styling={true} />
         <InitCardActionButton styling={true} />
       </Flex>
     </Flex>
+    </Group>
+  );
+}
+
+function FilterDirection({ align = "left", styling }) {
+  return (
+    <Group classname={`${styling ? "md:hidden" : "hidden md:block"}`}>
+      <Filter align={align} options={[
+        { value: "title", label: "Flashcard name" },
+        { value: "count", label: "Number of cards" },
+        { value: "time", label: "Time created" },
+      ]} />
     </Group>
   );
 }
