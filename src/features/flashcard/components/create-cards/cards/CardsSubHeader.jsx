@@ -29,7 +29,7 @@ export default function CardsSubHeader() {
         <LuSearch className="absolute top-2.5 right-2 text-sm text-slate-600 dark:text-slate-300" />
       </Group>
 
-      <Flex variant="between" classname={"w-full"}>
+      <Flex variant="between" classname={"w-full md:w-auto"}>
         <Group>
           <Filter options={[
             { value: "title", label: "Flashcard name" },
