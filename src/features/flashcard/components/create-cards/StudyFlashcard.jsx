@@ -204,7 +204,7 @@ export default function StudyFlashcard() {
     "rounded-full p-3 disabled:cursor-not-allowed disabled:bg-gray-400 borderStyling";
 
   return (
-    <Container classname={"p-4"}>
+    <Container classname={"p-4 h-full flex flex-col"}>
       <StudyFlashcardHeader title={title} onIsDeleteModal={setIsDeleteModal} timer={formatTime(timer)} />
 
       {isPending ? (
@@ -212,7 +212,7 @@ export default function StudyFlashcard() {
       ) : (
         <Flex
           variant="center"
-          classname={"px-8 flex-col gap-8 md:max-w-2xl mx-auto"}
+          classname={"px-2 md:px-8 flex-col gap-8 md:max-w-2xl mx-auto flex-1 w-full"}
         >
           <div
             className="perspective medium:h-85 h-70 w-full"

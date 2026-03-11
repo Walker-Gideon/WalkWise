@@ -33,7 +33,7 @@ export default function StudyFlashcardHeader({ title, onIsDeleteModal, timer }) 
     }
 
     return (
-        <Header classname={"mb-4 py-6 middle:px-4 lg:px-8 flex items-center justify-between"}>
+        <Header classname={"py-4 middle:px-4 lg:px-8 flex items-center justify-between"}>
             <Flex classname={"items-center gap-2"}>
                 <Button
                   variant="secondary" 
