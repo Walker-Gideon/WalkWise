@@ -2,34 +2,34 @@ import { useState, useEffect } from "react"
 import { LuArrowLeft, LuFlame, LuCheck } from "react-icons/lu";
 import { useSearchParams, useLocation } from "react-router-dom";
 
-import HeaderText from "/src/ui/HeaderText";
-import Menus from "/src/components/Menus";
-import Container from "/src/ui/Container";
-import Paragraph from "/src/ui/Paragraph";
-import SpanText from "/src/ui/SpanText";
-import Header from "/src/ui/Header";
-import Button from "/src/ui/Button";
-import Group from "/src/ui/Group";
-import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
+import Flex from "/src/ui/Flex";
+import Group from "/src/ui/Group";
+import Button from "/src/ui/Button";
+import Header from "/src/ui/Header";
+import SpanText from "/src/ui/SpanText";
+import Paragraph from "/src/ui/Paragraph";
+import Container from "/src/ui/Container";
+import Menus from "/src/components/Menus";
+import HeaderText from "/src/ui/HeaderText";
 
-import { useUpdateSession } from "/src/features/schedule/hooks/useUpdateSession";
-import { useFlashcard } from "../../context/FlashcardContext";
-import { useGeneral } from "/src/contexts/GeneralContext";
-import { useUserData } from "/src/user/hook/useUserData";
-import { useFetchCards } from "/src/hook/useCards";
 import { formatTime } from "/src/helper/helpers";
+import { useFetchCards } from "/src/hook/useCards";
+import { useUserData } from "/src/user/hook/useUserData";
+import { useGeneral } from "/src/contexts/GeneralContext";
+import { useFlashcard } from "../../context/FlashcardContext";
+import { useUpdateSession } from "/src/features/schedule/hooks/useUpdateSession";
 
 export default function StudyFlashcardSummary() {
   /* eslint-disable no-unused-vars */
-  const { setFinished, activeId } = useFlashcard();
-  const { updateSession } = useUpdateSession();
-  const { flashcards } = useFetchCards();
-  const { userData } = useUserData();
   const { studyTime } = useGeneral();
+  const { userData } = useUserData();
+  const { flashcards } = useFetchCards();
+  const { updateSession } = useUpdateSession();
+  const { setFinished, activeId } = useFlashcard();
 
-  const [searchParams, setSearchParams] = useSearchParams();
   const [count, setCount] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const location = useLocation();
   const sessionId = searchParams.get("session");
