@@ -6,8 +6,8 @@ import Container from "/src/ui/Container";
 import Conditional from "/src/components/Conditional";
 import FlashcardHeader from "./components/FlashcardHeader";
 import InformationPrompt from "/src/components/InformationPrompt";
-import StudyFlashcard from "./components/create-cards/StudyFlashcard";
 import CreatedForm from "./components/create-cards/create/CreatedForm";
+import StudyFlashcard from "./components/create-cards/StudyFlashcard";
 import CardsInitDisplay from "./components/create-cards/CardsInitDisplay";
 import FlashcardSummaryModal from "./components/create-cards/create/FlashcardSummaryModal";
 
@@ -68,9 +68,7 @@ export default function Flashcard() {
           <CardsInitDisplay />
         </Conditional>
         <Conditional condition={isPlay}>
-          <Conditional condition={!finished}> 
-            <StudyFlashcard />
-          </Conditional>
+          <StudyFlashcard />
           <Conditional condition={finished}>
             <FlashcardSummaryModal />
           </Conditional>
