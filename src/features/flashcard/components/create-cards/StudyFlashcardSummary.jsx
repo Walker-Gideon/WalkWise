@@ -65,7 +65,7 @@ export default function StudyFlashcardSummary() {
   }, []);
 
   useEffect(() => {
-    if (count === 10) {
+    if (count === 100) { // change this back to 10
       setTimeout(() => {
         handleToFlashcard()
       }, 1000);
@@ -85,14 +85,15 @@ export default function StudyFlashcardSummary() {
   const rounded = "py-2 px-3 text-sm font-medium rounded-full space-x-4";
 
   return (
-    <Container classname={"p-4"}>
+    <Container classname={"p-4 h-full flex flex-col"}>
       <InnerHeader 
         onHandleBack={handleBack} 
         onHandleAgain={handleBack} 
         onHandleToFlashcard={handleToFlashcard}
       />
 
-      <Group classname={"px-8 medium:px-6 middle:px-8 lg:px-14 space-y-8 primary-text-color my-auto w-full h-full mt-8"}>
+{/* mt-8 */}
+      <Group classname={"px-8 medium:px-6 middle:px-8 lg:px-14 space-y-8 primary-text-color my-auto w-full h-full flex-col flex-1 bg-red-500"}>
         <Group>
           <Paragraph classname={"text-5xl font-bold mb-4"}>
             You reviewed all your flashcards.
@@ -137,7 +138,7 @@ export default function StudyFlashcardSummary() {
 
 function InnerHeader({ onHandleBack, onHandleAgain, onHandleToFlashcard }) {
   return (
-    <Header classname={"mb-4 py-6 flex items-center justify-between medium:px-4 middle:px-6 lg:px-8"}>
+    <Header classname={"py-4 flex items-center justify-between medium:px-4 middle:px-6 lg:px-8"}>
       <Flex classname={"items-center gap-2"}>
         <Button variant="secondary" type="back" onclick={onHandleBack}>
           <LuArrowLeft className="h-5 w-5" />
