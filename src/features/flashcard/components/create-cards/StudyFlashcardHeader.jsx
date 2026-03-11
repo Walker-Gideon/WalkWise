@@ -2,19 +2,21 @@ import { LuArrowLeft } from "react-icons/lu";
 import { RiDeleteBin5Line, RiEditLine } from "react-icons/ri";
 import { useSearchParams, useLocation } from "react-router-dom";
 
-import HeaderText from "/src/ui/HeaderText";
-import Menus from "/src/components/Menus";
-import SpanText from "/src/ui/SpanText";
+import Flex from "/src/ui/Flex";
+import Group from "/src/ui/Group";
 import Header from "/src/ui/Header";
 import Button from "/src/ui/Button";
-import Group from "/src/ui/Group";
-import Flex from "/src/ui/Flex";
+import SpanText from "/src/ui/SpanText";
+import Menus from "/src/components/Menus";
+import HeaderText from "/src/ui/HeaderText";
 
 import { useFlashcard } from "../../context/FlashcardContext";
 
 export default function StudyFlashcardHeader({ title, onIsDeleteModal, timer }) {
     const { setIsPlay, setEditingId, activeId, setIsDisplay } = useFlashcard();
+
     const [searchParams, setSearchParams] = useSearchParams();
+    
     const location = useLocation();
 
     function handleEdit() {
