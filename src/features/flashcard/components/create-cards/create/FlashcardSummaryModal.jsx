@@ -51,7 +51,7 @@ export default function FlashcardSummaryModal() {
     useEffect(() => {
         const interval = setInterval(() => {
             setCount((prev) => {
-                if (prev < 10) return prev + 1;
+                if (prev < 5) return prev + 1;
                 clearInterval(interval);
                 return prev;
             });
