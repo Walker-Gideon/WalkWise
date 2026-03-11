@@ -9,7 +9,7 @@ import InformationPrompt from "/src/components/InformationPrompt";
 import StudyFlashcard from "./components/create-cards/StudyFlashcard";
 import CreatedForm from "./components/create-cards/create/CreatedForm";
 import CardsInitDisplay from "./components/create-cards/CardsInitDisplay";
-import StudyFlashcardSummary from "./components/create-cards/StudyFlashcardSummary";
+import FlashcardSummaryModal from "./components/create-cards/create/FlashcardSummaryModal";
 
 import { useFlashcards } from "./hooks/useFlashcards";
 import { useFlashcard } from "./context/FlashcardContext";
@@ -72,7 +72,7 @@ export default function Flashcard() {
             <StudyFlashcard />
           </Conditional>
           <Conditional condition={finished}>
-            {/* <StudyFlashcardSummary /> */}
+            <FlashcardSummaryModal />
           </Conditional>
         </Conditional>
       </Conditional>
