@@ -72,7 +72,7 @@ export default function Flashcard() {
             <StudyFlashcard />
           </Conditional>
           <Conditional condition={finished}>
-            <StudyFlashcardSummary />
+            {/* <StudyFlashcardSummary /> */}
           </Conditional>
         </Conditional>
       </Conditional>
