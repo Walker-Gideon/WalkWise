@@ -146,21 +146,3 @@ export default function DashboardRecentActivity() {
     </Card>
   );
 }
-
-// #######################################################
- <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {recentActivity.filter((activity) => activity.visible).map((activity) => (
-            <div key={activity.id} className="flex items-center space-x-3 rounded-xl bg-slate-50 p-4 dark:bg-slate-700/50">
-              <div className="flex-shrink-0 rounded-lg bg-gradient-to-r from-slate-200 to-slate-300 p-2 dark:from-slate-600 dark:to-slate-700">
-                {<activity.icon className="h-4 w-4 text-slate-600 dark:text-slate-300" />}
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-slate-900 dark:text-white">
-                  {activity.action}
-                </p>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
-                  {timeAgo(activity.timestamp)}
-                </p>
-              </div>
-            </div>
-          ))}

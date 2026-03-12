@@ -16,9 +16,24 @@ import useFetchNotes from "/src/features/note/hook/useFetchNotes";
 import { useSessions } from "/src/features/schedule/hooks/useSessions";
 
 export default function DashboardRecentActivity() {
+  const { notes, isPending: isNotesPending } = useFetchNotes();
+  const { sessions, isLoading: isSessionsPending } = useSessions();
+  const { flashcards, isPending: isCardsPending } = useFetchCards();
+
+  const isPending = isCardsPending || isSessionsPending || isNotesPending;
+
   const activities = useMemo(() => {
-    
+    let allActivities = [];
+
+  
+  // Sort by timestamp descending
+    allActivities.sort((a, b) => b.timestamp - a.timestamp);
+
+    // Return only the top 5
+    return allActivities.slice(0, 6);  
   }, []);
+
+  const activitiesLength = activities.length > 0;
 
   return (
     <Card>
@@ -26,19 +41,26 @@ export default function DashboardRecentActivity() {
         Recent Activity
       </HeaderText>
 
-      <Conditional condition={true}>
-        <Group classname={"grid grid-cols-1 gap-4 md:grid-cols-2 middle:grid-cols-3 lg:grid-cols-4"}>
-          {/* {activities.map((activity) => ( */}
-            <ActivityCard icon={<LuBookOpen className={"icons"} />} title="Title" time="Time"/>
-          {/* ))} */}
-        </Group>
-      </Conditional>
-
-      <Conditional condition={false}>
-        <Flex variant="center" classname={"h-full w-full p-4 text-slate-400"}>
-          <Paragraph variant="small">No recent activity yet.</Paragraph>
+      {isPending ? (
+        <Flex variant="center" classname={"w-full p-4"}>
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-slate-300 border-t-slate-600" />
         </Flex>
-      </Conditional>
+      ) : ( 
+        <>
+          <Conditional condition={activitiesLength}>
+            <Group classname={"grid grid-cols-1 gap-4 md:grid-cols-2 middle:grid-cols-3 lg:grid-cols-4"}>
+              {/* {activities.map((activity) => ( */}
+                <ActivityCard icon={<LuBookOpen className={"icons"} />} title="Title" time="Time"/>
+              {/* ))} */}
+            </Group>
+          </Conditional>
+          <Conditional condition={!activitiesLength}>
+            <Flex variant="center" classname={"h-full w-full p-4 text-slate-400"}>
+              <Paragraph variant="small">No recent activity yet.</Paragraph>
+            </Flex>
+          </Conditional>
+        </>
+      )}
     </Card>
   );
 }
