@@ -1,7 +1,7 @@
-import HeaderText from "/src/ui/HeaderText";
-import Paragraph from "/src/ui/Paragraph";
-import Card from "/src/components/Card";
 import Flex from "/src/ui/Flex";
+import Card from "/src/components/Card";
+import Paragraph from "/src/ui/Paragraph";
+import HeaderText from "/src/ui/HeaderText";
 
 export default function DashboardRecentActivity() {
   return (
