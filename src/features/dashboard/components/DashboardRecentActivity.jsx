@@ -47,14 +47,14 @@ export default function DashboardRecentActivity() {
         </Flex>
       ) : ( 
         <>
-          <Conditional condition={activitiesLength}>
-            <Group classname={"grid grid-cols-1 gap-4 md:grid-cols-2 middle:grid-cols-3 lg:grid-cols-4"}>
+          <Conditional condition={!activitiesLength}>
+            <Group classname={"grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"}>
               {/* {activities.map((activity) => ( */}
                 <ActivityCard icon={<LuBookOpen className={"icons"} />} title="Title" time="Time"/>
               {/* ))} */}
             </Group>
           </Conditional>
-          <Conditional condition={!activitiesLength}>
+          <Conditional condition={activitiesLength}>
             <Flex variant="center" classname={"h-full w-full p-4 text-slate-400"}>
               <Paragraph variant="small">No recent activity yet.</Paragraph>
             </Flex>
