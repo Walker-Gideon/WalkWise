@@ -25,6 +25,32 @@ export default function DashboardRecentActivity() {
   const activities = useMemo(() => {
     let allActivities = [];
 
+    // 2. Process Flashcards
+    if (flashcards?.length > 0) {
+      flashcards.forEach((card) => {
+        // Created Flashcard
+        if (card.createdAt) {
+          allActivities.push({
+            id: `card-create-${card.id}`,
+            title: `Created Flashcard: ${card.title || "Untitled"}`,
+            timestamp: card.createdAt.toDate ? card.createdAt.toDate() : new Date(card.createdAt),
+            icon: <LuBookOpen className="h-5 w-5 text-green-500" />,
+            bgColor: "bg-green-100 dark:bg-green-900/30", // green for flashcards
+          });
+        }
+        
+        // Updated Flashcard (We assume there could be an updatedAt, or pairs change)
+        if (card.updatedAt) {
+          allActivities.push({
+            id: `card-update-${card.id}`,
+            title: `Edited Flashcard: ${card.title || "Untitled"}`,
+            timestamp: card.updatedAt.toDate ? card.updatedAt.toDate() : new Date(card.updatedAt),
+            icon: <LuBookOpen className="h-5 w-5 text-green-500" />,
+            bgColor: "bg-green-100 dark:bg-green-900/30",
+          });
+        }
+      });
+    }
   
   // Sort by timestamp descending
     allActivities.sort((a, b) => b.timestamp - a.timestamp);
@@ -49,9 +75,9 @@ export default function DashboardRecentActivity() {
         <>
           <Conditional condition={!activitiesLength}>
             <Group classname={"grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"}>
-              {/* {activities.map((activity) => ( */}
-                <ActivityCard icon={<LuBookOpen className={"icons"} />} title="Title" time="Time"/>
-              {/* ))} */}
+              {activities.map((activity) => (
+                <ActivityCard key={activity.id} icon={activity.icon} title={activity.title} time={activity.time}/>
+              ))}
             </Group>
           </Conditional>
           <Conditional condition={activitiesLength}>
@@ -65,10 +91,10 @@ export default function DashboardRecentActivity() {
   );
 }
 
-function ActivityCard({icon, title, time}) {
+function ActivityCard({icon, title, time, key}) {
   return (
     <>
-      <Flex classname={"items-center gap-4 border-b pb-3 last:border-0 borderStyling"}>
+      <Flex key={key} classname={"items-center gap-4 border-b pb-3 last:border-0 borderStyling"}>
         <Badge type="primary">
           {icon}
         </Badge>
@@ -77,7 +103,7 @@ function ActivityCard({icon, title, time}) {
             {title}
           </Paragraph>
           <Paragraph classname={"text-xs secondary-text-color"}>
-            {time}
+            {formatDistanceToNow(time, { addSuffix: true })}
           </Paragraph>
         </Group>
       </Flex>
