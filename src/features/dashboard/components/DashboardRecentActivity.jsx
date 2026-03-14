@@ -15,30 +15,38 @@ import { useFetchCards } from "/src/hook/useCards";
 import useFetchNotes from "/src/features/note/hook/useFetchNotes";
 import { useSessions } from "/src/features/schedule/hooks/useSessions";
 
+import useTodayFlashcards from "../hooks/useTodayFlashcards";
+
 export default function DashboardRecentActivity() {
   const { notes, isPending: isNotesPending } = useFetchNotes();
   const { sessions, isLoading: isSessionsPending } = useSessions();
   const { flashcards, isPending: isCardsPending } = useFetchCards();
 
-  const isPending = isCardsPending || isSessionsPending || isNotesPending;
+
+  // Using this 
+  const { todayFlashcards, isPending: isPendingTodayFlashcards } = useTodayFlashcards();
+
+  const isPending = isCardsPending || isSessionsPending || isNotesPending || isPendingTodayFlashcards;
 
   const activities = useMemo(() => {
     let allActivities = [];
 
     // 2. Process Flashcards
-    if (flashcards?.length > 0) {
-      flashcards.forEach((card) => {
+    if (todayFlashcards?.length > 0) {
+      todayFlashcards.forEach((card) => {
+        console.log(card)
+        
         // Created Flashcard
         if (card.createdAt) {
           allActivities.push({
             id: `card-create-${card.id}`,
             title: `Created Flashcard: ${card.title || "Untitled"}`,
             timestamp: card.createdAt.toDate ? card.createdAt.toDate() : new Date(card.createdAt),
-            icon: <LuBookOpen className="h-5 w-5 text-green-500" />,
-            bgColor: "bg-green-100 dark:bg-green-900/30", // green for flashcards
+            icon: <LuBookOpen className="icon" />,
           });
         }
         
+        /*
         // Updated Flashcard (We assume there could be an updatedAt, or pairs change)
         if (card.updatedAt) {
           allActivities.push({
@@ -49,6 +57,7 @@ export default function DashboardRecentActivity() {
             bgColor: "bg-green-100 dark:bg-green-900/30",
           });
         }
+          */
       });
     }
   
@@ -73,14 +82,14 @@ export default function DashboardRecentActivity() {
         </Flex>
       ) : ( 
         <>
-          <Conditional condition={!activitiesLength}>
+          <Conditional condition={activitiesLength}>
             <Group classname={"grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"}>
               {activities.map((activity) => (
                 <ActivityCard key={activity.id} icon={activity.icon} title={activity.title} time={activity.time}/>
               ))}
             </Group>
           </Conditional>
-          <Conditional condition={activitiesLength}>
+          <Conditional condition={!activitiesLength}>
             <Flex variant="center" classname={"h-full w-full p-4 text-slate-400"}>
               <Paragraph variant="small">No recent activity yet.</Paragraph>
             </Flex>
@@ -91,10 +100,10 @@ export default function DashboardRecentActivity() {
   );
 }
 
-function ActivityCard({icon, title, time, key}) {
+function ActivityCard({icon, title, time}) {
   return (
     <>
-      <Flex key={key} classname={"items-center gap-4 border-b pb-3 last:border-0 borderStyling"}>
+      <Flex classname={"items-center gap-4 border-b pb-3 last:border-0 borderStyling"}>
         <Badge type="primary">
           {icon}
         </Badge>
