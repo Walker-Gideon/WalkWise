@@ -11,8 +11,14 @@ export default function useUpdateNote() {
 
     const { mutate: updateNote, isPending: isUpdating } = useMutation({
         mutationFn: ({ noteId, data }) => updateNoteAPI(noteId, data),
-        onSuccess: () => {
+        onSuccess: (updatedNote) => {
             toast.success("Note updated successfully");
+            queryClient.setQueryData(["notes", userId], (oldNotes) => {
+                if (!oldNotes) return [];
+                return oldNotes.map((note) =>
+                    note.id === updatedNote.id ? { ...note, ...updatedNote } : note
+                );
+            });
             queryClient.invalidateQueries({ queryKey: ["notes", userId] });
         },
         onError: (err) => toast.error(err.message),

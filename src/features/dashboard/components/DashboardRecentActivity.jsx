@@ -27,11 +27,38 @@ export default function DashboardRecentActivity() {
     const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
     const parseDate = (d) => (d?.toDate ? d.toDate() : new Date(d));
 
+    // 1. Process Notes
+    if (notes?.length > 0) {
+      notes.forEach((note) => {
+        if (note.createdAt) {
+          const createdDate = parseDate(note.createdAt);
+          if (createdDate >= twentyFourHoursAgo) {
+            allActivities.push({
+              id: `note-create-${note.id}`,
+              title: `Created Note: ${note.title}`,
+              time: createdDate,
+              icon: <LuBookOpen className="icon" />
+            });
+          }
+        }
+        
+        if (note.updatedAt) {
+          const updatedDate = parseDate(note.updatedAt);
+          if (updatedDate >= twentyFourHoursAgo && (!note.createdAt || updatedDate.getTime() !== parseDate(note.createdAt).getTime())) {
+            allActivities.push({
+              id: `note-update-${note.id}`,
+              title: `Edited Note: ${note.title}`,
+              time: updatedDate,
+              icon: <LuBookOpen className="icon" />
+            });
+          }
+        }
+      });
+    }
+
     // 2. Process Flashcards
     if (flashcards?.length > 0) {
       flashcards.forEach((card) => {
-        console.log(card);
-        // Created Flashcard
         if (card.createdAt) {
           const createdDate = parseDate(card.createdAt);
           if (createdDate >= twentyFourHoursAgo) {
@@ -44,7 +71,6 @@ export default function DashboardRecentActivity() {
           }
         }
         
-        // Updated Flashcard
         if (card.updatedAt) {
           const updatedDate = parseDate(card.updatedAt);
           if (updatedDate >= twentyFourHoursAgo && (!card.createdAt || updatedDate.getTime() !== parseDate(card.createdAt).getTime())) {
@@ -59,10 +85,7 @@ export default function DashboardRecentActivity() {
       });
     }
   
-    // Sort by timestamp descending
     allActivities.sort((a, b) => b.time - a.time);
-
-    // Return only the top 5
     return allActivities.slice(0, 6);  
   }, [flashcards]);
 
