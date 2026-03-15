@@ -50,11 +50,11 @@ function FlashcardItem({ flashcard }) {
     <Card>
       <Flex classname={"items-center space-x-4"}>
         <Group classname={"flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700"}></Group>
-        <Group>
-          <Paragraph classname={"font-medium primary-text-color"}>
+        <Group classname={"flex-1 min-w-0"}>
+          <Paragraph classname={"font-medium primary-text-color truncate"}>
             {flashcard.title || "Untitled Flashcard"}
           </Paragraph>
-          <Paragraph variant="small" classname={"secondary-text-color"}>
+          <Paragraph variant="small" classname={"secondary-text-color truncate"}>
             {cardCount} card{cardCount !== 1 ? "s" : ""}
           </Paragraph>
         </Group>

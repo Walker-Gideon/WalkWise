@@ -59,7 +59,7 @@ export default function CreatedForm() {
         return;
       }
 
-      const flashcard = {
+      const flashcardBase = {
         userId: user.uid,
         title,
         pairs: cleanedPairs.map((pair) => ({
@@ -70,12 +70,16 @@ export default function CreatedForm() {
         })),
         status: "pending",
         completed: false,
-        createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       };
 
       if (editingId === null) {
-        createFlashcard(flashcard, {
+        const newFlashcard = {
+          ...flashcardBase,
+          createdAt: new Date().toISOString(),
+        };
+
+        createFlashcard(newFlashcard, {
           onSuccess: (newCard) => {
             reset();
             setPairs([
@@ -98,7 +102,7 @@ export default function CreatedForm() {
         });
       } else {
         updateMutation(
-          { id: editingId, data: flashcard },
+          { id: editingId, data: flashcardBase },
           {
             onSuccess: () => {
               reset();
