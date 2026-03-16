@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { formatDistanceToNow } from "date-fns";
-import { LuBookOpen, LuCalendarCheck, LuFileText, LuCalendarPlus, LuRectangleVertical } from "react-icons/lu";
+import { LuBookOpen, LuCalendarCheck, LuCalendarPlus, LuRectangleVertical } from "react-icons/lu";
 
 import Flex from "/src/ui/Flex";
 import Group from "/src/ui/Group";
@@ -88,6 +88,7 @@ export default function DashboardRecentActivity() {
     // Schedule Session
     if (sessions?.length > 0) {
       sessions.forEach((session) => {
+        console.log(session)
         if (session.scheduledAt) {
           const scheduledDate = parseDate(session.scheduledAt);
           if (scheduledDate >= twentyFourHoursAgo) {
@@ -95,6 +96,18 @@ export default function DashboardRecentActivity() {
               id: `session-${session.id}`,
               title: `Session: ${session.title}`,
               time: scheduledDate,
+              icon: <LuCalendarPlus className="icon" />
+            });
+          }
+        }
+
+        if (session.status === "completed" && session.completedAt) {
+          const completedDate = parseDate(session.completedAt);
+          if (completedDate >= twentyFourHoursAgo) {
+            allActivities.push({
+              id: `session-completed-${session.id}`,
+              title: `Session Completed: ${session.title}`,
+              time: completedDate,
               icon: <LuCalendarCheck className="icon" />
             });
           }
