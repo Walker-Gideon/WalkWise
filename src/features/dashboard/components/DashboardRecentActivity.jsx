@@ -27,7 +27,7 @@ export default function DashboardRecentActivity() {
     const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
     const parseDate = (d) => (d?.toDate ? d.toDate() : new Date(d));
 
-    // 1. Process Notes
+    // Process Notes
     if (notes?.length > 0) {
       notes.forEach((note) => {
         if (note.createdAt) {
@@ -56,7 +56,7 @@ export default function DashboardRecentActivity() {
       });
     }
 
-    // 2. Process Flashcards
+    // Process Flashcards
     if (flashcards?.length > 0) {
       flashcards.forEach((card) => {
         if (card.createdAt) {
@@ -79,6 +79,23 @@ export default function DashboardRecentActivity() {
               title: `Edited Flashcard: ${card.title}`,
               time: updatedDate,
               icon: <LuRectangleVertical className="icon" />
+            });
+          }
+        }
+      });
+    }
+
+    // Schedule Session
+    if (sessions?.length > 0) {
+      sessions.forEach((session) => {
+        if (session.scheduledAt) {
+          const scheduledDate = parseDate(session.scheduledAt);
+          if (scheduledDate >= twentyFourHoursAgo) {
+            allActivities.push({
+              id: `session-${session.id}`,
+              title: `Session: ${session.title}`,
+              time: scheduledDate,
+              icon: <LuCalendarCheck className="icon" />
             });
           }
         }
