@@ -4,6 +4,7 @@ import { LuBookOpen, LuCalendarCheck, LuCalendarPlus, LuRectangleVertical } from
 
 import Flex from "/src/ui/Flex";
 import Group from "/src/ui/Group";
+import Spinner from "/src/ui/Spinner";
 import Card from "/src/components/Card";
 import Paragraph from "/src/ui/Paragraph";
 import Badge from "/src/components/Badge";
@@ -85,10 +86,9 @@ export default function DashboardRecentActivity() {
       });
     }
 
-    // Schedule Session
+    // Process Session
     if (sessions?.length > 0) {
       sessions.forEach((session) => {
-        console.log(session)
         if (session.scheduledAt) {
           const scheduledDate = parseDate(session.scheduledAt);
           if (scheduledDate >= twentyFourHoursAgo) {
@@ -128,9 +128,7 @@ export default function DashboardRecentActivity() {
       </HeaderText>
 
       {isPending ? (
-        <Flex variant="center" classname={"w-full p-4"}>
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-slate-300 border-t-slate-600" />
-        </Flex>
+          <Spinner secondary={true} />
       ) : ( 
         <>
           <Conditional condition={activitiesLength}>
