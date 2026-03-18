@@ -1,43 +1,15 @@
 import { useEffect, useState } from "react";
-import {
-  LuFlame,
-  LuClock,
-  LuTarget,
-  LuRectangleVertical,
-} from "react-icons/lu";
 
 import Group from "/src/ui/Group";
 import Card from "/src/components/Card";
 import Paragraph from "/src/ui/Paragraph";
 import Badge from "/src/components/Badge";
 import HeaderText from "/src/ui/HeaderText";
+import status from "/src/data/dashboardStatus";
 
 import { useUserData } from "/src/user/hook/useUserData";
 import useTodayStudyTime from "../hooks/useTodayStudyTime";
 import useTodayFlashcards from "../hooks/useTodayFlashcards";
-
-const status = [
-  {
-    icon: LuTarget,
-    data: 0,
-    text: "Mastery Cards",
-  },
-  {
-    icon: LuRectangleVertical,
-    data: 0,
-    text: "Cards Today",
-  },
-  {
-    icon: LuClock,
-    data: 0 + "m",
-    text: "Study Time",
-  },
-  {
-    icon: LuFlame,
-    data: 0,
-    text: "Day Streak",
-  },
-];
 
 export default function DashboardStatus() {
   const { userData } = useUserData();
