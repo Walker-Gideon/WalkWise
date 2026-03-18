@@ -27,7 +27,7 @@ export default function Dashboard() {
           <Group classname={"space-y-6"}>
             <DashboardCalendar />
             <Motivation
-              icon={<LuLightbulb className="icons mb-1" />}
+              icon={<LuLightbulb className={"icons"} />}
               headerText="Daily Inspiration"
               quote={quote}
               author={author}
