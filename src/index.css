@@ -41,7 +41,7 @@ import { LuChartNoAxesColumnDecreasing } from "react-icons/lu";
   }
 
   .icons {
-    @apply h-5 w-5 text-slate-600 dark:text-slate-300;
+    @apply h-4 w-4 medium:h-5 medium:w-5 text-slate-600 dark:text-slate-300;
   }
 
   .label {

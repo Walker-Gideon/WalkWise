@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import {
+  LuFlame,
+  LuClock,
   LuTarget,
   LuRectangleVertical,
-  LuClock,
-  LuFlame,
 } from "react-icons/lu";
 
 import Group from "/src/ui/Group";
@@ -75,22 +75,23 @@ export default function DashboardStatus() {
   return (
     <Group
       classname={
-        "medium:grid-cols-2 grid grid-cols-1 gap-4 medium:gap-6 lg:grid-cols-4"
+        "grid grid-cols-2 lg:grid-cols-4 gap-4 medium:gap-6"
       }
     >
       {statusData.map((stats, index) => (
         <Card
           key={index}
+          status={true}
           classname={"hover:shadow-lg flex items-center justify-between"}
         >
-          <Badge type="primary">
+          <Badge type="primary" status={true}>
             <stats.icon className={"icons"} />
           </Badge>
           <Group classname="text-right">
-            <HeaderText type="primary">{stats.data}</HeaderText>
+            <HeaderText type="status">{stats.data}</HeaderText>
             <Paragraph
-              variant="small"
-              classname="text-nowrap secondary-text-color"
+              type="xs"
+              classname={"text-nowrap secondary-text-color"}
             >
               {stats.text}
             </Paragraph>

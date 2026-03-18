@@ -3,6 +3,7 @@ export default function HeaderText({ children, classname, variant, type }) {
   const styling = {
     primary: base + " text-2xl md:text-xl font-bold",
     secondary: base + " text-base font-semibold",
+    status: base + " text-xl font-bold"
   };
 
   if (variant === "header")
