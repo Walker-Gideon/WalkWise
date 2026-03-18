@@ -19,7 +19,7 @@ export default function Dashboard() {
   return (
     <Container classname={"flex h-full flex-col"}>
       <DashboardHeader />
-      <Main classname={"space-y-6 overflow-y-scroll h-[510px] p-6"}>
+      <Main classname={"space-y-6 min-h-0 flex-1 overflow-y-scroll h-[510px] p-6"}>
         <DashboardStatus />
         <DashboardActions />
         <Group classname={"grid grid-cols-1 gap-6 lg:grid-cols-3"}>
