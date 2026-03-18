@@ -59,7 +59,7 @@ export default function DashboardStatus() {
           <Badge type="primary" status={true}>
             <stats.icon className={"icons"} />
           </Badge>
-          <Group classname="text-right">
+          <Group classname={"text-right"}>
             <HeaderText type="status">{stats.data}</HeaderText>
             <Paragraph
               type="xs"
