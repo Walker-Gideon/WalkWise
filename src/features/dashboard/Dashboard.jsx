@@ -17,7 +17,7 @@ export default function Dashboard() {
   const {quote, author} = useQuotes();
 
   return (
-    <Container adjust={true}>
+    <Container classname={"flex h-full flex-col"}>
       <DashboardHeader />
       <Main classname={"space-y-6 overflow-y-scroll h-[510px] p-6"}>
         <DashboardStatus />
