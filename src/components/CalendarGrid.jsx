@@ -1,8 +1,8 @@
 import { isSameMonth, isToday, isSameDay } from "date-fns";
 
-import Paragraph from "/src/ui/Paragraph";
-import Group from "/src/ui/Group";
 import Box from "/src/ui/Box";
+import Group from "/src/ui/Group";
+import Paragraph from "/src/ui/Paragraph";
 
 import { getScheduleStatus, getStatusColor } from "/src/helper/helpers";
 
