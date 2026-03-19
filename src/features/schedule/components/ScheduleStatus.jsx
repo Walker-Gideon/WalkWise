@@ -1,6 +1,5 @@
 import {isSameDay} from "date-fns";
 import { useEffect, useState } from "react";
-import { LuTarget, LuClock, LuFlame, LuTrendingUp } from "react-icons/lu";
 
 import Group from "/src/ui/Group";
 import Spinner from "/src/ui/Spinner";
@@ -8,36 +7,12 @@ import Card from "/src/components/Card";
 import Paragraph from "/src/ui/Paragraph";
 import Badge from "/src/components/Badge";
 import HeaderText from "/src/ui/HeaderText";
+import status from "/src/data/scheduleStatus";
 
 import { useSessions } from "../hooks/useSessions";
 import { useUserData } from "/src/user/hook/useUserData";
 import { useSuccessRate } from "/src/hook/useSuccessRate";
 import { useStudyTiming } from "/src/hook/useStudyTiming";
-// 
-
-const status = [
-  {
-    icon: LuTarget,
-    data: 0,
-    text: "Session Today",
-  },
-  {
-    icon: LuClock,
-    data: 0 + "m",
-    text: "Focus Time",
-  },
-  {
-    icon: LuFlame,
-    data: 0,
-    text: "Day Streak",
-  },
-  {
-    icon: LuTrendingUp,
-    data: 0 + "%",
-    text: "Success Rate",
-  },
-];
-
 
 export default function ScheduleStatus() {
   const { sessions } = useSessions();
