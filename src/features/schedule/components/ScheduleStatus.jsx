@@ -58,7 +58,8 @@ export default function ScheduleStatus() {
       {statusData.map((stats, index) => (
         <Card
           key={index}
-          classname={"hover:shadow-lg flex items-center justify-between"}
+          status={true}
+          statusStyling={true}
         >
           <Badge type="primary">
             <stats.icon className={"icons"} />

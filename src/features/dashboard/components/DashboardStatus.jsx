@@ -50,7 +50,7 @@ export default function DashboardStatus() {
         <Card
           key={index}
           status={true}
-          classname={"hover:shadow-lg flex items-center justify-between"}
+          statusStyling={true}
         >
           <Badge type="primary" status={true}>
             <stats.icon className={"icons"} />
