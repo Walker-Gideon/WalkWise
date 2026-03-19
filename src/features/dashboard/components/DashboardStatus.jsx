@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 
-import Group from "/src/ui/Group";
-import Card from "/src/components/Card";
-import Paragraph from "/src/ui/Paragraph";
-import Badge from "/src/components/Badge";
-import HeaderText from "/src/ui/HeaderText";
 import status from "/src/data/dashboardStatus";
+import StatusDisplay from "/src/components/StatusDisplay";
 
 import { useUserData } from "/src/user/hook/useUserData";
 import useTodayStudyTime from "../hooks/useTodayStudyTime";
@@ -44,28 +40,5 @@ export default function DashboardStatus() {
     setStatusData(updatedStatus);
   }, [userData, cardCount, totalStudyTime])
 
-  return (
-    <Group status={true}>
-      {statusData.map((stats, index) => (
-        <Card
-          key={index}
-          status={true}
-          statusStyling={true}
-        >
-          <Badge type="primary" status={true}>
-            <stats.icon className={"icons"} />
-          </Badge>
-          <Group classname={"text-right"}>
-            <HeaderText type="status">{stats.data}</HeaderText>
-            <Paragraph
-              type="xs"
-              classname={"text-nowrap secondary-text-color"}
-            >
-              {stats.text}
-            </Paragraph>
-          </Group>
-        </Card>
-      ))}
-    </Group>
-  );
+  return <StatusDisplay statusData={statusData} />;
 }

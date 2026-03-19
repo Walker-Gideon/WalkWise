@@ -1,6 +1,6 @@
+import Card from "./Card";
+import Badge from "./Badge";
 import Group from "/src/ui/Group";
-import Card from "./components/Card";
-import Badge from "./components/Badge";
 import Paragraph from "/src/ui/Paragraph";
 import HeaderText from "/src/ui/HeaderText";
 
