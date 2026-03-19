@@ -6,6 +6,7 @@ import Flex from "/src/ui/Flex";
 import Group from "/src/ui/Group";
 import Button from "/src/ui/Button";
 import Spinner from "/src/ui/Spinner";
+import SpanText from "/src/ui/SpanText";
 import SessionCard from "./SessionCard";
 import Paragraph from "/src/ui/Paragraph";
 import Filter from "/src/components/Filter";
@@ -25,8 +26,6 @@ export default function ScheduleToday() {
   const [searchParams] = useSearchParams();
   
   const navigate = useNavigate();
-
-  if (isLoading) return <Spinner />;
 
   // Filter sessions: Show pending/in-progress OR completed within last 24h
   const activeSessions = sessions?.filter(session => {
@@ -92,60 +91,65 @@ export default function ScheduleToday() {
 
   return (
     <>
-      <Flex variant="between">
-        <HeaderText type="secondary">Today's Sessions</HeaderText>
-        <Flex classname={"gap-4"}>
-          <Filter options={[
-            { value: "date", label: "Date" },
-            { value: "status", label: "Status" },
-          ]} 
-          />
-          <Button
-            type="colors"
-            onclick={() => setIsDisplaySessionForm((show) => !show)}
-            classname={"flex items-center gap-1"}
-          >
-            <LuPlus className="h-4 w-4" />
-            Add Session
-          </Button>
-        </Flex>
-      </Flex>
-      <Conditional condition={display}>
-        <Flex variant="center" classname={"h-190 w-full"}>
-          <Paragraph variant="small" classname={"text-slate-400"}>
-            No sessions scheduled for today.
-          </Paragraph>
-        </Flex>
+      <Conditional condition={isLoading}>
+        <Spinner secondary={true} styling={"h-190"} />
       </Conditional>
-      <Conditional condition={!display}>
-        <Group classname={"h-190 space-y-3 overflow-y-scroll"}>
-          {sortedSessions?.map((session) => {
-            const status = getScheduleStatus(session);
-            const statusColor = getStatusColor(status);
-             
-            // Format scheduled time: YYYY/MM/DD HH:MM
-            let formattedTime = "Invalid Date";
-            if (session.scheduledAt) {
-              const date = session.scheduledAt.toDate ? session.scheduledAt.toDate() : new Date(session.scheduledAt);
-              formattedTime = format(date, "MM/dd/yyyy HH:mm");
-            }
-
-            return (
-              <SessionCard
-                key={session.id}
-                title={session.title}
-                count={session.numCards}
-                estimatedTime={formattedTime}
-                duration={session.duration}
-                status={status}
-                statusColor={statusColor}
-                onPlay={() => handlePlay(session.id, session.tag)} 
-                onEdit={() => handleEdit(session.id)}
-                onDelete={() => handleDeleteModel(session.id, session.title)}
-              />
-            );
-          })}
-        </Group>
+      <Conditional condition={!isLoading}>
+        <Flex variant="between">
+          <HeaderText type="secondary">Today's Sessions</HeaderText>
+          <Flex classname={"gap-4"}>
+            <Filter options={[
+              { value: "date", label: "Date" },
+              { value: "status", label: "Status" },
+            ]} 
+            />
+            <Button
+              type="colors"
+              onclick={() => setIsDisplaySessionForm((show) => !show)}
+              classname={"flex items-center gap-1"}
+            >
+              <LuPlus className={"h-4 w-4"} />
+              <SpanText classname={"hidden medium:flex"}>Add Session</SpanText>
+            </Button>
+          </Flex>
+        </Flex>
+        <Conditional condition={display}>
+          <Flex variant="center" classname={"h-190 w-full"}>
+            <Paragraph variant="small" classname={"text-slate-400"}>
+               No sessions scheduled for today.
+            </Paragraph>
+          </Flex>
+        </Conditional>
+        <Conditional condition={!display}>
+          <Group classname={"h-190 space-y-3 overflow-y-scroll"}>
+            {sortedSessions?.map((session) => {
+              const status = getScheduleStatus(session);
+              const statusColor = getStatusColor(status);
+            
+              // Format scheduled time: YYYY/MM/DD HH:MM
+              let formattedTime = "Invalid Date";
+              if (session.scheduledAt) {
+                const date = session.scheduledAt.toDate ? session.scheduledAt.toDate() : new Date(session.scheduledAt);
+                formattedTime = format(date, "MM/dd/yyyy HH:mm");
+              }
+            
+              return (
+                <SessionCard
+                  key={session.id}
+                  title={session.title}
+                  count={session.numCards}
+                  estimatedTime={formattedTime}
+                  duration={session.duration}
+                  status={status}
+                  statusColor={statusColor}
+                  onPlay={() => handlePlay(session.id, session.tag)} 
+                  onEdit={() => handleEdit(session.id)}
+                  onDelete={() => handleDeleteModel(session.id, session.title)}
+                />
+              );
+            })}
+          </Group>
+        </Conditional>
       </Conditional>
     </>
   );

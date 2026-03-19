@@ -3,7 +3,7 @@ import Flex from "./Flex";
 export default function Spinner({ styling, secondary }) {
   if (secondary) {
     return (
-      <Flex variant="center" classname={"w-full p-4"}>
+      <Flex variant="center" classname={`w-full p-4 ${styling}`}>
         <div className="h-8 w-8 animate-spin rounded-full border-4 border-slate-300 border-t-slate-600" />
       </Flex>
     );
