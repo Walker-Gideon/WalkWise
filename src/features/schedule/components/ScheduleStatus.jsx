@@ -1,12 +1,8 @@
 import {isSameDay} from "date-fns";
 import { useEffect, useState } from "react";
 
-import Group from "/src/ui/Group";
-import Card from "/src/components/Card";
-import Paragraph from "/src/ui/Paragraph";
-import Badge from "/src/components/Badge";
-import HeaderText from "/src/ui/HeaderText";
 import status from "/src/data/scheduleStatus";
+import StatusDisplay from "/src/components/StatusDisplay";
 
 import { useSessions } from "../hooks/useSessions";
 import { useUserData } from "/src/user/hook/useUserData";
@@ -53,28 +49,5 @@ export default function ScheduleStatus() {
     setStatusData(updated);
   }, [userData, sessions, formattedTime, successRate]) 
 
-  return (
-    <Group status={true}>
-      {statusData.map((stats, index) => (
-        <Card
-          key={index}
-          status={true}
-          statusStyling={true}
-        >
-          <Badge type="primary">
-            <stats.icon className={"icons"} />
-          </Badge>
-          <Group classname="text-right">
-            <HeaderText type="primary">{stats.data}</HeaderText>
-            <Paragraph
-              variant="small"
-              classname="text-nowrap secondary-text-color"
-            >
-              {stats.text}
-            </Paragraph>
-          </Group>
-        </Card>
-      ))}
-    </Group>
-  );
+  return <StatusDisplay statusData={statusData} />;
 }
