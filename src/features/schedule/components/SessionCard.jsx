@@ -2,13 +2,13 @@ import { LuPlay } from "react-icons/lu";
 import { GoDotFill } from "react-icons/go";
 import { RiEditLine, RiDeleteBin5Line } from "react-icons/ri";
 
-import Conditional from "/src/components/Conditional";
-import Menus from "/src/components/Menus";
-import Paragraph from "/src/ui/Paragraph";
+import Flex from "/src/ui/Flex";
+import Group from "/src/ui/Group";
 import Card from "/src/components/Card";
 import SpanText from "/src/ui/SpanText";
-import Group from "/src/ui/Group";
-import Flex from "/src/ui/Flex";
+import Paragraph from "/src/ui/Paragraph";
+import Menus from "/src/components/Menus";
+import Conditional from "/src/components/Conditional";
 
 import { formatTime } from "/src/helper/helpers";
 
