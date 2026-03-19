@@ -45,11 +45,7 @@ export default function DashboardStatus() {
   }, [userData, cardCount, totalStudyTime])
 
   return (
-    <Group
-      classname={
-        "grid grid-cols-2 lg:grid-cols-4 gap-4 medium:gap-6"
-      }
-    >
+    <Group status={true}>
       {statusData.map((stats, index) => (
         <Card
           key={index}

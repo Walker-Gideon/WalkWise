@@ -2,7 +2,6 @@ import {isSameDay} from "date-fns";
 import { useEffect, useState } from "react";
 
 import Group from "/src/ui/Group";
-import Spinner from "/src/ui/Spinner";
 import Card from "/src/components/Card";
 import Paragraph from "/src/ui/Paragraph";
 import Badge from "/src/components/Badge";
@@ -15,9 +14,9 @@ import { useSuccessRate } from "/src/hook/useSuccessRate";
 import { useStudyTiming } from "/src/hook/useStudyTiming";
 
 export default function ScheduleStatus() {
+  const { userData } = useUserData();
   const { sessions } = useSessions();
   const successRate = useSuccessRate(sessions);
-  const { userData, loading, error } = useUserData();
   const { formattedTime } = useStudyTiming(sessions);
 
   const [statusData, setStatusData] = useState(status)
@@ -54,21 +53,8 @@ export default function ScheduleStatus() {
     setStatusData(updated);
   }, [userData, sessions, formattedTime, successRate]) 
 
-  if (loading) return <Spinner classname="flex items-center justify-center p-8" />;
-
-  if (error)
-    return (
-      <Paragraph classname="text-red-500 text-center">
-        Error loading schedule data
-      </Paragraph>
-    );
-
   return (
-    <Group
-      classname={
-        "medium:grid-cols-2 grid grid-cols-1 gap-4 medium:gap-6 lg:grid-cols-4"
-      }
-    >
+    <Group status={true}>
       {statusData.map((stats, index) => (
         <Card
           key={index}
