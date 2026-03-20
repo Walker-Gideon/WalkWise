@@ -15,14 +15,14 @@ import { formatTime } from "/src/helper/helpers";
 export default function SessionCard({title, count, estimatedTime, duration, status, statusColor, onPlay, onEdit, onDelete}) {
     return (
         <>
-          <Card>
+          <Card status={true}>
             <Flex variant="between">
-              <Flex variant="center" classname={"gap-2"}>
-                <Group classname={"h-4 w-4 rounded-full bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700"}>
+              <Flex variant="center" classname={"gap-2 flex-1 min-w-0"}>
+                <Group classname={"h-3 w-3 medium:h-4 medium:w-4 rounded-full bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700"}>
                 </Group>
-                <Flex classname={"flex-col"}>
-                  <Paragraph classname={"font-medium primary-text-color"} >{title}</Paragraph>
-                  <Flex classname={"text-sm text-slate-500 dark:text-slate-400 space-x-2 items-center"}>
+                <Group classname={"flex-col flex-1 min-w-0"}>
+                  <Paragraph type="sm" classname={"font-medium primary-text-color truncate"}>{title}</Paragraph>
+                  <Flex classname={"text-sm text-slate-500 dark:text-slate-400 space-x-2 items-center flex-wrap"}>
                     <Group classname={"flex items-center gap-2"}>
                       <SpanText>{count} cards</SpanText>
                       <GoDotFill />
@@ -41,7 +41,7 @@ export default function SessionCard({title, count, estimatedTime, duration, stat
                       <SpanText classname={`bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300 rounded-full px-2 py-0.5 text-xs`}>{formatTime(duration || 0)}</SpanText>
                     </Conditional>
                   </Flex>
-                </Flex>
+                </Group>
               </Flex>
 
               <Group>
