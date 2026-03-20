@@ -1,6 +1,3 @@
-import { LuUser } from "react-icons/lu";
-
-import Box from "/src/ui/Box";
 import Flex from "/src/ui/Flex";
 import Group from "/src/ui/Group";
 import Header from "/src/ui/Header";
@@ -8,8 +5,7 @@ import Conditional from "./Conditional"
 import Paragraph from "/src/ui/Paragraph";
 import HeaderText from "/src/ui/HeaderText";
 import MenuButton from "/src/navigation/components/MenuButton";
-
-import { useUserData } from "/src/user/hook/useUserData";
+import UserImage from "/src/user/components/UserImage";
 
 export default function Heading({
   theme,
@@ -22,8 +18,6 @@ export default function Heading({
   paragraphStyling,
   menu = true,
 }) {
-  const { userData } = useUserData();
-
   return (
     <Header
       classname={`sticky top-0 z-30 border-b border-stone-300 shadow-sm backdrop-blur-sm  ${classname} ${theme ? "defaultColor dark:border-slate-700" : "bg-white/30"}`}
@@ -51,31 +45,8 @@ export default function Heading({
           </Group>
           <Group classname={groupStyling}>{children}</Group>
         </Flex>
-        {/* Here we need to add the user profile */}
         <Conditional condition={menu}>
-          <div>
-            <Box
-              adjustWidth={true}
-              classname={
-                "rounded-full flex items-center justify-center h-12 w-12 border-2 borderStyling md:hidden"
-              }
-              >
-                <Conditional condition={!userData?.photoURL}>
-                  <LuUser
-                    className={`h-5 w-5 text-slate-500 dark:text-white`}
-                  />
-                </Conditional>
-                <Conditional condition={userData?.photoURL}>
-                  <div>
-                  <img
-                    src={userData?.photoURL}
-                    alt="User profile"
-                    className="h-15 w-15 rounded-full object-cover"
-                  /> 
-                  </div>
-                </Conditional>
-            </Box>
-          </div>
+          <UserImage hideOnMobile={true} />
         </Conditional>
       </Flex>
     </Header>
