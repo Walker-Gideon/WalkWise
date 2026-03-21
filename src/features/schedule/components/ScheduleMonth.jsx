@@ -57,7 +57,7 @@ export default function ScheduleMonth() {
         showSessionDetails={true}
       />
       <Conditional condition={sessions?.length > 0}>
-        <Group classname={"flex mt-4 items-center justify-end space-x-6 text-xs"}>
+        <Group classname={"mt-4 grid grid-cols-2 medium:flex items-center justify-end gap-2 medium:gap-0 space-x-6 text-xs"}>
           <Legend status="Pending" />
           <Legend status="In Progress" />
           <Legend status="Due" />
