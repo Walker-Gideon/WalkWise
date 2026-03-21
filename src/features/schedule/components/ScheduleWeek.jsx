@@ -138,7 +138,7 @@ export default function ScheduleWeek() {
         ))}
       </Group>
       <Conditional condition={sessions?.length > 0}>
-        <Group classname={"flex mt-4 items-center justify-end space-x-6 text-xs"}>
+        <Group classname={"mt-4 px-2 medium:px-0 grid grid-cols-2 medium:flex items-center gap-2 justify-end space-x-6 text-xs"}>
           <Legend status="Pending" />
           <Legend status="In Progress" />
           <Legend status="Due" />
@@ -151,14 +151,14 @@ export default function ScheduleWeek() {
 
 function WeeksSessionDisplay({ sessions, totalcards }) {
   return (
-    <Group>
-      <Group classname="flex flex-wrap gap-1 mb-1">
+    <Group classname={"flex flex-col flex-1 min-w-0 overflow-hidden"}>
+      <Group classname="flex flex-wrap gap-1 mb-1 flex-1 min-w-0">
         {sessions.map((session, i) => {
           const status = getScheduleStatus(session);
           const statusColor = getStatusColor(status);
              
           return (
-            <Paragraph key={i} classname={`${statusColor} font-medium text-[10px] border border-transparent px-2 py-0.5 rounded-full`}>
+            <Paragraph key={i} classname={`${statusColor} font-medium text-[10px] border border-transparent px-2 py-0.5 rounded-full truncate max-w-30`}>
               {session.title}
             </Paragraph>
           );
