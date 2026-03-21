@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { TbDotsVertical } from "react-icons/tb";
@@ -60,6 +60,12 @@ function Toggle({type = false, align = "right"}) {
 function Lists({ children }) {
   const { isOpen, position, close } = useContext(MenusContext);
   const ref = useOutsideClick(close, false);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    window.addEventListener("scroll", close, true);
+    return () => window.removeEventListener("scroll", close, true);
+  }, [isOpen, close]);
 
   if (!isOpen) return null;
 

@@ -37,8 +37,10 @@ export default function SessionCard({title, count, estimatedTime, duration, stat
                     <SpanText classname={`${statusColor} rounded-full px-2 py-0.5 text-xs`}>{status}</SpanText>
                     
                     <Conditional condition={status === "Completed"}>
-                      <SpanText>Duration </SpanText>
-                      <SpanText classname={`bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300 rounded-full px-2 py-0.5 text-xs`}>{formatTime(duration || 0)}</SpanText>
+                      <Group classname={"flex items-center gap-2"}>
+                        <SpanText>Duration </SpanText>
+                        <SpanText classname={`bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300 rounded-full px-2 py-0.5 text-xs`}>{formatTime(duration || 0)}</SpanText>
+                      </Group>
                     </Conditional>
                   </Flex>
                 </Group>
