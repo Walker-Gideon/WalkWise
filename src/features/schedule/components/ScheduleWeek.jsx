@@ -22,12 +22,12 @@ import { useSessions } from "../hooks/useSessions";
 import { getScheduleStatus, getStatusColor } from "/src/helper/helpers";
 
 export default function ScheduleWeek() {
+  const { sessions } = useSessions();
+
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const start = startOfWeek(currentDate, { weekStartsOn: 0 }); 
   const end = endOfWeek(currentDate, { weekStartsOn: 0 }); 
-
-  const { sessions } = useSessions();
 
   const weekDays = Array.from({ length: 7 }, (_, index) => {
     const date = addDays(start, index);
@@ -76,7 +76,7 @@ export default function ScheduleWeek() {
           </Button>
         </Group>
       </Flex>
-      <Group classname={"h-185 space-y-3"}>
+      <Group classname={"h-190 space-y-3 overflow-y-scroll"}>
         {weekDays.map((day) => (
           <Card
             key={day.date}
