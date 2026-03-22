@@ -1,4 +1,4 @@
-import { LuAward, LuLightbulb } from "react-icons/lu";
+import { LuHeart, LuLightbulb } from "react-icons/lu";
 
 import Main from "/src/ui/Main";
 import Group from "/src/ui/Group";
@@ -25,7 +25,7 @@ export default function Inspire() {
       >
         <Group classname={"space-y-6 lg:col-span-2"}>
           <Motivation
-            icon={<LuLightbulb className="icons mb-1" />}
+            icon={<LuLightbulb className="icons" />}
             headerText="Daily Inspiration"
             quote={quote}
             author={author}
@@ -37,7 +37,7 @@ export default function Inspire() {
           <InspireStreakCounter />
           {/* Conditional this base on if the user have nothing in achievement or new to the project */}
           <Motivation
-            icon={<LuAward className="icons mb-1" />}
+            icon={<LuHeart className="icons" />}
             headerText="Daily Encouragement"
             quote={"Praise yourself for your achievements."} //will be change later
             author={"WalkWise AI"}

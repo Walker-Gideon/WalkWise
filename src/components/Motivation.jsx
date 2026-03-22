@@ -8,7 +8,7 @@ import HeaderText from "/src/ui/HeaderText";
 export default function Motivation({icon, headerText, quote, author}) {
   return (
     <Card>
-      <HeaderText type="secondary" classname={"mb-4 flex items-center gap-2"}>
+      <HeaderText type="semiHeader">
         {icon}
         <SpanText>{headerText}</SpanText>
       </HeaderText>

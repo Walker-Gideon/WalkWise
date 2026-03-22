@@ -32,8 +32,8 @@ export default function InspireProgress() {
 
   return (
     <Card>
-      <HeaderText type="secondary" classname={"mb-4 flex items-center gap-2"}>
-        <LuChartNoAxesCombined className="icons mb-1" />
+      <HeaderText type="semiHeader">
+        <LuChartNoAxesCombined className="icons" />
         <SpanText>Study Progress</SpanText>
       </HeaderText>
       <Group classname={"mb-8"}>

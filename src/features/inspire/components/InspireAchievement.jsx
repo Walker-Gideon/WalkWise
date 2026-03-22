@@ -77,8 +77,8 @@ export default function InspireAchievement() {
 
   return (
     <Card status={true}>
-      <HeaderText type="secondary" classname={"mb-4 flex items-center gap-2"}>
-        <LuAward className="icons mb-1" />
+      <HeaderText type="semiHeader">
+        <LuAward className="icons" />
         <SpanText>Your Achievements</SpanText>
       </HeaderText>
       <Group
