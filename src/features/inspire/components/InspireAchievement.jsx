@@ -11,9 +11,11 @@ import HeaderText from "/src/ui/HeaderText";
 import achievements from "/src/data/inspireAchievementData";
 
 import { useFetchCards } from "/src/hook/useCards";
+import { useNav } from "/src/contexts/NavigationContext";
 import { useUserData } from "/src/user/hook/useUserData";
 
 export default function InspireAchievement() {
+  const { isExpanded } = useNav();
   const { userData } = useUserData();
   const { flashcards } = useFetchCards();
   
@@ -74,13 +76,13 @@ export default function InspireAchievement() {
   }, [userData, flashcards])
 
   return (
-    <Card>
+    <Card status={true}>
       <HeaderText type="secondary" classname={"mb-4 flex items-center gap-2"}>
         <LuAward className="icons mb-1" />
         <SpanText>Your Achievements</SpanText>
       </HeaderText>
       <Group
-        classname={"medium:grid-cols-3 grid grid-cols-2 gap-4 md:grid-cols-4"}
+        classname={`grid grid-cols-2 medium:grid-cols-3 lg:grid-cols-4 gap-4 ${isExpanded ? "md:grid-cols-4" : "md:grid-cols-3"}`}
       >
         {achievementData.map((badge) => (
           <Box
@@ -93,13 +95,14 @@ export default function InspireAchievement() {
             }`}
           >
             <Badge
+              status={true}
               classname={`mb-2 rounded-full ${
                 badge.unlocked
                   ? "bg-slate-500 dark:bg-slate-700 text-white"
                   : "bg-slate-200 text-slate-500 dark:bg-slate-600 dark:text-slate-400"
               }`}
             >
-              <badge.icon className="h-5 w-5" />
+              <badge.icon className="h-4 w-4 medium:h-5 medium:w-5" />
             </Badge>
             <Paragraph classname={"mb-1 text-center text-sm font-medium"}>
               {badge.name}
