@@ -113,12 +113,60 @@ export default function DashboardRecentActivity() {
             });
           }
         }
+
+        if (session.status === "in-progress" && session.scheduledAt) {
+          const inProgressDate = session.updatedAt ? parseDate(session.updatedAt) : new Date();
+          if (inProgressDate >= twentyFourHoursAgo) {
+            allActivities.push({
+              id: `session-in-progress-${session.id}`,
+              title: `Session In Progress: ${session.title}`,
+              time: inProgressDate,
+              icon: <LuCalendarCheck className="icon" />
+            });
+          }
+        }
       });
     }
-  
-    allActivities.sort((a, b) => b.time - a.time);
-    return allActivities.slice(0, 6);  
-  }, [flashcards]);
+
+    allActivities.forEach(a => {
+      if (a.id.includes("completed") || a.id.includes("in-progress")) a.type = "status";
+      else if (a.id.includes("update")) a.type = "update";
+      else a.type = "create";
+    });
+
+    const now = Date.now();
+    const sortRecent = (a, b) => {
+      const aPast = a.time.getTime() <= now;
+      const bPast = b.time.getTime() <= now;
+      if (aPast && bPast) return b.time - a.time; // Newest past events top
+      if (!aPast && !bPast) return a.time - b.time; // Soonest future events top
+      return aPast ? -1 : 1; // Past events always beat future events
+    };
+
+    const creates = allActivities.filter(a => a.type === "create").sort(sortRecent);
+    const updates = allActivities.filter(a => a.type === "update").sort(sortRecent);
+    const statuses = allActivities.filter(a => a.type === "status").sort(sortRecent);
+
+    // Prioritize up to 2 of each
+    const topCreates = creates.slice(0, 2);
+    const topUpdates = updates.slice(0, 2);
+    const topStatuses = statuses.slice(0, 2);
+
+    let mergedActivities = [...topCreates, ...topUpdates, ...topStatuses];
+
+    // Backfill with newest remaining items if we have less than 6 total
+    if (mergedActivities.length < 6) {
+      const remaining = [
+        ...creates.slice(2),
+        ...updates.slice(2),
+        ...statuses.slice(2)
+      ].sort(sortRecent);
+
+      mergedActivities = [...mergedActivities, ...remaining.slice(0, 6 - mergedActivities.length)];
+    }
+
+    return mergedActivities.sort(sortRecent).slice(0, 6);
+  }, [flashcards, notes, sessions]);
 
   const activitiesLength = activities.length > 0;
 
