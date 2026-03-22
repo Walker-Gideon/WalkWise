@@ -3,7 +3,8 @@ export default function HeaderText({ children, classname, variant, type }) {
   const styling = {
     primary: base + " text-2xl md:text-xl font-bold",
     secondary: base + " text-base font-semibold",
-    status: base + " text-xl font-bold"
+    status: base + " text-xl font-bold",
+    semiHeader: base + " flex items-center gap-2 text-base font-semibold mb-4"
   };
 
   if (variant === "header")

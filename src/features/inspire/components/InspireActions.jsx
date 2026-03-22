@@ -1,9 +1,10 @@
-import { LuRectangleVertical, LuChartColumnIncreasing } from "react-icons/lu";
+import { LuRectangleVertical, LuChartColumnIncreasing, LuZap } from "react-icons/lu";
 
-import HeaderText from "/src/ui/HeaderText";
-import Card from "/src/components/Card";
-import Button from "/src/ui/Button";
 import Group from "/src/ui/Group";
+import Button from "/src/ui/Button";
+import SpanText from "/src/ui/SpanText";
+import Card from "/src/components/Card";
+import HeaderText from "/src/ui/HeaderText";
 
 const buttons = [
   {
@@ -23,8 +24,9 @@ const buttons = [
 export default function InspireActions() {
   return (
     <Card>
-      <HeaderText type="secondary" classname={"mb-4"}>
-        Quick Actions
+      <HeaderText type="semiHeader">
+        <LuZap className="icons" />
+        <SpanText>Quick Actions</SpanText>
       </HeaderText>
       <Group>
         {buttons.map((data, index) => (
