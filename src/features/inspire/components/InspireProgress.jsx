@@ -16,7 +16,7 @@ export default function InspireProgress() {
   // Calculate Weekly Data from userData.studyHistory
   const weeklyData = Array.from({ length: 7 }).map((_, i) => {
     const d = new Date();
-    d.setDate(d.getDate() - (6 - i)); // Go back 6 days, then 5, ..., 0
+    d.setDate(d.getDate() - (7 - i)); // Go back 6 days, then 5, ..., 0
     const dateKey = d.toISOString().split("T")[0];
     const dayName = d.toLocaleDateString("en-US", { weekday: "short" }); // "Mon", "Tue"
 
@@ -45,7 +45,7 @@ export default function InspireProgress() {
               <SpanText classname={"mb-1 text-xs text-slate-500 dark:text-white"}>
                 {data.day}
               </SpanText>
-              <Box classname={`h-12 w-full rounded-md transition-colors duration-200 ${
+              <Box classname={`h-8 medium:h-12 w-full rounded-md transition-colors duration-200 ${
                   data.minutes > 60
                     ? "bg-emerald-600"
                     : data.minutes > 30
@@ -59,7 +59,7 @@ export default function InspireProgress() {
             </Flex>
           ))}
         </Group>
-        <Paragraph classname={"mt-3 text-center text-sm text-slate-500 dark:text-slate-400"}>
+        <Paragraph classname={"mt-3 text-center text-xs  medium:text-sm text-slate-500 dark:text-slate-400"}>
           Darker shades mean more study time.
         </Paragraph>
       </Group>
@@ -79,7 +79,7 @@ export default function InspireProgress() {
             {successRate}%
           </SpanText>
         </Flex>
-        <Paragraph classname={"mt-2 text-sm text-slate-500 dark:text-slate-400"}>
+        <Paragraph classname={"mt-2 text-xs medium:text-sm text-slate-500 dark:text-slate-400"}>
           Your overall study consistency.
         </Paragraph>
       </Group>
