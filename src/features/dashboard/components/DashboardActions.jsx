@@ -1,3 +1,5 @@
+import { LuZap } from "react-icons/lu";
+
 import Group from "/src/ui/Group";
 import Button from "/src/ui/Button";
 import SpanText from "/src/ui/SpanText";
@@ -9,8 +11,9 @@ import actions from "/src/data/dashboardActionsData";
 export default function DashboardActions() {
   return (
     <Card status={true}>
-      <HeaderText type="secondary" classname={"mb-4"}>
-        Quick Actions
+      <HeaderText type="semiHeader">
+        <LuZap className="icons" />
+        <SpanText>Quick Actions</SpanText>
       </HeaderText>
       <Group classname={"grid grid-cols-2 lg:grid-cols-4 gap-4"}>
         {actions.map((action, index) => (

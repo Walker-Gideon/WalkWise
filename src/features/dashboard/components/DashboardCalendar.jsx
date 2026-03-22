@@ -1,4 +1,4 @@
-import { LuCalendar } from "react-icons/lu";
+import { LuCalendarDays } from "react-icons/lu";
 
 import Box from "/src/ui/Box";
 import Group from "/src/ui/Group";
@@ -14,11 +14,8 @@ export default function DashboardCalendar() {
 
   return (
     <Card status={true}>
-      <HeaderText
-        type="secondary"
-        classname={"mb-4 flex text-center items-center gap-2"}
-      >
-        <LuCalendar className={"icons"} />
+      <HeaderText type="semiHeader">
+        <LuCalendarDays className={"icons"} />
         <SpanText>{monthLabel}</SpanText>
       </HeaderText>
       <CalendarGrid calendarDays={calendarDays} currentMonth={currentMonth} />

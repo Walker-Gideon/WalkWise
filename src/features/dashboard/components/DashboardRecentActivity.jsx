@@ -1,11 +1,12 @@
 import { useMemo } from "react";
 import { formatDistanceToNow } from "date-fns";
-import { LuBookOpen, LuCalendarCheck, LuCalendarPlus, LuRectangleVertical } from "react-icons/lu";
+import { LuBookOpen, LuCalendarCheck, LuCalendarPlus, LuRectangleVertical, LuActivity } from "react-icons/lu";
 
 import Flex from "/src/ui/Flex";
 import Group from "/src/ui/Group";
 import Spinner from "/src/ui/Spinner";
 import Card from "/src/components/Card";
+import SpanText from "/src/ui/SpanText";
 import Paragraph from "/src/ui/Paragraph";
 import Badge from "/src/components/Badge";
 import HeaderText from "/src/ui/HeaderText";
@@ -123,18 +124,18 @@ export default function DashboardRecentActivity() {
 
   return (
     <Card>
-      <HeaderText type="secondary" classname={"mb-4"}>
-        Recent Activity
+      <HeaderText type="semiHeader">
+        <LuActivity className="icons" />
+        <SpanText>Recent Activity</SpanText>
       </HeaderText>
-
-      {isPending ? (
-          <Spinner secondary={true} />
-      ) : ( 
-        <>
-          <Conditional condition={activitiesLength}>
-            <Group classname={"grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"}>
-              {activities.map((activity) => (
-                <ActivityCard key={activity.id} icon={activity.icon} title={activity.title} time={activity.time}/>
+      <Conditional condition={isPending}>
+        <Spinner secondary={true} />
+      </Conditional>
+      <Conditional condition={!isPending}>
+        <Conditional condition={activitiesLength}>
+          <Group classname={"grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"}>
+            {activities.map((activity) => (
+              <ActivityCard key={activity.id} icon={activity.icon} title={activity.title} time={activity.time}/>
               ))}
             </Group>
           </Conditional>
@@ -143,8 +144,7 @@ export default function DashboardRecentActivity() {
               <Paragraph variant="small">No recent activity yet.</Paragraph>
             </Flex>
           </Conditional>
-        </>
-      )}
+        </Conditional>
     </Card>
   );
 }
