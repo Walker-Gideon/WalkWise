@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { LuPlus, LuPlay, LuChartColumnIncreasing } from "react-icons/lu";
+import { LuPlus, LuPlay, LuChartColumnIncreasing, LuZap } from "react-icons/lu";
 
 import Group from "/src/ui/Group";
 import Button from "/src/ui/Button";
 import Card from "/src/components/Card";
+import SpanText from "/src/ui/SpanText";
 import HeaderText from "/src/ui/HeaderText";
 
 import { useSchedule } from "../context/ScheduleContext";
@@ -28,8 +29,9 @@ export default function ScheduleActions() {
   
   return (
     <Card>
-      <HeaderText type="secondary" classname="mb-4">
-        Quick Actions
+      <HeaderText type="semiHeader">
+        <LuZap className="icons" />
+        <SpanText>Quick Actions</SpanText>
       </HeaderText>
       <Group>
         <Button

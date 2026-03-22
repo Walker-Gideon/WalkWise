@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import { LuChevronLeft, LuChevronRight, LuCalendarClock } from "react-icons/lu";
 import {
   format,
   startOfWeek,
@@ -12,6 +12,7 @@ import {
 import Flex from "/src/ui/Flex";
 import Group from "/src/ui/Group";
 import Button from "/src/ui/Button";
+import SpanText from "/src/ui/SpanText";
 import Card from "/src/components/Card";
 import Paragraph from "/src/ui/Paragraph";
 import HeaderText from "/src/ui/HeaderText";
@@ -58,7 +59,10 @@ export default function ScheduleWeek() {
   return (
     <>
       <Flex variant="between">
-        <HeaderText type="secondary" classname={"capitalize"}>{headerTitle}</HeaderText>
+        <HeaderText type="semiHeaderFlex" classname={"capitalize"}>
+          <LuCalendarClock className="icons" />
+          <SpanText>{headerTitle}</SpanText>
+        </HeaderText>
         <Group classname={"space-x-2"}>
           <Button
             variant="secondary"

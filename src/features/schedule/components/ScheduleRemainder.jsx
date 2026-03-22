@@ -3,6 +3,7 @@ import { formatDistanceToNow } from "date-fns";
 
 import Group from "/src/ui/Group";
 import Card from "/src/components/Card";
+import SpanText from "/src/ui/SpanText";
 import Paragraph from "/src/ui/Paragraph";
 import HeaderText from "/src/ui/HeaderText";
 
@@ -33,9 +34,9 @@ export default function ScheduleRemainder() {
 
   return (
     <Card>
-      <HeaderText type="secondary" classname="mb-4 flex items-center gap-2">
-        <LuClock className="h-5 w-5" />
-        Next Session
+      <HeaderText type="semiHeader">
+        <LuClock className="icons" />
+        <SpanText>Next Session</SpanText>
       </HeaderText>
       <Group>
         <Paragraph classname={"mb-4 font-medium secondary-text-color line-clamp-1"}>

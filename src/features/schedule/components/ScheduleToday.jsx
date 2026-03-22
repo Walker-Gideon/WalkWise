@@ -1,4 +1,4 @@
-import { LuPlus } from "react-icons/lu";
+import { LuPlus, LuClock } from "react-icons/lu";
 import { format, differenceInHours } from "date-fns";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
@@ -96,7 +96,10 @@ export default function ScheduleToday() {
       </Conditional>
       <Conditional condition={!isLoading}>
         <Flex variant="between">
-          <HeaderText type="secondary">Today's Sessions</HeaderText>
+          <HeaderText type="semiHeaderFlex">
+            <LuClock className="icons" />
+            <SpanText>Today's Sessions</SpanText>
+          </HeaderText>
           <Flex classname={"gap-4"}>
             <Filter options={[
               { value: "date", label: "Date" },

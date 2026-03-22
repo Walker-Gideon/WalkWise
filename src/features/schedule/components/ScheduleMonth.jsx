@@ -1,9 +1,10 @@
 import { addMonths, subMonths } from "date-fns";
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import { LuChevronLeft, LuChevronRight, LuCalendarDays } from "react-icons/lu";
 
 import Flex from "/src/ui/Flex";
 import Group from "/src/ui/Group";
 import Button from "/src/ui/Button";
+import SpanText from "/src/ui/SpanText";
 import HeaderText from "/src/ui/HeaderText";
 import Legend from "/src/components/Legend";
 import Conditional from "/src/components/Conditional";
@@ -32,7 +33,10 @@ export default function ScheduleMonth() {
   return (
     <>
       <Flex variant="between">
-        <HeaderText type="secondary">{monthLabel}</HeaderText>
+        <HeaderText type="semiHeaderFlex">
+          <LuCalendarDays className="icons" />
+          <SpanText>{monthLabel}</SpanText>
+        </HeaderText>
         <Group classname={"space-x-2"}>
           <Button
             variant="secondary"
