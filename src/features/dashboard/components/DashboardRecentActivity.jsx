@@ -1,6 +1,13 @@
 import { useMemo } from "react";
 import { formatDistanceToNow } from "date-fns";
-import { LuBookOpen, LuCalendarCheck, LuCalendarPlus, LuRectangleVertical, LuActivity } from "react-icons/lu";
+import { 
+  LuBookOpen, 
+  LuActivity,
+  LuCalendarPlus, 
+  LuCalendarCheck,
+  LuCalendarMinus, 
+  LuRectangleVertical, 
+} from "react-icons/lu";
 
 import Flex from "/src/ui/Flex";
 import Group from "/src/ui/Group";
@@ -121,7 +128,7 @@ export default function DashboardRecentActivity() {
               id: `session-in-progress-${session.id}`,
               title: `Session In Progress: ${session.title}`,
               time: inProgressDate,
-              icon: <LuCalendarCheck className="icon" />
+              icon: <LuCalendarMinus className="icon" />
             });
           }
         }
