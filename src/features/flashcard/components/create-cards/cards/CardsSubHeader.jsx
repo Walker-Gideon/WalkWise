@@ -15,7 +15,7 @@ export default function CardsSubHeader() {
   } = useFlashcard();
 
   return (
-    <Group classname={"sticky top-20.5 z-30 py-6 bg-slate-50 dark:bg-slate-800 transition-colors duration-300"}>
+    <Group classname={"w-full sticky top-19 md:top-20 z-30 py-6 px-6 bg-slate-50 shadow-md dark:bg-slate-800 transition-colors duration-300 border-t borderStyling"}>
     <Flex variant="between" classname={"gap-5 md:gap-1 flex-col md:flex-row"}>
       <Group classname={"relative w-full md:w-[50vw]"}>
         <Input
