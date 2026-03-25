@@ -2,8 +2,8 @@ import toast from "react-hot-toast";
 import { LuPlay } from "react-icons/lu";
 import { GoDotFill } from "react-icons/go";
 import { useEffect, useState } from "react";
-import { RiDeleteBin5Line } from "react-icons/ri";
 import { useSearchParams } from "react-router-dom";
+import { RiDeleteBin5Line, RiEditLine } from "react-icons/ri";
 
 import Flex from "/src/ui/Flex";
 import Group from "/src/ui/Group";
@@ -11,6 +11,7 @@ import Button from "/src/ui/Button";
 import Spinner from "/src/ui/Spinner";
 import Card from "/src/components/Card";
 import Container from "/src/ui/Container";
+import Menus from "/src/components/Menus";
 import Paragraph from "/src/ui/Paragraph";
 import HeaderText from "/src/ui/HeaderText";
 import Conditional from "/src/components/Conditional";
@@ -138,47 +139,50 @@ function Cards({ title, numOfCards, handleDelete, handlePlay, timing }) {
         "cursor-pointer group flex gap-4 mb-4 mt-1 shadow-md transition-all duration-300 ease-in-out"
       }
     >
-      <div
-        className={`h-4 w-4 rounded-full bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700`}
-      ></div>
+      <Flex variant="between">
+        <Flex variant="center" classname={"gap-2 flex-1 min-w-0"}>
+          <Group classname={"h-3 w-3 medium:h-4 medium:w-4 rounded-full bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700"}></Group>
 
-      <Group classname={"w-full"}>
-        <Flex variant="between" classname={"mb-4 flex-1 min-w-0"}>
-          <HeaderText classname={"truncate primary-text-color"}>{title}</HeaderText>
+          <Flex classname={"flex-col flex-1 min-w-0"}>
+            <HeaderText classname={"truncate primary-text-color"}>{title}</HeaderText>
 
-          <Flex classname={"gap-2"}>
-            <Button
-              type="colors"
-              classname={"opacity-0 group-hover:opacity-100"}
-              onclick={handleDelete}
-            >
-              <RiDeleteBin5Line className={"h-4 w-4"} />
-            </Button>
-            <Button
-              type="colors"
-              classname={"opacity-0 group-hover:opacity-100"}
-              onclick={handlePlay}
-            >
-              <LuPlay className={"h-4 w-4"} />
-            </Button>
+            <Flex variant="between" classname={"w-full"}>
+              <Paragraph type="xs" classname={"secondary-text-color"}>
+                {numOfCards} card{numOfCards === 1 ? "" : "s"}
+              </Paragraph>
+
+              <Paragraph
+                variant="small"
+                classname={
+                  "flex items-center text-nowrap secondary-text-color gap-1"
+                }
+              >
+                <GoDotFill className="h-3 w-3" /> {createdExact}
+              </Paragraph>
+            </Flex>
           </Flex>
         </Flex>
 
-        <Flex variant="between">
-          <Paragraph type="xs" classname={"secondary-text-color"}>
-            {numOfCards} card{numOfCards === 1 ? "" : "s"}
-          </Paragraph>
-
-          <Paragraph
-            variant="small"
-            classname={
-              "flex items-center text-nowrap secondary-text-color gap-1"
-            }
-          >
-            <GoDotFill className="h-3 w-3" /> {createdExact}
-          </Paragraph>
-        </Flex>
-      </Group>
+        <Group>
+          <Menus>
+            <Menus.Toggle />
+            <Menus.Lists>
+              <Menus.Buttons onClick={handlePlay}>
+                <LuPlay className="w-4 h-4" />
+                Play
+              </Menus.Buttons>
+              <Menus.Buttons onClick={() => {}}>
+                <RiEditLine className="w-4 h-4" />
+                Edit
+              </Menus.Buttons>
+              <Menus.Buttons onClick={handleDelete}>
+                <RiDeleteBin5Line className="w-4 h-4" />
+                Delete
+              </Menus.Buttons>
+            </Menus.Lists>
+          </Menus>
+        </Group>
+      </Flex>
     </Card>
   );
 }
