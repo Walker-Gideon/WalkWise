@@ -13,6 +13,7 @@ import Card from "/src/components/Card";
 import Container from "/src/ui/Container";
 import Paragraph from "/src/ui/Paragraph";
 import HeaderText from "/src/ui/HeaderText";
+import Conditional from "/src/components/Conditional";
 import ConfirmDelete from "/src/components/ConfirmDelete";
 
 import { useFetchCards } from "/src/hook/useCards";
@@ -90,11 +91,13 @@ export default function CardContentDisplay() {
   }
 
   return (
-    <>
-      {(isPending || isSearching) && <Spinner />}
-      <Container adjust={true} classname={"md:px-8 lg:mx-auto lg:max-w-5xl"}>
-        {!isSearching &&
-          filteredFlashcards?.map((card) => (
+    <Group classname={`px-6`}>
+      <Conditional condition={isPending || isSearching}>
+        <Spinner secondary={true} styling={"mt-20 md:mt-40"} spinnerWidth={"h-6 w-6 md:h-8 md:w-8"} />
+      </Conditional>
+      <Container adjust={true} classname={"md:px-8 md:max-w-2xl lg:mx-auto lg:max-w-5xl grid grid-cols-2 lg:grid-cols-3 gap-4"}>
+        <Conditional condition={!isSearching}>
+          {filteredFlashcards?.map((card) => (
             <Cards
               key={card.id}
               title={card.title}
@@ -104,24 +107,25 @@ export default function CardContentDisplay() {
               timing={card.createdAt}
             />
           ))}
+        </Conditional>
       </Container>
-      {isDeleteModal && (
+      <Conditional condition={isDeleteModal}>
         <ConfirmDelete
           resourceName={selectedCardTitle}
           disabled={isDeleting}
           onCloseModal={handleCloseModal}
           onConfirm={handleConfirmDelete}
         />
-      )}
-      {!isSearching && filteredFlashcards?.length === 0 && (
+      </Conditional>
+      <Conditional condition={!isSearching && filteredFlashcards?.length === 0}>
         <Flex variant="center" classname={"h-80"}>
           <Paragraph classname={"text-center primary-text-color"}>
             No flashcards found
           </Paragraph>
         </Flex>
-      )}
+      </Conditional>
       {error && toast.error("Error fetching flashcards")}
-    </>
+    </Group>
   );
 }
 
@@ -139,8 +143,8 @@ function Cards({ title, numOfCards, handleDelete, handlePlay, timing }) {
       ></div>
 
       <Group classname={"w-full"}>
-        <Flex variant="between" classname={"mb-4"}>
-          <HeaderText classname={" primary-text-color"}>{title}</HeaderText>
+        <Flex variant="between" classname={"mb-4 flex-1 min-w-0"}>
+          <HeaderText classname={"truncate primary-text-color"}>{title}</HeaderText>
 
           <Flex classname={"gap-2"}>
             <Button

@@ -5,7 +5,7 @@ import CardContentDisplay from "./cards/CardContentDisplay";
 
 export default function CardsInitDisplay() {
   return (
-    <Group classname={"h-screen overflow-y-scroll"}>
+    <Group classname={"h-full overflow-y-auto"}>
       <CardHeader />
       <Group classname={"mb-6"}>
         <CardsSubHeader />
