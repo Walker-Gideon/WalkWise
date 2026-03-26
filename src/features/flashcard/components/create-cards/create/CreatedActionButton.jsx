@@ -1,3 +1,5 @@
+import { useSearchParams } from "react-router-dom";
+
 import Button from "/src/ui/Button";
 
 import useToggleDisplay from "/src/hook/useToggleDisplay";
@@ -5,6 +7,8 @@ import { useFlashcard } from "../../../context/FlashcardContext";
 
 export default function CreatedActionButton() {
     const { setIsDisplay, setIsPlay, editingId, setEditingId, setPairs, pairs } = useFlashcard();
+
+    const [searchParams, setSearchParams] = useSearchParams();
     
     let handleCancel;
     const toggleDisplay = useToggleDisplay(setIsDisplay);
@@ -15,12 +19,21 @@ export default function CreatedActionButton() {
             { term: "", definition: "" },
         ]);
     }
-    
-    function cancelWhenEditing() {
+
+    function resetCardState() {
         setIsDisplay(false);
-        setIsPlay(true);
         setEditingId(null);
         restPairs();
+    }
+    
+    function cancelWhenEditing() {
+      if (searchParams.get("filter")) {
+        setSearchParams({ filter: searchParams.get("filter") });
+        resetCardState();
+      } else {
+        setIsPlay(true);
+        resetCardState();
+      }
     }
     
     function cancelDefault() {
