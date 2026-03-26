@@ -21,9 +21,9 @@ import { useFlashcard } from "../../../context/FlashcardContext";
 import useDeleteFlashcard from "../../../hooks/useDeleteFlashcard";
 
 export default function CardContentDisplay() {
-  const { query } = useFlashcard();
   const { flashcards, isPending, error } = useFetchCards();
   const { isDeleting, deleteFlashcard } = useDeleteFlashcard();
+  const { query, setIsDisplay, setEditingId } = useFlashcard();
 
   const [selectedId, setSelectedId] = useState(null);
   const [isSearching, setIsSearching] = useState(false);
@@ -89,6 +89,11 @@ export default function CardContentDisplay() {
     setSearchParams({ study: id }, { state: { previousFilter: filterValue } });
   }
 
+  function handleEditClick(id) {
+    setEditingId(id);
+    setIsDisplay(true);
+  }
+
   return (
     <Group classname={`px-6`}>
       <Conditional condition={isPending || isSearching}>
@@ -103,6 +108,7 @@ export default function CardContentDisplay() {
               numOfCards={card.pairs.length}
               handleDelete={() => handleDeleteClick(card.id, card.title)}
               handlePlay={() => handlePlayClick(card.id)}
+              handleEdit={() => handleEditClick(card.id)}
               timing={card.createdAt}
             />
           ))}
@@ -128,7 +134,7 @@ export default function CardContentDisplay() {
   );
 }
 
-function Cards({ title, numOfCards, handleDelete, handlePlay, timing }) {
+function Cards({ title, numOfCards, handleDelete, handlePlay, handleEdit, timing }) {
   const createdExact = useFormattedDate(timing);
 
   return (
@@ -167,7 +173,7 @@ function Cards({ title, numOfCards, handleDelete, handlePlay, timing }) {
                 <LuPlay className="w-4 h-4" />
                 Play
               </Menus.Buttons>
-              <Menus.Buttons onClick={() => {}}>
+              <Menus.Buttons onClick={handleEdit}>
                 <RiEditLine className="w-4 h-4" />
                 Edit
               </Menus.Buttons>
