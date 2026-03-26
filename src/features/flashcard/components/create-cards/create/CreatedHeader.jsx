@@ -2,7 +2,7 @@ import Group from "/src/ui/Group";
 import Heading from "/src/components/Heading";
 import CreatedActionButton from "./CreatedActionButton";
 
-export default function CreatedHeader() {
+export default function CreatedHeader({ isDirty }) {
   return (
     <Heading
       headerText="Create A New flashcard Set"
@@ -11,7 +11,7 @@ export default function CreatedHeader() {
       paragraphStyling={"dark:text-slate-300"}
     >
       <Group classname={"space-x-2 hidden middle:flex"}>
-        <CreatedActionButton />
+        <CreatedActionButton isDirty={isDirty} />
       </Group>
     </Heading>
   );

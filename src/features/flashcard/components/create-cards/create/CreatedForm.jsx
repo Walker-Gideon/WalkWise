@@ -26,7 +26,7 @@ export default function CreatedForm() {
   const { userData } = useUserData();
   const { flashcards } = useFetchCards();
   const { updateMutation, isUpdating } = useUpdateFlashcard();
-  const { control, register, handleSubmit, reset } = useForm();
+  const { control, register, handleSubmit, reset, formState: { isDirty } } = useForm();
   const { createFlashcard, isCreating } = useCreateFlashcard();
   const { setIsDisplay, setPairs, editingId, setEditingId } = useFlashcard();
 
@@ -134,9 +134,9 @@ export default function CreatedForm() {
         <Spinner spinnerWidth={"h-6 w-6 md:h-8 md:w-8"} />
       </Conditional>
       <Form onsubmit={handleSubmit(onSubmit)} classname={"flex min-h-0 flex-1 flex-col"}>
-        <CreatedHeader onHandleSubmit={handleSubmit} />
+        <CreatedHeader isDirty={isDirty} onHandleSubmit={handleSubmit} />
         <Group classname={"space-x-2 px-8 medium:py-6 py-4 flex justify-end middle:hidden shadow-lg"}>
-          <CreatedActionButton />
+          <CreatedActionButton isDirty={isDirty} />
         </Group>
         <Box
           adjustWidth={true}

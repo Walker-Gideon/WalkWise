@@ -1,11 +1,13 @@
 import { useSearchParams } from "react-router-dom";
 
 import Button from "/src/ui/Button";
+import SpanText from "/src/ui/SpanText";
+import Conditional from "/src/components/Conditional";
 
 import useToggleDisplay from "/src/hook/useToggleDisplay";
 import { useFlashcard } from "../../../context/FlashcardContext";
 
-export default function CreatedActionButton() {
+export default function CreatedActionButton({ isDirty }) {
     const { setIsDisplay, setIsPlay, editingId, setEditingId, setPairs, pairs } = useFlashcard();
 
     const [searchParams, setSearchParams] = useSearchParams();
@@ -65,9 +67,14 @@ export default function CreatedActionButton() {
             type="colors"
             submit={true}
             classname={`${editingId ? "px-11" : "px-8"}`}
-            disabled={!hasValidPair}
+            disabled={editingId ? !isDirty : !hasValidPair}
           >
-            {editingId ? "Edit" : "Create"}
+            <Conditional condition={editingId}>
+              <SpanText>Edit</SpanText>
+            </Conditional>
+            <Conditional condition={!editingId}>
+              <SpanText>Create</SpanText>
+            </Conditional>
           </Button>
         </>
     )
