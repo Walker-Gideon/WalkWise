@@ -11,6 +11,7 @@ import Button from "/src/ui/Button";
 import Spinner from "/src/ui/Spinner";
 import Paragraph from "/src/ui/Paragraph";
 import Container from "/src/ui/Container";
+import Conditional from "/src/components/Conditional";
 import StudyFlashcardHeader from "./StudyFlashcardHeader";
 import ConfirmDelete from "/src/components/ConfirmDelete";
 
@@ -207,9 +208,10 @@ export default function StudyFlashcard() {
     <Container classname={"p-4 h-full flex flex-col"}>
       <StudyFlashcardHeader title={title} onIsDeleteModal={setIsDeleteModal} timer={formatTime(timer)} />
 
-      {isPending ? (
-        <Spinner />
-      ) : (
+      <Conditional condition={isPending}>
+        <Spinner spinnerWidth={"h-6 w-6 md:h-8 md:w-8"} />
+      </Conditional>
+      <Conditional condition={!isPending}>
         <Flex
           variant="center"
           classname={"px-2 md:px-8 flex-col gap-8 md:max-w-2xl mx-auto flex-1 w-full"}
@@ -285,70 +287,67 @@ export default function StudyFlashcard() {
           </div>
 
           <Group classname={"flex items-center gap-8"}>
-            {!isFlip ? (
-              <>
-                <Button
-                  variant="secondary"
-                  type="border"
-                  disabled={index === 0}
-                  classname={btnStyling}
-                  onclick={handlePrev}
-                >
-                  <LuArrowLeft className="icons" />
-                </Button>
-                <Group>
-                  <Paragraph classname={"text-xl font-bold primary-text-color"}>
-                    {index + 1} / {pairs.length}
-                  </Paragraph>
-                </Group>
-                <Button
-                  variant={condition ? "" : "secondary"}
-                  type={"border"}
-                  classname={
-                    condition
-                      ? "text-sm text-slate-900 dark:text-white borderStyling"
-                      : btnStyling
-                  }
-                  onclick={condition ? handleFinish : handleNext}
-                >
-                  {condition ? "Finish" : <LuArrowRight className="icons" />}
-                </Button>
-              </>
-            ) : (
-                <>
-                <Button
-                  type="danger"
-                  classname={btnStyling}
-                  onclick={() => handleRate("missed")}
-                >
-                  <LuX className="icons text-white h-5 w-5" />
-                </Button>
+            <Conditional condition={!isFlip}>
+              <Button
+                variant="secondary"
+                type="border"
+                disabled={index === 0}
+                classname={btnStyling}
+                onclick={handlePrev}
+              >
+                <LuArrowLeft className="icons" />
+              </Button>
+              <Group>
+                <Paragraph classname={"text-xl font-bold primary-text-color"}>
+                  {index + 1} / {pairs.length}
+                </Paragraph>
+              </Group>
+              <Button
+                variant={condition ? "" : "secondary"}
+                type={"border"}
+                classname={
+                  condition
+                    ? "text-sm text-slate-900 dark:text-white borderStyling"
+                    : btnStyling
+                }
+                onclick={condition ? handleFinish : handleNext}
+              >
+                {condition ? "Finish" : <LuArrowRight className="icons" />}
+              </Button>
+            </Conditional>
+            <Conditional condition={isFlip}>
+              <Button
+                type="danger"
+                classname={btnStyling}
+                onclick={() => handleRate("missed")}
+              >
+                <LuX className="icons text-white h-5 w-5" />
+              </Button>
 
-                <Group>
-                  <Paragraph classname={"text-xl font-bold primary-text-color"}>
-                   Result
-                  </Paragraph>
-                </Group>
+              <Group>
+                <Paragraph classname={"text-xl font-bold primary-text-color"}>
+                  Result
+                </Paragraph>
+              </Group>
 
-                <Button
-                    classname={`${btnStyling} bg-green-500 hover:bg-green-600 text-white border-green-600`}
-                    onclick={() => handleRate("got_it")}
-                >
-                    <LuCheck className="icons text-white h-5 w-5" />
-                </Button>
-                </>
-            )}
+              <Button
+                classname={`${btnStyling} bg-green-500 hover:bg-green-600 text-white border-green-600`}
+                onclick={() => handleRate("got_it")}
+              >
+                <LuCheck className="icons text-white h-5 w-5" />
+              </Button>
+            </Conditional>
           </Group>
         </Flex>
-      )}
-      {isDeleteModal && (
+      </Conditional>
+      <Conditional condition={isDeleteModal}>
         <ConfirmDelete
           resourceName={title}
           disabled={isDeleting}
           onCloseModal={handleCloseModal}
           onConfirm={handleConfirmDelete}
         />
-      )}
+      </Conditional>
       {error && toast.error("Error fetching flashcards")}
     </Container>
   );
