@@ -7,13 +7,11 @@ import { RiDeleteBin5Line, RiEditLine } from "react-icons/ri";
 
 import Flex from "/src/ui/Flex";
 import Group from "/src/ui/Group";
-import Button from "/src/ui/Button";
 import Spinner from "/src/ui/Spinner";
 import Card from "/src/components/Card";
 import Container from "/src/ui/Container";
 import Menus from "/src/components/Menus";
 import Paragraph from "/src/ui/Paragraph";
-import HeaderText from "/src/ui/HeaderText";
 import Conditional from "/src/components/Conditional";
 import ConfirmDelete from "/src/components/ConfirmDelete";
 
@@ -96,7 +94,7 @@ export default function CardContentDisplay() {
       <Conditional condition={isPending || isSearching}>
         <Spinner secondary={true} styling={"mt-20 md:mt-40"} spinnerWidth={"h-6 w-6 md:h-8 md:w-8"} />
       </Conditional>
-      <Container adjust={true} classname={"md:px-8 md:max-w-2xl lg:mx-auto lg:max-w-5xl grid grid-cols-2 lg:grid-cols-3 gap-4"}>
+      <Container adjust={true} classname={"md:px-8 md:max-w-2xl lg:mx-auto lg:max-w-5xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"}>
         <Conditional condition={!isSearching}>
           {filteredFlashcards?.map((card) => (
             <Cards
@@ -135,18 +133,16 @@ function Cards({ title, numOfCards, handleDelete, handlePlay, timing }) {
 
   return (
     <Card
-      classname={
-        "cursor-pointer group flex gap-4 mb-4 mt-1 shadow-md transition-all duration-300 ease-in-out"
-      }
+      classname={"mb-4 mt-1 shadow-xl"}
     >
-      <Flex variant="between">
+      <Flex variant="between" classname={"w-full gap-2 min-w-0"}>
         <Flex variant="center" classname={"gap-2 flex-1 min-w-0"}>
           <Group classname={"h-3 w-3 medium:h-4 medium:w-4 rounded-full bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700"}></Group>
 
           <Flex classname={"flex-col flex-1 min-w-0"}>
-            <HeaderText classname={"truncate w-full primary-text-color"}>{title}</HeaderText>
+            <Paragraph type="sm" classname={"truncate w-full font-semibold primary-text-color mb-4"}>{title}</Paragraph>
 
-            <Flex variant="between" classname={"w-full"}>
+            <Flex variant="between" classname={"w-full flex-wrap"}>
               <Paragraph type="xs" classname={"secondary-text-color"}>
                 {numOfCards} card{numOfCards === 1 ? "" : "s"}
               </Paragraph>
