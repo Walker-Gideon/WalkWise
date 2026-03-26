@@ -36,7 +36,7 @@ export default function StudyFlashcardHeader({ title, onIsDeleteModal, timer }) 
 
     return (
         <Header classname={"py-4 middle:px-4 lg:px-8 flex items-center justify-between"}>
-            <Flex classname={"items-center gap-2"}>
+            <Flex classname={"flex-1 min-w-0 items-center gap-2"}>
                 <Button
                   variant="secondary" 
                   type="back"
@@ -44,14 +44,14 @@ export default function StudyFlashcardHeader({ title, onIsDeleteModal, timer }) 
                 >
                     <LuArrowLeft className="w-5 h-5" />
                 </Button>
-                <HeaderText classname={"text-xl font-bold text-slate-900 dark:text-white"}>{title}</HeaderText>
+                <HeaderText classname={"text-xl font-bold text-slate-900 dark:text-white max-w-30 middle:max-w-60 truncate"}>{title}</HeaderText>
             </Flex>
 
             <Flex classname={"items-center justify-end gap-4"}>
                 <Group
-                  classname={"medium:flex hidden items-center justify-center gap-2 rounded-full px-3 py-2 whitespace-nowrap transition bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700"}
+                  classname={"flex items-center justify-center gap-2 rounded-full px-3 py-2 whitespace-nowrap transition bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700"}
                 >
-                    <SpanText classname={"text-sm font-medium secondary-text-color"}>
+                    <SpanText classname={"text-xs middle:text-sm font-medium secondary-text-color"}>
                         {timer}
                     </SpanText>
                 </Group>
