@@ -211,12 +211,14 @@ export default function StudyFlashcard() {
       <Conditional condition={isPending}>
         <Spinner spinnerWidth={"h-6 w-6 md:h-8 md:w-8"} />
       </Conditional>
+
       <Conditional condition={!isPending}>
         <Flex
           variant="center"
           classname={"px-2 md:px-8 flex-col gap-8 md:max-w-2xl mx-auto flex-1 w-full"}
         >
           <div
+            role="button"
             className="perspective medium:h-85 h-70 w-full"
             onClick={() => setIsFlip((prev) => !prev)}
           >
@@ -246,37 +248,41 @@ export default function StudyFlashcard() {
                   >
                     {/* Front Side */}
                     <div
-                      className="absolute inset-0 flex h-full flex-col items-center justify-center px-6 py-4 text-xl font-semibold md:px-10"
+                      className="absolute inset-0 flex flex-col overflow-y-auto px-6 py-10 md:px-10"
                       style={{ backfaceVisibility: "hidden" }}
                     >
-                      <Paragraph
-                        classname={
-                          "text-2xl font-semibold text-center select-none"
-                        }
-                      >
-                        {pairs[index].term}
-                      </Paragraph>
-                      <span className="absolute bottom-4 text-xs text-slate-400 italic select-none dark:text-gray-400">
+                      <div className="flex flex-1 items-center justify-center">
+                        <Paragraph
+                          classname={
+                            "text-xl md:text-2xl font-semibold text-center select-none break-words"
+                          }
+                        >
+                          {pairs[index].term}
+                        </Paragraph>
+                      </div>
+                      <span className="text-center text-xs text-slate-400 italic select-none dark:text-gray-400 mt-2 shrink-0">
                         Tap to view definition
                       </span>
                     </div>
 
                     {/* Back Side */}
                     <div
-                      className="absolute inset-0 flex items-center justify-center px-6 py-4 md:px-10"
+                      className="absolute inset-0 flex flex-col overflow-y-auto px-6 py-10 md:px-10"
                       style={{
                         backfaceVisibility: "hidden",
                         transform: "rotateX(180deg)",
                       }}
                     >
-                      <Paragraph
-                        classname={
-                          "text-2xl font-semibold text-center select-none"
-                        }
-                      >
-                        {pairs[index].definition}
-                      </Paragraph>
-                      <span className="absolute bottom-4 text-xs text-slate-400 italic select-none dark:text-gray-400">
+                      <div className="flex flex-1 items-center justify-center">
+                        <Paragraph
+                          classname={
+                            "text-xl md:text-2xl font-semibold text-center select-none break-words"
+                          }
+                        >
+                          {pairs[index].definition}
+                        </Paragraph>
+                      </div>
+                      <span className="text-center text-xs text-slate-400 italic select-none dark:text-gray-400 mt-2 shrink-0">
                         Tap to view term
                       </span>
                     </div>
