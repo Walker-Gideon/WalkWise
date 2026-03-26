@@ -11,6 +11,7 @@ import CreatedTag from "./CreatedTag";
 import CreatedInputs from "./CreatedInputs";
 import CreatedHeader from "./CreatedHeader";
 import CreatedAddButton from "./CreatedAddButton";
+import Conditional from "/src/components/Conditional";
 import CreatedNotification from "./CreatedNotification";
 import CreatedActionButton from "./CreatedActionButton";
 
@@ -129,10 +130,12 @@ export default function CreatedForm() {
 
   return (
     <>
-      {(isCreating || isUpdating) && <Spinner />}
+      <Conditional condition={isCreating || isUpdating}>
+        <Spinner spinnerWidth={"h-6 w-6 md:h-8 md:w-8"} />
+      </Conditional>
       <Form onsubmit={handleSubmit(onSubmit)} classname={"flex min-h-0 flex-1 flex-col"}>
         <CreatedHeader onHandleSubmit={handleSubmit} />
-        <Group classname={"space-x-2 px-8 medium:py-6 py-4 flex justify-end middle:hidden"}>
+        <Group classname={"space-x-2 px-8 medium:py-6 py-4 flex justify-end middle:hidden shadow-lg"}>
           <CreatedActionButton />
         </Group>
         <Box
