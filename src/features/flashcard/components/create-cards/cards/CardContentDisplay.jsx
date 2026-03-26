@@ -144,7 +144,7 @@ function Cards({ title, numOfCards, handleDelete, handlePlay, timing }) {
           <Group classname={"h-3 w-3 medium:h-4 medium:w-4 rounded-full bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700"}></Group>
 
           <Flex classname={"flex-col flex-1 min-w-0"}>
-            <HeaderText classname={"truncate primary-text-color"}>{title}</HeaderText>
+            <HeaderText classname={"truncate w-full primary-text-color"}>{title}</HeaderText>
 
             <Flex variant="between" classname={"w-full"}>
               <Paragraph type="xs" classname={"secondary-text-color"}>
