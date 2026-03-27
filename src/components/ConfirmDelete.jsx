@@ -4,6 +4,7 @@ import Model from "./Model";
 import Flex from "/src/ui/Flex";
 import Group from "/src/ui/Group";
 import Button from "/src/ui/Button";
+import SpanText from "/src/ui/SpanText";
 import Paragraph from "/src/ui/Paragraph";
 import HeaderText from "/src/ui/HeaderText";
 
@@ -24,10 +25,14 @@ export default function ConfirmDelete({
           <LuX />
         </Button>
       </Flex>
-      <Group classname={"space-y-3"}>
-        <HeaderText type="primary">Delete {resourceName}</HeaderText>
+      <Group classname={"space-y-3 flex-1 min-w-0"}>
+        <HeaderText type="primary" classname={"flex items-center min-w-0"}>
+          <SpanText classname={"shrink-0 whitespace-nowrap"}>Delete </SpanText>
+          <SpanText classname={"pl-1 italic truncate min-w-0"}>{resourceName}</SpanText>
+        </HeaderText>
         <Paragraph variant="small" classname={"primary-text-color"}>
-          Are you sure you want to delete this {resourceName} permanently? This action cannot be undone.
+          Are you sure you want to delete this 
+          <SpanText classname={"pl-1 italic break-all"}>{resourceName}</SpanText> permanently? This action cannot be undone.
         </Paragraph>
         <Flex classname={"gap-2 justify-end"}>
           <Button
