@@ -9,7 +9,6 @@ export default function useUpdateFlashcard() {
   const { mutate: updateMutation, isPending: isUpdating } = useMutation({
     mutationFn: ({ id, data }) => updateFlashcardAPI(id, data),
     onSuccess: () => {
-      toast.success("Flashcard successfully updated");
       queryClient.invalidateQueries({ queryKey: ["flashcards"] });
     },
     onError: (err) => toast.error(err.message),

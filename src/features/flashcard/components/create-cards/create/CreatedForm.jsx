@@ -106,6 +106,7 @@ export default function CreatedForm() {
           { id: editingId, data: flashcardBase },
           {
             onSuccess: () => {
+              toast.success("Flashcard successfully updated");
               reset();
               setPairs([
                 { term: "", definition: "" },
