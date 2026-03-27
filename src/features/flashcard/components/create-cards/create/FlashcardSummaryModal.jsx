@@ -77,12 +77,12 @@ export default function FlashcardSummaryModal() {
     const rounded = "py-2 px-3 text-sm font-medium rounded-full space-x-4";
 
     return (
-        <Model styling={"primary-text-color"}>
+        <Model styling={"primary-text-color mx-4 medium:mx-0"}>
             <Group>
-                <Paragraph classname={"text-2xl font-bold mb-4"}>
+                <Paragraph classname={"text-xl medium:text-2xl font-bold mb-4"}>
                     You reviewed all your flashcards.
                 </Paragraph>
-                <SpanText classname={"flex flex-col items-center justify-center text-5xl"}>
+                <SpanText classname={"flex flex-col items-center justify-center text-4xl medium:text-5xl"}>
                     🎉🎉🎉🎉🎉
                 </SpanText>
             </Group>
@@ -92,7 +92,7 @@ export default function FlashcardSummaryModal() {
                     How you're doing
                 </Paragraph>
 
-                <Flex variant="between" classname={"gap-6 mx-5"}>
+                <Flex variant="between" classname={"gap-6 mx-2 medium:mx-5"}>
                     <Box adjustWidth={true} classname={"flex h-25 w-25 items-center justify-center rounded-full border-8 border-green-200 text-green-200 dark:border-green-300/30 dark:text-green-300/30"}>
                         {count === 5 ? 
                             <LuCheck className="h-16 w-16" /> : 
@@ -109,9 +109,9 @@ export default function FlashcardSummaryModal() {
                             <SpanText>Timing</SpanText>
                             <SpanText>{formatTime(studyTime)}</SpanText>
                         </Flex>
-                        <Paragraph variant="small" classname={"flex items-center gap-1"}>
+                        <Paragraph variant="small" classname={"flex items-center gap-1 whitespace-nowrap"}>
                             <LuFlame />
-                            Current Streak : {userData?.streakCount} day
+                            Current Streak : {userData?.streakCount} day{userData?.streakCount === 1 ? "" : "s"}
                         </Paragraph>
                     </Flex>
                 </Flex>
