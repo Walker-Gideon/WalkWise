@@ -5,16 +5,17 @@ import Paragraph from "/src/ui/Paragraph";
 import HeaderText from "/src/ui/HeaderText";
 
 export default function InformationPrompt({
+  btn,
   icon,
+  onclick,
+  classname,
   promptText,
   actionText,
-  onclick,
   buttonText,
-  btn,
 }) {
   return (
     <Group
-      classname={"h-full w-full flex items-center justify-center flex-col"}
+      classname={`h-full w-full flex items-center justify-center flex-col ${classname}`}
     >
       <Badge type="icons">
         {icon}

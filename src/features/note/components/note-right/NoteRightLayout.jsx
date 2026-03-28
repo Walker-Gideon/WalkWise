@@ -1,5 +1,5 @@
-import { useSearchParams } from "react-router-dom";
 import { LuNotebookText } from "react-icons/lu";
+import { useSearchParams } from "react-router-dom";
 
 import Container from "/src/ui/Container";
 import CreateNoteLayout from "./CreateNoteLayout";
@@ -25,6 +25,7 @@ export default function NoteRightLayout() {
           actionText='Choose a note from the sidebar or tap "Create Note" to make one.'
           onclick={() => setIsDisplayNote((show) => !show)}
           buttonText="Create Note"
+          classname={"absolute inset-0 md:relative"}
         />
       </Conditional>
       <Conditional condition={isEditorOpen}>
