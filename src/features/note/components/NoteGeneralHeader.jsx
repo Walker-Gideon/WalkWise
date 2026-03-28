@@ -6,6 +6,7 @@ export default function NoteGeneralHeader() {
             headerText="My Notes"
             paragraphText="Organize your thoughts and ideas."
             theme={true}
+            classname={`md:hidden`}
         />
     )
 }
