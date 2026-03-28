@@ -7,14 +7,19 @@ import Conditional from "/src/components/Conditional";
 import InformationPrompt from "/src/components/InformationPrompt";
 
 import { useNote } from "../../context/NoteContext";
+import useFetchNotes from "../../hook/useFetchNotes";
 
 export default function NoteRightLayout() {
+  const { notes } = useFetchNotes();
   const { isDisplayNote, setIsDisplayNote } = useNote();
 
   const [searchParams] = useSearchParams();
 
   const noteId = searchParams.get("noteId");
+
+  const hasNotes = notes?.length > 0;
   const isEditorOpen = isDisplayNote || noteId;
+  // const  = hasNotes && onDisplay;
 
   return (
     <Container classname={"h-full"}>
@@ -25,7 +30,7 @@ export default function NoteRightLayout() {
           actionText='Choose a note from the sidebar or tap "Create Note" to make one.'
           onclick={() => setIsDisplayNote((show) => !show)}
           buttonText="Create Note"
-          classname={"absolute inset-0 md:relative"}
+          classname={`absolute inset-0 md:relative ${hasNotes ? "hidden maxmid:flex" : ""}`}
         />
       </Conditional>
       <Conditional condition={isEditorOpen}>

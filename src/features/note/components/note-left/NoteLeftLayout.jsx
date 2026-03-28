@@ -2,11 +2,16 @@ import Container from "/src/ui/Container";
 import LeftNoteHeader from "./LeftNoteHeader";
 import LeftNoteContent from "./LeftNoteContent";
 
+import useFetchNotes from "../../hook/useFetchNotes";
+
 export default function NoteLeftLayout() {
+  const { notes } = useFetchNotes();
+
+  const hasNotes = notes?.length > 0;
+
   return (
     <Container
-      // medium:w-70 medium:mt-0  mt-5 transform  border-stone-300 transition-transform duration-500 ease-in-out dark:border-slate-700
-      classname={`maxmid:flex h-screen flex-col border-r-0 borderStyling medium:border-r hidden`}
+      classname={`maxmid:flex h-screen flex-col border-r-0 borderStyling medium:border-r ${!hasNotes ? "hidden" : ""}`}
     >
       <LeftNoteHeader />
       <LeftNoteContent />
