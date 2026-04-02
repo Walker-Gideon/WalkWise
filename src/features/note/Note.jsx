@@ -6,9 +6,6 @@ import NoteRightLayout from "./components/note-right/NoteRightLayout";
 import { NoteProvider } from "./context/NoteContext";
 
 export default function Note() {
-  /*
-  For the first responsive layout I was using here was "medium grid"
-  */ 
   return (
     <NoteProvider>
       <NoteHeader />

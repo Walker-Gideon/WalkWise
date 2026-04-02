@@ -19,7 +19,6 @@ export default function NoteRightLayout() {
 
   const hasNotes = notes?.length > 0;
   const isEditorOpen = isDisplayNote || noteId;
-  // const  = hasNotes && onDisplay;
 
   return (
     <Container classname={"h-full"}>
