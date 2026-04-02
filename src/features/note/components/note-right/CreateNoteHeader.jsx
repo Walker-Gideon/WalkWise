@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import {
   LuAlignLeft,
-  LuAlignJustify,
   LuAlignRight,
   LuAlignCenter,
+  LuAlignJustify,
 } from "react-icons/lu";
 
 import Flex from "/src/ui/Flex";
@@ -86,47 +86,51 @@ export default function CreateNoteHeader({ noteId, editor, onSave, isSaving, sho
   return (
     <Flex
       variant="between"
-      classname={"mx-4 h-16 border-b borderStyling"}
+      classname={"mx-4 py-4 md:py-0 md:h-16 border-b borderStyling"}
     >
-      <Flex classname={"gap-2"}>
-        {editingTools.map((data, index) => (
-          <Button
-            key={index}
-            type="customize"
-            variant="secondary"
-            classname={`${data.style} ${styling.base} ${data.activeCheck(editor) ? `${styling.isActive}` : `${styling.notActive}`}`}
-            onclick={(e) => {
-              e.preventDefault();
-              data.command(editor);
-            }}
-          >
-            {data.text}
-          </Button>
-        ))}
+      <Flex classname={"gap-4 md:gap-2 flex-col md:flex-row"}>
+        <Flex classname={"gap-2"}>
+          {editingTools.map((data, index) => (
+            <Button
+              key={index}
+              type="customize"
+              variant="secondary"
+              classname={`${data.style} ${styling.base} ${data.activeCheck(editor) ? `${styling.isActive}` : `${styling.notActive}`}`}
+              onclick={(e) => {
+                e.preventDefault();
+                data.command(editor);
+              }}
+            >
+              {data.text}
+            </Button>
+          ))}
+        </Flex>
 
-        {alignments.map((btn, index) => (
-          <Button
-            key={index}
-            type="customize"
-            variant="secondary"
-            classname={`px-[9.5px] py-[11px] ${styling.base} ${
-              editor.isActive({ textAlign: btn.align })
-                ? `${styling.isActive}`
-                : `${styling.notActive}`
-            }`}
-            onclick={(e) => {
-              e.preventDefault();
-              // Toggle: if already active, unset; otherwise set
-              if (editor.isActive({ textAlign: btn.align })) {
-                editor.chain().focus().unsetTextAlign().run();
-              } else {
-                editor.chain().focus().setTextAlign(btn.align).run();
-              }
-            }}
-          >
-            <btn.icon />
-          </Button>
-        ))}
+        <Flex classname={"gap-2"}>
+          {alignments.map((btn, index) => (
+            <Button
+              key={index}
+              type="customize"
+              variant="secondary"
+              classname={`px-[9.5px] py-[11px] ${styling.base} ${
+                editor.isActive({ textAlign: btn.align })
+                  ? `${styling.isActive}`
+                  : `${styling.notActive}`
+              }`}
+              onclick={(e) => {
+                e.preventDefault();
+                // Toggle: if already active, unset; otherwise set
+                if (editor.isActive({ textAlign: btn.align })) {
+                  editor.chain().focus().unsetTextAlign().run();
+                } else {
+                  editor.chain().focus().setTextAlign(btn.align).run();
+                }
+              }}
+            >
+              <btn.icon />
+            </Button>
+          ))}
+        </Flex>
       </Flex>
       <Conditional condition={showSaveButton}>
         <Button
@@ -136,6 +140,7 @@ export default function CreateNoteHeader({ noteId, editor, onSave, isSaving, sho
             onSave();
           }}
           disabled={isSaving}
+          classname={"mt-14 md:mt-0"}
         >
             {isSaving ? "Saving..." : noteId ? "Update Note" : "Save Note"}
         </Button>
