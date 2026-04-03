@@ -89,64 +89,67 @@ export default function CreateNoteHeader({ noteId, editor, onSave, isSaving, sho
       "text-slate-900 hover:text-white dark:text-white hover:bg-slate-600",
   };
 
-  // mx-4 py-4 md:py-0 md:h-16 border-b borderStyling flex-col md:flex-row md:justify-between
-
   return (
     <Flex
-      classname={"mx-4 py-4 md:py-0 md:h-16 border-b borderStyling flex-col medium:flex-row medium:justify-between"}
+      classname={"mx-4 py-4 md:py-3 gap-2 border-b borderStyling flex-wrap items-center medium:justify-between"}
     >
-      <Flex classname={"gap-4 md:gap-2 flex-col medium:flex-row"}>
-        <Flex classname={"gap-2"}>
-          <Button
-            variant="secondary"
-            type="back"
-            onclick={handleBack}
-            classname={"md:hidden"}
-          >
-            <LuArrowLeft className="w-5 h-5" />
-          </Button>
+      <Flex classname={"w-full medium:w-auto"}>
+        <Flex variant="between" classname={"w-full medium:w-auto gap-4 medium:gap-2 items-center"}>
+          <div className="h-full medium:h-auto">
+        <Button
+          variant="secondary"
+          type="back"
+          onclick={handleBack}
+          classname={"md:hidden shrink-0"}
+        >
+          <LuArrowLeft className="w-5 h-5" />
+        </Button>
+        </div>
 
-          {editingTools.map((data, index) => (
-            <Button
-              key={index}
-              type="customize"
-              variant="secondary"
-              classname={`${data.style} ${styling.base} ${data.activeCheck(editor) ? `${styling.isActive}` : `${styling.notActive}`}`}
-              onclick={(e) => {
-                e.preventDefault();
-                data.command(editor);
-              }}
-            >
-              {data.text}
-            </Button>
-          ))}
+        <Flex classname={"gap-4 medium:gap-2 flex-wrap"}>
+          <Flex classname={"gap-2"}>
+            {editingTools.map((data, index) => (
+              <Button
+                key={index}
+                type="customize"
+                variant="secondary"
+                classname={`${data.style} ${styling.base} ${data.activeCheck(editor) ? `${styling.isActive}` : `${styling.notActive}`}`}
+                onclick={(e) => {
+                  e.preventDefault();
+                  data.command(editor);
+                }}
+              >
+                {data.text}
+              </Button>
+            ))}
+          </Flex>
+          <Flex classname={"gap-2"}>
+            {alignments.map((btn, index) => (
+              <Button
+                key={index}
+                type="customize"
+                variant="secondary"
+                classname={`px-[9.5px] py-[11px] ${styling.base} ${
+                  editor.isActive({ textAlign: btn.align })
+                    ? `${styling.isActive}`
+                    : `${styling.notActive}`
+                }`}
+                onclick={(e) => {
+                  e.preventDefault();
+                  // Toggle: if already active, unset; otherwise set
+                  if (editor.isActive({ textAlign: btn.align })) {
+                    editor.chain().focus().unsetTextAlign().run();
+                  } else {
+                    editor.chain().focus().setTextAlign(btn.align).run();
+                  }
+                }}
+              >
+                <btn.icon />
+              </Button>
+            ))}
+          </Flex>
         </Flex>
-
-        <Flex classname={"gap-2"}>
-          {alignments.map((btn, index) => (
-            <Button
-              key={index}
-              type="customize"
-              variant="secondary"
-              classname={`px-[9.5px] py-[11px] ${styling.base} ${
-                editor.isActive({ textAlign: btn.align })
-                  ? `${styling.isActive}`
-                  : `${styling.notActive}`
-              }`}
-              onclick={(e) => {
-                e.preventDefault();
-                // Toggle: if already active, unset; otherwise set
-                if (editor.isActive({ textAlign: btn.align })) {
-                  editor.chain().focus().unsetTextAlign().run();
-                } else {
-                  editor.chain().focus().setTextAlign(btn.align).run();
-                }
-              }}
-            >
-              <btn.icon />
-            </Button>
-          ))}
-        </Flex>
+      </Flex>
       </Flex>
 
       <Conditional condition={showSaveButton}>
