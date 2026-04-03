@@ -11,6 +11,8 @@ import Flex from "/src/ui/Flex";
 import Button from "/src/ui/Button";
 import Conditional from "/src/components/Conditional";
 
+import { useNote } from "../../context/NoteContext";
+
 const editingTools = [
   {
     text: "H1",
@@ -59,7 +61,10 @@ const alignments = [
 ];
 
 export default function CreateNoteHeader({ noteId, editor, onSave, isSaving, showSaveButton }) {
+  const { setIsDisplayNote } = useNote();
+
   const [editorState, setEditorState] = useState(0);
+
 
   useEffect(() => {
     if (!editor) return;
@@ -78,8 +83,7 @@ export default function CreateNoteHeader({ noteId, editor, onSave, isSaving, sho
   if (!editor) return null;
 
   function handleBack() {
-    // setIsDisplayNote(false);
-    console.log("Back");
+    setIsDisplayNote(false);
   }
 
   const styling = {
