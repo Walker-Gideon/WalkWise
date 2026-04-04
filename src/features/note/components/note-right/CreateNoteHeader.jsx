@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import {
   LuArrowLeft,
   LuAlignLeft,
@@ -62,6 +63,7 @@ const alignments = [
 
 export default function CreateNoteHeader({ noteId, editor, onSave, isSaving, showSaveButton }) {
   const { setIsDisplayNote } = useNote();
+  const [, setSearchParams] = useSearchParams();
 
   const [editorState, setEditorState] = useState(0);
 
@@ -83,7 +85,8 @@ export default function CreateNoteHeader({ noteId, editor, onSave, isSaving, sho
   if (!editor) return null;
 
   function handleBack() {
-    setIsDisplayNote(false);
+    setIsDisplayNote(false); 
+    setSearchParams({});
   }
 
   const styling = {
