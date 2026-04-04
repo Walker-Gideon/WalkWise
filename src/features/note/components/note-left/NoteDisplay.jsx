@@ -89,7 +89,7 @@ export default function NoteDisplay({ notes }) {
 
   return (
     <>
-      <Container adjust={true} classname={"h-full overflow-y-auto"}>
+      <Container adjust={true} classname={"flex-1 min-h-0 overflow-y-auto"}>
         {!isSearching && filtereNote.map((note) => (
           <div
             key={note.id}

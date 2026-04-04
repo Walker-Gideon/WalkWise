@@ -23,7 +23,7 @@ export default function NoteRightLayout() {
   const hiddenOnMobile = !isEditorOpen ? "hidden maxmid:block" : "";
 
   return (
-    <Container adjust={true} classname={`flex flex-col min-h-0 h-full ${hiddenOnMobile}`}>
+    <Container adjust={true} classname={`flex flex-col min-w-0 min-h-0 h-full ${hiddenOnMobile}`}>
       <Conditional condition={!isEditorOpen}>
         <InformationPrompt
           icon={<LuNotebookText className="h-5 w-5 text-slate-600 dark:text-slate-900" />}
