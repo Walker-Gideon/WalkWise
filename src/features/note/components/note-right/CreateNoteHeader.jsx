@@ -9,6 +9,7 @@ import {
 } from "react-icons/lu";
 
 import Flex from "/src/ui/Flex";
+import Group from "/src/ui/Group";
 import Button from "/src/ui/Button";
 import Conditional from "/src/components/Conditional";
 
@@ -102,16 +103,16 @@ export default function CreateNoteHeader({ noteId, editor, onSave, isSaving, sho
     >
       <Flex classname={"w-full medium:w-auto"}>
         <Flex variant="between" classname={"w-full medium:w-auto gap-4 medium:gap-2 items-center"}>
-          <div className="h-full medium:h-auto">
-        <Button
-          variant="secondary"
-          type="back"
-          onclick={handleBack}
-          classname={"md:hidden shrink-0"}
-        >
-          <LuArrowLeft className="w-5 h-5" />
-        </Button>
-        </div>
+        <Group classname={"h-[92%] medium:h-[75%]"}>
+          <Button
+            variant="secondary"
+            type="back"
+            onclick={handleBack}
+            classname={"shrink-0"}
+          >
+            <LuArrowLeft className="w-5 h-5" />
+          </Button>
+        </Group>
 
         <Flex classname={"gap-4 medium:gap-2 flex-wrap"}>
           <Flex classname={"gap-2"}>
