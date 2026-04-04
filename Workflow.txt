@@ -12,7 +12,9 @@ the features for navigation
 && Working on &&
 ### NOTE SECTION
 ## Mobile view
-1. Switching between the screen (components)
+1. Switching between the screen (components) - DONE
+2. Back button in the CreateNoteHeader component - DONE
+3. Back button should also perform this function: When note is click and open send back to the list of notes
 
 2. Creat Note 
 
