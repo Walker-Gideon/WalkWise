@@ -20,8 +20,10 @@ export default function NoteRightLayout() {
   const hasNotes = notes?.length > 0;
   const isEditorOpen = isDisplayNote || noteId;
 
+  const hiddenOnMobile = !isEditorOpen ? "hidden maxmid:block" : "";
+
   return (
-    <Container classname={"h-full"}>
+    <Container adjust={true} classname={`h-full ${hiddenOnMobile}`}>
       <Conditional condition={!isEditorOpen}>
         <InformationPrompt
           icon={<LuNotebookText className="h-5 w-5 text-slate-600 dark:text-slate-900" />}
@@ -29,7 +31,7 @@ export default function NoteRightLayout() {
           actionText='Choose a note from the sidebar or tap "Create Note" to make one.'
           onclick={() => setIsDisplayNote((show) => !show)}
           buttonText="Create Note"
-          classname={`absolute inset-0 md:relative ${hasNotes ? "hidden maxmid:flex" : ""}`}
+          classname={`h-full w-full`}
         />
       </Conditional>
       <Conditional condition={isEditorOpen}>

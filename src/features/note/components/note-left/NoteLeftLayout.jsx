@@ -16,7 +16,8 @@ export default function NoteLeftLayout() {
 
   return (
     <Container
-      classname={`${hiddenOnMobile} h-screen flex-col border-r-0 borderStyling medium:border-r`}
+      adjust={true}
+      classname={`${hiddenOnMobile} h-full flex-col border-r-0 borderStyling medium:border-r`}
     >
       <LeftNoteHeader />
       <LeftNoteContent />

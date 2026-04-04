@@ -8,12 +8,15 @@ import { NoteProvider } from "./context/NoteContext";
 export default function Note() {
   return (
     <NoteProvider>
-      <NoteHeader />
-      <Container
-        classname={`maxmid:grid maxmid:grid-cols-[17.5rem_auto] overflow-hidden`}
-      >
-        <NoteLeftLayout />
-        <NoteRightLayout />
+      <Container classname={`flex w-full flex-col overflow-hidden`}>
+        <NoteHeader />
+        <Container
+          adjust={true}
+          classname={`flex-1 min-h-0 maxmid:grid maxmid:grid-cols-[17.5rem_auto]`}
+        >
+          <NoteLeftLayout />
+          <NoteRightLayout />
+        </Container>
       </Container>
     </NoteProvider>
   );
