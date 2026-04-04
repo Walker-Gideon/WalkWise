@@ -27,7 +27,7 @@ export default function LeftNoteContent() {
       <Conditional condition={!notesCount}>
         <InformationPrompt
           icon={<LuNotebookText className="h-5 w-5 text-slate-600 dark:text-slate-900" />}
-          actionText="No notes found"
+          actionText="Don't have any note yet"
           btn={true}
         />
       </Conditional>

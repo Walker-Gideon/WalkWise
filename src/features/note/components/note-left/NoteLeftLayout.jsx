@@ -4,15 +4,19 @@ import Container from "/src/ui/Container";
 import LeftNoteHeader from "./LeftNoteHeader";
 import LeftNoteContent from "./LeftNoteContent";
 
+import useFetchNotes from "../../hook/useFetchNotes";
 import { useNote } from "../../context/NoteContext";
 
 export default function NoteLeftLayout() {
+  const { notes } = useFetchNotes();
   const { isDisplayNote } = useNote();
   const [searchParams] = useSearchParams();
 
   const noteId = searchParams.get("noteId");
   const isEditorOpen = isDisplayNote || noteId;
-  const hiddenOnMobile = isEditorOpen ? "hidden maxmid:flex" : "flex maxmid:flex";
+
+  const hasNotes = notes?.length > 0;
+  const hiddenOnMobile = (isEditorOpen || !hasNotes) ? "hidden maxmid:flex" : "flex maxmid:flex";
 
   return (
     <Container
