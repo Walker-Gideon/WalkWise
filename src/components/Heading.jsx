@@ -4,8 +4,8 @@ import Header from "/src/ui/Header";
 import Conditional from "./Conditional"
 import Paragraph from "/src/ui/Paragraph";
 import HeaderText from "/src/ui/HeaderText";
-import MenuButton from "/src/navigation/components/MenuButton";
 import UserImage from "/src/user/components/UserImage";
+import MenuButton from "/src/navigation/components/MenuButton";
 
 export default function Heading({
   theme,
@@ -28,20 +28,20 @@ export default function Heading({
         </Conditional>
         <Flex variant="between" classname={`w-full ${menu ? "pl-2" : ""}`}>
           <Group>
-            <div className="block md:hidden">
+            <Group classname={"block md:hidden"}>
               <Small 
                 paragraphStyling={paragraphStyling} 
                 paragraphText={paragraphText} 
               />
-            </div>
-            <div className="hidden md:block">
+            </Group>
+            <Group classname={"hidden md:block"}>
               <Large
                 headerStyling={headerStyling} 
                 headerText={headerText}
                 paragraphStyling={paragraphStyling} 
                 paragraphText={paragraphText}
               />
-            </div>
+            </Group>
           </Group>
           <Group classname={groupStyling}>{children}</Group>
         </Flex>
