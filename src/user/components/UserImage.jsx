@@ -20,7 +20,7 @@ export default function UserImage({
             <Box
                 adjustWidth={true}
                 classname={
-                    `rounded-full flex items-center justify-center borderStyling ${size} ${photoURL ? "" : "border-2"} ${hideOnMobile ? "md:hidden" : ""} ${showOnMobile ? "block" : ""}`
+                    `rounded-full flex items-center justify-center borderStyling ${size} ${photoURL ? "" : "border-2"} ${hideOnMobile ? "" : "hidden md:flex"} ${showOnMobile ? "" : "flex md:hidden"}`
                 }
             >
                 <Conditional condition={!photoURL}>

@@ -22,13 +22,13 @@ export default function Heading({
     <Header
       classname={`sticky top-0 z-30 border-b border-stone-300 shadow-sm backdrop-blur-sm  ${classname} ${theme ? "defaultColor dark:border-slate-700" : "bg-white/30"}`}
     >
-      <Flex classname={`w-full py-3 medium:py-4 ${menu ? "pl-4 pr-6 items-center" : "px-6"}`}>
+      <Flex classname={`w-full flex-1 py-3 medium:py-4 ${menu ? "pl-4 pr-6 items-center" : "px-6"}`}>
         <Conditional condition={menu}>
           <MenuButton />
         </Conditional>
-        <Flex variant="between" classname={`w-full ${menu ? "pl-2" : ""}`}>
+        <Flex variant="between" classname={`flex-1 ${menu ? "pl-2" : ""}`}>
           <Group>
-            <Group classname={"block md:hidden"}>
+            <Group classname={"block md:hidden w-60 truncate"}>
               <Small 
                 paragraphStyling={paragraphStyling} 
                 paragraphText={paragraphText} 
