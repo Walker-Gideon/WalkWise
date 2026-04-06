@@ -75,3 +75,5 @@ function UserDetails({ classname1, classname2 }) {
     </Group>
   );
 }
+
+function UserPrompt() {}
