@@ -1,16 +1,15 @@
-import NavigationHeader from "./components/NavigationHeader";
-import ThemeButton from "./components/ThemeButton";
-import UserProfile from "/src/user/UserProfile";
-import MainNav from "./components/MainNav";
-import Aside from "/src/ui/Aside";
 import Box from "/src/ui/Box";
+import Aside from "/src/ui/Aside";
+import MainNav from "./components/MainNav";
+import UserProfile from "/src/user/UserProfile";
+import ThemeButton from "./components/ThemeButton";
+import NavigationHeader from "./components/NavigationHeader";
 
 import { useNav, NavigationContext } from "/src/contexts/NavigationContext";
 
 export default function Slider({ menu }) {
   const { isExpanded } = useNav();
 
-  // Override the context value for children
   const navValue = {
     ...useNav(),
     isExpanded: menu ? false : isExpanded,
