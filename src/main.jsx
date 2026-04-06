@@ -3,12 +3,13 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 
-import { FlashcardProvider } from "./features/flashcard/context/FlashcardContext.jsx";
-import { NavigationProvider } from "./contexts/NavigationContext.jsx";
-import { ScheduleProvider } from "./features/schedule/context/ScheduleContext.jsx";
-import { InspireProvider } from "./features/inspire/context/InspireContext.jsx";
+import { ThemeProvider } from "./contexts/ThemeContext.jsx";
 import { GeneralProvider } from "./contexts/GeneralContext.jsx";
+import { NavigationProvider } from "./contexts/NavigationContext.jsx";
 import { AuthProvider } from "./authentication/context/AuthContext.jsx";
+import { InspireProvider } from "./features/inspire/context/InspireContext.jsx";
+import { ScheduleProvider } from "./features/schedule/context/ScheduleContext.jsx";
+import { FlashcardProvider } from "./features/flashcard/context/FlashcardContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -18,7 +19,9 @@ createRoot(document.getElementById("root")).render(
           <NavigationProvider>
             <GeneralProvider>
               <AuthProvider>
-                <App />
+                <ThemeProvider>
+                  <App />
+                </ThemeProvider>
               </AuthProvider>
             </GeneralProvider>
           </NavigationProvider>
