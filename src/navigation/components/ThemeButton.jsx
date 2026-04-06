@@ -2,9 +2,9 @@ import { useState } from "react";
 import * as motion from "motion/react-client";
 import { LuSun, LuMoon } from "react-icons/lu";
 
-import Paragraph from "/src/ui/Paragraph";
-import useTheme from "/src/hook/useTheme";
 import Group from "/src/ui/Group";
+import useTheme from "/src/hook/useTheme";
+import Paragraph from "/src/ui/Paragraph";
 
 import { useNav } from "/src/contexts/NavigationContext";
 
