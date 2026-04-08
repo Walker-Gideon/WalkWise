@@ -20,7 +20,7 @@ export default function Profile() {
                 <LuUser className={`h-5 w-5 text-slate-500 dark:text-white`} />
             </Box>
             <Group
-                classname={`pointer-events-none absolute top-0.5 left-12 z-50 -translate-y-1/2 transform rounded-sm bg-slate-500 px-2 py-1 text-sm font-semibold whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100 ${isExpanded ? "medium:block" : "hidden"}`}
+                classname={`pointer-events-none absolute top-0.5 left-12 z-50 -translate-y-1/2 transform rounded-sm bg-slate-500 px-2 py-1 text-sm font-semibold whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100 z-50 ${isExpanded ? "medium:block" : "hidden"}`}
             >
                 <UserDetails
                     classname1={"text-slate-50"}

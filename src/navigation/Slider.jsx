@@ -1,14 +1,20 @@
+import { useState } from "react";
+
 import Box from "/src/ui/Box";
 import Aside from "/src/ui/Aside";
 import MainNav from "./components/MainNav";
 import UserProfile from "/src/user/UserProfile";
 import ThemeButton from "./components/ThemeButton";
+import Conditional from "/src/components/Conditional";
 import NavigationHeader from "./components/NavigationHeader";
+import UserPromptAction from "/src/user/components/UserPromptAction";
 
 import { useNav, NavigationContext } from "/src/contexts/NavigationContext";
 
 export default function Slider({ menu }) {
   const { isExpanded } = useNav();
+
+  const [isHovered, setIsHovered] = useState(false);
 
   const navValue = {
     ...useNav(),
@@ -26,8 +32,11 @@ export default function Slider({ menu }) {
         </Box>
         <Box adjustWidth={true} classname={"borderStyling border-t p-4"}>
           <ThemeButton />
-          <UserProfile />
+          <UserProfile onIsHovered={setIsHovered} />
         </Box>
+        <Conditional condition={isHovered}>
+          {/* <UserPromptAction /> */}
+        </Conditional>
       </NavigationContext.Provider>
     </Aside>
   );

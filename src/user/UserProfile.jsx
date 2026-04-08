@@ -1,15 +1,26 @@
 import Box from "/src/ui/Box";
-import Container from "/src/ui/Container";
 import Profile from "./components/Profile";
 import UserDetails from "./components/UserDetails";
 
 import { useNav } from "/src/contexts/NavigationContext";
 
-export default function UserProfile() {
+export default function UserProfile({ onIsHovered }) {
   const { isExpanded } = useNav();
 
+  const handleMouseEnter = () => {
+    onIsHovered(true);
+  };
+  const handleMouseLeave = () => {
+    onIsHovered(false);
+  };
+
   return (
-    <Container adjust={true} classname={"mt-4 relative"}>
+    <div
+      role="button"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className={"mt-4 relative cursor-pointer"}
+    >
       <Box
         classname={`absolute transform transition-transform duration-300 ${isExpanded ? "translate-0 flex items-center justify-center" : "-translate-x-50"}`}
       >
@@ -24,6 +35,6 @@ export default function UserProfile() {
           classname2={"secondary-text-color"}
         />
       </Box>
-    </Container>
+    </div>
   );
 }
