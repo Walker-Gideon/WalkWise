@@ -1,17 +1,16 @@
 import { NavLink } from "react-router-dom";
 import {
-  LuLayoutDashboard,
   LuBookOpen,
-  LuRectangleVertical,
   LuCalendar,
   LuLightbulb,
-  LuSettings2,
+  LuLayoutDashboard,
+  LuRectangleVertical,
 } from "react-icons/lu";
 
-import SpanText from "/src/ui/SpanText";
-import Group from "/src/ui/Group";
-import List from "/src/ui/List";
 import Nav from "/src/ui/Nav";
+import List from "/src/ui/List";
+import Group from "/src/ui/Group";
+import SpanText from "/src/ui/SpanText";
 
 import { useNav } from "/src/contexts/NavigationContext";
 
@@ -40,11 +39,6 @@ const buttonsData = [
     text: "Inspire",
     to: "inspire",
     icon: LuLightbulb,
-  },
-  {
-    text: "Settings",
-    to: "settings",
-    icon: LuSettings2,
   },
 ];
 
