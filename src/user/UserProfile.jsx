@@ -1,15 +1,19 @@
+import { NavLink } from "react-router-dom";
+
 import Box from "/src/ui/Box";
-import Group from "/src/ui/Group";
 import Profile from "./components/Profile";
 import UserDetails from "./components/UserDetails";
 
 import { useNav } from "/src/contexts/NavigationContext";
 
 export default function UserProfile() {
-  const { isExpanded } = useNav();
+  const { isExpanded, handleToggle } = useNav();
 
   return (
-    <Group
+    <NavLink
+      to="/settings"
+      end
+      onClick={handleToggle}
       classname={"mt-4 relative cursor-pointer"}
     >
       <Box
@@ -26,6 +30,6 @@ export default function UserProfile() {
           classname2={"secondary-text-color"}
         />
       </Box>
-    </Group>
+    </NavLink>
   );
 }
