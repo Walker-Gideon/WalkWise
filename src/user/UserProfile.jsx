@@ -11,10 +11,10 @@ export default function UserProfile() {
 
   return (
     <NavLink
-      to="/settings"
+      to="/profile"
       end
       onClick={handleToggle}
-      classname={"mt-4 relative cursor-pointer"}
+      className={"mt-4 relative cursor-pointer overflow-hidden block"}
     >
       <Box
         classname={`absolute transform transition-transform duration-300 ${isExpanded ? "translate-0 flex items-center justify-center" : "-translate-x-50"}`}

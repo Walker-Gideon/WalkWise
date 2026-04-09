@@ -58,7 +58,7 @@ export default function App() {
             <Route path="flashcards" element={<Flashcard />} />
             <Route path="schedule" element={<Schedules />} />
             <Route path="inspire" element={<Inspire />} />
-            <Route path="settings" element={<Settings />} />
+            <Route path="profile" element={<Settings />} />
           </Route>
 
           <Route path="*" element={<PageNotFound />} />
