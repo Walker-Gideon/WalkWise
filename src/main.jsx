@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 
-import { ThemeProvider } from "./contexts/ThemeContext.jsx";
 import { GeneralProvider } from "./contexts/GeneralContext.jsx";
 import { NavigationProvider } from "./contexts/NavigationContext.jsx";
 import { AuthProvider } from "./authentication/context/AuthContext.jsx";
@@ -19,9 +18,7 @@ createRoot(document.getElementById("root")).render(
           <NavigationProvider>
             <GeneralProvider>
               <AuthProvider>
-                <ThemeProvider>
-                  <App />
-                </ThemeProvider>
+                <App />
               </AuthProvider>
             </GeneralProvider>
           </NavigationProvider>
