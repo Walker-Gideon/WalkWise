@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as motion from "motion/react-client";
 import { LuSun, LuMoon } from "react-icons/lu";
 
@@ -11,8 +11,19 @@ import { useNav } from "/src/contexts/NavigationContext";
 
 export default function ThemeButton() {
   const { isExpanded } = useNav();
-  const [isOn, setIsOn] = useState(false);
   const [theme, setTheme] = useTheme();
+
+  // Initialize and sync isOn with the actual DOM theme
+  const [isOn, setIsOn] = useState(() => {
+    if (typeof document !== "undefined") {
+      return !document.documentElement.classList.contains("dark");
+    }
+    return true;
+  });
+
+  useEffect(() => {
+    setIsOn(!document.documentElement.classList.contains("dark"));
+  }, [theme]);
 
   const selectedTheme = isOn ? "dark" : "light";
 
@@ -35,7 +46,7 @@ export default function ThemeButton() {
           isExpanded ? "hidden" : "block"
         }`}
       >
-        {isOn ? (
+        {!isOn ? (
           <Paragraph
             type="xs"
             classname={"flex items-center font-semibold gap-2"}
@@ -83,7 +94,7 @@ export default function ThemeButton() {
           }}
           className="flex items-center justify-center bg-slate-500 dark:bg-slate-300"
         >
-          {isOn ? (
+          {!isOn ? (
             <LuSun className="h-3 w-3 text-white dark:text-slate-800" />
           ) : (
             <LuMoon className="h-3 w-3 text-white dark:text-slate-800" />
