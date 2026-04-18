@@ -1,6 +1,6 @@
-import HeaderText from "/src/ui/HeaderText";
-import Paragraph from "/src/ui/Paragraph";
 import SpanText from "/src/ui/SpanText";
+import Paragraph from "/src/ui/Paragraph";
+import HeaderText from "/src/ui/HeaderText";
 
 import { useTypewriter } from "/src/hook/useTypewriter";
 
@@ -28,7 +28,7 @@ export default function HeroInformation() {
       </div>
       <Paragraph
         type="sm"
-        classname={"medium:pt-5 max-w-2xl pt-3 text-slate-500"}
+        classname={"medium:pt-5 max-w-2xl pt-4 md:pt-5 text-slate-500"}
       >
         Unlock a world of knowledge with expertly crafted study tools —
         flashcards, notes, AI help, and motivation — all in one place to power

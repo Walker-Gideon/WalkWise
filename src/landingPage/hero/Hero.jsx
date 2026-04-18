@@ -1,17 +1,20 @@
 import { LuArrowDown, LuChevronRight } from "react-icons/lu";
-import HeroInformation from "./components/HeroInformation";
-import HeroImages from "./components/HeroImages";
-import Container from "/src/ui/Container";
+
 import Box from "/src/ui/Box";
 import Flex from "/src/ui/Flex";
 import Button from "/src/ui/Button";
+import Container from "/src/ui/Container";
+import HeroImages from "./components/HeroImages";
+import HeroInformation from "./components/HeroInformation";
 
 export default function Hero() {
+  const styling = "py-3 shadow-lg shadow-slate-600/50";
+
   return (
     <Container
       id="home"
       adjust={true}
-      classname="h-full w-full px-4 medium:px-6 mt-10 medium:mt-20 lg:mt-25"
+      classname="h-full w-full px-4 medium:px-6 mt-15 medium:mt-20 lg:mt-25"
     >
       <Flex variant="center" classname={"h-full flex-col"}>
         <Box
@@ -22,7 +25,7 @@ export default function Hero() {
             <Button
               to="/sign-up"
               type="colors"
-              classname={"flex gap-2 items-center px-7"}
+              classname={`flex gap-2 items-center px-7 ${styling}`}
             >
               Get Started
               <LuChevronRight className="text-sm font-bold" />
@@ -32,7 +35,7 @@ export default function Hero() {
               to="features"
               type="border"
               classname={
-                "flex items-center gap-2 hover:border-slate-400 border-stone-300"
+                `flex items-center gap-2 hover:border-slate-400 border-stone-300 ${styling}`
               }
             >
               Explore Features

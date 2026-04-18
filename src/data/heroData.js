@@ -4,17 +4,14 @@ import hero3 from "/src/assets/hero3.png";
 
 const heroData = [
   {
-    text: "Create Notes",
     url: hero1,
     style: "-rotate-12",
   },
   {
-    text: "Create Flashcards",
     url: hero2,
-    style: "mt-6",
+    style: "mt-4 md:mt-6",
   },
   {
-    text: "Schedule Flashcards",
     url: hero3,
     style: "rotate-12",
   },

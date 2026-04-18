@@ -1,15 +1,17 @@
-import Container from "/src/ui/Container";
-import Paragraph from "/src/ui/Paragraph";
-import Image from "/src/ui/Image";
 import Box from "/src/ui/Box";
+import Image from "/src/ui/Image";
+import Container from "/src/ui/Container";
+
 import heroData from "/src/data/heroData.js";
 
 export default function HeroImages() {
   return (
-    <Container adjust={true} classname="mt-10">
+    <Container adjust={true} classname="mt-12 medium:mt-18">
       <Container
         adjust={true}
-        classname="grid auto-cols-max grid-flow-col justify-center gap-6"
+        classname={
+          "px-2 sm:px-4 grid auto-cols-max grid-flow-col justify-center gap-2 sm:gap-3 medium:gap-5 middle:gap-10 lg:gap-14"
+        }
       >
         {heroData.map((image, index) => (
           <Box
@@ -17,20 +19,16 @@ export default function HeroImages() {
             adjustWidth={true}
             classname={`transform transition-transform ${image.style}`}
           >
-            <Paragraph
-              type="sm"
-              classname="mb-2 w-full text-center font-semibold lg:text-base"
-            >
-              {image.text}
-            </Paragraph>
             <Box
               adjustWidth={true}
-              classname="medium:w-40 h-auto w-30 rounded-xl border border-slate-600 shadow-md shadow-slate-600 lg:w-50"
+              classname={
+                "h-auto rounded-xl border border-slate-600 shadow-lg shadow-slate-600 w-20 sm:w-24 medium:w-32 middle:w-38 lg:w-44"
+              }
             >
               <Image
                 src={image.url}
                 alt={image.text}
-                classname="overflow-hidden rounded-xl object-cover"
+                classname={"overflow-hidden rounded-xl object-contain w-full"}
               />
             </Box>
           </Box>
