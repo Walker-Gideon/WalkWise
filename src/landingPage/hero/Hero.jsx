@@ -11,7 +11,7 @@ export default function Hero() {
     <Container
       id="home"
       adjust={true}
-      classname="h-full w-full px-4 medium:px-6 mt-15 medium:mt-20 lg:mt-25"
+      classname="h-full w-full px-4 medium:px-6 mt-10 medium:mt-20 lg:mt-25"
     >
       <Flex variant="center" classname={"h-full flex-col"}>
         <Box
