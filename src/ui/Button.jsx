@@ -15,7 +15,7 @@ export default function Button({
 }) {
   const navigateTo = useNavigateToAction();
   const base =
-    "cursor-pointer rounded-sm transition-colors duration-300 whitespace-nowrap py-2 px-4 text-[0.8rem] font-semibold disabled:cursor-not-allowed disabled:opacity-50";
+    "cursor-pointer rounded-sm transition-colors duration-300 whitespace-nowrap py-3 px-4 text-[0.8rem] font-semibold disabled:cursor-not-allowed disabled:opacity-50";
   const styling = {
     // hover:border-slate-400 border-stone-300
     border: `border text-slate-800`,
