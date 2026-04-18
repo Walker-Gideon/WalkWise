@@ -18,12 +18,14 @@ export default function HeroInformation() {
 
   return (
     <>
-      <HeaderText variant="huge">
-        <SpanText>
-          {displayed}
-          <span className="inline-block w-[2px] h-[0.8em] bg-slate-900 align-middle ml-0.5 animate-pulse" />
-        </SpanText>
-      </HeaderText>
+      <div className="min-h-[6rem] middle:min-h-0 flex items-center justify-center">
+        <HeaderText variant="huge">
+          <SpanText>
+            {displayed}
+            <span className="inline-block w-[2px] h-[0.8em] bg-slate-900 align-middle ml-0.5 animate-pulse" />
+          </SpanText>
+        </HeaderText>
+      </div>
       <Paragraph
         type="sm"
         classname={"medium:pt-5 max-w-2xl pt-3 text-slate-500"}
