@@ -14,21 +14,21 @@ export default function LandindPageHeader() {
       <Logo to="home" cursor={true} />
       <>
         <DisplayAndHidden>
-          <Flex classname={"items-center gap-2 whitespace-nowrap"}>
+          <Flex classname={"items-center gap-4 whitespace-nowrap"}>
             <Button
               to="/sign-in"
               type="border"
-              classname={"px-5 hover:border-slate-400 border-stone-300"}
+              classname={"px-8 hover:border-slate-400 border-stone-300"}
             >
               Log In
             </Button>
-            <Button to="/sign-up" type="colors">
+            <Button to="/sign-up" type="colors" classname={"px-8"}>
               Sign Up
             </Button>
           </Flex>
         </DisplayAndHidden>
         <DisplayAndHidden variant="hidden">
-          <Button to="/sign-in" type="colors">
+          <Button to="/sign-in" type="colors" classname={"px-6"}>
             Get started
           </Button>
         </DisplayAndHidden>

@@ -14,7 +14,7 @@ export default function Logo({ to, cursor, show }) {
     >
       <SpanText
         classname={
-          "flex h-8 w-8 items-center justify-center rounded-full bg-slate-500 text-white dark:text-slate-50"
+          "flex h-10 w-10 items-center justify-center rounded-full bg-slate-500 text-white dark:text-slate-50"
         }
       >
         w
