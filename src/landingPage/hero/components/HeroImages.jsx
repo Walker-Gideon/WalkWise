@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 import Box from "/src/ui/Box";
 import Image from "/src/ui/Image";
 import Container from "/src/ui/Container";
@@ -7,9 +9,16 @@ import heroData from "/src/data/heroData.js";
 export default function HeroImages() {
   return (
     <Container adjust={true} classname="mt-12 medium:mt-18">
-      <Container
-        adjust={true}
-        classname={
+      <motion.div
+        animate={{ 
+          y: [0, -20, 0],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className={
           "px-2 sm:px-4 grid auto-cols-max grid-flow-col justify-center gap-2 sm:gap-3 medium:gap-5 middle:gap-10 lg:gap-14"
         }
       >
@@ -33,7 +42,7 @@ export default function HeroImages() {
             </Box>
           </Box>
         ))}
-      </Container>
+      </motion.div>
     </Container>
   );
 }
