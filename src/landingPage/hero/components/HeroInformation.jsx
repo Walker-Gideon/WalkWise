@@ -18,11 +18,11 @@ export default function HeroInformation() {
 
   return (
     <>
-      <div className="min-h-[6rem] middle:min-h-0 flex items-center justify-center">
+      <div className={"min-h-[6rem] middle:min-h-0 flex items-center justify-center"}>
         <HeaderText variant="huge">
           <SpanText>
             {displayed}
-            <span className="inline-block w-[2px] h-[0.8em] bg-slate-900 align-middle ml-0.5 animate-pulse" />
+            <span className={"inline-block w-[2px] h-[0.8em] bg-slate-900 align-middle ml-0.5 animate-pulse"} />
           </SpanText>
         </HeaderText>
       </div>
@@ -33,7 +33,7 @@ export default function HeroInformation() {
         Unlock a world of knowledge with expertly crafted study tools —
         flashcards, notes, AI help, and motivation — all in one place to power
         your learning with{" "}
-        <SpanText classname="font-semibold">WalkWise</SpanText>.
+        <SpanText classname={"font-semibold"}>WalkWise</SpanText>.
       </Paragraph>
     </>
   );

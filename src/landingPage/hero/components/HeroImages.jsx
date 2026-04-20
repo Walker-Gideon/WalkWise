@@ -8,7 +8,10 @@ import heroData from "/src/data/heroData.js";
 
 export default function HeroImages() {
   return (
-    <Container adjust={true} classname="mt-18 medium:mt-20">
+    <Container 
+      adjust={true} 
+      classname={"mt-18 medium:mt-20"}
+    >
       <motion.div
         animate={{ 
           y: [0, -20, 0],

@@ -1,8 +1,8 @@
-import AdditionalInformation from "./additionalInfo/AdditionalInformation";
-import Footer from "./footer/Footer";
 import Hero from "./hero/Hero";
+import Footer from "./footer/Footer";
 import MoreInformation from "./infoOn/MoreInformation";
 import LandindPageHeader from "./landing-page-header/LandindPageHeader";
+import AdditionalInformation from "./additionalInfo/AdditionalInformation";
 
 export default function LandingPage() {
   return (

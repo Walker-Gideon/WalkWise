@@ -14,21 +14,21 @@ export default function Hero() {
     <Container
       id="home"
       adjust={true}
-      classname="h-full w-full px-4 medium:px-6 mt-15 medium:mt-20 lg:mt-25"
+      classname={"h-full w-full px-4 medium:px-6 mt-15 medium:mt-20 lg:mt-25"}
     >
       <Flex variant="center" classname={"h-full flex-col"}>
         <Box
           classname={"flex items-center flex-col justify-center text-center"}
         >
           <HeroInformation />
-          <Flex variant="center" classname="gap-3 mt-8">
+          <Flex variant="center" classname={"gap-3 mt-8"}>
             <Button
               to="/sign-up"
               type="colors"
               classname={`flex gap-2 items-center px-7 ${styling}`}
             >
               Get Started
-              <LuChevronRight className="text-sm font-bold" />
+              <LuChevronRight className={"text-sm font-bold"} />
             </Button>
             <Button
               links={true}
@@ -39,7 +39,7 @@ export default function Hero() {
               }
             >
               Explore Features
-              <LuArrowDown className="mt-0.5 text-sm font-bold text-slate-800" />
+              <LuArrowDown className={"mt-0.5 text-sm font-bold text-slate-800"} />
             </Button>
           </Flex>
         </Box>
