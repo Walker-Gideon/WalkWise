@@ -1,14 +1,14 @@
-import DisplayAndHidden from "/src/components/DisplayAndHidden";
-import MainHeader from "/src/ui/MainHeader";
-import Logo from "/src/components/Logo";
-import Button from "/src/ui/Button";
 import Flex from "/src/ui/Flex";
+import Button from "/src/ui/Button";
+import Logo from "/src/components/Logo";
+import MainHeader from "/src/ui/MainHeader";
+import DisplayAndHidden from "/src/components/DisplayAndHidden";
 
 export default function LandindPageHeader() {
   return (
     <MainHeader
       classname={
-        "flex h-16 items-center justify-between border-b border-stone-300 bg-white/30 px-4 shadow-sm backdrop-blur-sm md:px-8 lg:px-30"
+        "flex h-16 items-center justify-between border-b border-stone-300 bg-white/30 px-4 shadow-lg shadow-slate-600/30 backdrop-blur-sm md:px-8 lg:px-30"
       }
     >
       <Logo to="home" cursor={true} />

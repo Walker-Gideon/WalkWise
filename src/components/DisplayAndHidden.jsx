@@ -4,12 +4,12 @@ export default function DisplayAndHidden({
   classname,
 }) {
   if (variant === "hidden")
-    return <div className={`medium:hidden block ${classname}`}>{children}</div>;
+    return <div className={`middle:hidden block ${classname}`}>{children}</div>;
 
   return (
     <>
       {variant === "display" && (
-        <div className={`medium:block hidden ${classname}`}>{children}</div>
+        <div className={`middle:block hidden ${classname}`}>{children}</div>
       )}
     </>
   );
