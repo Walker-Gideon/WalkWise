@@ -1,3 +1,6 @@
+import { motion } from "framer-motion";
+import { fadeIn } from "/src/utils/variants";
+
 import Box from "/src/ui/Box";
 import Image from "/src/ui/Image";
 import Container from "/src/ui/Container";
@@ -12,9 +15,12 @@ export default function InformationContent({
   subtitle,
 }) {
   return (
-    <Container
-      adjust={true}
-      classname={"px-2 py-4 md:px-6 md:py-0 lg:px-15"}
+    <motion.div
+      variants={index === 0 ? fadeIn("left", 0.2) : index === 1 ? fadeIn("right", 0.2) : index === 2 ? fadeIn("left", 0.2) : fadeIn("right", 0.2)}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, amount: 0.7 }}
+      className={"w-full px-2 py-4 md:px-6 md:py-0 lg:px-15"}
     >
       <Container 
         adjust={true} 
@@ -39,6 +45,6 @@ export default function InformationContent({
           />
         </Box>
       </Container>
-    </Container>
+    </motion.div>
   );
 }
