@@ -11,7 +11,7 @@ export default function AuthCloseButton() {
         type="buttonText"
         aria-label="Close"
       >
-        <LuX size={30} className={"font-bold"} />
+        <LuX className={"w-7 h-7 font-bold"} />
       </Button>
     </Flex>
   );
