@@ -15,7 +15,7 @@ export default function SignUp() {
         variant="center" 
         classname={"justify-center min-h-[90vh] w-full max-w-md flex-col px-8 medium:px-0"}
       >
-        <AuthHeader type={true} />
+        <AuthHeader type="sign-up" />
         <SignUpForm />
 
         <Flex 

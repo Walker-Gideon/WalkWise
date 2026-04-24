@@ -20,7 +20,7 @@ export default function AuthHeader({ type }) {
       <Paragraph 
         classname={"text-start w-full mt-1 text-2xl font-bold"}
       >
-        {type ? "Create account" : "Login account"}
+        {type === "sign-up" ? "Create account" : type === "forget" ? "Reset your password" : "Login account"}
       </Paragraph>
     </Header>
   );

@@ -10,6 +10,7 @@ export default function SignIn() {
   return (
     <Container 
       id="sign-in"
+      adjust={true}
       classname={"flex items-center justify-center flex-col"}
     >
       <AuthCloseButton />
