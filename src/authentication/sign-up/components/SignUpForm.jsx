@@ -1,88 +1,33 @@
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
-import { FiEyeOff, FiEye } from "react-icons/fi";
+import toast from "react-hot-toast";
 import { LuLoader } from "react-icons/lu";
+import { FiEyeOff, FiEye } from "react-icons/fi";
 
-import Conditional from "/src/components/Conditional";
-import Container from "/src/ui/Container";
-import SpanText from "/src/ui/SpanText";
-import Button from "/src/ui/Button";
-import Flex from "/src/ui/Flex";
 import Form from "/src/ui/Form";
-import Box from "/src/ui/Box";
+import Flex from "/src/ui/Flex";
+import Button from "/src/ui/Button";
+import SpanText from "/src/ui/SpanText";
+import Conditional from "/src/components/Conditional";
+import FormRow from "/src/authentication/components/FormRow";
 
 import { signUpUser } from "/src/service/apiAuth";
 
 export default function SignUpForm() {
+  const navigate = useNavigate();
+  const { handleSubmit, register, reset, getValues, formState: { errors } } = useForm();
+  
+  const [isLoading, setIsLoading] = useState(false);
   const [hidePassword, setHidePassword] = useState(true);
   const [hideConfirmPassword, setHideConfirmPassword] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const navigate = useNavigate();
-  const { handleSubmit, register, reset } = useForm();
 
   async function onSubmit(data) {
-    const { email, username, password, confirmPassword } = data;
-
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(email)) {
-      toast.error("Please enter a valid email address");
-      return;
-    }
-
-    const trimmedUsername = username.trim();
-    if (!trimmedUsername) {
-      toast.error("Username is required");
-      return;
-    }
-
-    if (trimmedUsername.length < 3) {
-      toast.error("Username must be at least 3 characters long");
-      return;
-    }
-
-    if (trimmedUsername.length > 20) {
-      toast.error("Username must be less than 20 characters");
-      setIsLoading(false);
-      return;
-    }
-
-    const usernameRegex = /^[a-zA-Z0-9_-]+$/;
-    if (!usernameRegex.test(trimmedUsername)) {
-      toast.error(
-        "Username can only contain letters, numbers, underscores, and hyphens",
-      );
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
-      return;
-    }
-
-    if (password.length < 8) {
-      toast.error("Password must be at least 8 characters long");
-      return;
-    }
-
-    const hasUpperCase = /[A-Z]/.test(password);
-    const hasLowerCase = /[a-z]/.test(password);
-    const hasNumbers = /\d/.test(password);
-
-    if (!hasUpperCase || !hasLowerCase || !hasNumbers) {
-      toast.error(
-        "Password must contain at least one uppercase letter, one lowercase letter, and one number",
-      );
-      return;
-    }
-
     setIsLoading(true);
 
     try {
-      await signUpUser({ email, username, password });
+      await signUpUser(data);
       toast.success("Account created successfully");
       navigate("/dashboard", { replace: true });
       reset();
@@ -96,39 +41,72 @@ export default function SignUpForm() {
   const styling = `w-full rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs hover:border-slate-400 focus:ring-2 focus:ring-slate-400 focus:outline-hidden`;
 
   return (
-    <Container adjust={true} classname={"medium:w-80 mt-4 w-70"}>
-      <Form onsubmit={handleSubmit(onSubmit)}>
+      <Form onsubmit={handleSubmit(onSubmit)} classname={"w-full"}>
         <Flex classname={"flex-col"}>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            placeholder="Email"
-            disabled={isLoading}
-            className={`${styling}`}
-            {...register("email", { required: true })}
-          />
+          <FormRow errorsField={errors.email} errorMessage={errors.email?.message}>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Email"
+              className={`${styling}`}
+              {...register("email", {
+                required: "Email is required",
+                disabled: isLoading,
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "Please enter a valid email address",
+                },
+              })}
+            />
+          </FormRow>
 
-          <input
-            id="username"
-            type="text"
-            name="username"
-            placeholder="Username"
-            disabled={isLoading}
-            className={`${styling} mt-2`}
-            {...register("username", { required: true })}
-          />
+          <FormRow errorsField={errors.username} errorMessage={errors.username?.message}>
+            <input
+              id="username"
+              type="text"
+              name="username"
+              placeholder="Username"
+              className={`${styling} mt-2`}
+              {...register("username", {
+                required: "Username is required",
+                disabled: isLoading,
+                minLength: {
+                  value: 3,
+                  message: "Username must be at least 3 characters long",
+                },
+                maxLength: {
+                  value: 20,
+                  message: "Username must be less than 20 characters",
+                },
+                pattern: {
+                  value: /^[a-zA-Z0-9_-]+$/,
+                  message: "Username can only contain letters, numbers, underscores, and hyphens",
+                },
+              })}
+            />
+          </FormRow>
         </Flex>
 
-        <Box adjustWidth={true} classname={"relative my-2"}>
+        <FormRow errorsField={errors.password} errorMessage={errors.password?.message} classname={"relative mt-2"}>
           <input
             id="password"
             type={!hidePassword ? "text" : "password"}
             name="password"
             placeholder="Password"
-            disabled={isLoading}
             className={`${styling}`}
-            {...register("password", { required: true })}
+            {...register("password", {
+              required: "Password is required",
+              disabled: isLoading,
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters long",
+              },
+              pattern: {
+                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
+                message: "Password must contain at least one uppercase letter, one lowercase letter, and one number",
+              },
+            })}
           />
           <Button
             variant="secondary"
@@ -146,17 +124,20 @@ export default function SignUpForm() {
               <FiEyeOff className="text-sm" />
             </Conditional>
           </Button>
-        </Box>
+        </FormRow>
 
-        <Box adjustWidth={true} classname={"relative pb-2"}>
+        <FormRow errorsField={errors.confirmPassword} errorMessage={errors.confirmPassword?.message} classname={"relative mt-2 mb-6"}>
           <input
             id="confirmPassword"
             type={!hideConfirmPassword ? "text" : "password"}
             name="confirmPassword"
             placeholder="Confirm password"
-            disabled={isLoading}
             className={`${styling}`}
-            {...register("confirmPassword", { required: true })}
+            {...register("confirmPassword", {
+              required: "Please confirm your password",
+              disabled: isLoading,
+              validate: (value) => value === getValues("password") || "Passwords do not match",
+            })}
           />
           <Button
             variant="secondary"
@@ -174,7 +155,7 @@ export default function SignUpForm() {
               <FiEyeOff className="text-sm" />
             </Conditional>
           </Button>
-        </Box>
+        </FormRow>
 
         <Button
           type="colors"
@@ -190,6 +171,5 @@ export default function SignUpForm() {
           </Conditional>
         </Button>
       </Form>
-    </Container>
   );
 }
