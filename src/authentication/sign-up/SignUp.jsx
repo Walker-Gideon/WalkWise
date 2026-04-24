@@ -1,35 +1,39 @@
-import AuthCloseButton from "../components/AuthCloseButton";
-import AuthHeader from "../components/AuthHeader";
-import SignUpForm from "./components/SignUpForm";
-import Container from "/src/ui/Container";
-import Flex from "/src/ui/Flex";
 import Box from "/src/ui/Box";
-import Paragraph from "/src/ui/Paragraph";
+import Flex from "/src/ui/Flex";
 import Button from "/src/ui/Button";
+import Paragraph from "/src/ui/Paragraph";
+import Container from "/src/ui/Container";
+import SignUpForm from "./components/SignUpForm";
+import AuthHeader from "../components/AuthHeader";
+import AuthCloseButton from "../components/AuthCloseButton";
 
 export default function SignUp() {
   return (
-    <Container>
+    <Container classname={"flex items-center justify-center flex-col"}>
       <AuthCloseButton />
-      <Flex variant="center" classname={"min-h-[90vh]"}>
-        <Box
-          adjustWidth={true}
-          classname={"rounded-xl border border-stone-300 p-6 shadow-lg"}
+      <Flex 
+        variant="center" 
+        classname={"justify-center min-h-[90vh] w-full max-w-md flex-col px-8 medium:px-0"}
+      >
+        <AuthHeader type={true} />
+        <SignUpForm />
+
+        <Flex 
+          variant="center" 
+          classname={"mt-4 gap-2"}
         >
-          <AuthHeader />
-          <SignUpForm />
-          <Flex variant="center" classname={"mt-4"}>
-            <Paragraph classname={"text-sm whitespace-nowrap text-slate-400"}>
-              Already have an account?
-            </Paragraph>
-            <Button
-              to="/sign-in"
-              classname={"text-[0.8rem] font-semibold mt-1"}
-            >
-              Log in
-            </Button>
-          </Flex>
-        </Box>
+          <Paragraph classname={"text-sm whitespace-nowrap text-slate-400"}>
+            Already have an account?
+          </Paragraph>
+          <Button
+            to="/sign-in"
+            type="buttonText"
+            ariaLabel="Log in"
+            classname={"text-sm font-semibold"}
+          >
+            Log in
+          </Button>
+        </Flex>
       </Flex>
     </Container>
   );
