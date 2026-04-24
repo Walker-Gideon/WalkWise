@@ -22,17 +22,10 @@ export default function SignInForm() {
   const [hidePassword, setHidePassword] = useState(true);
 
   async function onSubmit(data) {
-    const { email, password } = data;
-
-    if (!email || !password) {
-      toast.error("Please fill in all fields");
-      return;
-    }
-
     setIsLoading(true);
 
     try {
-      await loginUser({ email, password });
+      await loginUser(data);
       toast.success("Logged in successfully");
       navigate("/dashboard", { replace: true });
       reset();
@@ -56,7 +49,11 @@ export default function SignInForm() {
             className={styling}
             {...register("email", { 
               required: "Email is required", 
-              disabled: isLoading 
+              disabled: isLoading,
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                message: "Please enter a valid email address",
+              },
             })}
           />
         </FormRow>
@@ -70,7 +67,15 @@ export default function SignInForm() {
             className={styling}
             {...register("password", { 
               required: "Password is required", 
-              disabled: isLoading 
+              disabled: isLoading,
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters long",
+              },
+              pattern: {
+                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
+                message: "Password must contain at least one uppercase letter, one lowercase letter, and one number",
+              },
             })}
           />
           <Button 
