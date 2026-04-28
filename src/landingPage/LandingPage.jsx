@@ -6,7 +6,7 @@ import AdditionalInformation from "./additionalInfo/AdditionalInformation";
 
 export default function LandingPage() {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <LandindPageHeader />
       <Hero />
       <main className="mt-8 h-full">
