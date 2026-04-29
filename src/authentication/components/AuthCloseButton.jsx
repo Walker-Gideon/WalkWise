@@ -5,7 +5,7 @@ import Button from "/src/ui/Button";
 
 export default function AuthCloseButton({ showBack }) {
   return (
-    <Flex classname={`${showBack ? "justify-between" : "justify-end"} w-full items-center px-4 mt-2`}>
+    <Flex classname={`${showBack ? "justify-between" : "justify-end"} absolute top-0 left-0 z-10 w-full items-center px-4 mt-4`}>
       {showBack && (
         <Button 
           to="/sign-in"
