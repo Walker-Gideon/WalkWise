@@ -16,7 +16,7 @@ export default function SignUp() {
       <AuthCloseButton />
       <Flex 
         variant="center" 
-        classname={"justify-center min-h-screen w-full max-w-md flex-col px-8 medium:px-0"}
+        classname={"justify-center min-h-dvh w-full max-w-md flex-col px-8 medium:px-0"}
       >
         <AuthHeader type="sign-up" />
         <SignUpForm />

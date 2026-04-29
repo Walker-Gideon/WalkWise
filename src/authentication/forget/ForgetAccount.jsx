@@ -17,7 +17,7 @@ export default function ForgetAccount() {
       <AuthCloseButton showBack={true} />
       <Flex 
         variant="center" 
-        classname={"min-h-screen flex-col w-full max-w-md md:max-w-lg px-8 medium:px-0"}
+        classname={"min-h-dvh flex-col w-full max-w-md md:max-w-lg px-8 medium:px-0"}
       >
         <AuthHeader type="forget" />
         <Paragraph classname={"mb-4 text-sm"}>
