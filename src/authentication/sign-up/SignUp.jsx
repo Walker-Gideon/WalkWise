@@ -9,11 +9,14 @@ import AuthCloseButton from "../components/AuthCloseButton";
 
 export default function SignUp() {
   return (
-    <Container classname={"flex items-center justify-center flex-col"}>
+    <Container 
+      adjust={true}
+      classname={"flex items-center justify-center flex-col"}
+    >
       <AuthCloseButton />
       <Flex 
         variant="center" 
-        classname={"justify-center min-h-[90vh] w-full max-w-md flex-col px-8 medium:px-0"}
+        classname={"justify-center min-h-screen w-full max-w-md flex-col px-8 medium:px-0"}
       >
         <AuthHeader type="sign-up" />
         <SignUpForm />
