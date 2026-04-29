@@ -30,7 +30,7 @@ export default function AppLayout() {
       </AnimatePresence>
 
       <Main
-        classname={"h-screen w-full bg-slate-50 dark:bg-slate-800 transition"}
+        classname={"h-full w-full overflow-y-auto bg-slate-50 dark:bg-slate-800 transition"}
       >
         <Outlet />
       </Main>

@@ -6,5 +6,5 @@ export default function Container({ id, children, classname, adjust }) {
       </div>
     );
 
-  return <div className={`h-screen w-full ${classname}`}>{children}</div>;
+  return <div className={`h-dvh w-full ${classname}`}>{children}</div>;
 }
