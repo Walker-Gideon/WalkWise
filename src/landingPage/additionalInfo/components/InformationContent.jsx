@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { fadeIn } from "/src/utils/variants";
 
 import Box from "/src/ui/Box";
@@ -11,6 +11,7 @@ export default function InformationContent({
   icon,
   title,
   index,
+  alt,
   points,
   subtitle,
 }) {
@@ -40,7 +41,7 @@ export default function InformationContent({
         >
           <Image 
             src={url} 
-            alt="image"
+            alt={alt}
             classname={"w-full rounded-2xl object-scale-down shadow-lg shadow-slate-600"} 
           />
         </Box>
