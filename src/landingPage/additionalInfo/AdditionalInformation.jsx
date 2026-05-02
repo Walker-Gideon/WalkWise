@@ -1,7 +1,7 @@
 import Container from "/src/ui/Container";
 import InformationContent from "./components/InformationContent";
 
-import additionaInformationData from "/src/data/additionalInformationData.js";
+import additionalInformationData from "/src/data/additionalInformationData.js";
 
 export default function AdditionalInformation() {
   return (
@@ -10,7 +10,7 @@ export default function AdditionalInformation() {
       id="features" 
       classname={"md:px-8 lg:px-16 px-6"}
     >
-      {additionaInformationData.map((data, index) => (
+      {additionalInformationData.map((data, index) => (
         <Container 
           key={index} 
           adjust={true} 
@@ -21,6 +21,7 @@ export default function AdditionalInformation() {
             index={index}
             url={data.url}
             title={data.title}
+            alt={data.alt}
             points={data.points}
             subtitle={data.subtitle}
           />
