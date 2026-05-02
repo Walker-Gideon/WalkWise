@@ -1,6 +1,11 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { auth, db } from "./firebase";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { 
+  updateProfile, 
+  sendPasswordResetEmail, 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword 
+} from "firebase/auth";
 
 /**
  * Sign up a user and create Firestore document
@@ -133,5 +138,41 @@ export async function loginUser({ email, password }) {
       }
 
       throw new Error(errorMessage);
+  }
+}
+
+/**
+ * Send reset password link
+ * @param {string} email
+ */
+export async function sendResetPasswordLink(email) {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    return true;
+  } catch (err) {
+    let errorMessage = "Failed to send reset link. Please try again.";
+
+    if (err.code) {
+      switch (err.code) {
+        case "auth/user-not-found":
+          errorMessage = "No account found with this email.";
+          break;
+        case "auth/invalid-email":
+          errorMessage = "Invalid email address.";
+          break;
+        case "auth/too-many-requests":
+          errorMessage = "Too many requests. Please try again later.";
+          break;
+        case "auth/network-request-failed":
+          errorMessage = "Network error. Please check your connection.";
+          break;
+        default:
+          console.error("Firebase Auth Error:", err.code, err.message);
+      }
+    } else {
+      console.error("Send Reset Error:", err);
+    }
+
+    throw new Error(errorMessage);
   }
 }
