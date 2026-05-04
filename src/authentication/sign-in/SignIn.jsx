@@ -22,7 +22,7 @@ export default function SignIn() {
         <SignInForm />
 
         <Button 
-          to="/forgotten" 
+          to="/forget-password" 
           type="buttonText"
           ariaLabel="Forget Password"
           classname={"text-left w-full whitespace-nowrap text-slate-400 my-4 text-sm font-semibold"}

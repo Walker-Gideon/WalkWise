@@ -7,7 +7,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import AppLayout from "./ui/AppLayout";
 import Note from "./features/note/Note";
 import PageNotFound from "./ui/PageNotFound";
-import ProtectedRoute from "./ui/ProtectedRoute";
 import Inspire from "./features/inspire/Inspire";
 import Accounts from "./authentication/Accounts";
 import Settings from "./features/settings/Settings";
@@ -19,6 +18,9 @@ import Dashboard from "./features/dashboard/Dashboard";
 import Flashcard from "./features/flashcard/Flashcard";
 import ForgetAccount from "./authentication/forget/ForgetAccount";
 import PasswordEmailSent from "./authentication/components/PasswordEmailSent";
+
+import PublicRoute from "./utils/PublicRoute";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,11 +39,15 @@ export default function App() {
         <Routes>
           <Route index element={<LandingPage />} />
 
-          <Route element={<Accounts />}>
+          <Route element={
+            <PublicRoute>
+              <Accounts />
+            </PublicRoute>
+          }>
             <Route index element={<Navigate replace to="sign-in" />} />
             <Route path="sign-in" element={<SignIn />} />
             <Route path="sign-up" element={<SignUp />} />
-            <Route path="forgotten" element={<ForgetAccount />} />
+            <Route path="forget-password" element={<ForgetAccount />} />
             <Route path="verify-email" element={<PasswordEmailSent />} />
           </Route>
 
