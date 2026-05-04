@@ -12,13 +12,13 @@ import Inspire from "./features/inspire/Inspire";
 import Accounts from "./authentication/Accounts";
 import Settings from "./features/settings/Settings";
 import LandingPage from "./landingPage/LandingPage";
-import Verify from "./authentication/verify/Verify";
 import SignUp from "./authentication/sign-up/SignUp";
 import SignIn from "./authentication/sign-in/SignIn";
 import Schedules from "./features/schedule/Schedules";
 import Dashboard from "./features/dashboard/Dashboard";
 import Flashcard from "./features/flashcard/Flashcard";
 import ForgetAccount from "./authentication/forget/ForgetAccount";
+import PasswordEmailSent from "./authentication/components/PasswordEmailSent";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,7 +42,7 @@ export default function App() {
             <Route path="sign-in" element={<SignIn />} />
             <Route path="sign-up" element={<SignUp />} />
             <Route path="forgotten" element={<ForgetAccount />} />
-            <Route path="verify" element={<Verify />} />
+            <Route path="verify-email" element={<PasswordEmailSent />} />
           </Route>
 
           <Route
