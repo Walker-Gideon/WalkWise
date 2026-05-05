@@ -74,13 +74,3 @@ import { LuChartNoAxesColumnDecreasing } from "react-icons/lu";
     @apply bg-yellow-200 text-black px-0.5 rounded-xs dark:bg-yellow-500;
   }
 }
-
-/*
-//Replace test mode with proper security rules
-
-match /flashcards/{flashcardId} {
-  allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
-  allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;
-}
-// This ensures each user can only access their own flashcards.
-*/
