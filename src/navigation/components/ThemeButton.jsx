@@ -35,7 +35,9 @@ export default function ThemeButton() {
   return (
     <div
       role="button"
-      className={`flex cursor-pointer items-center justify-between`}
+      className={`flex cursor-pointer items-center justify-between ${
+          isExpanded ? "px-0" : "px-2"
+        }`}
       onClick={() => {
         toggleSwitch();
         handleTheme(selectedTheme);
