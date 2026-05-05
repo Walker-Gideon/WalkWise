@@ -14,7 +14,7 @@ export default function UserProfile() {
       to="/profile"
       end
       onClick={handleToggle}
-      className={"mt-4 relative cursor-pointer overflow-hidden block"}
+      className={"relative cursor-pointer overflow-hidden block"}
     >
       <Box
         classname={`absolute transform transition-transform duration-300 ${isExpanded ? "translate-0 flex items-center justify-center" : "-translate-x-50"}`}
