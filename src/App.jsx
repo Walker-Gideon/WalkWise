@@ -37,7 +37,14 @@ export default function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route index element={<LandingPage />} />
+          <Route
+            index
+            element={
+              <PublicRoute>
+                <LandingPage />
+              </PublicRoute>
+            }
+          />
 
           <Route element={
             <PublicRoute>
