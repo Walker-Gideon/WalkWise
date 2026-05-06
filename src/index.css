@@ -74,3 +74,12 @@ import { LuChartNoAxesColumnDecreasing } from "react-icons/lu";
     @apply bg-yellow-200 text-black px-0.5 rounded-xs dark:bg-yellow-500;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
