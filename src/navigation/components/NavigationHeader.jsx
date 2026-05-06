@@ -1,16 +1,17 @@
 import { LuCircleChevronLeft, LuCircleChevronRight } from "react-icons/lu";
 
-import Conditional from "/src/components/Conditional"
-import Logo from "/src/components/Logo";
-import SpanText from "/src/ui/SpanText";
-import Button from "/src/ui/Button";
-import Header from "/src/ui/Header";
 import Box from "/src/ui/Box";
+import Header from "/src/ui/Header";
+import Button from "/src/layout/Button";
+import SpanText from "/src/ui/SpanText";
+import Logo from "/src/components/Logo";
+import Conditional from "/src/components/Conditional"
 
 import { useNav } from "/src/contexts/NavigationContext";
 
-export default function NavigationHeader() {
+export default function NavigationHeader({ showLabel }) {
   const { isExpanded, isMenuClick, setIsExpanded } = useNav();
+  const effectiveIsExpanded = showLabel ? false : isExpanded;
 
   function handleIsExpanded() {
     setIsExpanded((show) => !show);
@@ -18,7 +19,7 @@ export default function NavigationHeader() {
 
   return (
     <Header
-      classname={`borderStyling border-b py-4 flex items-center justify-center transition-all duration-500 ${isExpanded ? "px-2" : "px-4"}`}
+      classname={`borderStyling border-b py-4 flex items-center justify-center transition-all duration-500 ${effectiveIsExpanded ? "px-2" : "px-4"}`}
     >
       <Box classname={"rounded-sm py-2 flex items-center justify-between"}>
         <Box
@@ -29,14 +30,17 @@ export default function NavigationHeader() {
         >
           <Logo show={true} />
           <SpanText
-            classname={`font-bold text-slate-500 dark:text-slate-300 ${isExpanded ? "hidden" : "block"}`}
+            classname={`font-bold text-slate-500 dark:text-slate-300 ${effectiveIsExpanded ? "hidden" : "block"}`}
           >
             walkwise
           </SpanText>
         </Box>
         <Conditional condition={!isMenuClick}>
-          <Button variant="secondary" onclick={handleIsExpanded}>
-            {isExpanded ? (
+          <Button 
+            variant="text"
+            ariaLabel="Toggle navigation menu"
+            onClick={handleIsExpanded}>
+            {effectiveIsExpanded ? (
               <LuCircleChevronRight className="icons" />
             ) : (
               <LuCircleChevronLeft className="icons" />

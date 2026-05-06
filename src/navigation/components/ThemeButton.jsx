@@ -2,18 +2,16 @@ import { useState, useEffect } from "react";
 import * as motion from "motion/react-client";
 import { LuSun, LuMoon } from "react-icons/lu";
 
-import useTheme from "/src/hook/useTheme";
-
 import Group from "/src/ui/Group";
 import Paragraph from "/src/ui/Paragraph";
 
 import { useNav } from "/src/contexts/NavigationContext";
+import { useThemeContext } from "/src/contexts/ThemeContext";
 
-export default function ThemeButton() {
+export default function ThemeButton({ showLabel }) {
   const { isExpanded } = useNav();
-  const [theme, setTheme] = useTheme();
+  const { theme, setTheme } = useThemeContext();
 
-  // Initialize and sync isOn with the actual DOM theme
   const [isOn, setIsOn] = useState(() => {
     if (typeof document !== "undefined") {
       return !document.documentElement.classList.contains("dark");
@@ -21,31 +19,29 @@ export default function ThemeButton() {
     return true;
   });
 
+  const effectiveIsExpanded = showLabel ? false : isExpanded;
+
   useEffect(() => {
     setIsOn(!document.documentElement.classList.contains("dark"));
   }, [theme]);
 
-  const selectedTheme = isOn ? "dark" : "light";
-
-  const toggleSwitch = () => setIsOn(!isOn);
-  const handleTheme = (themeValue) => {
-    setTheme(themeValue);
+  const handleToggle = () => {
+    const nextIsOn = !isOn;
+    setIsOn(nextIsOn);
+    setTheme(nextIsOn ? "light" : "dark");
   };
 
   return (
     <div
       role="button"
       className={`flex cursor-pointer items-center justify-between ${
-          isExpanded ? "px-0" : "px-2"
+          effectiveIsExpanded ? "px-0" : "px-2"
         }`}
-      onClick={() => {
-        toggleSwitch();
-        handleTheme(selectedTheme);
-      }}
+      onClick={handleToggle}
     >
       <Group
         classname={`text-nowrap w-30 text-slate-900 dark:text-slate-300 ${
-          isExpanded ? "hidden" : "block"
+          effectiveIsExpanded ? "hidden" : "block"
         }`}
       >
         {!isOn ? (
@@ -78,8 +74,7 @@ export default function ThemeButton() {
         }}
         onClick={(e) => {
           e.stopPropagation(); // Prevent double trigger since div also has onClick
-          toggleSwitch();
-          handleTheme(selectedTheme);
+          handleToggle();
         }}
       >
         <motion.div

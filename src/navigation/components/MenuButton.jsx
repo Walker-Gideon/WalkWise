@@ -1,7 +1,6 @@
 import { BiMenuAltLeft } from "react-icons/bi"
 
-import Button from "/src/ui/Button";
-
+import Button from "/src/layout/Button";
 import { useNav } from "/src/contexts/NavigationContext";
 
 export default function MenuButton() {
@@ -13,9 +12,10 @@ export default function MenuButton() {
 
     return (
         <Button 
-            variant="secondary"
-            onclick={handleToggle} 
-            classname={"md:hidden h-8 p-0.5 my-2 rounded-sm hover:bg-slate-100 transition-colors duration-300 dark:hover:bg-slate-800"}
+            variant="text"
+            ariaLabel="Toggle menu"
+            onClick={handleToggle} 
+            className={"md:hidden h-8 p-0.5 my-2 rounded-sm hover:bg-slate-100 transition-colors duration-300 dark:hover:bg-slate-800"}
         >
             <BiMenuAltLeft className="secondary-text-color h-8 w-8" />
         </Button>

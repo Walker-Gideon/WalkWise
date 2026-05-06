@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 
+import { ThemeProvider } from "./contexts/ThemeContext.jsx";
 import { GeneralProvider } from "./contexts/GeneralContext.jsx";
 import { NavigationProvider } from "./contexts/NavigationContext.jsx";
 import { AuthProvider } from "./authentication/context/AuthContext.jsx";
@@ -12,18 +13,20 @@ import { FlashcardProvider } from "./features/flashcard/context/FlashcardContext
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <FlashcardProvider>
-      <ScheduleProvider>
-        <InspireProvider>
-          <NavigationProvider>
-            <GeneralProvider>
-              <AuthProvider>
-                <App />
-              </AuthProvider>
-            </GeneralProvider>
-          </NavigationProvider>
-        </InspireProvider>
-      </ScheduleProvider>
-    </FlashcardProvider>
+    <ThemeProvider>
+      <FlashcardProvider>
+        <ScheduleProvider>
+          <InspireProvider>
+            <NavigationProvider>
+              <GeneralProvider>
+                <AuthProvider>
+                  <App />
+                </AuthProvider>
+              </GeneralProvider>
+            </NavigationProvider>
+          </InspireProvider>
+        </ScheduleProvider>
+      </FlashcardProvider>
+    </ThemeProvider>
   </StrictMode>,
 );
