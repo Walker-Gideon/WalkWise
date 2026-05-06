@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import * as motion from "motion/react-client";
 import { LuSun, LuMoon } from "react-icons/lu";
 
@@ -12,23 +11,14 @@ export default function ThemeButton({ showLabel }) {
   const { isExpanded } = useNav();
   const { theme, setTheme } = useThemeContext();
 
-  const [isOn, setIsOn] = useState(() => {
-    if (typeof document !== "undefined") {
-      return !document.documentElement.classList.contains("dark");
-    }
-    return true;
-  });
+  const isOn = theme === "system" 
+    ? !document.documentElement.classList.contains("dark")
+    : theme === "light";
 
   const effectiveIsExpanded = showLabel ? false : isExpanded;
 
-  useEffect(() => {
-    setIsOn(!document.documentElement.classList.contains("dark"));
-  }, [theme]);
-
   const handleToggle = () => {
-    const nextIsOn = !isOn;
-    setIsOn(nextIsOn);
-    setTheme(nextIsOn ? "light" : "dark");
+    setTheme(isOn ? "dark" : "light");
   };
 
   return (
@@ -44,7 +34,7 @@ export default function ThemeButton({ showLabel }) {
           effectiveIsExpanded ? "hidden" : "block"
         }`}
       >
-        {!isOn ? (
+        {!isOn ? ( 
           <Paragraph
             type="xs"
             classname={"flex items-center font-semibold gap-2"}
@@ -73,7 +63,7 @@ export default function ThemeButton({ showLabel }) {
           justifyContent: "flex-" + (isOn ? "start" : "end"),
         }}
         onClick={(e) => {
-          e.stopPropagation(); // Prevent double trigger since div also has onClick
+          e.stopPropagation(); 
           handleToggle();
         }}
       >
@@ -91,7 +81,7 @@ export default function ThemeButton({ showLabel }) {
           }}
           className="flex items-center justify-center bg-slate-500 dark:bg-slate-300"
         >
-          {!isOn ? (
+          {!isOn ? ( 
             <LuSun className="h-3 w-3 text-white dark:text-slate-800" />
           ) : (
             <LuMoon className="h-3 w-3 text-white dark:text-slate-800" />
