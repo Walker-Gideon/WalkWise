@@ -8,16 +8,16 @@ import UserProfile from "/src/user/UserProfile";
 import ThemeButton from "./components/ThemeButton";
 import NavigationHeader from "./components/NavigationHeader";
 
+import { useNav } from "/src/contexts/NavigationContext";
 import useNavigateToAction from "/src/hook/useNavigateToAction";
 import { useAuthentication } from "/src/authentication/context/AuthContext";
-import { useNav } from "/src/contexts/NavigationContext";
 
 export default function Slider({ menu }) {
   const { isExpanded } = useNav();
 
   return (
     <Aside
-      classname={`borderStyling border-r h-screen flex flex-col justify-between transitiona-all duration-500 ${!menu && isExpanded ? "w-20" : "w-65"} ${menu ? "md:hidden z-50 defaultColor" : "md:flex hidden"}`}
+      classname={`borderStyling border-r h-full flex flex-col justify-between transition-all duration-500 ${!menu && isExpanded ? "w-20" : "w-65"} ${menu ? "md:hidden z-50 defaultColor" : "md:flex hidden"}`}
     >
         <Box adjustWidth={true}>
           <NavigationHeader showLabel={menu} />
@@ -25,7 +25,7 @@ export default function Slider({ menu }) {
         </Box>
         <Box
           adjustWidth={true}
-          classname={"flex flex-col gap-4 borderStyling border-t p-3.5"}
+          classname={`flex flex-col gap-2 ${menu ? "p-2" : "p-3.5"} borderStyling border-t`}
         >
           <ThemeButton showLabel={menu} />
           <LogOutButton />

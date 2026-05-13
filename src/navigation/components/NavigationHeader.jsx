@@ -19,7 +19,7 @@ export default function NavigationHeader({ showLabel }) {
 
   return (
     <Header
-      classname={`borderStyling border-b py-4 flex items-center justify-center transition-all duration-500 ${effectiveIsExpanded ? "px-2" : "px-4"}`}
+      classname={`borderStyling border-b ${showLabel ? "py-2" : "py-4"} flex items-center justify-center transition-all duration-500 ${effectiveIsExpanded ? "px-2" : "px-4"}`}
     >
       <Box classname={"rounded-sm py-2 flex items-center justify-between"}>
         <Box

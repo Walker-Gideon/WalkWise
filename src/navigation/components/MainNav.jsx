@@ -14,7 +14,7 @@ import SpanText from "/src/ui/SpanText";
 
 import { useNav } from "/src/contexts/NavigationContext";
 
-const buttonsData = [
+const BUTTONS_DATA = [
   {
     text: "Dashboard",
     to: "dashboard",
@@ -47,8 +47,8 @@ export default function MainNav({ showLabel }) {
   const effectiveIsExpanded = showLabel ? false : isExpanded;
 
   return (
-    <Nav classname={"p-4"}>
-      {buttonsData.map((data, index) => (
+    <Nav classname={showLabel ? "p-2" : "p-4"}>
+      {BUTTONS_DATA.map((data, index) => (
         <Group
           key={index}
           classname={`group relative flex flex-col gap-1 ${index === 0 ? `pb-1` : `py-1`}`}

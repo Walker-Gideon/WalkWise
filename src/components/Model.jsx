@@ -1,21 +1,13 @@
 import { motion } from "motion/react";
-import Group from "/src/ui/Group";
-import Overlay from "./Overlay";
 
-export default function Model({ 
-  children, 
-  styling, 
-  onClick, 
-  menu,
-}) {
+import Overlay from "./Overlay";
+import Group from "/src/ui/Group";
+
+export default function Model({ children, styling, onClick, menu }) {
   // Navigation menu
   if(menu) {
     return (
-      <div 
-        role="button" 
-        onClick={onClick} 
-        className={`absolute inset-0 bg-slate-200/20 backdrop-blur-sm z-40 ${styling}`}
-      >
+      <div role="button" onClick={onClick} className={`absolute inset-0 bg-slate-200/20 backdrop-blur-sm z-40 ${styling}`}>
         <motion.div
            initial={{ x: "-100%" }}
            animate={{ x: 0 }}
