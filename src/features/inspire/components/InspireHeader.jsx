@@ -6,6 +6,7 @@ export default function InspireHeader() {
       headerText="Inspire"
       paragraphText="Stay motivated and track your achievements"
       theme={true}
+      paragraphStyling={"hidden md:block"}
     ></Heading>
   );
 }

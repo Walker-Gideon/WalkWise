@@ -11,6 +11,7 @@ export default function FlashcardHeader() {
       paragraphText="Learn smarter with personalized flashcards." 
       theme={true}
       classname={`${isDisplay ? "hidden" : ""}`}
+      paragraphStyling={"hidden md:block"}
     ></Heading>
   );
 }

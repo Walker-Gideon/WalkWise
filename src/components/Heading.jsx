@@ -27,21 +27,13 @@ export default function Heading({
           <MenuButton />
         </Conditional>
         <Flex variant="between" classname={`flex-1 ${menu ? "pl-2" : ""}`}>
-          <Group>
-            <Group classname={"block md:hidden w-60 truncate"}>
-              <Small 
-                paragraphStyling={paragraphStyling} 
-                paragraphText={paragraphText} 
-              />
-            </Group>
-            <Group classname={"hidden md:block"}>
-              <Large
-                headerStyling={headerStyling} 
-                headerText={headerText}
-                paragraphStyling={paragraphStyling} 
-                paragraphText={paragraphText}
-              />
-            </Group>
+          <Group classname={"w-60 medium:w-full truncate"}>
+            <Content
+              headerStyling={headerStyling} 
+              headerText={headerText}
+              paragraphStyling={paragraphStyling} 
+              paragraphText={paragraphText}
+            />
           </Group>
           <Group classname={groupStyling}>{children}</Group>
         </Flex>
@@ -53,11 +45,12 @@ export default function Heading({
   );
 }
 
-function Small ({ paragraphStyling, paragraphText }) {
+
+function Content ({ headerStyling, headerText, paragraphStyling, paragraphText }) {
   return (
     <>
-      <HeaderText type="primary">
-        WalkWise
+      <HeaderText type="primary" classname={`${headerStyling}`}>
+        {headerText}
       </HeaderText>
       <Paragraph
         variant="small"
@@ -69,18 +62,3 @@ function Small ({ paragraphStyling, paragraphText }) {
   );
 }
 
-function Large ({ headerStyling, headerText, paragraphStyling, paragraphText }) {
-  return (
-    <>
-      <HeaderText type="primary" classname={`${headerStyling}`}>
-        {headerText}
-      </HeaderText>
-      <Paragraph
-        variant="small"
-        classname={`secondary-text-color ${paragraphStyling}`}
-      >
-        {paragraphText}
-      </Paragraph>
-    </>
-  );
-}
