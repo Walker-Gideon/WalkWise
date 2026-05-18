@@ -11,9 +11,11 @@ import InspireAchievement from "./components/InspireAchievement";
 import InspireStreakCounter from "./components/InspireStreakCounter";
 
 import { useQuotes } from "/src/hook/useQuotes";
+import { useWalkWiseAI } from "/src/hook/useWalkWiseAI";
 
 export default function Inspire() {
   const {quote, author} = useQuotes();
+  const { quote: aiQuote, author: aiAuthor } = useWalkWiseAI();
 
   return (
     <Container classname={"flex h-full flex-col"}>
@@ -35,12 +37,12 @@ export default function Inspire() {
         </Group>
         <Group classname={"space-y-6"}>
           <InspireStreakCounter />
-          {/* Conditional this base on if the user have nothing in achievement or new to the project */}
           <Motivation
             icon={<LuHeart className="icons" />}
             headerText="Daily Encouragement"
-            quote={"Praise yourself for your achievements."} //will be change later
-            author={"WalkWise AI"}
+            quote={aiQuote}
+            author={aiAuthor}
+            bgcolor={"bg-slate-200 dark:bg-slate-700"}
           />
           <InspireActions />
         </Group>
@@ -48,3 +50,4 @@ export default function Inspire() {
     </Container>
   );
 }
+
