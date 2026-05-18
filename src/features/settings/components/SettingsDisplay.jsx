@@ -55,6 +55,11 @@ export default function SettingsDisplay() {
     ? userData.username.charAt(0).toUpperCase() + userData.username.slice(1)
     : "";
 
+  const hasChanges =
+    (newUsername.trim() !== (userData?.username || "").trim() && newUsername.trim() !== "") ||
+    image !== null;
+
+
   return (
     <Card classname={"my-10 medium:my-4.5 mx-5 w-auto md:w-3/4 lg:w-2/3"}>
       <Header>
@@ -123,14 +128,14 @@ export default function SettingsDisplay() {
             />
           </FormRow>
           <Paragraph variant="small" classname={"mt-2 dark:text-slate-400"}>
-            Email cannot be changed. Contact support if needed.
+            Email cannot be changed.
           </Paragraph>
         </Group>
         <Flex classname={"mt-4 items-center justify-end"}>
           <Button
             submit={true}
             type="colors"
-            disabled={isLoading}
+            disabled={isLoading || !hasChanges}
             classname={"flex items-center justify-center min-w-[120px]"}
           >
             <Conditional condition={!isLoading}>
