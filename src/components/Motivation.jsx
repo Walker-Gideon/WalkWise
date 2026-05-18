@@ -5,9 +5,9 @@ import Paragraph from "/src/ui/Paragraph";
 import HeaderText from "/src/ui/HeaderText";
 
 
-export default function Motivation({icon, headerText, quote, author}) {
+export default function Motivation({icon, headerText, quote, author, classname, bgcolor}) {
   return (
-    <Card>
+    <Card className={classname} bgcolor={bgcolor}>
       <HeaderText type="semiHeader">
         {icon}
         <SpanText>{headerText}</SpanText>
