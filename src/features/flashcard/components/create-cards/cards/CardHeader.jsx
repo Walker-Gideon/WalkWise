@@ -7,6 +7,7 @@ export default function CardHeader() {
       headerText="My Flashcards"
       paragraphText="Reinforce your memory, one card at a time."
       theme={true}
+      paragraphStyling={"hidden md:block"}
     >
       <InitCardActionButton styling={false} />
     </Heading>
