@@ -19,7 +19,7 @@ export default function NavigationHeader({ showLabel }) {
 
   return (
     <Header
-      classname={`borderStyling border-b ${showLabel ? "py-2" : "py-4"} flex items-center justify-center transition-all duration-500 ${effectiveIsExpanded ? "px-2" : "px-4"}`}
+      classname={`borderStyling border-b ${showLabel ? "py-2" : "py-4"} flex items-center justify-center transition-all duration-500 ${effectiveIsExpanded ? "px-4" : "px-2"}`}
     >
       <Box classname={"rounded-sm py-2 flex items-center justify-between"}>
         <Box
@@ -30,7 +30,7 @@ export default function NavigationHeader({ showLabel }) {
         >
           <Logo show={true} />
           <SpanText
-            classname={`font-bold text-slate-500 dark:text-slate-300 ${effectiveIsExpanded ? "hidden" : "block"}`}
+            classname={`font-bold text-slate-500 dark:text-slate-300 ${effectiveIsExpanded ? "block" : "hidden"}`}
           >
             walkwise
           </SpanText>
@@ -41,9 +41,9 @@ export default function NavigationHeader({ showLabel }) {
             ariaLabel="Toggle navigation menu"
             onClick={handleIsExpanded}>
             {effectiveIsExpanded ? (
-              <LuCircleChevronRight className="icons" />
-            ) : (
               <LuCircleChevronLeft className="icons" />
+            ) : (
+              <LuCircleChevronRight className="icons" />
             )}
           </Button>
         </Conditional>

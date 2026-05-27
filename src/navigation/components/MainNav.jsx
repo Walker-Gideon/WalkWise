@@ -43,7 +43,9 @@ const BUTTONS_DATA = [
 ];
 
 export default function MainNav({ showLabel }) {
-  const { isExpanded, handleToggle } = useNav();
+  const { isExpanded, collapseOnMobile } = useNav();
+  // const effectiveIsExpanded = showLabel ? false : isExpanded;
+
   const effectiveIsExpanded = showLabel ? false : isExpanded;
 
   return (
@@ -56,20 +58,20 @@ export default function MainNav({ showLabel }) {
           <NavLink
             to={data.to}
             end
-            onClick={handleToggle}
+            onClick={collapseOnMobile}
             className={({ isActive }) =>
-              `w-full cursor-pointer rounded-sm px-4 py-2 text-sm font-semibold text-slate-800 transition-all duration-300 hover:bg-slate-600 hover:text-white dark:text-slate-300 ${effectiveIsExpanded ? "" : ""} ${isActive ? "bg-slate-500 text-white" : ""}`
+              `w-full cursor-pointer rounded-sm px-4 py-2 text-sm font-semibold text-slate-800 transition-all duration-300 hover:bg-slate-600 hover:text-white dark:text-slate-300 ${isActive ? "bg-slate-500 text-white" : ""}`
             }
           >
             <List classname={"flex items-center gap-2.5"}>
               <SpanText>{<data.icon className="text-sm" />}</SpanText>
-              <SpanText classname={`${effectiveIsExpanded ? "hidden" : ""}`}>
+              <SpanText classname={`${!effectiveIsExpanded ? "hidden" : ""}`}>
                 {data.text}
               </SpanText>
             </List>
           </NavLink>
           <Group
-            classname={`pointer-events-none absolute top-1 left-14 z-40 -translate-y-1/2 transform rounded-sm bg-slate-500 px-2 py-1 text-xs font-semibold whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100 ${effectiveIsExpanded ? "medium:block" : "hidden"}`}
+            classname={`pointer-events-none absolute top-1 left-14 z-40 -translate-y-1/2 transform rounded-sm bg-slate-500 px-2 py-1 text-xs font-semibold whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100 ${!effectiveIsExpanded ? "medium:block" : "hidden"}`}
           >
             {data.text}
           </Group>

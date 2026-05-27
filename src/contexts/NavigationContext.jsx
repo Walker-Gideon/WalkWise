@@ -10,6 +10,14 @@ function NavigationProvider({ children }) {
     setIsMenuClick(false);
   }
 
+  function collapseOnMobile() {
+    if (window.innerWidth <= 650) {
+      setIsMenuClick(false); // close mobile slider
+    } else {
+      setIsExpanded(false); // collapse desktop sidebar
+    }
+  }
+
   const value = { 
     isExpanded, 
     isMenuClick, 
@@ -17,7 +25,8 @@ function NavigationProvider({ children }) {
     setIsMenuClick, 
 
     // Function
-    handleToggle
+    handleToggle,
+    collapseOnMobile
   };
 
   return (

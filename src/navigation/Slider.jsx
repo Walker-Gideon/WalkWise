@@ -15,9 +15,10 @@ import { useAuthentication } from "/src/authentication/context/AuthContext";
 export default function Slider({ menu }) {
   const { isExpanded } = useNav();
 
+  //${!menu && isExpanded ? "w-20" : "w-65"}
   return (
     <Aside
-      classname={`borderStyling border-r h-full flex flex-col justify-between transition-all duration-500 ${!menu && isExpanded ? "w-20" : "w-65"} ${menu ? "md:hidden z-50 defaultColor" : "md:flex hidden"}`}
+      classname={`borderStyling border-r h-full flex flex-col justify-between transition-all duration-500  ${!menu && isExpanded ? "w-65" : "w-20"} ${menu ? "md:hidden z-50 defaultColor" : "md:flex hidden"}`}
     >
         <Box adjustWidth={true}>
           <NavigationHeader showLabel={menu} />
@@ -50,12 +51,14 @@ function LogOutButton() {
       variant="text"
       ariaLabel="Sign out"
       onClick={handleLogout}
+      // ${isExpanded ? "medium:justify-center medium:text-center" : ""}
       className={
-        `flex items-center space-x-2 text-sm font-semibold text-slate-900 dark:text-slate-300 py-2 px-2 rounded-sm transition ${isExpanded ? "medium:justify-center medium:text-center" : ""}`
+        `flex items-center space-x-2 text-sm font-semibold text-slate-900 dark:text-slate-300 py-2 px-2 rounded-sm transition ${!isExpanded ? "medium:justify-center medium:text-center" : ""}`
       }
     >
       <LuLogOut className="text-base" />
-      <span className={`${isExpanded ? "medium:hidden" : "medium:block"}`}>Sign out</span>
+      {/* ${isExpanded ? "medium:hidden" : "medium:block"} */}
+      <span className={`${!isExpanded ? "medium:hidden" : "medium:block"}`}>Sign out</span>
     </Button>
   );
 }

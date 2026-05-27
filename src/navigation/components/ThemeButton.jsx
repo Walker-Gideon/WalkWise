@@ -24,15 +24,11 @@ export default function ThemeButton({ showLabel }) {
   return (
     <div
       role="button"
-      className={`flex cursor-pointer items-center justify-between ${
-          effectiveIsExpanded ? "px-0" : "px-2"
-        }`}
+      className={`flex cursor-pointer items-center justify-between ${effectiveIsExpanded ? "px-2" : "px-0"}`}
       onClick={handleToggle}
     >
       <Group
-        classname={`text-nowrap w-30 text-slate-900 dark:text-slate-300 ${
-          effectiveIsExpanded ? "hidden" : "block"
-        }`}
+        classname={`text-nowrap w-30 text-slate-900 dark:text-slate-300 ${effectiveIsExpanded ? "block" : "hidden"}`}
       >
         {!isOn ? ( 
           <Paragraph

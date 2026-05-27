@@ -7,13 +7,13 @@ import UserDetails from "./components/UserDetails";
 import { useNav } from "/src/contexts/NavigationContext";
 
 export default function UserProfile() {
-  const { isExpanded, handleToggle } = useNav();
+  const { isExpanded, collapseOnMobile } = useNav();
 
   return (
     <NavLink
       to="/profile"
       end
-      onClick={handleToggle}
+      onClick={collapseOnMobile}
       className={"relative cursor-pointer overflow-hidden block"}
     >
       <Box
