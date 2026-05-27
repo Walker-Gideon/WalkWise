@@ -9,9 +9,9 @@ export const useForgetPassword = () => {
     
     const {mutate:forgetPassword, isPending, isSuccess } = useMutation({
       mutationFn: ({email}) => sendResetPasswordLink(email),
-      onSuccess: (data) => {
+      onSuccess: (data, variables) => {
         toast.success("Password reset link sent successfully");
-        navigate("/verify-email", { state: { email: data.email } });
+        navigate("/verify-email", { state: { email: variables.email } });
       },
       onError: (error) => {
         toast.error(error.message);

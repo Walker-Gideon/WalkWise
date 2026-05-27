@@ -1,3 +1,6 @@
+
+import { useLocation } from "react-router-dom";
+
 import Flex from "/src/ui/Flex";
 import Header from "/src/ui/Header";
 import Button from "/src/ui/Button";
@@ -7,6 +10,9 @@ import Container from "/src/ui/Container";
 
 
 export default function PasswordEmailSent() {
+  const { state } = useLocation();
+  const email = state?.email;
+
   return (
     <Container classname={"flex items-center justify-center flex-col"}>
       <Flex
@@ -23,10 +29,9 @@ export default function PasswordEmailSent() {
 
         <div className={"w-full flex flex-col items-start justify-start gap-1 mb-8 text-base font-semibold leading-relaxed text-start text-slate-500"}>
           <Paragraph>
-            We've sent a reset link to your email. Click it to set a new password.
-          </Paragraph>
-          <Paragraph>
-            Please check your spam folder if you don't see it within a few minutes.
+            We've sent a password reset link to{" "}
+            {email ? <strong className="text-slate-700">{email}</strong> : "your email"}
+            . Open your inbox and click the link to set a new password.
           </Paragraph>
         </div>
 
