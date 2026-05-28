@@ -24,31 +24,30 @@ export default function ThemeButton({ showLabel }) {
   return (
     <div
       role="button"
-      className={`flex cursor-pointer items-center justify-between ${effectiveIsExpanded ? "px-2" : "px-0"}`}
+      className={`flex cursor-pointer items-center transition-all duration-300 ${
+        effectiveIsExpanded ? "justify-between px-2" : "justify-center px-0"
+      }`}
       onClick={handleToggle}
     >
       <Group
-        classname={`text-nowrap w-30 text-slate-900 dark:text-slate-300 ${effectiveIsExpanded ? "block" : "hidden"}`}
+        classname={`overflow-hidden whitespace-nowrap text-slate-900 dark:text-slate-300 transition-all duration-300 ${
+          effectiveIsExpanded ? "opacity-100 w-auto mr-2" : "opacity-0 w-0"
+        }`}
       >
-        {!isOn ? ( 
-          <Paragraph
-            type="xs"
-            classname={"flex items-center font-semibold gap-2"}
-          >
+        {!isOn ? (
+          <Paragraph type="xs" classname={"flex items-center font-semibold gap-2"}>
             <LuSun /> Light mode
           </Paragraph>
         ) : (
-          <Paragraph
-            type="xs"
-            classname={"flex items-center font-semibold gap-2"}
-          >
+          <Paragraph type="xs" classname={"flex items-center font-semibold gap-2"}>
             <LuMoon /> Dark mode
           </Paragraph>
         )}
       </Group>
+
       <button
         type="button"
-        className="bg-slate-200 dark:bg-slate-700"
+        className="shrink-0 bg-slate-200 dark:bg-slate-700"
         style={{
           width: 55,
           height: 28,
@@ -59,25 +58,17 @@ export default function ThemeButton({ showLabel }) {
           justifyContent: "flex-" + (isOn ? "start" : "end"),
         }}
         onClick={(e) => {
-          e.stopPropagation(); 
+          e.stopPropagation();
           handleToggle();
         }}
       >
         <motion.div
-          style={{
-            width: 20,
-            height: 20,
-            borderRadius: "50%",
-          }}
+          style={{ width: 20, height: 20, borderRadius: "50%" }}
           layout
-          transition={{
-            type: "spring",
-            visualDuration: 0.2,
-            bounce: 0.2,
-          }}
+          transition={{ type: "spring", visualDuration: 0.2, bounce: 0.2 }}
           className="flex items-center justify-center bg-slate-500 dark:bg-slate-300"
         >
-          {!isOn ? ( 
+          {!isOn ? (
             <LuSun className="h-3 w-3 text-white dark:text-slate-800" />
           ) : (
             <LuMoon className="h-3 w-3 text-white dark:text-slate-800" />
