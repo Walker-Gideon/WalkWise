@@ -15,10 +15,9 @@ import { useAuthentication } from "/src/authentication/context/AuthContext";
 export default function Slider({ menu }) {
   const { isExpanded } = useNav();
 
-  //${!menu && isExpanded ? "w-20" : "w-65"}
   return (
     <Aside
-      classname={`borderStyling border-r h-full flex flex-col justify-between transition-all duration-500  ${!menu && isExpanded ? "w-65" : "w-20"} ${menu ? "md:hidden z-50 defaultColor" : "md:flex hidden"}`}
+      classname={`borderStyling border-r h-full flex flex-col justify-between overflow-hidden transition-all duration-300 ${!menu && isExpanded ? "w-65" : "w-20"} ${ menu ? "md:hidden z-50 defaultColor" : "md:flex hidden"}`}
     >
         <Box adjustWidth={true}>
           <NavigationHeader showLabel={menu} />
@@ -36,6 +35,7 @@ export default function Slider({ menu }) {
   );
 }
 
+
 function LogOutButton() {
   const { isExpanded } = useNav();
   const { logout } = useAuthentication();
@@ -51,14 +51,18 @@ function LogOutButton() {
       variant="text"
       ariaLabel="Sign out"
       onClick={handleLogout}
-      // ${isExpanded ? "medium:justify-center medium:text-center" : ""}
-      className={
-        `flex items-center space-x-2 text-sm font-semibold text-slate-900 dark:text-slate-300 py-2 px-2 rounded-sm transition ${!isExpanded ? "medium:justify-center medium:text-center" : ""}`
-      }
+      className={`flex items-center transition-all duration-300 text-sm font-semibold text-slate-900 dark:text-slate-300 py-2 px-2 rounded-sm ${
+        isExpanded ? "gap-2 justify-start" : "gap-0 justify-center"
+      }`}
     >
-      <LuLogOut className="text-base" />
-      {/* ${isExpanded ? "medium:hidden" : "medium:block"} */}
-      <span className={`${!isExpanded ? "medium:hidden" : "medium:block"}`}>Sign out</span>
+      <LuLogOut className="text-base shrink-0" />
+      <span
+        className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${
+          isExpanded ? "opacity-100 w-auto" : "opacity-0 w-0"
+        }`}
+      >
+        Sign out
+      </span>
     </Button>
   );
 }
