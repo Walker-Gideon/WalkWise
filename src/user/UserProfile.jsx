@@ -14,21 +14,24 @@ export default function UserProfile() {
       to="/profile"
       end
       onClick={collapseOnMobile}
-      className={"relative cursor-pointer overflow-hidden block"}
+      className={"relative cursor-pointer block"}
     >
       <Box
-        classname={`absolute transform transition-transform duration-300 ${isExpanded ? "translate-0 flex items-center justify-center" : "-translate-x-50"}`}
+        classname={`flex items-center transition-all duration-300 ${
+          isExpanded ? "gap-4 justify-start" : "gap-0 justify-center"
+        }`}
       >
         <Profile />
-      </Box>
-      <Box
-        classname={`flex items-center gap-2 transform transition-transform duration-300 ${isExpanded ? "translate-y-30" : "translate-0"}`}
-      >
-        <Profile />
-        <UserDetails
-          classname1={"primary-text-color"}
-          classname2={"secondary-text-color"}
-        />
+        <Box
+          classname={`transition-all duration-300 overflow-hidden ${
+            isExpanded ? "opacity-100 w-auto" : "opacity-0 w-0"
+          }`}
+        >
+          <UserDetails
+            classname1={"primary-text-color"}
+            classname2={"secondary-text-color"}
+          />
+        </Box>
       </Box>
     </NavLink>
   );
