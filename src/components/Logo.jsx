@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 
 import SpanText from "/src/ui/SpanText";
@@ -40,9 +40,9 @@ export default function Logo({ to, cursor, show }) {
   }
 
   return (
-    <div className={className}>
+    <Link to="/dashboard" className={className}>
       {content}
-    </div>
+    </Link>
   );
 }
 
