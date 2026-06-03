@@ -15,7 +15,7 @@ export default function ThemeButton({ showLabel }) {
     ? !document.documentElement.classList.contains("dark")
     : theme === "light";
 
-  const effectiveIsExpanded = showLabel ? false : isExpanded;
+  const effectiveIsExpanded = showLabel ? true : isExpanded;
 
   const handleToggle = () => {
     setTheme(isOn ? "dark" : "light");

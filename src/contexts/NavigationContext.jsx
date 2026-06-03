@@ -12,9 +12,7 @@ function NavigationProvider({ children }) {
 
   function collapseOnMobile() {
     if (window.innerWidth <= 650) {
-      setIsMenuClick(false); // close mobile slider
-    } else {
-      setIsExpanded(false); // collapse desktop sidebar
+      setIsMenuClick(false);
     }
   }
 
