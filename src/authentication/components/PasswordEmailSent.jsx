@@ -1,4 +1,3 @@
-
 import { useLocation } from "react-router-dom";
 
 import Flex from "/src/ui/Flex";
@@ -7,7 +6,6 @@ import Button from "/src/ui/Button";
 import Logo from "/src/components/Logo";
 import Paragraph from "/src/ui/Paragraph";
 import Container from "/src/ui/Container";
-
 
 export default function PasswordEmailSent() {
   const { state } = useLocation();
