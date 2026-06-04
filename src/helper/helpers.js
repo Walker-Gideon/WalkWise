@@ -4,17 +4,19 @@ import { isAfter } from "date-fns";
  * Get the status of a schedule session
  * @param {Object} session - The session object
  * @returns {string} The status of the session
- */ 
+ */
 export function getScheduleStatus(session) {
   const status = session.status?.toLowerCase();
-  
-  if (status === "completed") return "Completed"; 
+
+  if (status === "completed") return "Completed";
   if (status === "in-progress") return "In Progress";
 
   // Check if session has a scheduled time
   if (session.scheduledAt) {
     // If we have a Firestore timestamp, convert it
-    const scheduledDate = session.scheduledAt.toDate ? session.scheduledAt.toDate() : new Date(session.scheduledAt);
+    const scheduledDate = session.scheduledAt.toDate
+      ? session.scheduledAt.toDate()
+      : new Date(session.scheduledAt);
     const now = new Date();
 
     if (isAfter(now, scheduledDate)) {
@@ -29,7 +31,7 @@ export function getScheduleStatus(session) {
  * Get the color of a schedule session status
  * @param {string} status - The status of the session
  * @returns {string} The color of the session status
- */ 
+ */
 export function getStatusColor(status) {
   switch (status) {
     case "Completed":
@@ -65,14 +67,21 @@ export function formatTime(time) {
  */
 export async function uploadProfileImage(file, uid) {
   try {
+    // FIXED: Swapped hardcoded values for Vite environment variables
+    const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+    const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+
+    if (!cloudName || !uploadPreset) {
+      console.error("Cloudinary environment variables are missing!");
+      return null;
+    }
+
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "unsigned_preset"); // Replace with your actual unsigned preset name
-    // Optional: Use uid to create a specific folder or public_id if needed
-    // formData.append("public_id", `users/${uid}/profile`);
+    formData.append("upload_preset", uploadPreset);
 
     const response = await fetch(
-      `https://api.cloudinary.com/v1_1/dttlsqszp/image/upload`,
+      `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
       {
         method: "POST",
         body: formData,
