@@ -17,7 +17,7 @@ export default function Slider({ menu }) {
 
   return (
     <Aside
-      classname={`borderStyling border-r h-full flex flex-col justify-between overflow-hidden transition-all duration-300 ${menu ? "w-65" : isExpanded ? "w-65" : "w-20"} ${ menu ? "md:hidden z-50 defaultColor" : "md:flex hidden"}`}
+      classname={`borderStyling border-r h-full flex flex-col justify-between transition-all duration-300 ${menu ? "w-65" : isExpanded ? "w-65" : "w-20"} ${ menu ? "md:hidden z-50 defaultColor" : "md:flex hidden z-50 relative"}`}
     >
         <Box adjustWidth={true}>
           <NavigationHeader showLabel={menu} />
@@ -49,22 +49,33 @@ function LogOutButton({ showLabel }) {
   };
 
   return (
-    <Button
-      variant="text"
-      ariaLabel="Sign out"
-      onClick={handleLogout}
-      className={`flex items-center transition-all duration-300 text-sm font-semibold text-slate-900 dark:text-slate-300 py-2 px-2 rounded-sm ${
-        effectiveIsExpanded ? "gap-2 justify-start" : "gap-0 justify-center"
-      }`}
-    >
-      <LuLogOut className="text-base shrink-0" />
-      <span
-        className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${
-          effectiveIsExpanded ? "opacity-100 w-auto" : "opacity-0 w-0"
+    <div className="group relative flex flex-col">
+      <Button
+        variant="text"
+        ariaLabel="Sign out"
+        onClick={handleLogout}
+        className={`flex items-center transition-all duration-300 text-sm font-semibold text-slate-900 dark:text-slate-300 py-2 px-2 rounded-sm hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/10 dark:hover:text-red-400 ${
+          effectiveIsExpanded ? "gap-2 justify-start" : "gap-0 justify-center"
+        }`}
+      >
+        <LuLogOut className="text-base shrink-0" />
+        <span
+          className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${
+            effectiveIsExpanded ? "opacity-100 w-auto" : "opacity-0 w-0"
+          }`}
+        >
+          Sign out
+        </span>
+      </Button>
+
+      {/* Tooltip — only shows when collapsed */}
+      <div
+        className={`pointer-events-none absolute top-1/2 left-14 z-50 -translate-y-1/2 rounded-sm bg-slate-500 px-2 py-1 text-xs font-semibold whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100 ${
+          !effectiveIsExpanded ? "medium:block" : "hidden"
         }`}
       >
         Sign out
-      </span>
-    </Button>
+      </div>
+    </div>
   );
 }
