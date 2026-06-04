@@ -15,12 +15,14 @@ export default function InformationContent({
   points,
   subtitle,
 }) {
+  const direction = index % 2 === 0 ? "left" : "right";
+
   return (
     <motion.div
-      variants={index === 0 ? fadeIn("left", 0.2) : index === 1 ? fadeIn("right", 0.2) : index === 2 ? fadeIn("left", 0.2) : fadeIn("right", 0.2)}
+      variants={fadeIn(direction, 0.2)}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: false, amount: 0.7 }}
+      viewport={{ once: true, amount: 0.25 }}
       className={"w-full px-2 py-4 md:px-6 md:py-0 lg:px-15"}
     >
       <Container 
@@ -37,7 +39,7 @@ export default function InformationContent({
 
         <Box 
           adjustWidth={true} 
-          classname={`object-cover ${index === 1 ? `md:order-1` : ``} ${index === 3 ? `md:order-1` : ``}`}
+          classname={`object-cover ${index % 2 !== 0 ? `md:order-1` : ``}`}
         >
           <Image 
             src={url} 
