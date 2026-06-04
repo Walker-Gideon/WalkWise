@@ -4,7 +4,7 @@ import Box from "/src/ui/Box";
 import Image from "/src/ui/Image";
 import Container from "/src/ui/Container";
 
-import heroData from "/src/data/heroData.js";
+import { heroData } from "/src/data/heroData.js";
 
 export default function HeroImages() {
   return (
