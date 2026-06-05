@@ -66,19 +66,20 @@ export function formatTime(time) {
  * @returns {Promise<string|null>} The secure URL of the uploaded image or null if failed
  */
 export async function uploadProfileImage(file, uid) {
-  try {
-    // FIXED: Swapped hardcoded values for Vite environment variables
     const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
     const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
     if (!cloudName || !uploadPreset) {
-      console.error("Cloudinary environment variables are missing!");
-      return null;
+      throw new Error("Cloudinary environment variables are missing!");
     }
 
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", uploadPreset);
+
+    if (uid) {
+      formData.append("folder", `WalkWise/profiles/${uid}`);
+    }
 
     const response = await fetch(
       `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
@@ -90,14 +91,9 @@ export async function uploadProfileImage(file, uid) {
 
     const data = await response.json();
 
-    if (response.ok && data.secure_url) {
-      return data.secure_url;
-    } else {
-      console.error("Cloudinary upload error", data);
-      return null;
+    if (!response.ok) {
+      throw new Error(data.error?.message || "Failed to upload image to media server.");
     }
-  } catch (error) {
-    console.error("Upload error:", error);
-    return null;
-  }
+
+    return data.secure_url;
 }

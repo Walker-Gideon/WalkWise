@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
-import { LuUser, LuLoader } from "react-icons/lu";
+import { LuUser } from "react-icons/lu";
+import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 
 import Box from "/src/ui/Box";
 import Form from "/src/ui/Form";
 import Flex from "/src/ui/Flex";
-import Label from "/src/ui/Label";
 import Input from "/src/ui/Input";
 import Group from "/src/ui/Group";
 import Button from "/src/ui/Button";
 import Header from "/src/ui/Header";
-import SpanText from "/src/ui/SpanText";
 import Card from "/src/components/Card";
 import Paragraph from "/src/ui/Paragraph";
 import HeaderText from "/src/ui/HeaderText";
 import FormRow from "/src/components/FormRow";
-import Conditional from "/src/components/Conditional";
 
 import { useUserData } from "/src/user/hook/useUserData";
 import { useUpdateProfile } from "/src/features/settings/hooks/useUpdateProfile";
@@ -51,14 +49,7 @@ export default function SettingsDisplay() {
   };
 
   const displayEmail = userData?.email || "example@email.com";
-  const displayUsername = userData?.username
-    ? userData.username.charAt(0).toUpperCase() + userData.username.slice(1)
-    : "";
-
-  const hasChanges =
-    (newUsername.trim() !== (userData?.username || "").trim() && newUsername.trim() !== "") ||
-    image !== null;
-
+  const hasChanges = (newUsername.trim() !== (userData?.username || "").trim() && newUsername.trim() !== "") || image !== null;
 
   return (
     <Card classname={"my-10 medium:my-4.5 mx-5 w-auto md:w-3/4 lg:w-2/3"}>
@@ -71,38 +62,32 @@ export default function SettingsDisplay() {
 
       <Form onsubmit={handleUpdate}>
         <Flex variant="center" classname={"my-7 w-full"}>
-          <Label classname={"cursor-pointer"}>
+          <div className="relative">
             {preview ? (
-            <img
-              src={preview}
-              alt="preview"
-              className={`medium:w-30 medium:h-30 h-20 w-20 rounded-full object-cover`}
-            />
-             ) : userData?.photoURL ? ( 
-             <img
-              src={userData.photoURL}
-              alt="User profile"
-              className="medium:w-30 medium:h-30 h-20 w-20 rounded-full object-cover"
-            /> 
-             ) : (
-            <Box
-              adjustWidth={true}
-              classname={
-                "rounded-full flex items-center justify-center medium:w-30 medium:h-30 h-20 w-20 border-2 borderStyling"
-              }
-            >
-              <LuUser
-                className={`medium:w-20 medium:h-20 h-10 w-10 text-slate-500 dark:text-white`}
-              />
-            </Box>
+              <img src={preview} alt="preview" className="medium:w-32 medium:h-32 h-24 w-24 rounded-full object-cover border-4 border-white dark:border-slate-800 shadow-md" />
+            ) : userData?.photoURL ? (
+              <img src={userData.photoURL} alt="User profile" className="medium:w-32 medium:h-32 h-24 w-24 rounded-full object-cover border-4 border-white dark:border-slate-800 shadow-md" />
+            ) : (
+              <Box adjustWidth={true} classname={"rounded-full flex items-center justify-center medium:w-32 medium:h-32 h-24 w-24 border-2 borderStyling bg-slate-100 dark:bg-slate-700"}>
+                <LuUser className="medium:w-16 medium:h-16 h-10 w-10 text-slate-400" />
+              </Box>
             )}
-            <input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={handleImageChange}
-            />
-          </Label>
+
+            <label 
+              htmlFor="profile-upload" 
+              className={"absolute bottom-1 right-1 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-slate-600 text-white shadow-lg hover:bg-slate-700 transition-colors"}
+              title="Change Photo"
+            >
+              <MdOutlineAddPhotoAlternate className="h-5 w-5" />
+              <input
+                id="profile-upload"
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleImageChange}
+              />
+            </label>
+          </div>
         </Flex>
 
         <Group>
@@ -138,12 +123,7 @@ export default function SettingsDisplay() {
             disabled={isLoading || !hasChanges}
             classname={"flex items-center justify-center min-w-[120px]"}
           >
-            <Conditional condition={!isLoading}>
-              <SpanText>Save Changes</SpanText>
-            </Conditional>
-            <Conditional condition={isLoading}>
-              <LuLoader className="h-5 w-5 animate-spin text-white" />
-            </Conditional>
+            {isLoading ? "Saving..." : "Save Changes"}
           </Button>
         </Flex>
       </Form>

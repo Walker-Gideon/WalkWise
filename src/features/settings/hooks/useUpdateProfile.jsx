@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { doc, updateDoc } from "firebase/firestore";
 import toast from "react-hot-toast";
+import { doc, updateDoc } from "firebase/firestore";
 
 import { db } from "/src/service/firebase";
 import { useUserData } from "/src/user/hook/useUserData";
@@ -11,11 +11,10 @@ export function useUpdateProfile() {
   const [isLoading, setIsLoading] = useState(false);
 
   const updateProfile = async (newUsername, image) => {
-    if (!firebaseUser) return;
-    setIsLoading(true);
+    if (!firebaseUser) return false;
 
-    let hasChanges = false;
-    let successMessage = "";
+    setIsLoading(true);
+    const pendingUpdates = {};
 
     try {
       // 1. Handle username update
@@ -24,35 +23,37 @@ export function useUpdateProfile() {
         newUsername.trim() &&
         newUsername !== userData?.username
       ) {
-        const userRef = doc(db, "users", firebaseUser.uid);
-        await updateDoc(userRef, { username: newUsername });
-        hasChanges = true;
+        pendingUpdates.username = newUsername.trim();
       }
 
       // 2. Handle image upload and update
       if (image) {
-        const downloadURL = await uploadProfileImage(image, firebaseUser.uid);
-        if (downloadURL) {
-          const userRef = doc(db, "users", firebaseUser.uid);
-          await updateDoc(userRef, { photoURL: downloadURL });
-          hasChanges = true;
-        } else {
-          toast.error("Failed to upload image.");
-          setIsLoading(false);
+        try {
+          // Pass uid along to generate user-specific asset paths
+          const downloadURL = await uploadProfileImage(image, firebaseUser.uid);
+          pendingUpdates.photoURL = downloadURL;
+        } catch (uploadError) {
+          // Catches specific Cloudinary failures without breaking the whole process
+          toast.error(uploadError.message || "Image upload failed.");
           return false;
         }
       }
 
-      if (hasChanges) {
-        successMessage = "Profile updated successfully!";
-        toast.success(successMessage);
+      // 3. Commit mutations in a single batch atomic update
+      if (Object.keys(pendingUpdates).length > 0) {
+        const userRef = doc(db, "users", firebaseUser.uid);
+        await updateDoc(userRef, pendingUpdates);
+        
+        toast.success("Profile updated successfully!");
         return true;
-      } else {
-        toast("No changes to update.");
-        return false;
       }
-    } catch (error) {
-      toast.error("Failed to update profile.");
+
+      toast("No changes to update.");
+      return false;
+
+    } catch (err) {
+      console.error("Database sync error:", err);
+      toast.error("Failed to save changes to profile.");
       return false;
     } finally {
       setIsLoading(false);
