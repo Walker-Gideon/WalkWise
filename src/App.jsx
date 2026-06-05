@@ -1,26 +1,29 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { LuLoaderCircle } from "react-icons/lu";
 
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
+import Flex from "/src/ui/Flex";
 import AppLayout from "./ui/AppLayout";
-import Note from "./features/note/Note";
-import PageNotFound from "./ui/PageNotFound";
-import Inspire from "./features/inspire/Inspire";
-import Accounts from "./authentication/Accounts";
-import Settings from "./features/settings/Settings";
-import LandingPage from "./landingPage/LandingPage";
-import SignUp from "./authentication/sign-up/SignUp";
-import SignIn from "./authentication/sign-in/SignIn";
-import Schedules from "./features/schedule/Schedules";
-import Dashboard from "./features/dashboard/Dashboard";
-import Flashcard from "./features/flashcard/Flashcard";
-import ForgetAccount from "./authentication/forget/ForgetAccount";
-import PasswordEmailSent from "./authentication/components/PasswordEmailSent";
-
 import PublicRoute from "./utils/PublicRoute";
 import ProtectedRoute from "./utils/ProtectedRoute";
+
+// LAZY-LOADED PAGES (Vite splits these into separate, tiny bundles)
+const LandingPage = lazy(() => import("./landingPage/LandingPage"));
+const Accounts = lazy(() => import("./authentication/Accounts"));
+const SignIn = lazy(() => import("./authentication/sign-in/SignIn"));
+const SignUp = lazy(() => import("./authentication/sign-up/SignUp"));
+const ForgetAccount = lazy(() => import("./authentication/forget/ForgetAccount"));
+const PasswordEmailSent = lazy(() => import("./authentication/components/PasswordEmailSent"));
+
+const Dashboard = lazy(() => import("./features/dashboard/Dashboard"));
+const Note = lazy(() => import("./features/note/Note"));
+const Flashcard = lazy(() => import("./features/flashcard/Flashcard"));
+const Schedules = lazy(() => import("./features/schedule/Schedules"));
+const Inspire = lazy(() => import("./features/inspire/Inspire"));
+const Settings = lazy(() => import("./features/settings/Settings"));
+const PageNotFound = lazy(() => import("./ui/PageNotFound"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,52 +33,61 @@ const queryClient = new QueryClient({
   },
 });
 
+// A clean full-screen fallback loading indicator
+function PageLoader() {
+  return (
+    <Flex variant="center" classname="h-screen bg-slate-50">
+      <LuLoaderCircle className="h-10 w-10 animate-spin text-slate-500" />
+    </Flex>
+  );
+}
+
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-
       <BrowserRouter>
-        <Routes>
-          <Route
-            index
-            element={
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route
+              index
+              element={
+                <PublicRoute>
+                  <LandingPage />
+                </PublicRoute>
+              }
+            />
+
+            <Route element={
               <PublicRoute>
-                <LandingPage />
+                <Accounts />
               </PublicRoute>
-            }
-          />
+            }>
+              <Route index element={<Navigate replace to="sign-in" />} />
+              <Route path="sign-in" element={<SignIn />} />
+              <Route path="sign-up" element={<SignUp />} />
+              <Route path="forget-password" element={<ForgetAccount />} />
+              <Route path="verify-email" element={<PasswordEmailSent />} />
+            </Route>
 
-          <Route element={
-            <PublicRoute>
-              <Accounts />
-            </PublicRoute>
-          }>
-            <Route index element={<Navigate replace to="sign-in" />} />
-            <Route path="sign-in" element={<SignIn />} />
-            <Route path="sign-up" element={<SignUp />} />
-            <Route path="forget-password" element={<ForgetAccount />} />
-            <Route path="verify-email" element={<PasswordEmailSent />} />
-          </Route>
+            <Route
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<Navigate replace to="dashboard" />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="notes" element={<Note />} />
+              <Route path="flashcards" element={<Flashcard />} />
+              <Route path="schedule" element={<Schedules />} />
+              <Route path="inspire" element={<Inspire />} />
+              <Route path="profile" element={<Settings />} />
+            </Route>
 
-          <Route
-            element={
-              <ProtectedRoute>
-                <AppLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<Navigate replace to="dashboard" />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="notes" element={<Note />} />
-            <Route path="flashcards" element={<Flashcard />} />
-            <Route path="schedule" element={<Schedules />} />
-            <Route path="inspire" element={<Inspire />} />
-            <Route path="profile" element={<Settings />} />
-          </Route>
-
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
 
       <Toaster
