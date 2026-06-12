@@ -2,7 +2,7 @@ import { LuCircleChevronLeft, LuCircleChevronRight } from "react-icons/lu";
 
 import Box from "/src/ui/Box";
 import Header from "/src/ui/Header";
-import Button from "/src/layout/Button";
+import Button from "/src/ui/Button";
 import SpanText from "/src/ui/SpanText";
 import Logo from "/src/components/Logo";
 import Conditional from "/src/components/Conditional"

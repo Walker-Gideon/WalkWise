@@ -2,7 +2,7 @@ import { LuLogOut } from "react-icons/lu";
 
 import Box from "/src/ui/Box";
 import Aside from "/src/ui/Aside";
-import Button from "/src/layout/Button";
+import Button from "/src/ui/Button";
 import MainNav from "./components/MainNav";
 import UserProfile from "/src/user/UserProfile";
 import ThemeButton from "./components/ThemeButton";

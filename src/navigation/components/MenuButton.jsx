@@ -1,6 +1,6 @@
 import { BiMenuAltLeft } from "react-icons/bi"
 
-import Button from "/src/layout/Button";
+import Button from "/src/ui/Button";
 import { useNav } from "/src/contexts/NavigationContext";
 
 export default function MenuButton() {
