@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { useSearchParams, useLocation } from "react-router-dom";
 import { LuFlame, LuTrophy, LuClock, LuLibrary } from "react-icons/lu";
 
-import Button from "/src/layout/Button";
+import Button from "/src/ui/Button";
 import Model from "/src/components/Model";
 
 import { formatTime } from "/src/helper/helpers";

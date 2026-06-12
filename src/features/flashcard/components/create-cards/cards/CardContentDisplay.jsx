@@ -9,7 +9,7 @@ import Flex from "/src/ui/Flex";
 import Group from "/src/ui/Group";
 import Spinner from "/src/ui/Spinner";
 import Card from "/src/components/Card";
-import Button from "/src/layout/Button";
+import Button from "/src/ui/Button";
 import Container from "/src/ui/Container";
 import Menus from "/src/components/Menus";
 import Paragraph from "/src/ui/Paragraph";
