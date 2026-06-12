@@ -1,4 +1,4 @@
-import motion from "motion/react-client";
+import { motion } from "motion/react"
 import { LuSun, LuMoon } from "react-icons/lu";
 
 import Group from "/src/ui/Group";
