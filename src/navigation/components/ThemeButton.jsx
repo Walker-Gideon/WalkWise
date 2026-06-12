@@ -1,4 +1,4 @@
-import * as motion from "motion/react-client";
+import motion from "motion/react-client";
 import { LuSun, LuMoon } from "react-icons/lu";
 
 import Group from "/src/ui/Group";
@@ -31,7 +31,7 @@ export default function ThemeButton({ showLabel }) {
     >
       <Group
         classname={`overflow-hidden whitespace-nowrap text-slate-900 dark:text-slate-300 transition-all duration-300 ${
-          effectiveIsExpanded ? "opacity-100 w-auto mr-2" : "opacity-0 w-0"
+          effectiveIsExpanded ? "opacity-100 max-w-[200px] mr-2" : "opacity-0 max-w-0 mr-0"
         }`}
       >
         {!isOn ? (
