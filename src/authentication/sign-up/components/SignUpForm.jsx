@@ -10,8 +10,8 @@ import Form from "/src/ui/Form";
 import Flex from "/src/ui/Flex";
 import Button from "/src/ui/Button";
 import SpanText from "/src/ui/SpanText";
+import FormRow from "/src/components/FormRow";
 import Conditional from "/src/components/Conditional";
-import FormRow from "/src/authentication/components/FormRow";
 
 import { signUpUser } from "/src/service/apiAuth";
 

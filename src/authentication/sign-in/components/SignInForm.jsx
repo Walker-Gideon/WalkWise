@@ -9,8 +9,8 @@ import { FiEyeOff, FiEye } from "react-icons/fi";
 import Form from "/src/ui/Form";
 import Button from "/src/ui/Button";
 import SpanText from "/src/ui/SpanText";
+import FormRow from "/src/components/FormRow";
 import Conditional from "/src/components/Conditional";
-import FormRow from "/src/authentication/components/FormRow";
 
 import { loginUser } from "/src/service/apiAuth";
 
