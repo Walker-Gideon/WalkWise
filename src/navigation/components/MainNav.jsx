@@ -69,7 +69,7 @@ export default function MainNav({ showLabel }) {
               </SpanText>
               <SpanText
                 classname={`overflow-hidden whitespace-nowrap transition-all duration-300 ${
-                  effectiveIsExpanded ? "opacity-100 w-auto" : "opacity-0 w-0"
+                  effectiveIsExpanded ? "opacity-100 max-w-[200px]" : "opacity-0 max-w-0"
                 }`}
               >
                 {data.text}
