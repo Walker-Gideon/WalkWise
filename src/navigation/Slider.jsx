@@ -61,7 +61,7 @@ function LogOutButton({ showLabel }) {
         <LuLogOut className="text-base shrink-0" />
         <span
           className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${
-            effectiveIsExpanded ? "opacity-100 w-auto" : "opacity-0 w-0"
+            effectiveIsExpanded ? "opacity-100 max-w-[200px]" : "opacity-0 max-w-0"
           }`}
         >
           Sign out
