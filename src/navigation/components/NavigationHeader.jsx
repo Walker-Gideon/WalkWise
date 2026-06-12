@@ -31,7 +31,7 @@ export default function NavigationHeader({ showLabel }) {
           <Logo show={true} />
           <SpanText
             classname={`overflow-hidden whitespace-nowrap font-bold text-slate-500 dark:text-slate-300 transition-all duration-300 ${
-              effectiveIsExpanded ? "opacity-100 w-auto ml-1" : "opacity-0 w-0"
+              effectiveIsExpanded ? "opacity-100 max-w-[200px] ml-1" : "opacity-0 max-w-0"
             }`}
           >
             walkwise
