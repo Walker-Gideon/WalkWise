@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { LuMapPinned } from "react-icons/lu";
-import Button from "/src/layout/Button";
+
+import Button from "/src/ui/Button";
 
 export default function PageNotFound() {
   const navigate = useNavigate();
@@ -31,8 +32,10 @@ export default function PageNotFound() {
         {/* Action Button */}
         <div className="pt-2">
           <Button
+            variant="primary"
+            ariaLabel="Back to Safety"
             onClick={() => navigate("/", { replace: true })}
-            classname="w-full sm:w-auto px-6 py-3 text-base shadow-lg"
+            className={"w-full sm:w-auto px-6 py-3 text-base shadow-lg"}
           >
             Back to Safety
           </Button>
