@@ -23,10 +23,10 @@ export default function UserProfile({ showLabel }) {
           effectiveIsExpanded ? "gap-4 justify-start" : "gap-0 justify-center"
         }`}
       >
-        <Profile />
+        <Profile showLabel={showLabel} />
         <Box
           classname={`transition-all duration-300 overflow-hidden ${
-            effectiveIsExpanded ? "opacity-100 w-auto" : "opacity-0 w-0"
+            effectiveIsExpanded ? "opacity-100 max-w-[200px]" : "opacity-0 max-w-0"
           }`}
         >
           <UserDetails
