@@ -24,7 +24,12 @@ export default function DashboardOverView() {
       </HeaderText>
       <Group classname={"h-190 space-y-3 overflow-y-scroll"}>
         <Conditional condition={isPending}>
-          <Spinner secondary={true} styling={"h-full"} />
+          <Spinner
+            secondary={true}
+            styling={"h-full"}
+            spinnerWidth={"h-6 w-6"}
+            label="Loading today’s cards..."
+          />
         </Conditional>
         <Conditional condition={!isPending && hasFlashcards}>
           {todayFlashcards?.map((flashcard) => (
@@ -49,9 +54,17 @@ function FlashcardItem({ flashcard }) {
   return (
     <Card status={true}>
       <Flex classname={"items-center space-x-4"}>
-        <Group classname={"flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700"}></Group>
+        <Group
+          classname={
+            "flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700"
+          }
+        ></Group>
         <Group classname={"flex-1 min-w-0"}>
-          <Paragraph classname={"text-sm medium:text-base font-medium primary-text-color truncate"}>
+          <Paragraph
+            classname={
+              "text-sm medium:text-base font-medium primary-text-color truncate"
+            }
+          >
             {flashcard.title || "Untitled Flashcard"}
           </Paragraph>
           <Paragraph classname={"secondary-text-color text-xs medium:text-sm"}>

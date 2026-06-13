@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 import { formatDistanceToNow } from "date-fns";
-import { 
-  LuBookOpen, 
+import {
+  LuBookOpen,
   LuActivity,
-  LuCalendarPlus, 
+  LuCalendarPlus,
   LuCalendarCheck,
-  LuCalendarMinus, 
-  LuRectangleVertical, 
+  LuCalendarMinus,
+  LuRectangleVertical,
 } from "react-icons/lu";
 
 import Flex from "/src/ui/Flex";
@@ -46,19 +46,23 @@ export default function DashboardRecentActivity() {
               id: `note-create-${note.id}`,
               title: `Created Note: ${note.title}`,
               time: createdDate,
-              icon: <LuBookOpen className="icon" />
+              icon: <LuBookOpen className="icon" />,
             });
           }
         }
-        
+
         if (note.updatedAt) {
           const updatedDate = parseDate(note.updatedAt);
-          if (updatedDate >= twentyFourHoursAgo && (!note.createdAt || updatedDate.getTime() !== parseDate(note.createdAt).getTime())) {
+          if (
+            updatedDate >= twentyFourHoursAgo &&
+            (!note.createdAt ||
+              updatedDate.getTime() !== parseDate(note.createdAt).getTime())
+          ) {
             allActivities.push({
               id: `note-update-${note.id}`,
               title: `Edited Note: ${note.title}`,
               time: updatedDate,
-              icon: <LuBookOpen className="icon" />
+              icon: <LuBookOpen className="icon" />,
             });
           }
         }
@@ -75,19 +79,23 @@ export default function DashboardRecentActivity() {
               id: `card-create-${card.id}`,
               title: `Created Flashcard: ${card.title}`,
               time: createdDate,
-              icon: <LuRectangleVertical className="icon" />
+              icon: <LuRectangleVertical className="icon" />,
             });
           }
         }
-        
+
         if (card.updatedAt) {
           const updatedDate = parseDate(card.updatedAt);
-          if (updatedDate >= twentyFourHoursAgo && (!card.createdAt || updatedDate.getTime() !== parseDate(card.createdAt).getTime())) {
+          if (
+            updatedDate >= twentyFourHoursAgo &&
+            (!card.createdAt ||
+              updatedDate.getTime() !== parseDate(card.createdAt).getTime())
+          ) {
             allActivities.push({
               id: `card-update-${card.id}`,
               title: `Edited Flashcard: ${card.title}`,
               time: updatedDate,
-              icon: <LuRectangleVertical className="icon" />
+              icon: <LuRectangleVertical className="icon" />,
             });
           }
         }
@@ -104,7 +112,7 @@ export default function DashboardRecentActivity() {
               id: `session-${session.id}`,
               title: `Session: ${session.title}`,
               time: scheduledDate,
-              icon: <LuCalendarPlus className="icon" />
+              icon: <LuCalendarPlus className="icon" />,
             });
           }
         }
@@ -116,27 +124,30 @@ export default function DashboardRecentActivity() {
               id: `session-completed-${session.id}`,
               title: `Session Completed: ${session.title}`,
               time: completedDate,
-              icon: <LuCalendarCheck className="icon" />
+              icon: <LuCalendarCheck className="icon" />,
             });
           }
         }
 
         if (session.status === "in-progress" && session.scheduledAt) {
-          const inProgressDate = session.updatedAt ? parseDate(session.updatedAt) : new Date();
+          const inProgressDate = session.updatedAt
+            ? parseDate(session.updatedAt)
+            : new Date();
           if (inProgressDate >= twentyFourHoursAgo) {
             allActivities.push({
               id: `session-in-progress-${session.id}`,
               title: `Session In Progress: ${session.title}`,
               time: inProgressDate,
-              icon: <LuCalendarMinus className="icon" />
+              icon: <LuCalendarMinus className="icon" />,
             });
           }
         }
       });
     }
 
-    allActivities.forEach(a => {
-      if (a.id.includes("completed") || a.id.includes("in-progress")) a.type = "status";
+    allActivities.forEach((a) => {
+      if (a.id.includes("completed") || a.id.includes("in-progress"))
+        a.type = "status";
       else if (a.id.includes("update")) a.type = "update";
       else a.type = "create";
     });
@@ -150,9 +161,15 @@ export default function DashboardRecentActivity() {
       return aPast ? -1 : 1; // Past events always beat future events
     };
 
-    const creates = allActivities.filter(a => a.type === "create").sort(sortRecent);
-    const updates = allActivities.filter(a => a.type === "update").sort(sortRecent);
-    const statuses = allActivities.filter(a => a.type === "status").sort(sortRecent);
+    const creates = allActivities
+      .filter((a) => a.type === "create")
+      .sort(sortRecent);
+    const updates = allActivities
+      .filter((a) => a.type === "update")
+      .sort(sortRecent);
+    const statuses = allActivities
+      .filter((a) => a.type === "status")
+      .sort(sortRecent);
 
     // Prioritize up to 2 of each
     const topCreates = creates.slice(0, 2);
@@ -166,10 +183,13 @@ export default function DashboardRecentActivity() {
       const remaining = [
         ...creates.slice(2),
         ...updates.slice(2),
-        ...statuses.slice(2)
+        ...statuses.slice(2),
       ].sort(sortRecent);
 
-      mergedActivities = [...mergedActivities, ...remaining.slice(0, 6 - mergedActivities.length)];
+      mergedActivities = [
+        ...mergedActivities,
+        ...remaining.slice(0, 6 - mergedActivities.length),
+      ];
     }
 
     return mergedActivities.sort(sortRecent).slice(0, 6);
@@ -184,35 +204,47 @@ export default function DashboardRecentActivity() {
         <SpanText>Recent Activity</SpanText>
       </HeaderText>
       <Conditional condition={isPending}>
-        <Spinner secondary={true} />
+        <Spinner
+          secondary={true}
+          spinnerWidth={"h-6 w-6"}
+          label="Loading recent activity..."
+        />
       </Conditional>
       <Conditional condition={!isPending}>
         <Conditional condition={activitiesLength}>
-          <Group classname={"grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"}>
+          <Group
+            classname={"grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"}
+          >
             {activities.map((activity) => (
-              <ActivityCard key={activity.id} icon={activity.icon} title={activity.title} time={activity.time}/>
-              ))}
-            </Group>
-          </Conditional>
-          <Conditional condition={!activitiesLength}>
-            <Flex variant="center" classname={"h-full w-full p-4 text-slate-400"}>
-              <Paragraph variant="small">No recent activity yet.</Paragraph>
-            </Flex>
-          </Conditional>
+              <ActivityCard
+                key={activity.id}
+                icon={activity.icon}
+                title={activity.title}
+                time={activity.time}
+              />
+            ))}
+          </Group>
         </Conditional>
+        <Conditional condition={!activitiesLength}>
+          <Flex variant="center" classname={"h-full w-full p-4 text-slate-400"}>
+            <Paragraph variant="small">No recent activity yet.</Paragraph>
+          </Flex>
+        </Conditional>
+      </Conditional>
     </Card>
   );
 }
 
-function ActivityCard({icon, title, time}) {
+function ActivityCard({ icon, title, time }) {
   return (
     <>
       <Flex classname={"items-center gap-4 border-b pb-3 borderStyling"}>
-        <Badge type="primary">
-          {icon}
-        </Badge>
+        <Badge type="primary">{icon}</Badge>
         <Group classname={"flex-1 min-w-0"}>
-          <Paragraph variant="small" classname={"truncate font-medium primary-text-color"}>
+          <Paragraph
+            variant="small"
+            classname={"truncate font-medium primary-text-color"}
+          >
             {title}
           </Paragraph>
           <Paragraph classname={"truncate text-xs secondary-text-color"}>
@@ -221,5 +253,5 @@ function ActivityCard({icon, title, time}) {
         </Group>
       </Flex>
     </>
-  )
+  );
 }
