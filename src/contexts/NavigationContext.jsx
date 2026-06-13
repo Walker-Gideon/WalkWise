@@ -1,10 +1,11 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
-const NavigationContext = createContext();
+export const NavigationContext = createContext();
+export { useNav } from "./useNav";
 
-function NavigationProvider({ children }) {
+export function NavigationProvider({ children }) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isMenuClick, setIsMenuClick] = useState(false)
+  const [isMenuClick, setIsMenuClick] = useState(false);
 
   function handleToggle() {
     setIsMenuClick(false);
@@ -16,15 +17,15 @@ function NavigationProvider({ children }) {
     }
   }
 
-  const value = { 
-    isExpanded, 
-    isMenuClick, 
-    setIsExpanded, 
-    setIsMenuClick, 
+  const value = {
+    isExpanded,
+    isMenuClick,
+    setIsExpanded,
+    setIsMenuClick,
 
-    // Function
+    // Functions
     handleToggle,
-    collapseOnMobile
+    collapseOnMobile,
   };
 
   return (
@@ -34,13 +35,4 @@ function NavigationProvider({ children }) {
   );
 }
 
-function useNav() {
-  const context = useContext(NavigationContext);
-
-  if (context === undefined)
-    throw new Error("Navigation context was called outside of it provider");
-
-  return context;
-}
-
-export { NavigationProvider, useNav, NavigationContext };
+export default NavigationProvider;

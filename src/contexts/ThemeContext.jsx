@@ -1,6 +1,7 @@
-import { createContext, useContext, useEffect, useState, useCallback } from "react";
+import { createContext, useEffect, useState, useCallback } from "react";
 
-const ThemeContext = createContext();
+export const ThemeContext = createContext();
+export { useThemeContext } from "./useThemeContext";
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
@@ -54,10 +55,4 @@ export function ThemeProvider({ children }) {
   );
 }
 
-export function useThemeContext() {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error("useThemeContext must be used within a ThemeProvider");
-  }
-  return context;
-}
+export default ThemeProvider;

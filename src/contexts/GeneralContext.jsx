@@ -1,19 +1,20 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
-const GeneralContext = createContext();
+export const GeneralContext = createContext();
+export { useGeneral } from "./useGeneral";
 
-function GeneralProvider({ children }) {
+export function GeneralProvider({ children }) {
   // Inspire
   const [weeklyData, setWeeklyData] = useState([]);
 
   // Flashcard
   const [studyTime, setStudyTime] = useState(0);
 
-  const value = { 
-    studyTime, 
-    weeklyData, 
-    setStudyTime, 
-    setWeeklyData 
+  const value = {
+    studyTime,
+    weeklyData,
+    setStudyTime,
+    setWeeklyData,
   };
 
   return (
@@ -21,13 +22,4 @@ function GeneralProvider({ children }) {
   );
 }
 
-function useGeneral() {
-  const context = useContext(GeneralContext);
-
-  if (context === undefined)
-    throw new Error("General context was called outside of it provider");
-
-  return context;
-}
-
-export { GeneralProvider, useGeneral };
+export default GeneralProvider;
