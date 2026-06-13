@@ -26,7 +26,13 @@ export default function CreatedForm() {
   const { userData } = useUserData();
   const { flashcards } = useFetchCards();
   const { updateMutation, isUpdating } = useUpdateFlashcard();
-  const { control, register, handleSubmit, reset, formState: { isDirty } } = useForm();
+  const {
+    control,
+    register,
+    handleSubmit,
+    reset,
+    formState: { isDirty },
+  } = useForm();
   const { createFlashcard, isCreating } = useCreateFlashcard();
   const { setIsDisplay, setPairs, editingId, setEditingId } = useFlashcard();
 
@@ -37,7 +43,7 @@ export default function CreatedForm() {
         setPairs(cardToEdit.pairs);
         reset({
           tags: cardToEdit.title,
-          pairs: cardToEdit.pairs
+          pairs: cardToEdit.pairs,
         });
       }
     }
@@ -130,13 +136,21 @@ export default function CreatedForm() {
   };
 
   return (
-    <>
-      <Conditional condition={isCreating || isUpdating}>
-        <Spinner spinnerWidth={"h-6 w-6 md:h-8 md:w-8"} />
-      </Conditional>
-      <Form onsubmit={handleSubmit(onSubmit)} classname={"flex min-h-0 flex-1 flex-col"}>
-        <CreatedHeader isDirty={isDirty} onHandleSubmit={handleSubmit} />
-        <Group classname={"space-x-2 px-8 medium:py-6 py-4 flex justify-end middle:hidden shadow-lg"}>
+    <div className="relative min-h-screen w-full">
+      <Form
+        onsubmit={handleSubmit(onSubmit)}
+        classname={`flex min-h-0 flex-1 flex-col ${isCreating || isUpdating ? "pointer-events-none opacity-50" : ""}`}
+      >
+        <CreatedHeader
+          isDirty={isDirty}
+          onCreating={isCreating}
+          onUpdating={isUpdating}
+        />
+        <Group
+          classname={
+            "space-x-2 px-8 medium:py-6 py-4 flex justify-end middle:hidden shadow-lg"
+          }
+        >
           <CreatedActionButton isDirty={isDirty} />
         </Group>
         <Box
@@ -151,6 +165,6 @@ export default function CreatedForm() {
           <CreatedNotification />
         </Box>
       </Form>
-    </>
+    </div>
   );
 }

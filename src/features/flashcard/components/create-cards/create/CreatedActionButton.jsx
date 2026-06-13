@@ -1,81 +1,101 @@
 import { useSearchParams } from "react-router-dom";
 
 import Button from "/src/ui/Button";
+import Spinner from "/src/ui/Spinner";
 import SpanText from "/src/ui/SpanText";
 import Conditional from "/src/components/Conditional";
 
 import useToggleDisplay from "/src/hook/useToggleDisplay";
 import { useFlashcard } from "../../../context/FlashcardContext";
 
-export default function CreatedActionButton({ isDirty }) {
-    const { setIsDisplay, setIsPlay, editingId, setEditingId, setPairs, pairs } = useFlashcard();
+export default function CreatedActionButton({
+  isDirty,
+  onCreating,
+  onUpdating,
+}) {
+  const { setIsDisplay, setIsPlay, editingId, setEditingId, setPairs, pairs } =
+    useFlashcard();
 
-    const [searchParams, setSearchParams] = useSearchParams();
-    
-    let handleCancel;
-    const toggleDisplay = useToggleDisplay(setIsDisplay);
-    
-    function restPairs() {
-        setPairs([
-            { term: "", definition: "" },
-            { term: "", definition: "" },
-        ]);
-    }
+  const [searchParams, setSearchParams] = useSearchParams();
 
-    function resetCardState() {
-        setIsDisplay(false);
-        setEditingId(null);
-        restPairs();
-    }
-    
-    function cancelWhenEditing() {
-      if (searchParams.get("filter")) {
-        setSearchParams({ filter: searchParams.get("filter") });
-        resetCardState();
-      } else {
-        setIsPlay(true);
-        resetCardState();
-      }
-    }
-    
-    function cancelDefault() {
-        toggleDisplay();
-        restPairs();
-    }
-    
-    if(editingId){
-        handleCancel = cancelWhenEditing;
+  let handleCancel;
+  const toggleDisplay = useToggleDisplay(setIsDisplay);
+
+  function restPairs() {
+    setPairs([
+      { term: "", definition: "" },
+      { term: "", definition: "" },
+    ]);
+  }
+
+  function resetCardState() {
+    setIsDisplay(false);
+    setEditingId(null);
+    restPairs();
+  }
+
+  function cancelWhenEditing() {
+    if (searchParams.get("filter")) {
+      setSearchParams({ filter: searchParams.get("filter") });
+      resetCardState();
     } else {
-        handleCancel = cancelDefault;
+      setIsPlay(true);
+      resetCardState();
     }
+  }
 
-    const hasValidPair = pairs.some(pair => pair.term?.trim() !== "" && pair.definition?.trim() !== "");
+  function cancelDefault() {
+    toggleDisplay();
+    restPairs();
+  }
 
-    return (
-        <>
-          <Button
-            type="border"
-            classname={"px-8 border-stone-300 dark:text-white"}
-            onclick={(e) => {
-              e.preventDefault();
-              handleCancel();
-            }}
-          >
-            Cancel
-          </Button>
-          <Button
-            type="colors"
-            submit={true}
-            classname={`${editingId ? "px-11" : "px-8"}`}
-            disabled={editingId ? !isDirty : !hasValidPair}
-          >
-            <Conditional condition={editingId}>
-              <SpanText>Edit</SpanText>
-            </Conditional>
-            <Conditional condition={!editingId}>
-              <SpanText>Create</SpanText>
-            </Conditional>
-          </Button>
-        </>
-    )
+  if (editingId) {
+    handleCancel = cancelWhenEditing;
+  } else {
+    handleCancel = cancelDefault;
+  }
+
+  const hasValidPair = pairs.some(
+    (pair) => pair.term?.trim() !== "" && pair.definition?.trim() !== "",
+  );
+
+  return (
+    <>
+      <Button
+        type="border"
+        classname={"px-8 border-stone-300 dark:text-white"}
+        onclick={(e) => {
+          e.preventDefault();
+          handleCancel();
+        }}
+      >
+        Cancel
+      </Button>
+      <Button
+        type="colors"
+        submit={true}
+        classname={`${editingId ? "px-11" : "px-8"}`}
+        disabled={editingId ? !isDirty : !hasValidPair}
+      >
+        <Conditional condition={editingId}>
+          {onUpdating ? (
+            <Spinner primary={true} spinnerWidth="h-4 w-4" label="Editing..." />
+          ) : (
+            <SpanText>Edit</SpanText>
+          )}
+        </Conditional>
+        <Conditional condition={!editingId}>
+          {onCreating ? (
+            <Spinner
+              primary={true}
+              spinnerWidth="h-4 w-4"
+              label="Creating..."
+            />
+          ) : (
+            <SpanText>Create</SpanText>
+          )}
+        </Conditional>
+      </Button>
+    </>
+  );
 }
