@@ -81,8 +81,12 @@ export default function CardContentDisplay() {
 
   function handleConfirmDelete() {
     if (selectedId) {
-      deleteFlashcard(selectedId);
-      handleCloseModal();
+      deleteFlashcard(selectedId, {
+        onSuccess: () => handleCloseModal(),
+        onError: () => {
+          toast.error("Failed to delete flashcard.");
+        },
+      });
     }
   }
 
