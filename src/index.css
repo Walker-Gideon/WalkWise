@@ -14,12 +14,6 @@
   --breakpoint-lg: 1024px;
 }
 
-/* Initial info prompt color
-text-slate-400
-
-import { LuChartNoAxesColumnDecreasing } from "react-icons/lu";
- */
-
 @layer components {
   .defaultColor {
     @apply bg-white transition-colors duration-300 dark:bg-slate-900;
@@ -41,7 +35,7 @@ import { LuChartNoAxesColumnDecreasing } from "react-icons/lu";
   }
 
   .icons {
-    @apply h-4 w-4 medium:h-5 medium:w-5 text-slate-600 dark:text-slate-300;
+    @apply medium:h-5 medium:w-5 h-4 w-4 text-slate-600 dark:text-slate-300;
   }
 
   .label {
@@ -61,17 +55,17 @@ import { LuChartNoAxesColumnDecreasing } from "react-icons/lu";
   .ProseMirror p {
     margin: 0;
   }
-  
+
   .ProseMirror h1 {
-    @apply text-2xl font-bold my-2;
+    @apply my-2 text-2xl font-bold;
   }
 
   .ProseMirror h2 {
-    @apply text-xl font-bold my-1.5;
+    @apply my-1.5 text-xl font-bold;
   }
 
   .ProseMirror mark {
-    @apply bg-yellow-200 text-black px-0.5 rounded-xs dark:bg-yellow-500;
+    @apply rounded-xs bg-yellow-200 px-0.5 text-black dark:bg-yellow-500;
   }
 }
 
@@ -83,8 +77,3 @@ import { LuChartNoAxesColumnDecreasing } from "react-icons/lu";
     scroll-behavior: auto !important;
   }
 }
-
-/*
- section Day 2: Critical Bugs
-    Fix Profile Close Collapse Bug :d2-2, 0d-4h
-    */
