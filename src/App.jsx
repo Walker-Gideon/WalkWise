@@ -2,9 +2,8 @@ import { lazy, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
-import { LuLoaderCircle } from "react-icons/lu";
 
-import Flex from "/src/ui/Flex";
+import Spinner from "/src/ui/Spinner";
 import AppLayout from "./ui/AppLayout";
 import PublicRoute from "./utils/PublicRoute";
 import ProtectedRoute from "./utils/ProtectedRoute";
@@ -33,13 +32,8 @@ const queryClient = new QueryClient({
   },
 });
 
-// A clean full-screen fallback loading indicator
 function PageLoader() {
-  return (
-    <Flex variant="center" classname="h-screen bg-slate-50">
-      <LuLoaderCircle className="h-10 w-10 animate-spin text-slate-500" />
-    </Flex>
-  );
+  return <Spinner styling="min-h-screen w-full bg-slate-50 dark:bg-slate-800" label="Loading your workspace..." />;
 }
 
 export default function App() {
