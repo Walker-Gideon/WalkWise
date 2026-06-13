@@ -1,4 +1,4 @@
-export default function Paragraph({ children, classname, type, variant }) {
+export default function Paragraph({ children, classname, type, variant, ...rest }) {
   const styling = {
     xs: "text-xs medium:text-sm",
     sm: "text-sm medium:text-base",
@@ -8,7 +8,7 @@ export default function Paragraph({ children, classname, type, variant }) {
 
   if (variant === "small")
     // dark:text-slate-300 text-slate-500 for the header small text
-    return <p className={`text-sm ${classname}`}>{children}</p>;
+    return <p className={`text-sm ${classname || ""}`} {...rest}>{children}</p>;
 
-  return <p className={`${classname} ${styling[type]}`}>{children}</p>;
+  return <p className={`${classname || ""} ${styling[type] || ""}`} {...rest}>{children}</p>;
 }

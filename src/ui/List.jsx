@@ -1,5 +1,5 @@
-export default function List({children, classname}) {
+export default function List({children, classname, ...rest}) {
   return (
-    <li className={classname}>{children}</li>
+    <li className={classname} {...rest}>{children}</li>
   )
 }
