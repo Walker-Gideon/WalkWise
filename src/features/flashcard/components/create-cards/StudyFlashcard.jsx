@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 import { auth } from "/src/service/firebase";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
 import { LuArrowLeft, LuArrowRight, LuX, LuCheck } from "react-icons/lu";
 
 import Flex from "/src/ui/Flex";
@@ -26,6 +26,8 @@ import useDeleteFlashcard from "../../hooks/useDeleteFlashcard";
 
 export default function StudyFlashcard() {
   const user = auth.currentUser;
+
+  const navigate = useNavigate();
 
   const { userData } = useUserData();
   const { setStudyTime } = useGeneral();
@@ -91,18 +93,29 @@ export default function StudyFlashcard() {
     }
   }
 
-  function handleConfirmDelete() {
-    if (activeId) {
-      deleteFlashcard(activeId);
-      setIsDeleteModal(false);
-
-      const previousFilter = location.state?.previousFilter || "title";
-      setSearchParams({ filter: previousFilter });
-    }
-  }
-
   function handleCloseModal() {
     setIsDeleteModal(false);
+  }
+
+  function handleConfirmDelete() {
+    if (!activeId) return;
+
+    deleteFlashcard(activeId, {
+      onSuccess: () => {
+        handleCloseModal();
+
+        if (flashcards.length === 1) {
+          navigate("/flashcards", { replace: true });
+        } else {
+          const previousFilter = location.state?.previousFilter || "title";
+          setSearchParams({ filter: previousFilter }, { replace: true });
+          setActiveId(null);
+        }
+      },
+      onError: () => {
+        toast.error("Failed to delete flashcard.");
+      },
+    });
   }
 
   function handleFinish(finalResults) {
