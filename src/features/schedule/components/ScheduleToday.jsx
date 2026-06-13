@@ -21,30 +21,38 @@ import { getScheduleStatus, getStatusColor } from "/src/helper/helpers";
 export default function ScheduleToday() {
   const { updateSession } = useUpdateSession();
   const { sessions, isLoading } = useSessions();
-  const { setSelectedId, setIsDeleteModal, setSelectedSessionTitle, setIsDisplaySessionForm } = useSchedule();
+  const {
+    setSelectedId,
+    setIsDeleteModal,
+    setSelectedSessionTitle,
+    setIsDisplaySessionForm,
+  } = useSchedule();
 
   const [searchParams] = useSearchParams();
-  
+
   const navigate = useNavigate();
 
   // Filter sessions: Show pending/in-progress OR completed within last 24h
-  const activeSessions = sessions?.filter(session => {
-    const status = getScheduleStatus(session);
-    if (status !== 'Completed') return true;
-      
-    if (session.completedAt) {
-      const completedDate = session.completedAt.toDate ? session.completedAt.toDate() : new Date(session.completedAt);
-      return differenceInHours(new Date(), completedDate) < 24;
-    }
-    return false; // Completed but no timestamp -> hide
-  }) || [];
-  
+  const activeSessions =
+    sessions?.filter((session) => {
+      const status = getScheduleStatus(session);
+      if (status !== "Completed") return true;
+
+      if (session.completedAt) {
+        const completedDate = session.completedAt.toDate
+          ? session.completedAt.toDate()
+          : new Date(session.completedAt);
+        return differenceInHours(new Date(), completedDate) < 24;
+      }
+      return false; // Completed but no timestamp -> hide
+    }) || [];
+
   const display = activeSessions.length === 0;
 
   const currentFilter = searchParams.get("filter") || "date";
   let sortedSessions = [...activeSessions];
 
-  const isCompleted = (s) => getScheduleStatus(s) === 'Completed';
+  const isCompleted = (s) => getScheduleStatus(s) === "Completed";
 
   sortedSessions.sort((a, b) => {
     if (isCompleted(a) && !isCompleted(b)) return 1;
@@ -56,7 +64,7 @@ export default function ScheduleToday() {
     const statusOrder = { Due: 1, "In Progress": 2, Pending: 3 };
     sortedSessions.sort((a, b) => {
       if (isCompleted(a) !== isCompleted(b)) return 0;
-        
+
       const statusA = getScheduleStatus(a);
       const statusB = getScheduleStatus(b);
       return (statusOrder[statusA] || 99) - (statusOrder[statusB] || 99);
@@ -65,26 +73,30 @@ export default function ScheduleToday() {
     sortedSessions.sort((a, b) => {
       if (isCompleted(a) !== isCompleted(b)) return 0;
 
-      const dateA = a.scheduledAt?.toDate ? a.scheduledAt.toDate() : new Date(a.scheduledAt || 0);
-      const dateB = b.scheduledAt?.toDate ? b.scheduledAt.toDate() : new Date(b.scheduledAt || 0);
+      const dateA = a.scheduledAt?.toDate
+        ? a.scheduledAt.toDate()
+        : new Date(a.scheduledAt || 0);
+      const dateB = b.scheduledAt?.toDate
+        ? b.scheduledAt.toDate()
+        : new Date(b.scheduledAt || 0);
       return dateA - dateB;
     });
   }
 
   function handleEdit(id) {
-    setSelectedId(id)
-    setIsDisplaySessionForm(true)
+    setSelectedId(id);
+    setIsDisplaySessionForm(true);
   }
 
   function handleDeleteModel(id, title) {
-    setSelectedId(id)
-    setIsDeleteModal(true)
-    setSelectedSessionTitle(title)
+    setSelectedId(id);
+    setIsDeleteModal(true);
+    setSelectedSessionTitle(title);
   }
 
   function handlePlay(id, flashcardSetId) {
     if (flashcardSetId) {
-      updateSession({ id: id, data: { status: 'in-progress' }, silent: true });
+      updateSession({ id: id, data: { status: "in-progress" }, silent: true });
       navigate(`/flashcards?study=${flashcardSetId}&session=${id}`);
     }
   }
@@ -92,7 +104,12 @@ export default function ScheduleToday() {
   return (
     <>
       <Conditional condition={isLoading}>
-        <Spinner secondary={true} styling={"h-190"} />
+        <Spinner
+          secondary={true}
+          styling={"h-190"}
+          spinnerWidth={"h-6 w-6"}
+          label="Loading today’s sessions..."
+        />
       </Conditional>
       <Conditional condition={!isLoading}>
         <Flex variant="between">
@@ -101,10 +118,11 @@ export default function ScheduleToday() {
             <SpanText>Today's Sessions</SpanText>
           </HeaderText>
           <Flex classname={"gap-4"}>
-            <Filter options={[
-              { value: "date", label: "Date" },
-              { value: "status", label: "Status" },
-            ]} 
+            <Filter
+              options={[
+                { value: "date", label: "Date" },
+                { value: "status", label: "Status" },
+              ]}
             />
             <Button
               type="colors"
@@ -119,7 +137,7 @@ export default function ScheduleToday() {
         <Conditional condition={display}>
           <Flex variant="center" classname={"h-190 w-full"}>
             <Paragraph variant="small" classname={"text-slate-400"}>
-               No sessions scheduled for today.
+              No sessions scheduled for today.
             </Paragraph>
           </Flex>
         </Conditional>
@@ -128,14 +146,16 @@ export default function ScheduleToday() {
             {sortedSessions?.map((session) => {
               const status = getScheduleStatus(session);
               const statusColor = getStatusColor(status);
-            
+
               // Format scheduled time: YYYY/MM/DD HH:MM
               let formattedTime = "Invalid Date";
               if (session.scheduledAt) {
-                const date = session.scheduledAt.toDate ? session.scheduledAt.toDate() : new Date(session.scheduledAt);
+                const date = session.scheduledAt.toDate
+                  ? session.scheduledAt.toDate()
+                  : new Date(session.scheduledAt);
                 formattedTime = format(date, "MM/dd/yyyy HH:mm");
               }
-            
+
               return (
                 <SessionCard
                   key={session.id}
@@ -145,7 +165,7 @@ export default function ScheduleToday() {
                   duration={session.duration}
                   status={status}
                   statusColor={statusColor}
-                  onPlay={() => handlePlay(session.id, session.tag)} 
+                  onPlay={() => handlePlay(session.id, session.tag)}
                   onEdit={() => handleEdit(session.id)}
                   onDelete={() => handleDeleteModel(session.id, session.title)}
                 />
