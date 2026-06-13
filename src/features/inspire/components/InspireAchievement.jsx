@@ -1,5 +1,5 @@
 import { LuAward } from "react-icons/lu";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import Box from "/src/ui/Box";
 import Group from "/src/ui/Group";
@@ -15,13 +15,13 @@ import { useNav } from "/src/contexts/NavigationContext";
 import { useUserData } from "/src/user/hook/useUserData";
 
 export default function InspireAchievement() {
-  const { isExpanded } = useNav();
+  const { isSidebarExpanded } = useNav();
   const { userData } = useUserData();
   const { flashcards } = useFetchCards();
   
   const [achievementData, setAchievementData] = useState(achievements)
 
-  const today = new Date().toDateString();
+  const today = useMemo(() => new Date().toDateString(), []);
 
   useEffect(() => {
     const streak = userData ? userData?.streakCount : 0;
@@ -73,7 +73,7 @@ export default function InspireAchievement() {
     })
 
     setAchievementData(updataAchievements)
-  }, [userData, flashcards])
+  }, [today, userData, flashcards])
 
   return (
     <Card status={true}>
@@ -82,7 +82,7 @@ export default function InspireAchievement() {
         <SpanText>Your Achievements</SpanText>
       </HeaderText>
       <Group
-        classname={`grid grid-cols-2 medium:grid-cols-3 lg:grid-cols-4 gap-4 ${isExpanded ? "md:grid-cols-4" : "md:grid-cols-3"}`}
+        classname={`grid grid-cols-2 medium:grid-cols-3 lg:grid-cols-4 gap-4 ${isSidebarExpanded ? "md:grid-cols-4" : "md:grid-cols-3"}`}
       >
         {achievementData.map((badge) => (
           <Box
