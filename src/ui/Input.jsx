@@ -14,9 +14,9 @@ const Input = forwardRef(function Input(
     onKeyDown,
     ...props
   },
-  ref
+  ref,
 ) {
-  const styling = `rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs hover:border-slate-400 focus:ring-2 focus:ring-slate-400 focus:outline-hidden`;
+  const styling = `rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs hover:border-slate-400 focus:ring-2 focus:ring-slate-400 focus:outline-hidden disabled:cursor-not-allowed`;
 
   if (id)
     return (
