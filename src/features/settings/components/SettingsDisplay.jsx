@@ -8,6 +8,7 @@ import Flex from "/src/ui/Flex";
 import Input from "/src/ui/Input";
 import Group from "/src/ui/Group";
 import Button from "/src/ui/Button";
+import Spinner from "/src/ui/Spinner";
 import Header from "/src/ui/Header";
 import Card from "/src/components/Card";
 import Paragraph from "/src/ui/Paragraph";
@@ -49,7 +50,10 @@ export default function SettingsDisplay() {
   };
 
   const displayEmail = userData?.email || "example@email.com";
-  const hasChanges = (newUsername.trim() !== (userData?.username || "").trim() && newUsername.trim() !== "") || image !== null;
+  const hasChanges =
+    (newUsername.trim() !== (userData?.username || "").trim() &&
+      newUsername.trim() !== "") ||
+    image !== null;
 
   return (
     <Card classname={"my-10 medium:my-4.5 mx-5 w-auto md:w-3/4 lg:w-2/3"}>
@@ -64,18 +68,33 @@ export default function SettingsDisplay() {
         <Flex variant="center" classname={"my-7 w-full"}>
           <div className="relative">
             {preview ? (
-              <img src={preview} alt="preview" className="medium:w-32 medium:h-32 h-24 w-24 rounded-full object-cover border-4 border-white dark:border-slate-800 shadow-md" />
+              <img
+                src={preview}
+                alt="preview"
+                className="medium:w-32 medium:h-32 h-24 w-24 rounded-full border-4 border-white object-cover shadow-md dark:border-slate-800"
+              />
             ) : userData?.photoURL ? (
-              <img src={userData.photoURL} alt="User profile" className="medium:w-32 medium:h-32 h-24 w-24 rounded-full object-cover border-4 border-white dark:border-slate-800 shadow-md" />
+              <img
+                src={userData.photoURL}
+                alt="User profile"
+                className="medium:w-32 medium:h-32 h-24 w-24 rounded-full border-4 border-white object-cover shadow-md dark:border-slate-800"
+              />
             ) : (
-              <Box adjustWidth={true} classname={"rounded-full flex items-center justify-center medium:w-32 medium:h-32 h-24 w-24 border-2 borderStyling bg-slate-100 dark:bg-slate-700"}>
+              <Box
+                adjustWidth={true}
+                classname={
+                  "rounded-full flex items-center justify-center medium:w-32 medium:h-32 h-24 w-24 border-2 borderStyling bg-slate-100 dark:bg-slate-700"
+                }
+              >
                 <LuUser className="medium:w-16 medium:h-16 h-10 w-10 text-slate-400" />
               </Box>
             )}
 
-            <label 
-              htmlFor="profile-upload" 
-              className={"absolute bottom-1 right-1 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-slate-600 text-white shadow-lg hover:bg-slate-700 transition-colors"}
+            <label
+              htmlFor="profile-upload"
+              className={
+                "absolute right-1 bottom-1 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-slate-600 text-white shadow-lg transition-colors hover:bg-slate-700"
+              }
               title="Change Photo"
             >
               <MdOutlineAddPhotoAlternate className="h-5 w-5" />
@@ -121,9 +140,17 @@ export default function SettingsDisplay() {
             submit={true}
             type="colors"
             disabled={isLoading || !hasChanges}
-            classname={"flex items-center justify-center min-w-[120px]"}
+            classname={"flex items-center justify-center min-w-[140px]"}
           >
-            {isLoading ? "Saving..." : "Save Changes"}
+            {isLoading ? (
+              <Spinner
+                primary={true}
+                spinnerWidth="h-4 w-4"
+                label="Saving..."
+              />
+            ) : (
+              "Save Changes"
+            )}
           </Button>
         </Flex>
       </Form>
