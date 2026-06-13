@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { useSearchParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 import Flex from "/src/ui/Flex";
 import Button from "/src/ui/Button";
@@ -67,8 +68,12 @@ export default function NoteDisplay({ notes }) {
 
   function handleConfirmDelete() {
     if (selectedId) {
-      deleteNote(selectedId);
-      handleCloseModel();
+      deleteNote(selectedId, {
+        onSuccess: () => handleCloseModel(),
+        onError: () => {
+          toast.error("Failed to delete note.");
+        },
+      });
     }
   }
 
@@ -88,7 +93,7 @@ export default function NoteDisplay({ notes }) {
     return (
       <Flex variant="center" classname={"h-full"}>
         <Paragraph classname={"secondary-text-color"}>
-          No search results match
+          No notes match "{query}"
         </Paragraph>
       </Flex>
     );
