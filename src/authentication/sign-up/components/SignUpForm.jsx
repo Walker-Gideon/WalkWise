@@ -22,8 +22,8 @@ export default function SignUpForm() {
     register,
     reset,
     getValues,
-    formState: { errors },
-  } = useForm();
+    formState: { errors, isValid },
+  } = useForm({ mode: "onChange" });
 
   const [isLoading, setIsLoading] = useState(false);
   const [hidePassword, setHidePassword] = useState(true);
@@ -181,9 +181,9 @@ export default function SignUpForm() {
       </FormRow>
 
       <Button
-        type="colors"
-        submit={true}
-        disabled={isLoading}
+        type="submit"
+        variant="primary"
+        disabled={isLoading || !isValid}
         classname="w-full flex items-center justify-center"
       >
         <Conditional condition={!isLoading}>

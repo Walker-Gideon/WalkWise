@@ -20,8 +20,8 @@ export default function SignInForm() {
     handleSubmit,
     register,
     reset,
-    formState: { errors },
-  } = useForm();
+    formState: { errors, isValid },
+  } = useForm({ mode: "onChange" });
 
   const [isLoading, setIsLoading] = useState(false);
   const [hidePassword, setHidePassword] = useState(true);
@@ -108,10 +108,10 @@ export default function SignInForm() {
       </FormRow>
 
       <Button
-        submit={true}
-        type="colors"
+        type="submit"
+        variant="primary"
         ariaLabel="Log in"
-        disabled={isLoading}
+        disabled={isLoading || !isValid}
         classname={"w-full flex items-center justify-center"}
       >
         <Conditional condition={!isLoading}>
