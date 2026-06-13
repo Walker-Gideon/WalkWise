@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 import Flex from "/src/ui/Flex";
 import Group from "/src/ui/Group";
 import Header from "/src/ui/Header";
@@ -27,7 +29,7 @@ export default function Heading({
           <MenuButton />
         </Conditional>
         <Flex variant="between" classname={`flex-1 ${menu ? "pl-2" : ""}`}>
-          <Group classname={"w-60 medium:w-full truncate"}>
+          <Group classname={"w-60 min-w-0 medium:w-full truncate"}>
             <Content
               headerStyling={headerStyling} 
               headerText={headerText}
@@ -38,7 +40,9 @@ export default function Heading({
           <Group classname={groupStyling}>{children}</Group>
         </Flex>
         <Conditional condition={menu}>
-          <UserImage hideOnMobile={true} />
+          <NavLink to="/profile" aria-label="Go to profile" className="inline-flex">
+            <UserImage hideOnMobile={true} />
+          </NavLink>
         </Conditional>
       </Flex>
     </Header>
@@ -49,12 +53,12 @@ export default function Heading({
 function Content ({ headerStyling, headerText, paragraphStyling, paragraphText }) {
   return (
     <>
-      <HeaderText type="primary" classname={`${headerStyling}`}>
+      <HeaderText type="primary" classname={`truncate max-w-full ${headerStyling}`}>
         {headerText}
       </HeaderText>
       <Paragraph
         variant="small"
-        classname={`secondary-text-color whitespace-nowrap truncate smallest:w-60 sm:w-70 medium:w-96 ${paragraphStyling}`}
+        classname={`secondary-text-color truncate whitespace-nowrap max-w-full smallest:w-60 sm:w-70 medium:w-96 ${paragraphStyling}`}
       >
         {paragraphText}
       </Paragraph>
