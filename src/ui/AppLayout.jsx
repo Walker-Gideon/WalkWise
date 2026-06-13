@@ -9,7 +9,7 @@ import Main from "/src/ui/Main";
 import { useNav } from "/src/contexts/NavigationContext";
 
 export default function AppLayout() {
-  const { isMenuClick, handleToggle } = useNav();
+  const { isMobileMenuOpen, closeMobileMenu } = useNav();
 
   return (
     <Container
@@ -17,11 +17,11 @@ export default function AppLayout() {
     >
       <Slider menu={false} />
       <AnimatePresence>
-        {isMenuClick && (
+        {isMobileMenuOpen && (
           <Model 
             menu={true} 
             styling={"md:hidden"}
-            onClick={handleToggle} 
+            onClick={closeMobileMenu} 
             key="mobile-menu"
           >
             <Slider menu={true} />
