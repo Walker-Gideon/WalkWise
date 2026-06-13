@@ -17,7 +17,11 @@ export default function LeftNoteContent() {
   if (isPending) {
     return (
       <Flex variant="center" classname={"h-100"}>
-        <Spinner styling={"h-auto"} />
+        <Spinner
+          styling={"h-auto"}
+          spinnerWidth={"h-6 w-6"}
+          label="Loading notes..."
+        />
       </Flex>
     );
   }
@@ -26,7 +30,9 @@ export default function LeftNoteContent() {
     <Container adjust={true} classname={`flex flex-col flex-1 min-h-0`}>
       <Conditional condition={!notesCount}>
         <InformationPrompt
-          icon={<LuNotebookText className="h-5 w-5 text-slate-600 dark:text-slate-900" />}
+          icon={
+            <LuNotebookText className="h-5 w-5 text-slate-600 dark:text-slate-900" />
+          }
           actionText="Don't have any note yet"
           btn={true}
         />

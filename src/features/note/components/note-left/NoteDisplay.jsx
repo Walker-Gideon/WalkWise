@@ -16,8 +16,8 @@ import useDeleteNote from "../../hook/useDeleteNote";
 import useFormattedDate from "/src/hook/useFormattedDate";
 
 function NoteDate({ createdAt }) {
-    const formattedDate = useFormattedDate(createdAt);
-    return <>{formattedDate}</>;
+  const formattedDate = useFormattedDate(createdAt);
+  return <>{formattedDate}</>;
 }
 
 export default function NoteDisplay({ notes }) {
@@ -41,8 +41,9 @@ export default function NoteDisplay({ notes }) {
   }, [query]);
 
   const noteId = searchParams.get("noteId");
-  const filtereNote = notes
-    ?.filter((note) => note.title.toLowerCase().includes(query.toLowerCase()));
+  const filtereNote = notes?.filter((note) =>
+    note.title.toLowerCase().includes(query.toLowerCase()),
+  );
 
   function handleDisplayNote(id) {
     setSearchParams({ noteId: id });
@@ -54,7 +55,7 @@ export default function NoteDisplay({ notes }) {
     if (selectedId === noteId) {
       setSearchParams({});
     }
-    
+
     setSelectedId(null);
     setSelectedNoteTitle("");
   }
@@ -71,60 +72,69 @@ export default function NoteDisplay({ notes }) {
     }
   }
 
-  if(isSearching) {
+  if (isSearching) {
     return (
       <Flex variant="center" classname={"h-full"}>
-        <Spinner styling={"h-full"} />
+        <Spinner
+          styling={"h-full"}
+          spinnerWidth={"h-6 w-6"}
+          label="Searching notes..."
+        />
       </Flex>
-    )
+    );
   }
 
-  if(!isSearching && (filtereNote && !filtereNote.length)) {
+  if (!isSearching && filtereNote && !filtereNote.length) {
     return (
       <Flex variant="center" classname={"h-full"}>
-        <Paragraph classname={"secondary-text-color"}>No search results match</Paragraph>
+        <Paragraph classname={"secondary-text-color"}>
+          No search results match
+        </Paragraph>
       </Flex>
-    )
+    );
   }
 
   return (
     <>
       <Container adjust={true} classname={"flex-1 min-h-0 overflow-y-auto"}>
-        {!isSearching && filtereNote.map((note) => (
-          <div
-            key={note.id}
-            className={`my-1 flex w-full cursor-pointer items-center justify-between gap-2 border-b border-stone-300 ${noteId === note.id ? "bg-slate-300 dark:bg-slate-700" : ""}`}
-          >
-            <div 
-              role="button" 
-              className="w-full py-2 pl-4"
-              onClick={() => handleDisplayNote(note.id)} 
+        {!isSearching &&
+          filtereNote.map((note) => (
+            <div
+              key={note.id}
+              className={`my-1 flex w-full cursor-pointer items-center justify-between gap-2 border-b border-stone-300 ${noteId === note.id ? "bg-slate-300 dark:bg-slate-700" : ""}`}
             >
-              <HeaderText
+              <div
+                role="button"
+                className="w-full py-2 pl-4"
+                onClick={() => handleDisplayNote(note.id)}
+              >
+                <HeaderText
+                  variant="secondary"
+                  classname={
+                    "w-40 truncate whitespace-nowrap primary-text-color"
+                  }
+                >
+                  {note.title}
+                </HeaderText>
+                <Paragraph
+                  variant="small"
+                  classname={"secondary-text-color text-xs"}
+                >
+                  <NoteDate createdAt={note.createdAt} />
+                </Paragraph>
+              </div>
+              <Button
                 variant="secondary"
-                classname={"w-40 truncate whitespace-nowrap primary-text-color"}
+                onclick={() => {
+                  handleDeleteClick(note.id, note.title);
+                  setIsDeleteModal(true);
+                }}
+                classname={"text-slate-700 dark:text-slate-100 pr-4"}
               >
-                {note.title}
-              </HeaderText>
-              <Paragraph
-                variant="small"
-                classname={"secondary-text-color text-xs"}
-              >
-                <NoteDate createdAt={note.createdAt} />
-              </Paragraph>
+                <RiDeleteBin5Line className="h-5 w-5" />
+              </Button>
             </div>
-            <Button
-              variant="secondary"
-              onclick={() => {
-                handleDeleteClick(note.id, note.title);
-                setIsDeleteModal(true);
-              }}
-              classname={"text-slate-700 dark:text-slate-100 pr-4"}
-            >
-              <RiDeleteBin5Line className="h-5 w-5" />
-            </Button>
-          </div>
-        ))}
+          ))}
       </Container>
       <Conditional condition={isDeleteModal}>
         <ConfirmDelete

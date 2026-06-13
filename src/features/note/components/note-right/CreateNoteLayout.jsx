@@ -68,7 +68,7 @@ export default function CreateNoteLayout({ noteId }) {
           onSuccess: () => {
             setIsDisplayNote(false);
           },
-        }
+        },
       );
     } else {
       createNote(
@@ -77,7 +77,7 @@ export default function CreateNoteLayout({ noteId }) {
           onSuccess: () => {
             setIsDisplayNote(false);
           },
-        }
+        },
       );
     }
   }
@@ -88,7 +88,11 @@ export default function CreateNoteLayout({ noteId }) {
   if (noteId && isLoadingNote) {
     return (
       <Flex variant="center" classname={"h-full"}>
-        <Spinner styling={"h-full"} />
+        <Spinner
+          styling={"h-full"}
+          spinnerWidth={"h-6 w-6"}
+          label="Loading note..."
+        />
       </Flex>
     );
   }
@@ -121,7 +125,7 @@ export default function CreateNoteLayout({ noteId }) {
         />
         <div
           className={
-            "min-h-0 mt-2 flex-grow overflow-y-auto text-gray-900 placeholder:text-gray-500 dark:text-white dark:placeholder:text-gray-400 [&_.ProseMirror]:border-0 [&_.ProseMirror]:outline-none [&_.ProseMirror]:focus:outline-none"
+            "mt-2 min-h-0 flex-grow overflow-y-auto text-gray-900 placeholder:text-gray-500 dark:text-white dark:placeholder:text-gray-400 [&_.ProseMirror]:border-0 [&_.ProseMirror]:outline-none [&_.ProseMirror]:focus:outline-none"
           }
           onClick={() => {
             if (editor) {
