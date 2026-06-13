@@ -4,27 +4,27 @@ export const NavigationContext = createContext();
 export { useNav } from "./useNav";
 
 export function NavigationProvider({ children }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [isMenuClick, setIsMenuClick] = useState(false);
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  function handleToggle() {
-    setIsMenuClick(false);
+  function closeMobileMenu() {
+    setIsMobileMenuOpen(false);
   }
 
   function collapseOnMobile() {
     if (window.innerWidth <= 650) {
-      setIsMenuClick(false);
+      closeMobileMenu();
     }
   }
 
   const value = {
-    isExpanded,
-    isMenuClick,
-    setIsExpanded,
-    setIsMenuClick,
+    isSidebarExpanded,
+    isMobileMenuOpen,
+    setIsSidebarExpanded,
+    setIsMobileMenuOpen,
 
     // Functions
-    handleToggle,
+    closeMobileMenu,
     collapseOnMobile,
   };
 
