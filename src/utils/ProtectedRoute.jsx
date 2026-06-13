@@ -1,21 +1,15 @@
 import { Outlet, Navigate } from "react-router-dom";
-import { LuLoaderCircle } from "react-icons/lu";
 
-import Flex from "/src/ui/Flex";
+import Spinner from "/src/ui/Spinner";
 
 import { useAuthentication } from "/src/authentication/context/AuthContext";
 
 export default function ProtectedRoute({ children }) {
     const { isAuthenticated, isLoading } = useAuthentication();
 
-    if (isLoading)
-    return (
-      <Flex variant="center" classname="h-screen bg-slate-50">
-        <LuLoaderCircle className="h-10 w-10 animate-spin text-slate-500" />
-      </Flex>
-    );
+    if (isLoading) return <Spinner styling="min-h-screen w-full bg-slate-50 dark:bg-slate-800" label="Checking your session..." />;
 
     if (!isAuthenticated) return <Navigate to="/sign-in" replace={true} />;
 
     return children || <Outlet />;
-}
+}
