@@ -32,8 +32,8 @@ export default function StudyFlashcard() {
   const { updateMutation } = useUpdateFlashcard();
   const { flashcards, isPending, error } = useFetchCards();
   const { isDeleting, deleteFlashcard } = useDeleteFlashcard();
-  const { setActiveId, setFinished, setIsPlay, activeId } = useFlashcard();
-  
+  const { setActiveId, setFinished, activeId } = useFlashcard();
+
   const timerRef = useRef(null);
   const [index, setIndex] = useState(0);
   const [timer, setTimer] = useState(0);
@@ -81,7 +81,7 @@ export default function StudyFlashcard() {
       ...sessionResults,
       [index]: result,
     };
-    
+
     setSessionResults(newResults);
 
     if (condition) {
@@ -95,7 +95,7 @@ export default function StudyFlashcard() {
     if (activeId) {
       deleteFlashcard(activeId);
       setIsDeleteModal(false);
-      
+
       const previousFilter = location.state?.previousFilter || "title";
       setSearchParams({ filter: previousFilter });
     }
@@ -157,11 +157,11 @@ export default function StudyFlashcard() {
       const todayKey = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
       const todayMinutes = currentHistory[todayKey] || 0;
       // timer is in seconds, convert to minutes (rounded up)
-      const sessionMinutes = Math.ceil(timer / 60); 
-      
+      const sessionMinutes = Math.ceil(timer / 60);
+
       const newHistory = {
         ...currentHistory,
-        [todayKey]: todayMinutes + sessionMinutes
+        [todayKey]: todayMinutes + sessionMinutes,
       };
 
       const updateData = {
@@ -206,16 +206,27 @@ export default function StudyFlashcard() {
 
   return (
     <Container classname={"p-4 h-full flex flex-col"}>
-      <StudyFlashcardHeader title={title} onIsDeleteModal={setIsDeleteModal} timer={formatTime(timer)} />
+      <StudyFlashcardHeader
+        title={title}
+        onIsDeleteModal={setIsDeleteModal}
+        timer={formatTime(timer)}
+      />
 
       <Conditional condition={isPending}>
-        <Spinner spinnerWidth={"h-6 w-6 md:h-8 md:w-8"} />
+        <Spinner
+          secondary={true}
+          styling={"h-full"}
+          spinnerWidth={"h-6 w-6"}
+          label="Loading flashcards..."
+        />
       </Conditional>
 
       <Conditional condition={!isPending}>
         <Flex
           variant="center"
-          classname={"px-2 md:px-8 flex-col gap-8 md:max-w-2xl mx-auto flex-1 w-full"}
+          classname={
+            "px-2 md:px-8 flex-col gap-8 md:max-w-2xl mx-auto flex-1 w-full"
+          }
         >
           <div
             role="button"
@@ -260,7 +271,7 @@ export default function StudyFlashcard() {
                           {pairs[index].term}
                         </Paragraph>
                       </div>
-                      <span className="text-center text-xs text-slate-400 italic select-none dark:text-gray-400 mt-2 shrink-0">
+                      <span className="mt-2 shrink-0 text-center text-xs text-slate-400 italic select-none dark:text-gray-400">
                         Tap to view definition
                       </span>
                     </div>
@@ -282,7 +293,7 @@ export default function StudyFlashcard() {
                           {pairs[index].definition}
                         </Paragraph>
                       </div>
-                      <span className="text-center text-xs text-slate-400 italic select-none dark:text-gray-400 mt-2 shrink-0">
+                      <span className="mt-2 shrink-0 text-center text-xs text-slate-400 italic select-none dark:text-gray-400">
                         Tap to view term
                       </span>
                     </div>
@@ -327,7 +338,7 @@ export default function StudyFlashcard() {
                 classname={btnStyling}
                 onclick={() => handleRate("missed")}
               >
-                <LuX className="icons text-white h-5 w-5" />
+                <LuX className="icons h-5 w-5 text-white" />
               </Button>
 
               <Group>
@@ -340,7 +351,7 @@ export default function StudyFlashcard() {
                 classname={`${btnStyling} bg-green-500 hover:bg-green-600 text-white border-green-600`}
                 onclick={() => handleRate("got_it")}
               >
-                <LuCheck className="icons text-white h-5 w-5" />
+                <LuCheck className="icons h-5 w-5 text-white" />
               </Button>
             </Conditional>
           </Group>

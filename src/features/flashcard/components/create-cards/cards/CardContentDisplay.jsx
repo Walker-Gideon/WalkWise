@@ -98,14 +98,23 @@ export default function CardContentDisplay() {
   return (
     <Group classname={`px-6 pb-6`}>
       <Conditional condition={isPending || isSearching}>
-        <Spinner secondary={true} styling={"mt-20 md:mt-40"} spinnerWidth={"h-6 w-6 md:h-8 md:w-8"} />
+        <Spinner
+          secondary={true}
+          styling={"mt-20 md:mt-40"}
+          spinnerWidth={"h-6 w-6"}
+          label="Loading flashcards..."
+        />
       </Conditional>
-      <Container adjust={true} classname={"md:px-8 md:max-w-2xl lg:mx-auto lg:max-w-5xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"}>
+      <Container
+        adjust={true}
+        classname={
+          "md:px-8 md:max-w-2xl lg:mx-auto lg:max-w-5xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        }
+      >
         <Conditional condition={!isSearching}>
-          {filteredFlashcards?.map((card, index) => (
+          {filteredFlashcards?.map((card) => (
             <Cards
               key={card.id}
-              index={index}
               title={card.title}
               numOfCards={card.pairs.length}
               handleDelete={() => handleDeleteClick(card.id, card.title)}
@@ -127,12 +136,17 @@ export default function CardContentDisplay() {
       <Conditional condition={!isSearching && filteredFlashcards?.length === 0}>
         <Flex variant="center" classname={"h-80 flex-col gap-3 mt-4"}>
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800">
-             <LuFolderSearch className="h-8 w-8 text-slate-400" />
+            <LuFolderSearch className="h-8 w-8 text-slate-400" />
           </div>
-          <Paragraph classname={"text-center font-bold text-lg primary-text-color"}>
+          <Paragraph
+            classname={"text-center font-bold text-lg primary-text-color"}
+          >
             No flashcards found
           </Paragraph>
-          <Paragraph type="sm" classname={"text-center font-medium secondary-text-color"}>
+          <Paragraph
+            type="sm"
+            classname={"text-center font-medium secondary-text-color"}
+          >
             Try adjusting your search or create a new deck.
           </Paragraph>
         </Flex>
@@ -142,37 +156,60 @@ export default function CardContentDisplay() {
   );
 }
 
-function Cards({ title, numOfCards, handleDelete, handlePlay, handleEdit, timing, index }) {
+function Cards({
+  title,
+  numOfCards,
+  handleDelete,
+  handlePlay,
+  handleEdit,
+  timing,
+}) {
   const createdExact = useFormattedDate(timing);
 
   return (
     <Card
-      classname={"mb-4 mt-1 border border-slate-200 dark:border-slate-700/60 shadow-sm hover:shadow-xl hover:shadow-slate-200/50 hover:dark:shadow-slate-900/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col group relative overflow-hidden bg-white dark:bg-slate-800"}
+      classname={
+        "mb-4 mt-1 border border-slate-200 dark:border-slate-700/60 shadow-sm hover:shadow-xl hover:shadow-slate-200/50 hover:dark:shadow-slate-900/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col group relative overflow-hidden bg-white dark:bg-slate-800"
+      }
     >
       <Flex variant="between" classname={"w-full gap-2 min-w-0 items-start"}>
         <Flex classname={"gap-4 flex-1 min-w-0 items-start"}>
-          <Group classname={"h-12 w-12 shrink-0 rounded-xl bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-200 mt-1"}>
-             <span className="font-bold text-xl">{title.charAt(0).toUpperCase()}</span>
+          <Group
+            classname={
+              "h-12 w-12 shrink-0 rounded-xl bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-200 mt-1"
+            }
+          >
+            <span className="text-xl font-bold">
+              {title.charAt(0).toUpperCase()}
+            </span>
           </Group>
 
           <Flex classname={"flex-col flex-1 min-w-0"}>
-            <Paragraph type="sm" classname={"truncate w-full font-bold primary-text-color"}>{title}</Paragraph>
-            <Paragraph type="xs" classname={"secondary-text-color mt-0.5 mb-3 font-medium"}>
+            <Paragraph
+              type="sm"
+              classname={"truncate w-full font-bold primary-text-color"}
+            >
+              {title}
+            </Paragraph>
+            <Paragraph
+              type="xs"
+              classname={"secondary-text-color mt-0.5 mb-3 font-medium"}
+            >
               {numOfCards} card{numOfCards === 1 ? "" : "s"}
             </Paragraph>
           </Flex>
         </Flex>
 
         <Group classname="flex items-start shrink-0 z-10 pt-1">
-           <Menus>
+          <Menus>
             <Menus.Toggle />
             <Menus.Lists>
               <Menus.Buttons onClick={handleEdit}>
-                <RiEditLine className="w-4 h-4" />
+                <RiEditLine className="h-4 w-4" />
                 Edit
               </Menus.Buttons>
               <Menus.Buttons onClick={handleDelete}>
-                <RiDeleteBin5Line className="w-4 h-4" />
+                <RiDeleteBin5Line className="h-4 w-4" />
                 Delete
               </Menus.Buttons>
             </Menus.Lists>
@@ -180,19 +217,24 @@ function Cards({ title, numOfCards, handleDelete, handlePlay, handleEdit, timing
         </Group>
       </Flex>
 
-      <Button 
+      <Button
         onClick={handlePlay}
         variant="primary"
         ariaLabel="Play Flashcards"
-        className={"w-full group/play flex items-center justify-center my-3"}
+        className={"group/play my-3 flex w-full items-center justify-center"}
       >
         <LuPlay className="icons group-hover/play:text-slate-500" />
       </Button>
 
-      <div className="w-full flex items-center justify-between">
-         <Paragraph variant="small" classname={"flex items-center text-nowrap text-slate-400 dark:text-slate-500 gap-1.5 text-[11px] font-medium tracking-wide"}>
-            <GoDotFill className="h-3 w-3" /> Created {createdExact}
-          </Paragraph>
+      <div className="flex w-full items-center justify-between">
+        <Paragraph
+          variant="small"
+          classname={
+            "flex items-center text-nowrap text-slate-400 dark:text-slate-500 gap-1.5 text-[11px] font-medium tracking-wide"
+          }
+        >
+          <GoDotFill className="h-3 w-3" /> Created {createdExact}
+        </Paragraph>
       </div>
     </Card>
   );
