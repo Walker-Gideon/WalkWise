@@ -8,12 +8,15 @@ import Button from "/src/ui/Button";
 import HeaderText from "/src/ui/HeaderText";
 
 import { useNote } from "../../context/NoteContext";
+import useFetchNotes from "../../hook/useFetchNotes";
 
 export default function LeftNoteHeader() {
   const { query, setQuery, isDisplayNote, setIsDisplayNote } = useNote();
 
+  const { notes } = useFetchNotes();
+
   const [searchParams, setSearchParams] = useSearchParams();
-  
+
   const noteId = searchParams.get("noteId");
   const isCreatingNewNote = isDisplayNote && !noteId;
 
@@ -26,6 +29,7 @@ export default function LeftNoteHeader() {
           name="queryNote"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          disabled={!notes || notes.length === 0}
           placeholder="Search note"
           classname={"w-full pl-7 dark:text-white"}
         />
