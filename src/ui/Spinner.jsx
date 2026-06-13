@@ -1,26 +1,44 @@
 import Flex from "./Flex";
 
-export default function Spinner({ styling, primary, secondary, spinnerWidth = "h-8 w-8" }) {
+export default function Spinner({
+  styling = "",
+  primary = false,
+  secondary = false,
+  spinnerWidth = "h-8 w-8",
+  label,
+}) {
+  const baseSpinner = `${spinnerWidth} animate-spin rounded-full border-4 border-slate-300 border-t-slate-600`;
+
   if (primary) {
-    // <div className="w-4 h-4 rounded-full animate-spin border-2 border-slate-300 border-t-slate-600" />
     return (
-      <>
-        <div className={`${spinnerWidth} rounded-full animate-spin border-slate-300 border-t-slate-600 ${styling}`} />
-      </>
+      <div className={`inline-flex items-center gap-3 ${styling}`} aria-live="polite">
+        <div className={baseSpinner} />
+        {label ? <span className="text-sm text-slate-600 dark:text-slate-200">{label}</span> : null}
+      </div>
     );
   }
 
   if (secondary) {
     return (
-      <Flex variant="center" classname={`w-full p-4 ${styling}`}>
-        <div className={`${spinnerWidth} animate-spin rounded-full border-4 border-slate-300 border-t-slate-600`} />
+      <Flex variant="center" classname={`w-full p-4 ${styling}`} aria-live="polite">
+        <div className="flex items-center gap-3">
+          <div className={baseSpinner} />
+          {label ? <span className="text-sm text-slate-600 dark:text-slate-200">{label}</span> : null}
+        </div>
       </Flex>
     );
   }
 
   return (
-    <Flex variant="center" classname={`${styling ? "styling" : "absolute inset-0 h-screen w-full"}`}>
-      <div className={`${spinnerWidth} animate-spin rounded-full border-4 border-slate-300 border-t-slate-600`} />
+    <Flex
+      variant="center"
+      classname={styling || "absolute inset-0 h-screen w-full bg-slate-50 dark:bg-slate-800"}
+      aria-live="polite"
+    >
+      <div className="flex items-center gap-3">
+        <div className={baseSpinner} />
+        {label ? <span className="text-sm text-slate-600 dark:text-slate-200">{label}</span> : null}
+      </div>
     </Flex>
   );
 }
