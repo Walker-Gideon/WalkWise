@@ -30,14 +30,22 @@ export default function SessionForm() {
 
   useEffect(() => {
     const handleResize = () => {
-      setMaxLength(window.innerWidth < 450 ? 22 : window.innerWidth < 640 ? 30 : 40);
+      setMaxLength(
+        window.innerWidth < 450 ? 22 : window.innerWidth < 640 ? 30 : 40,
+      );
     };
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors, isValid },
+  } = useForm({
     defaultValues: {
       tag: "",
     },
@@ -48,11 +56,13 @@ export default function SessionForm() {
 
   useEffect(() => {
     if (sesssionSelectedId) {
-      const selectedCard = flashcards.find((card) => card.id === sesssionSelectedId);
+      const selectedCard = flashcards.find(
+        (card) => card.id === sesssionSelectedId,
+      );
       const count = selectedCard?.pairs?.length || 0;
       setValue("cardCount", count);
     } else {
-        setValue("cardCount", "");
+      setValue("cardCount", "");
     }
   }, [sesssionSelectedId, flashcards, setValue]);
 
@@ -62,31 +72,33 @@ export default function SessionForm() {
       if (sessionToEdit) {
         setValue("tag", sessionToEdit.tag);
         setValue("cardCount", sessionToEdit.numCards);
-        
-        if (sessionToEdit.scheduledAt) {
-            const dateObj = sessionToEdit.scheduledAt.toDate ? sessionToEdit.scheduledAt.toDate() : new Date(sessionToEdit.scheduledAt);
-            const year = dateObj.getFullYear();
-            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-            const day = String(dateObj.getDate()).padStart(2, '0');
-            
-            const hours = String(dateObj.getHours()).padStart(2, '0');
-            const minutes = String(dateObj.getMinutes()).padStart(2, '0');
 
-            setValue("date", `${year}-${month}-${day}`);
-            setValue("time", `${hours}:${minutes}`);
+        if (sessionToEdit.scheduledAt) {
+          const dateObj = sessionToEdit.scheduledAt.toDate
+            ? sessionToEdit.scheduledAt.toDate()
+            : new Date(sessionToEdit.scheduledAt);
+          const year = dateObj.getFullYear();
+          const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+          const day = String(dateObj.getDate()).padStart(2, "0");
+
+          const hours = String(dateObj.getHours()).padStart(2, "0");
+          const minutes = String(dateObj.getMinutes()).padStart(2, "0");
+
+          setValue("date", `${year}-${month}-${day}`);
+          setValue("time", `${hours}:${minutes}`);
         }
       }
     } else {
-        setValue("tag", "");
-        setValue("cardCount", "");
-        setValue("date", "");
-        setValue("time", "");
+      setValue("tag", "");
+      setValue("cardCount", "");
+      setValue("date", "");
+      setValue("time", "");
     }
   }, [selectedId, sessions, setValue]);
 
   const onSubmit = (data) => {
     const selectedCard = flashcards.find((card) => card.id === data.tag);
-    
+
     // Combine date and time
     const scheduledAt = new Date(`${data.date}T${data.time}`);
 
@@ -104,14 +116,14 @@ export default function SessionForm() {
         { id: selectedId, data: sessionData },
         {
           onSuccess: () => {
-             handleCloseModal();
+            handleCloseModal();
           },
-        }
+        },
       );
     } else {
       createSession(sessionData, {
         onSuccess: () => {
-           handleCloseModal();
+          handleCloseModal();
         },
       });
     }
@@ -126,7 +138,8 @@ export default function SessionForm() {
     setValue("time", "");
   }
 
-  const baseInputStyles = "rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs hover:border-slate-400 focus:ring-2 focus:ring-slate-400 focus:outline-hidden";
+  const baseInputStyles =
+    "rounded-sm border border-stone-300 px-1.5 py-1.5 text-sm text-black transition-all duration-300 placeholder:text-xs hover:border-slate-400 focus:ring-2 focus:ring-slate-400 focus:outline-hidden";
   const errorStyling = "text-red-500 text-xs absolute bottom-0 left-0";
 
   return (
@@ -149,9 +162,14 @@ export default function SessionForm() {
         </Button>
       </Flex>
       <Form onsubmit={handleSubmit(onSubmit)} classname={"mt-6"}>
-        <FormRow label="Select Tag *" error={errors?.tag?.message} errStyling={errorStyling} classname={"relative pb-5"}>
+        <FormRow
+          label="Select Tag *"
+          error={errors?.tag?.message}
+          errStyling={errorStyling}
+          classname={"relative pb-5"}
+        >
           <select
-            className="input w-full disabled:cursor-not-allowed dark:text-white dark:bg-slate-700 text-sm"
+            className="input w-full text-sm disabled:cursor-not-allowed dark:bg-slate-700 dark:text-white"
             {...register("tag", { required: "Tag is required" })}
           >
             <option value="" disabled hidden>
@@ -163,7 +181,9 @@ export default function SessionForm() {
             <Conditional condition={flashcards.length > 0}>
               {flashcards.map((card) => (
                 <option key={card.id} value={card.id} className="text-sm">
-                  {card?.title?.length > maxLength ? `${card.title.slice(0, maxLength)}...` : card.title}
+                  {card?.title?.length > maxLength
+                    ? `${card.title.slice(0, maxLength)}...`
+                    : card.title}
                 </option>
               ))}
             </Conditional>
@@ -175,29 +195,39 @@ export default function SessionForm() {
             <input
               type="number"
               placeholder="Auto-filled after selecting tag"
-              className={`${baseInputStyles} w-full pl-8 disabled:cursor-not-allowed dark:text-white dark:bg-slate-700`}
+              className={`${baseInputStyles} w-full pl-8 disabled:cursor-not-allowed dark:bg-slate-700 dark:text-white`}
               disabled={true}
               {...register("cardCount")}
             />
           </Group>
         </FormRow>
         <Flex variant="between" classname={"gap-2 mb-4"}>
-          <FormRow label="Date *" error={errors?.date?.message} errStyling={errorStyling} classname={"relative pb-5"}>
+          <FormRow
+            label="Date *"
+            error={errors?.date?.message}
+            errStyling={errorStyling}
+            classname={"relative pb-5"}
+          >
             <Group classname={"relative"}>
               <LuCalendar className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
                 type="date"
-                className={`${baseInputStyles} w-full pl-8 dark:text-white dark:bg-slate-700`}
+                className={`${baseInputStyles} w-full pl-8 dark:bg-slate-700 dark:text-white`}
                 {...register("date", { required: "Date is required" })}
               />
             </Group>
           </FormRow>
-          <FormRow label="Time *" error={errors?.time?.message} errStyling={errorStyling} classname={"relative pb-5"}>
+          <FormRow
+            label="Time *"
+            error={errors?.time?.message}
+            errStyling={errorStyling}
+            classname={"relative pb-5"}
+          >
             <Group classname={"relative"}>
               <LuClock className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
                 type="time"
-                className={`${baseInputStyles} w-full pl-8 dark:text-white dark:bg-slate-700`}
+                className={`${baseInputStyles} w-full pl-8 dark:bg-slate-700 dark:text-white`}
                 {...register("time", { required: "Time is required" })}
               />
             </Group>
@@ -216,11 +246,15 @@ export default function SessionForm() {
           </Button>
           <Button
             type="colors"
-            disabled={isSubmitting}
+            disabled={isSubmitting || !isValid}
             classname={"w-full flex items-center justify-center"}
           >
             <Conditional condition={isSubmitting}>
-              <Spinner primary={true} spinnerWidth={"h-4 w-4"} styling={"border-2"} />
+              <Spinner
+                primary={true}
+                spinnerWidth={"h-4 w-4"}
+                styling={"border-2"}
+              />
             </Conditional>
             <Conditional condition={!isSubmitting}>
               <Conditional condition={selectedId}>
