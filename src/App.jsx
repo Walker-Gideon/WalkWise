@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import { LuLoaderCircle } from "react-icons/lu";
 
 import Flex from "/src/ui/Flex";
@@ -45,7 +45,7 @@ function PageLoader() {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <HashRouter>
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route
@@ -88,7 +88,7 @@ export default function App() {
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Suspense>
-      </BrowserRouter>
+      </HashRouter>
 
       <Toaster
         position="top-center"
