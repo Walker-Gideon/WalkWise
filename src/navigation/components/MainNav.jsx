@@ -64,7 +64,7 @@ export default function MainNav({ showLabel }) {
             }
           >
             <List classname={"flex items-center gap-2.5"}>
-              <SpanText className="shrink-0">
+              <SpanText classname="shrink-0">
                 <data.icon className="text-sm" />
               </SpanText>
               <SpanText
