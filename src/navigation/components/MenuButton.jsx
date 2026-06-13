@@ -4,10 +4,10 @@ import Button from "/src/ui/Button";
 import { useNav } from "/src/contexts/NavigationContext";
 
 export default function MenuButton() {
-    const { setIsMenuClick } = useNav();
+    const { setIsMobileMenuOpen } = useNav();
 
     function handleToggle() {
-        setIsMenuClick(true)
+        setIsMobileMenuOpen(true)
     }
 
     return (

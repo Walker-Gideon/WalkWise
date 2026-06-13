@@ -13,11 +13,11 @@ import useNavigateToAction from "/src/hook/useNavigateToAction";
 import { useAuthentication } from "/src/authentication/context/AuthContext";
 
 export default function Slider({ menu }) {
-  const { isExpanded } = useNav();
+  const { isSidebarExpanded } = useNav();
 
   return (
     <Aside
-      classname={`borderStyling border-r h-full flex flex-col justify-between transition-all duration-300 ${menu ? "w-65" : isExpanded ? "w-65" : "w-20"} ${ menu ? "md:hidden z-50 defaultColor" : "md:flex hidden z-50 relative"}`}
+      classname={`borderStyling border-r h-full flex flex-col justify-between transition-all duration-300 ${menu ? "w-65" : isSidebarExpanded ? "w-65" : "w-20"} ${ menu ? "md:hidden z-50 defaultColor" : "md:flex hidden z-50 relative"}`}
     >
         <Box adjustWidth={true}>
           <NavigationHeader showLabel={menu} />
@@ -37,11 +37,11 @@ export default function Slider({ menu }) {
 
 
 function LogOutButton({ showLabel }) {
-  const { isExpanded } = useNav();
+  const { isSidebarExpanded } = useNav();
   const { logout } = useAuthentication();
   const navigateTo = useNavigateToAction();
 
-  const effectiveIsExpanded = showLabel ? true : isExpanded;
+  const effectiveIsSidebarExpanded = showLabel ? true : isSidebarExpanded;
 
   const handleLogout = async () => {
     await logout();
@@ -55,13 +55,13 @@ function LogOutButton({ showLabel }) {
         ariaLabel="Sign out"
         onClick={handleLogout}
         className={`flex items-center transition-all duration-300 text-sm font-semibold text-slate-900 dark:text-slate-300 py-2 px-2 rounded-sm hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/10 dark:hover:text-red-400 ${
-          effectiveIsExpanded ? "gap-2 justify-start" : "gap-0 justify-center"
+          effectiveIsSidebarExpanded ? "gap-2 justify-start" : "gap-0 justify-center"
         }`}
       >
         <LuLogOut className="text-base shrink-0" />
         <span
           className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${
-            effectiveIsExpanded ? "opacity-100 max-w-[200px]" : "opacity-0 max-w-0"
+            effectiveIsSidebarExpanded ? "opacity-100 max-w-[200px]" : "opacity-0 max-w-0"
           }`}
         >
           Sign out
@@ -71,7 +71,7 @@ function LogOutButton({ showLabel }) {
       {/* Tooltip — only shows when collapsed */}
       <div
         className={`pointer-events-none absolute top-1/2 left-14 z-50 -translate-y-1/2 rounded-sm bg-slate-500 px-2 py-1 text-xs font-semibold whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100 ${
-          !effectiveIsExpanded ? "medium:block" : "hidden"
+          !effectiveIsSidebarExpanded ? "medium:block" : "hidden"
         }`}
       >
         Sign out

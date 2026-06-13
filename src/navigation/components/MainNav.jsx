@@ -43,8 +43,8 @@ const BUTTONS_DATA = [
 ];
 
 export default function MainNav({ showLabel }) {
-  const { isExpanded, collapseOnMobile } = useNav();
-  const effectiveIsExpanded = showLabel ? true : isExpanded;
+  const { isSidebarExpanded, collapseOnMobile } = useNav();
+  const effectiveIsSidebarExpanded = showLabel ? true : isSidebarExpanded;
 
   return (
     <Nav classname={showLabel ? "p-2" : "p-4"}>
@@ -69,7 +69,7 @@ export default function MainNav({ showLabel }) {
               </SpanText>
               <SpanText
                 classname={`overflow-hidden whitespace-nowrap transition-all duration-300 ${
-                  effectiveIsExpanded ? "opacity-100 max-w-[200px]" : "opacity-0 max-w-0"
+                  effectiveIsSidebarExpanded ? "opacity-100 max-w-[200px]" : "opacity-0 max-w-0"
                 }`}
               >
                 {data.text}
@@ -80,7 +80,7 @@ export default function MainNav({ showLabel }) {
           {/* Tooltip — only shows when collapsed */}
           <Group
             classname={`pointer-events-none absolute top-1 left-14 z-40 -translate-y-1/2 rounded-sm bg-slate-500 px-2 py-1 text-xs font-semibold whitespace-nowrap text-white opacity-0 transition-opacity group-hover:opacity-100 ${
-              !effectiveIsExpanded ? "medium:block" : "hidden"
+              !effectiveIsSidebarExpanded ? "medium:block" : "hidden"
             }`}
           >
             {data.text}

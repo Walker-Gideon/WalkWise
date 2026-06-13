@@ -8,14 +8,14 @@ import { useNav } from "/src/contexts/NavigationContext";
 import { useThemeContext } from "/src/contexts/ThemeContext";
 
 export default function ThemeButton({ showLabel }) {
-  const { isExpanded } = useNav();
+  const { isSidebarExpanded } = useNav();
   const { theme, setTheme } = useThemeContext();
 
   const isOn = theme === "system" 
     ? !document.documentElement.classList.contains("dark")
     : theme === "light";
 
-  const effectiveIsExpanded = showLabel ? true : isExpanded;
+  const effectiveIsSidebarExpanded = showLabel ? true : isSidebarExpanded;
 
   const handleToggle = () => {
     setTheme(isOn ? "dark" : "light");
@@ -25,13 +25,13 @@ export default function ThemeButton({ showLabel }) {
     <div
       role="button"
       className={`flex cursor-pointer items-center transition-all duration-300 ${
-        effectiveIsExpanded ? "justify-between px-2" : "justify-center px-0"
+        effectiveIsSidebarExpanded ? "justify-between px-2" : "justify-center px-0"
       }`}
       onClick={handleToggle}
     >
       <Group
         classname={`overflow-hidden whitespace-nowrap text-slate-900 dark:text-slate-300 transition-all duration-300 ${
-          effectiveIsExpanded ? "opacity-100 max-w-[200px] mr-2" : "opacity-0 max-w-0 mr-0"
+          effectiveIsSidebarExpanded ? "opacity-100 max-w-[200px] mr-2" : "opacity-0 max-w-0 mr-0"
         }`}
       >
         {!isOn ? (

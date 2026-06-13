@@ -7,9 +7,9 @@ import UserDetails from "./components/UserDetails";
 import { useNav } from "/src/contexts/NavigationContext";
 
 export default function UserProfile({ showLabel }) {
-  const { isExpanded, collapseOnMobile } = useNav();
+  const { isSidebarExpanded, collapseOnMobile } = useNav();
 
-  const effectiveIsExpanded = showLabel ? true : isExpanded;
+  const effectiveIsSidebarExpanded = showLabel ? true : isSidebarExpanded;
 
   return (
     <NavLink
@@ -20,13 +20,13 @@ export default function UserProfile({ showLabel }) {
     >
       <Box
         classname={`flex items-center transition-all duration-300 ${
-          effectiveIsExpanded ? "gap-4 justify-start" : "gap-0 justify-center"
+          effectiveIsSidebarExpanded ? "gap-4 justify-start" : "gap-0 justify-center"
         }`}
       >
         <Profile showLabel={showLabel} />
         <Box
           classname={`transition-all duration-300 overflow-hidden ${
-            effectiveIsExpanded ? "opacity-100 max-w-[200px]" : "opacity-0 max-w-0"
+            effectiveIsSidebarExpanded ? "opacity-100 max-w-[200px]" : "opacity-0 max-w-0"
           }`}
         >
           <UserDetails
