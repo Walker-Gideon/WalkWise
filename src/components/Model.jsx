@@ -24,9 +24,10 @@ export default function Model({ children, styling, onClick, menu }) {
 
   // Default is Schedule
   return (
-    <div role="button" onClick={onClick}>
+    <div role="button" onClick={onClick} className="fixed inset-0 z-50">
       <Overlay>
         <Group
+          onClick={(e) => e.stopPropagation()}
           classname={
             `max-w-md rounded-2xl border borderStyling bg-white dark:bg-slate-900/70 p-6 shadow-2xl ${styling}`
           }
