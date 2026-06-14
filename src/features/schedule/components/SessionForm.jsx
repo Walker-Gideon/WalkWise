@@ -49,6 +49,7 @@ export default function SessionForm() {
     defaultValues: {
       tag: "",
     },
+    mode: "onChange",
   });
 
   const sesssionSelectedId = watch("tag");
@@ -245,7 +246,8 @@ export default function SessionForm() {
             Cancel
           </Button>
           <Button
-            type="colors"
+            type="submit"
+            variant="primary"
             disabled={isSubmitting || !isValid}
             classname={"w-full flex items-center justify-center"}
           >
@@ -253,7 +255,7 @@ export default function SessionForm() {
               <Spinner
                 primary={true}
                 spinnerWidth={"h-4 w-4"}
-                styling={"border-2"}
+                label="Saving..."
               />
             </Conditional>
             <Conditional condition={!isSubmitting}>
