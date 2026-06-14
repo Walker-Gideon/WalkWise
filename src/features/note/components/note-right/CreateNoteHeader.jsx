@@ -1,73 +1,27 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import {
-  LuArrowLeft,
-  LuAlignLeft,
-  LuAlignRight,
-  LuAlignCenter,
-  LuAlignJustify,
-} from "react-icons/lu";
+import { LuArrowLeft } from "react-icons/lu";
 
 import Flex from "/src/ui/Flex";
 import Group from "/src/ui/Group";
 import Button from "/src/ui/Button";
+import Spinner from "/src/ui/Spinner";
 import Conditional from "/src/components/Conditional";
+import { editingTools, alignments } from "/src/data/noteHeaderData.js";
 
 import { useNote } from "../../context/NoteContext";
 
-const editingTools = [
-  {
-    text: "H1",
-    style: "px-2.5",
-    activeCheck: (editor) => editor.isActive("heading", { level: 1 }),
-    command: (editor) =>
-      editor.chain().focus().toggleHeading({ level: 1 }).run(),
-  },
-  {
-    text: "H2",
-    activeCheck: (editor) => editor.isActive("heading", { level: 2 }),
-    command: (editor) =>
-      editor.chain().focus().toggleHeading({ level: 2 }).run(),
-  },
-  {
-    text: "B",
-    style: "font-bold px-[13px]",
-    activeCheck: (editor) => editor.isActive("bold"),
-    command: (editor) => editor.chain().focus().toggleBold().run(),
-  },
-  {
-    text: "I",
-    style: "italic px-[14px]",
-    activeCheck: (editor) => editor.isActive("italic"),
-    command: (editor) => editor.chain().focus().toggleItalic().run(),
-  },
-  {
-    text: "U",
-    style: "underline px-[11px]",
-    activeCheck: (editor) => editor.isActive("underline"),
-    command: (editor) => editor.chain().focus().toggleUnderline().run(),
-  },
-  {
-    text: "H",
-    style: "px-[11px]",
-    activeCheck: (editor) => editor.isActive("highlight"),
-    command: (editor) => editor.chain().focus().toggleHighlight().run(),
-  },
-];
-
-const alignments = [
-  { align: "left", icon: LuAlignLeft },
-  { align: "center", icon: LuAlignCenter },
-  { align: "right", icon: LuAlignRight },
-  { align: "justify", icon: LuAlignJustify },
-];
-
-export default function CreateNoteHeader({ noteId, editor, onSave, isSaving, showSaveButton }) {
+export default function CreateNoteHeader({
+  noteId,
+  editor,
+  onSave,
+  isSaving,
+  showSaveButton,
+}) {
   const { setIsDisplayNote } = useNote();
   const [, setSearchParams] = useSearchParams();
 
   const [editorState, setEditorState] = useState(0);
-
 
   useEffect(() => {
     if (!editor) return;
@@ -86,7 +40,7 @@ export default function CreateNoteHeader({ noteId, editor, onSave, isSaving, sho
   if (!editor) return null;
 
   function handleBack() {
-    setIsDisplayNote(false); 
+    setIsDisplayNote(false);
     setSearchParams({});
   }
 
@@ -99,65 +53,70 @@ export default function CreateNoteHeader({ noteId, editor, onSave, isSaving, sho
 
   return (
     <Flex
-      classname={"mx-4 py-4 md:py-3 gap-2 border-b borderStyling flex-wrap items-center medium:justify-between"}
+      classname={
+        "mx-4 py-4 md:py-3 gap-2 border-b borderStyling flex-wrap items-center medium:justify-between"
+      }
     >
       <Flex classname={"w-full medium:w-auto"}>
-        <Flex variant="between" classname={"w-full medium:w-auto gap-4 medium:gap-2 items-center"}>
-        <Group classname={"h-[92%] medium:h-[75%]"}>
-          <Button
-            variant="secondary"
-            type="back"
-            onclick={handleBack}
-            classname={"shrink-0"}
-          >
-            <LuArrowLeft className="w-5 h-5" />
-          </Button>
-        </Group>
+        <Flex
+          variant="between"
+          classname={"w-full medium:w-auto gap-4 medium:gap-2 items-center"}
+        >
+          <Group classname={"h-[92%] medium:h-[75%]"}>
+            <Button
+              variant="secondary"
+              type="back"
+              onclick={handleBack}
+              classname={"shrink-0"}
+            >
+              <LuArrowLeft className="h-5 w-5" />
+            </Button>
+          </Group>
 
-        <Flex classname={"gap-4 medium:gap-2 flex-wrap"}>
-          <Flex classname={"gap-2"}>
-            {editingTools.map((data, index) => (
-              <Button
-                key={index}
-                type="customize"
-                variant="secondary"
-                classname={`${data.style} ${styling.base} ${data.activeCheck(editor) ? `${styling.isActive}` : `${styling.notActive}`}`}
-                onclick={(e) => {
-                  e.preventDefault();
-                  data.command(editor);
-                }}
-              >
-                {data.text}
-              </Button>
-            ))}
-          </Flex>
-          <Flex classname={"gap-2"}>
-            {alignments.map((btn, index) => (
-              <Button
-                key={index}
-                type="customize"
-                variant="secondary"
-                classname={`px-[9.5px] py-[11px] ${styling.base} ${
-                  editor.isActive({ textAlign: btn.align })
-                    ? `${styling.isActive}`
-                    : `${styling.notActive}`
-                }`}
-                onclick={(e) => {
-                  e.preventDefault();
-                  // Toggle: if already active, unset; otherwise set
-                  if (editor.isActive({ textAlign: btn.align })) {
-                    editor.chain().focus().unsetTextAlign().run();
-                  } else {
-                    editor.chain().focus().setTextAlign(btn.align).run();
-                  }
-                }}
-              >
-                <btn.icon />
-              </Button>
-            ))}
+          <Flex classname={"gap-4 medium:gap-2 flex-wrap"}>
+            <Flex classname={"gap-2"}>
+              {editingTools.map((data, index) => (
+                <Button
+                  key={index}
+                  type="customize"
+                  variant="secondary"
+                  classname={`${data.style} ${styling.base} ${data.activeCheck(editor) ? `${styling.isActive}` : `${styling.notActive}`}`}
+                  onclick={(e) => {
+                    e.preventDefault();
+                    data.command(editor);
+                  }}
+                >
+                  {data.text}
+                </Button>
+              ))}
+            </Flex>
+            <Flex classname={"gap-2"}>
+              {alignments.map((btn, index) => (
+                <Button
+                  key={index}
+                  type="customize"
+                  variant="secondary"
+                  classname={`px-[9.5px] py-[11px] ${styling.base} ${
+                    editor.isActive({ textAlign: btn.align })
+                      ? `${styling.isActive}`
+                      : `${styling.notActive}`
+                  }`}
+                  onclick={(e) => {
+                    e.preventDefault();
+                    // Toggle: if already active, unset; otherwise set
+                    if (editor.isActive({ textAlign: btn.align })) {
+                      editor.chain().focus().unsetTextAlign().run();
+                    } else {
+                      editor.chain().focus().setTextAlign(btn.align).run();
+                    }
+                  }}
+                >
+                  <btn.icon />
+                </Button>
+              ))}
+            </Flex>
           </Flex>
         </Flex>
-      </Flex>
       </Flex>
 
       <Conditional condition={showSaveButton}>
@@ -170,7 +129,13 @@ export default function CreateNoteHeader({ noteId, editor, onSave, isSaving, sho
           disabled={isSaving}
           classname={"mt-3 medium:mt-0 w-full medium:w-auto medium:h-fit"}
         >
-          {isSaving ? "Saving..." : noteId ? "Update Note" : "Save Note"}
+          {isSaving ? (
+            <Spinner primary={true} spinnerWidth="h-4 w-4" label="Saving..." />
+          ) : noteId ? (
+            "Update Note"
+          ) : (
+            "Save Note"
+          )}
         </Button>
       </Conditional>
     </Flex>
