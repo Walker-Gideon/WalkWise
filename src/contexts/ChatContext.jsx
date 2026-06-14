@@ -1,7 +1,6 @@
 import { createContext, useState } from "react";
 
 export const ChatContext = createContext();
-import { useChat } from "./useChat";
 
 export function ChatProvider({ children }) {
   const [isChatShow, setIsChatShow] = useState(false);
@@ -18,15 +17,33 @@ export function ChatProvider({ children }) {
 
   const value = {
     isChatShow,
-    setIsChatShow,
+    openChat: () => setIsChatShow(true),
+    closeChat: () => setIsChatShow(false),
+    startTyping: () => setIsTyping(true),
+    stopTyping: () => setIsTyping(false),
+    toggleChat: () => setIsChatShow((prev) => !prev),
+
     inputMessage,
     setInputMessage,
+
     isTyping,
-    setIsTyping,
     messages,
-    setMessages,
     isRefreshing,
-    setIsRefreshing,
+
+    addMessage: (message) =>
+      setMessages((prev) => [...prev, { id: Date.now(), ...message }]),
+
+    refreshChat: () => {
+      setIsRefreshing(true);
+      setMessages([
+        {
+          id: 1,
+          text: "Hello! How can I assist you with your studies today?",
+          sender: "ai",
+        },
+      ]);
+      setTimeout(() => setIsRefreshing(false), 500);
+    },
   };
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
