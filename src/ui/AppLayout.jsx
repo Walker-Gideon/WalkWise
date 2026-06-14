@@ -1,16 +1,21 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { AnimatePresence, motion as Motion } from "motion/react";
+import { LuMessageCircle, LuCheck } from "react-icons/lu";
 
 import Main from "/src/ui/Main";
+import Button from "/src/ui/Button";
 import Model from "/src/components/Model";
 import Container from "/src/ui/Container";
 import Slider from "/src/navigation/Slider";
+import ChatLayout from "/src/features/chat/ChatLayout";
 
 import { useNav } from "/src/contexts/NavigationContext";
+import { useChat } from "/src/contexts/useChat.js";
 
 export default function AppLayout() {
   const { isMobileMenuOpen, closeMobileMenu } = useNav();
+  const { toggleChat } = useChat();
   const location = useLocation();
 
   useEffect(() => {
@@ -18,7 +23,7 @@ export default function AppLayout() {
   }, [location.pathname]);
 
   return (
-    <Container classname={`defaultColor flex overflow-hidden`}>
+    <Container classname={`defaultColor relative flex overflow-hidden`}>
       <Slider menu={false} />
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -50,6 +55,17 @@ export default function AppLayout() {
           </Motion.section>
         </AnimatePresence>
       </Main>
+
+      <AnimatePresence>
+        <ChatLayout />
+      </AnimatePresence>
+
+      <button
+        onClick={toggleChat}
+        className={`medium:right-8 absolute right-5 bottom-5 cursor-pointer rounded-full bg-slate-500 p-3.5 text-white transition-colors duration-300 hover:bg-slate-600 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-slate-500`}
+      >
+        <LuMessageCircle size={23} />
+      </button>
     </Container>
   );
 }
