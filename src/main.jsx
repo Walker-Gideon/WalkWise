@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 
+import { ChatProvider } from "./contexts/ChatContext.jsx";
 import { ThemeProvider } from "./contexts/ThemeContext.jsx";
 import { GeneralProvider } from "./contexts/GeneralContext.jsx";
 import { NavigationProvider } from "./contexts/NavigationContext.jsx";
@@ -17,13 +18,15 @@ createRoot(document.getElementById("root")).render(
       <FlashcardProvider>
         <ScheduleProvider>
           <InspireProvider>
-            <NavigationProvider>
-              <GeneralProvider>
-                <AuthProvider>
-                  <App />
-                </AuthProvider>
-              </GeneralProvider>
-            </NavigationProvider>
+            <ChatProvider>
+              <NavigationProvider>
+                <GeneralProvider>
+                  <AuthProvider>
+                    <App />
+                  </AuthProvider>
+                </GeneralProvider>
+              </NavigationProvider>
+            </ChatProvider>
           </InspireProvider>
         </ScheduleProvider>
       </FlashcardProvider>
