@@ -1,0 +1,56 @@
+import ReactMarkdown from "react-markdown";
+import { LuUser, LuBrain } from "react-icons/lu";
+
+import Spinner from "/src/ui/Spinner";
+
+import { useChat } from "/src/contexts/useChat.js";
+
+export default function RenderMessage() {
+  const { messages, isRefreshing } = useChat();
+
+  return (
+    <>
+      {isRefreshing ? (
+        <Spinner
+          primary={true}
+          styling={"h-100 w-full justify-center"}
+          spinnerWidth="h-4 w-4"
+          label="Refreshing..."
+        />
+      ) : (
+        <div>
+          {messages.map((message) => (
+            <div
+              key={message.id}
+              className={`mb-4 flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
+            >
+              <div
+                className={`max-w-[70%] rounded-lg p-3 shadow-sm ${
+                  message.sender === "user"
+                    ? "rounded-br-none bg-slate-500 text-white"
+                    : "rounded-bl-none bg-slate-100 text-slate-900 dark:bg-slate-700 dark:text-white"
+                }`}
+              >
+                <div className="mb-1 flex items-center">
+                  {message.sender === "ai" && (
+                    <LuBrain className="mr-2 h-4 w-4 text-slate-600 dark:text-slate-400" />
+                  )}
+                  {message.sender === "user" && (
+                    <LuUser className="mr-2 h-4 w-4 text-white" />
+                  )}
+                  <span className="text-sm font-semibold">
+                    {message.sender === "user" ? "You" : "WalkWise AI"}
+                  </span>
+                </div>
+                {/* <p className="message-text">{message.text}</p> */}
+                <div className="message-text prose prose-sm dark:prose-invert max-w-none">
+                  <ReactMarkdown>{message.text}</ReactMarkdown>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
