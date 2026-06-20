@@ -8,6 +8,7 @@ export default function TextArea({
   classname,
   placeholder,
   disabled,
+  onKeyDown,
 }) {
   return (
     <textarea
@@ -18,6 +19,7 @@ export default function TextArea({
       onChange={onChange}
       className={`${resize ? "resize-none" : ""} ${classname}`}
       placeholder={placeholder}
+      onKeyDown={onKeyDown}
       disabled={disabled}
     />
   );
