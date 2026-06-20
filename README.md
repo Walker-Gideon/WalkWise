@@ -46,8 +46,8 @@ The proxy server lives in a separate repository: **[walkwise-proxy](https://gith
 ### Installation
 
 ```bash
-git clone https://github.com/Walker-Gideon/WalkWise.git
-cd WalkWise
+git clone https://github.com/Walker-Gideon/walkwise.git
+cd walkwise
 npm install
 ```
 
